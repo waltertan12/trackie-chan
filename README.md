@@ -29,3 +29,4 @@
 - [ ] Create playlists
 - [ ] Continuous playback
 - [ ] Public and private tracks
+- [ ] Explore feed
