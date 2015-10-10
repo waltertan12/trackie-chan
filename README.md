@@ -18,6 +18,7 @@
 
 ## Design Docs
 [Views](docs/views.md)
+[Schema](docs/schema.md)
 
 ## Bonus
 - [ ] Album art
