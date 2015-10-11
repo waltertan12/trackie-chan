@@ -20,3 +20,6 @@
 
 ## Playlist Show
 ![Playlist Show](wireframes/playlist_show.png)
+
+## Search
+![Search](wireframes/search.png)
