@@ -17,3 +17,6 @@
 
 ## User Show
 ![User Show](wireframes/user_show.png)
+
+## Playlist Show
+![Playlist Show](wireframes/playlist_show.png)
