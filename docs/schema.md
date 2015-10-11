@@ -50,15 +50,8 @@ column name       | data type | details
 id                | integer   | not null, primary key
 body              | text      | not null
 user_id           | integer   | not null, foreign key (references user), indexed
+song_id           | integer   | not null, foreign key (references a song), indexed
 parent_comment_id | integer   | indexed
-
-## commentings
-column name       | data type | details
-------------------|-----------|-----------------------
-id                | integer   | not null, primary key
-commentable_id    | integer   | not null, foreign key (references commentable object), indexed
-commentable_type  | string    | not null
-comment_id        | integer   | not null, foreign key (references comment), indexed
 
 ## likings
 column name   | data type | details
