@@ -23,3 +23,6 @@
 
 ## Search
 ![Search](wireframes/search.png)
+
+## React Hierarchy
+![React Hierarchy](wireframes/react_hierarchy.png)
