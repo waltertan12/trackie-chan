@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
-gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'uglifier', '>= 1.3.0'
@@ -17,7 +16,6 @@ gem 'factory_girl_rails'
 
 gem 'react-rails', '~>1.3.0'
 gem 'flux-rails-assets'
-gem 'bootstrap-sass'
 
 group :production do
   gem 'pg'
