@@ -55,4 +55,5 @@ Make it look better...
 - [ ] Continuous playback
 - [ ] Public and private tracks
 - [ ] Explore feed
+- [ ] Download songs
 - [ ] Use SendGrid as mailserver
