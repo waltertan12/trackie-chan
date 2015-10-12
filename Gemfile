@@ -20,6 +20,7 @@ gem 'flux-rails-assets'
 group :production do
   gem 'pg'
   gem 'unicorn'
+  gem 'rails_12factor'
 end
 
 group :development, :test do
