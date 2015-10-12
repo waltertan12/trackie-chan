@@ -11,6 +11,7 @@
 * StaticPagesController (index)
 
 ### Views
+* static_pages/index.html.erb
 * users/new.html.erb
 * users/show.json.jbuilder
 * users/edit.json.jbuilder

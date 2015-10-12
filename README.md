@@ -25,8 +25,10 @@ Implement user sign up and authentication. Create a simple landing page that wil
 
 [Details](./docs/phases/phase_1.md)
 
-### Phase 2: Flux Architecture (1 day)
+### Phase 2: Flux Architecture (2 day)
 Set up the Flux framework and React component hierarchy. Create React components for the landing page, user sign up, and user sign in.
+
+[Details](./docs/phases/phase_2.md)
 
 ### Phase 3: Tracks (2 days)
 Develop JSON API for Tracks. Tracks should be commentable, taggable, and likable. This will involve creating the following models: `comments`, `likings`, `taggings`. Tracks will get their own React components called `TrackIndex` and `TrackItem`.
@@ -53,3 +55,4 @@ Make it look better...
 - [ ] Continuous playback
 - [ ] Public and private tracks
 - [ ] Explore feed
+- [ ] Use SendGrid as mailserver

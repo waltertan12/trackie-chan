@@ -1,6 +1,6 @@
 # Schema Information
 
-## users
+## user
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
@@ -10,33 +10,34 @@ password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
 image_url       | string    | not null
 
-## followings
+## following
 column name     | data type | details
 ----------------|-----------|-----------------------
 id              | integer   | not null, primary key
 follower_id     | integer   | not null, foreign key (references user), indexed
 following_id    | integer   | not null, foreign key (references user), indexed
 
-## songs
+## track
 column name   | data type | details
 --------------|-----------|-----------------------
 id            | integer   | not null, primary key
 title         | string    | not null
 description   | text      | 
 user_id       | integer   | not null, foreign key (references users), indexed
-song_url      | string    | not null
+track_url     | string    | not null
 transcode_url | string    | not null
 image_url     | string    | not null
 private       | boolean   | not null, default: false
 file_size     | float     | not null
+plays         | integer   | not null
 
-## tags
+## tag
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 tag_name    | string    | not null
 
-## taggings
+## tagging
 column name   | data type | details
 --------------|-----------|----------
 id            | integer   | not null, primary key
@@ -50,10 +51,10 @@ column name       | data type | details
 id                | integer   | not null, primary key
 body              | text      | not null
 user_id           | integer   | not null, foreign key (references user), indexed
-song_id           | integer   | not null, foreign key (references a song), indexed
+track_id          | integer   | not null, foreign key (references a track), indexed
 parent_comment_id | integer   | indexed
 
-## likings
+## liking
 column name   | data type | details
 --------------|-----------|-----------------------
 id            | integer   | not null, primary key
@@ -61,7 +62,7 @@ user_id       | integer   | not null, foreign key (references user), indexed
 likable_id    | integer   | not null, foreign key (references likable object), indexed, unique [likable_type, likable_id, user_id]
 likable_type  | string    | not null
 
-## playlists
+## playlist
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -69,9 +70,9 @@ user_id     | integer   | not null, foreign key (references user), indexed
 title       | string    | not null
 description | text      | not null
 
-## playlistings
+## playlisting
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-song_id     | integer   | not null, foreign key (references song), indexed, unique [playlist_id]
+track_id     | integer   | not null, foreign key (references track), indexed, unique [playlist_id]
 playlist_id | integer   | not null, foreign key (references playlist), indexed
