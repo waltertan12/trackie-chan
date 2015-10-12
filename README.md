@@ -23,6 +23,8 @@
 ### Phase 1: User Sign Up and Authentication (1 day)
 Implement user sign up and authentication. Create a simple landing page that will hold the container for the root React component. Create `followers` and `followed` associations for users.
 
+[Details](./docs/phases/phase_1.md)
+
 ### Phase 2: Flux Architecture (1 day)
 Set up the Flux framework and React component hierarchy. Create React components for the landing page, user sign up, and user sign in.
 
