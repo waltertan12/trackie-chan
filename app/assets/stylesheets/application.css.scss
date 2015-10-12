@@ -16,12 +16,15 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(https://fonts.googleapis.com/css?family=Lobster|Arimo);
+@import url(https://fonts.googleapis.com/css?family=Lobster|Raleway);
 
 body {
-  font-family: Ubuntu, Arimo;
+  font-family: Raleway, Ubuntu, Helvetica;
 }
 
-h1 {
+.jumbotron h1 {
   font-family: Lobster;
+  color: #eeeeee;
+  background-color: white;
+  display: inline-block;
 }
