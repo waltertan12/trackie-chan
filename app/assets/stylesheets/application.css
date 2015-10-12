@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Lobster|Arimo);
+
+body {
+  font-family: Ubuntu, Arimo;
+}
+
+h1 {
+  font-family: Lobster;
+}
