@@ -1,1 +1,15 @@
-<div id="content"></div>
+<div id="content">
+  
+</div>
+<div class="container">
+  <% if current_user %>
+    <%= link_to "Please log out...", 
+                sessions_url, 
+                class: "btn btn-danger",
+                method: :delete %>
+  <% else %>
+    <%= link_to "Please log in...", 
+                new_sessions_url,
+                class: "btn btn-primary" %>
+  <% end %>
+</div>

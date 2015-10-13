@@ -6,13 +6,18 @@
     <%= link_to "Create an Account", new_user_url %>
     <%= link_to "Login", new_sessions_url %>
   <div>
-  <form action="/sessions" method="POST">
+  <form action="/users" method="POST">
     <input
       type="hidden"
       name="authenticity_token"
       value="<%= form_authenticity_token %>">
 
-    <label for="username">Email</label><br>
+    <label for="username">Username</label><br>
+    <input type="text" 
+           name="user[username]"
+           class="form-control"/><br>
+
+    <label for="email">Email</label><br>
     <input type="text" 
            name="user[email]"
            class="form-control"/><br>
@@ -22,6 +27,13 @@
            name="user[password]"
            class="form-control"/><br>
 
-    <input type="submit" value="Login!" class="btn btn-primary"/><br>
+    <label for="password">Password Confirmation</label><br>
+    <input type="password" 
+           name="user[password_confirmation]"
+           class="form-control"/><br>
+
+    <input type="submit" 
+           value="Create an Account!" 
+           class="btn btn-primary"/><br>
   </form>
 </div>

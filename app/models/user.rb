@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :password, length: { minimum: 8 }, 
+  validates :password, length: { minimum: 8 },
+                       confirmation: true, 
                        allow_nil: true
 
   validates :password_digest, presence: true
@@ -21,7 +22,7 @@ class User < ActiveRecord::Base
   validates :image_url, presence: true
   validates :admin, inclusion: { in: [true, false] }
 
-  before_create :ensure_session_token
+  after_initialize :ensure_session_token
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
