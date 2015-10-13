@@ -1,5 +1,5 @@
-# SoClo
-[SoClo](http://trackiechan.herokuapp.com)
+# TrackieChan
+[TrackieChan](http://trackiechan.herokuapp.com)
 
 ## Minimum Viable Product
 - [ ] Create / update an account

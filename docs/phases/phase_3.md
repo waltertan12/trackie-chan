@@ -60,3 +60,4 @@
 * ApiUtil.createLike
 
 ## Gems/Libraries
+*Cloudinary
