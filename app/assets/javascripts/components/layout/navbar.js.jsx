@@ -4,7 +4,8 @@
   }
 
   root.Navbar = React.createClass({
-    logout: function () {
+    logout: function (e) {
+      e.preventDefault();
       ApiActions.deleteSession();
     },
     render: function () {
@@ -21,7 +22,7 @@
                 <li><a href="#">lol</a></li>
                 <li><a href="#">so cool</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a onClick={this.logout}>Logout</a></li>
+                <li><a href="#" onClick={this.logout}>Logout</a></li>
               </ul>
             </li>
           </ul>

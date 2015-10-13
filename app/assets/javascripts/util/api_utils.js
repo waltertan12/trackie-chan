@@ -43,5 +43,18 @@
         }
       })
     },
+    destroySession: function() {
+      $.ajax({
+        url: "/sessions",
+        type: "DELETE",
+        success: function(response) {
+          console.log(response);
+          window.location.href = "/";
+        },
+        error: function (err) {
+          console.log(err.responseText);
+        }
+      })
+    }
   };
 })(this);

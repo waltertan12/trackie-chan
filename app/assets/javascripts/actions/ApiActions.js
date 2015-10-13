@@ -5,7 +5,6 @@
 
   root.ApiActions = {
     receiveSingleUser: function (userId) {
-      console.log("ApiActions");
       var dispatchCallback = function (user) {
         console.log("Dispatching");
         root.AppDispatcher.dispatch({
@@ -22,5 +21,8 @@
     deleteSingleUser: function (user) {
 
     },
+    deleteSession: function () {
+      ApiUtils.destroySession();
+    }
   };
 })(this);
