@@ -6,7 +6,7 @@
 * Followings
 
 ### Controllers
-* UsersController (show, create, new, edit, update, destroy)
+* UsersController (show, create, new, update, destroy)
 * SessionsController (create, new, destroy)
 * StaticPagesController (index)
 

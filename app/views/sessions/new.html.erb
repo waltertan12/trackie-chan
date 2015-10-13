@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="sign-in-sign-up-header">
+    <h1>Sign in!</h1>
+    <%= link_to "Create an Account", new_user_url %>
+    <%= link_to "Login", new_session_url %>
+  <div>
+  <form action="/sessions" method="POST">
+    <input
+      type="hidden"
+      name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+
+    <label for="username">Email</label><br>
+    <input type="text" 
+           name="user[email]"
+           class="form-control"/><br>
+
+    <label for="password">Password</label><br>
+    <input type="text" 
+           name="user[password]"
+           class="form-control"/><br>
+
+    <input type="submit" value="Login!" class="btn btn-primary"/><br>
+  </form>
+</div>

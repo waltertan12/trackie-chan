@@ -23,8 +23,8 @@ class User < ActiveRecord::Base
 
   before_create :ensure_session_token
 
-  def self.find_by_credentials(user_name, password)
-    user = User.find_by(user_name: user_name)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
     user if user && user.is_password?(password)
   end
 
