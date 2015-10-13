@@ -22,7 +22,7 @@
           </div>
         );
       } else {
-        return <div/>;
+        return <div></div>;
       }
     }
   });

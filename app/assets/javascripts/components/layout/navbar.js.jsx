@@ -3,7 +3,15 @@
     root.Nav = {};
   }
 
+  var Link = ReactRouter.Link;
+  
   root.Navbar = React.createClass({
+    componentDidMount: function() {
+
+    },
+    componentWillUnmount: function () {
+
+    },
     logout: function (e) {
       e.preventDefault();
       ApiActions.deleteSession();
@@ -59,7 +67,9 @@
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <Link to={"/"} className="navbar-brand" href="/">TrackieChan</Link>
+              <Link to={"/"} className="navbar-brand">
+                TrackieChan
+              </Link>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

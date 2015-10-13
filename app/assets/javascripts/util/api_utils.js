@@ -45,13 +45,15 @@
     },
     destroySession: function() {
       $.ajax({
-        url: "/sessions",
+        url: "/logout",
         type: "DELETE",
         success: function(response) {
+          console.log("////////// RESPONSE //////////")
           console.log(response);
-          window.location.href = "/";
+          window.location.assign("/");
         },
         error: function (err) {
+          console.log("////////// ERROR //////////")
           console.log(err.responseText);
         }
       })

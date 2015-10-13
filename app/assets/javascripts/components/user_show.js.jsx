@@ -16,6 +16,7 @@
     },
     getUser: function () {
       ApiActions.receiveSingleUser(this.props.routeParams.userId);
+      this.setUser({user: root.UserStore.user()});
     },
     setUser: function () {
       this.setState({user: root.UserStore.user()});

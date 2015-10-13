@@ -22,6 +22,7 @@
 
     },
     deleteSession: function () {
+      window.location.assign("/");
       ApiUtils.destroySession();
     }
   };
