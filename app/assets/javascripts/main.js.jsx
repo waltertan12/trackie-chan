@@ -9,7 +9,7 @@ var App = React.createClass({
     console.log(this.props);
     return (
       <div>
-        <Navbar />
+        <Navbar currentUser={window.currentUser}/>
         {this.props.children}
       </div>
     );
@@ -19,12 +19,13 @@ var App = React.createClass({
 var routes = (
   <Route path="/" component={App}>
     <Route path="users/:userId" component={UserShow}/>
+    <IndexRoute component={Dashboard} />
   </Route>
 );
 
 $(function () {
   React.render(
-    <Router>{routes}</Router>,
+    <Router currentUser={window.currentUser}>{routes}</Router>,
     document.getElementById("content")
   );
 });

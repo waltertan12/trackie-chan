@@ -4,7 +4,50 @@
   }
 
   root.Navbar = React.createClass({
+    logout: function () {
+      ApiActions.deleteSession();
+    },
     render: function () {
+      console.log(this.props.currentUser);
+      var navbarRight;
+      if (this.props.currentUser === "1235123sdv#&#Gbsdvba72n987r@&#!8as9d0as9dbfasdf") {
+        navbarRight = (
+          <ul className="nav navbar-nav navbar-right">
+            <li><a href="#">Upload</a></li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+              <ul className="dropdown-menu">
+                <li><a href="#"></a></li>
+                <li><a href="#">lol</a></li>
+                <li><a href="#">so cool</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a onClick={this.logout}>Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        );
+      } else {
+        navbarRight = (
+          <ul className="nav navbar-nav navbar-right">
+            <li><a href="#">Upload</a></li>
+            <p className="navbar-text">
+              <a href="/sessions/new">Sign In</a> 
+              &nbsp;or&nbsp; 
+              <a href="/users/new">Create an Account</a>
+            </p>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+              <ul className="dropdown-menu">
+                <li><a href="#"></a></li>
+                <li><a href="#">lol</a></li>
+                <li><a href="#">so cool</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">what i am even doing...</a></li>
+              </ul>
+            </li>
+          </ul>
+        );
+      }
       return (
         <nav className="navbar navbar-default">
           <div className="container-fluid">
@@ -15,7 +58,7 @@
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">TrackieChan</a>
+              <Link to={"/"} className="navbar-brand" href="/">TrackieChan</Link>
             </div>
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -25,19 +68,7 @@
                 </div>
                 <button type="submit" className="btn btn-default">Submit</button>
               </form>
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Upload</a></li>
-                <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
-                  <ul className="dropdown-menu">
-                    <li><a href="#"></a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" className="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
+              {navbarRight}
             </div>
           </div>
         </nav>
