@@ -1,10 +1,10 @@
-# Phase 4: Feed
+# Phase 6: Search
 
 ## Rails
 ### Models
 * Search
 
-gu### Controllers
+### Controllers
 * Search (index)
 
 ### Views

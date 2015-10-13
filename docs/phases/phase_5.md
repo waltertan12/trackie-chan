@@ -1,10 +1,10 @@
-# Phase 4: Feed
+# Phase 5: Feed
 
 ## Rails
 ### Models
 * Feed
 
-gu### Controllers
+### Controllers
 * Feed (dashboard_feed)
 
 ### Views

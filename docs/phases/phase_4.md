@@ -1,4 +1,4 @@
-# Phase 2: Playlists
+# Phase 4: Playlists
 
 ## Rails
 ### Models
