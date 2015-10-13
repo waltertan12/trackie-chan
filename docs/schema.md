@@ -76,3 +76,12 @@ column name | data type | details
 id          | integer   | not null, primary key
 track_id     | integer   | not null, foreign key (references track), indexed, unique [playlist_id]
 playlist_id | integer   | not null, foreign key (references playlist), indexed
+
+## feedings
+column name   | data type | details
+--------------|-----------|-----------------------
+id            | integer   | not null, primary key
+user_id       | integer   | not null, foreign key (references users), indexed true
+source_id     | integer   | not null, foreign key (references source object), indexed true
+source_type   | string    | not null, indexed, unique [user_id, source_id, source_type]
+rank          | float     | not null

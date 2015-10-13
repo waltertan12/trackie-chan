@@ -2,6 +2,7 @@
 
 ## Rails
 ### Models
+* Followings
 
 ### Controllers
 
@@ -16,7 +17,7 @@
 * CurrentUserSidebar
 
 ### Stores
-* User?
+* Users
 
 ### Actions
 * ApiActions.receiveSingleUser
