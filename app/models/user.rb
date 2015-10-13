@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
                     uniqueness: {case_sensitive: false}
 
   validates :image_url, presence: true
+  validates :admin, inclusion: { in: [true, false] }
 
   before_create :ensure_session_token
 
