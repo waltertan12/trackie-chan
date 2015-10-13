@@ -6,7 +6,8 @@
 * Followings
 
 ### Controllers
-* UsersController (show, create, new, update, destroy)
+* UsersController (create, new)
+* API::UsersController (show, edit, update, destroy)
 * SessionsController (create, new, destroy)
 * StaticPagesController (index)
 
