@@ -51,7 +51,7 @@ track_two = Track.create!(
 )
 
 israal = Track.create!(
-  title: "Israel (Sparring) feat. Noname Gypsy"
+  title: "Israel (Sparring) feat. Noname Gypsy",
   description: "levioaSAAA",
   user_id: chance.id,
   track_url: "http://70mack.co/wp-content/upload/2015/08/Chance_The_Rapper_Israel_Sparring_Ft_Noname_Gypsy.mp3"

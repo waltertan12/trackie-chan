@@ -9,21 +9,31 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
-      this.getUser();
+      this.getUser(this.props);
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setUser);
     },
-    componentWillUpdate: function () {
-      this.getUser();
+    componentWillReceiveProps: function (nextProps) {
+      this.getUser(nextProps);
     },
-    getUser: function () {
-      ApiActions.receiveSingleUser(this.props.params.userId);
+    // shouldComponentUpdate: function (nextProp, nextState) {
+    //   console.log()
+    //   if (this.props.params.userId !== nextProp.params.userId) {
+    //     this.getUser();
+    //     return true;
+    //   }
+    //   return false;
+    // },
+    getUser: function (props) {
+
+      ApiActions.receiveSingleUser(props.params.userId);
     },
     setUser: function () {
       this.setState({user: root.UserStore.user()});
     },
     render: function () {
+      console.log(this);
       var user = (this.state.user === null ? {tracks: []} : this.state.user)
       return (
         <div className="user-show row">

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_reader :password
-
+  # Model validations
   validates :password, length: { minimum: 8 },
                        confirmation: true, 
                        allow_nil: true
@@ -23,6 +23,18 @@ class User < ActiveRecord::Base
   validates :admin, inclusion: { in: [true, false] }
 
   after_initialize :ensure_session_token
+
+  # Associations
+  has_many :active_relationships, class_name: "Following",
+                                  foreign_key: "follower_id",
+                                  dependent: :destroy
+  has_many :passive_relationships, class_name: "Following",
+                                   foreign_key: "followed_id",
+                                   dependent: :destroy
+                                  
+  has_many :following, through: :active_relationships, source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
   has_many :tracks
 
   def self.find_by_credentials(email, password)

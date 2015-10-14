@@ -16,7 +16,9 @@ $(function () {
       return (
         <div>
           <Navbar currentUser={window.currentUser}/>
-          {this.props.children}
+          <div className="container">
+            {this.props.children}
+          </div>
         </div>
       );
     }
