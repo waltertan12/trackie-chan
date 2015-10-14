@@ -62,4 +62,17 @@ class User < ActiveRecord::Base
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
+
+  # Following logic
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+  
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+  
+  def following?(other_user)
+    following.include?(other_user)
+  end 
 end

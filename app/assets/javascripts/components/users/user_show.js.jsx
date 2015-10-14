@@ -17,16 +17,7 @@
     componentWillReceiveProps: function (nextProps) {
       this.getUser(nextProps);
     },
-    // shouldComponentUpdate: function (nextProp, nextState) {
-    //   console.log()
-    //   if (this.props.params.userId !== nextProp.params.userId) {
-    //     this.getUser();
-    //     return true;
-    //   }
-    //   return false;
-    // },
     getUser: function (props) {
-
       ApiActions.receiveSingleUser(props.params.userId);
     },
     setUser: function () {
@@ -39,6 +30,7 @@
         <div className="user-show row">
           <div className="jumbotron">
             <h1>{user.username}</h1>
+            <FollowButton follow={user.is_current_user_following} />
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">
