@@ -6,9 +6,8 @@
   root.FollowIndex = React.createClass({
     render: function () {
       console.log(this.props);
-      var followedUsers = this.props.followedUsers;
+      var followedUsers = this.props.followedUsers,
           content;
-      var content = "hi";
       if (followedUsers.length === 0) {
         content = <li>No follows yet...</li>;
       } else {

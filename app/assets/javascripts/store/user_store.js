@@ -3,7 +3,11 @@
     root.UserStore = {};
   }
 
-  var _user = null,
+  var _user = {id: null, tracks: [], followers: [], followed: []},
+      _currentUser = {id: null, tracks: [], followers: [], followed: []},
+      resetCurrentUser = function (currentUser) {
+        _currentUser = currentUser;
+      }
       resetUser = function (user) {
         _user = user;
       },
@@ -19,9 +23,16 @@
     user: function () {
       return _user;
     },
+    currentUser: function () {
+      return _currentUser;
+    },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === UserConstants.USER_RECEIVED) {
         resetUser(payload.user);
+        root.UserStore.emit(CHANGE_EVENT);
+      }
+      if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
+        resetCurrentUser(payload.current_user);
         root.UserStore.emit(CHANGE_EVENT);
       }
     })

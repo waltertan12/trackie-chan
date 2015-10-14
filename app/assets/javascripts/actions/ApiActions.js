@@ -14,6 +14,16 @@
 
       ApiUtils.fetchUser(userId, dispatchCallback);
     },
+    receiveCurrentUser: function (currentUserId) {
+      var dispatchCallback = function (current_user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.CURRENT_USER_RECEIVED,
+          current_user: current_user
+        });
+      }
+
+      ApiUtils.fetchUser(currentUserId, dispatchCallback);
+    },
     updateSingleUser: function (user, params) {
 
     },

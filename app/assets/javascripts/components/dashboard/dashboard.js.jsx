@@ -4,13 +4,23 @@
   }
 
   root.Dashboard = React.createClass({
+    getInitialState: function () {
+      return {currentUser: UserStore.currentUser()};
+    },
     componentDidMount: function () {
+      if (typeof window.CURRENT_USER_ID !== "undefined") {
+        UserStore.addChangeListener(this.setCurrentUser);
+        this.getCurrentUser();
+      }
     },
     componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setCurrentUser);
     },
-    getUser: function () {
+    getCurrentUser: function () {
+      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
-    setUser: function () {
+    setCurrentUser: function () {
+      this.setState({currentUser: UserStore.currentUser()});
     },
     render: function () {
       console.log("render dashboard");
@@ -21,7 +31,7 @@
               <h2>Feed</h2>
               <DashboardFeedIndex />
             </div>
-            <CurrentUserSidebar />
+            <CurrentUserSidebar currentUser={this.state.currentUser}/>
           </div>
         );
       } else {

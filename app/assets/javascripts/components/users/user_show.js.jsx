@@ -25,11 +25,11 @@
     },
     render: function () {
       var user;
-      if (this.state.user === null) {
-        user = {followed: [], tracks: []};
-      } else {
+      // if (this.state.user === null) {
+      //   user = {followed: [], tracks: []};
+      // } else {
         user = this.state.user;
-      }
+      // }
       console.log("user show");
       console.log(user);
       return (
