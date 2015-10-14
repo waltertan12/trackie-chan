@@ -29,6 +29,7 @@ $content-container-min-height: 500px;
 
 #content {
   min-width: $content-container-min-width;
+  margin-bottom: 30px;
 }
 
 .row {
@@ -38,15 +39,15 @@ $content-container-min-height: 500px;
 body {
   font-family: Raleway, Ubuntu, Helvetica;
 }
+/*
+.jumbotron h1 {
 
-.jumbotron {
-  h1 {
     font-family: Lobster;
     color: #eeeeee;
     background-color: white;
     display: inline-block;
-  }
-}
+
+}*/
 
 .sign-in-sign-up-header {
   margin: 0 auto;
@@ -95,6 +96,39 @@ body {
   ul {
     list-style-type: none;
   }  
+}
+
+.landing-page {
+  font-weight: bold;
+  font-size: 5em;
+  font-style: bold;
+  background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 400px;
+  color: white;
+  background-color: white;
+  h1 {
+  }
+}
+
+.jumbotron h1 {
+  background-color: white;
+  font-family: Lobster;
+}
+
+.feature {
+  padding: 0px;
+  text-align: center;
+  .user-feature {
+    height: 200px;
+    background: url("http://www.tehcute.com/pics/201108/sad-pug-is-sad-big.jpg");
+    background-size: auto 100%;
+    border-color: 1px solid gray;
+    border-radius: 5px;
+    box-shadow: 0 0 10px lightgray;
+  }
+  padding: 10px 0;
 }
 
 /*
