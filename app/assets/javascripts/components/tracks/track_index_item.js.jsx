@@ -18,16 +18,23 @@
       this.audio = new Audio(audio_url);
     },
     playOrPause: function () {
-      checkid = this.props.track;
-      console.log(this.props.track.id);
-      console.log(typeof this.props.track.id);
 
-      if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
+      if (currentlyPlaying && 
+          currentAudio.trackId === this.props.track.id) {
+            console.log("Option 1");
             currentlyPlaying = false;
-            // currentAudio = {trackId: this.props.track.id, audio: this.audio};
             currentAudio.audio.pause();
             this.setState({playState: "Play"});
-      } else {
+      } else if (currentlyPlaying && 
+          currentAudio.trackId !== this.props.track.id) {
+            console.log("Option 2");
+            currentAudio.audio.pause();
+            currentAudio = {trackId: this.props.track.id, audio: this.audio};
+            currentAudio.audio.play();
+            this.setState({playState: "Pause"});
+      }
+        else {
+        console.log("Option 3");
         currentlyPlaying = true;
         currentAudio = {trackId: this.props.track.id, audio: this.audio};
         currentAudio.audio.play();
@@ -35,7 +42,6 @@
       }
     },
     render: function () {
-      console.log(this.playState);
       return (
         <div className="track-index-item">
           {this.props.track.title}
