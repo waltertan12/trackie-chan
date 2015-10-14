@@ -30,16 +30,29 @@ ron = User.create!(
   password_digest: BCrypt::Password.create("password")
 )
 
+chance = User.create!(
+  username: "Chance Acid Rapper",
+  email: "chance@acidrapper.com",
+  password_digest: BCrypt::Password.create("password")
+)
+
 track_one = Track.create!(
   title: "Ravinswod",
   description: "WOWOWOWOW",
   user_id: harry.id,
-  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/ravinswod.mp3",
+  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/ravinswod.mp3"
 )
 
 track_two = Track.create!(
   title: "Hobbes",
   description: "levioaSAAA",
   user_id: hermione.id,
-  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/hobbes.mp3",
+  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/hobbes.mp3"
+)
+
+israal = Track.create!(
+  title: "Israel (Sparring) feat. Noname Gypsy"
+  description: "levioaSAAA",
+  user_id: chance.id,
+  track_url: "http://70mack.co/wp-content/upload/2015/08/Chance_The_Rapper_Israel_Sparring_Ft_Noname_Gypsy.mp3"
 )
