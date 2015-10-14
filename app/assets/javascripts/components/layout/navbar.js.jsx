@@ -38,7 +38,6 @@
                 <li role="separator" className="divider"></li>
                 <li><a href="#" onClick={this.logout}>Logout</a></li>
               </ul>
-              <Link to={"/users/:id"} />
             </li>
           </ul>
         );

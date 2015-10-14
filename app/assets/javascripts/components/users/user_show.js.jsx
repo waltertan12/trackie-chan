@@ -8,22 +8,23 @@
       return ({user: root.UserStore.user()});
     },
     componentDidMount: function () {
-      this.getUser();
       UserStore.addChangeListener(this.setUser);
+      this.getUser();
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setUser);
     },
+    componentWillUpdate: function () {
+      this.getUser();
+    },
     getUser: function () {
-      ApiActions.receiveSingleUser(this.props.routeParams.userId);
-      this.setUser({user: root.UserStore.user()});
+      ApiActions.receiveSingleUser(this.props.params.userId);
     },
     setUser: function () {
       this.setState({user: root.UserStore.user()});
     },
     render: function () {
       var user = (this.state.user === null ? {tracks: []} : this.state.user)
-
       return (
         <div className="user-show row">
           <div className="jumbotron">
