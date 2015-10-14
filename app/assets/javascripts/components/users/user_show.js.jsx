@@ -36,6 +36,10 @@
         <div className="user-show row">
           <div className="jumbotron">
             <h1>{user.username}</h1>
+            <img className="profile-image pull-right"
+                 src={user.image_url} 
+                 height="100" 
+                 width="100"/>
             <FollowButton user={user} 
                           followState={user.is_current_user_following} />
           </div>

@@ -8,7 +8,8 @@
       return {currentUser: UserStore.currentUser()};
     },
     componentDidMount: function () {
-      if (typeof window.CURRENT_USER_ID !== "undefined") {
+      if (typeof window.CURRENT_USER_ID !== "undefined" &&
+          window.CURRENT_USER_ID !== this.state.currentUser.id) {
         UserStore.addChangeListener(this.setCurrentUser);
         this.getCurrentUser();
       }
