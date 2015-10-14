@@ -30,6 +30,7 @@ body {
 }
 
 .sign-in-sign-up-header {
+  margin: 0 auto;
   h1 {
     display: inline-block;
   }
@@ -40,3 +41,12 @@ body {
   display: table;
   clear: both;
 }
+/*
+.form-control {
+  max-width: 600px;
+}
+
+.center-form {
+  margin: 0 auto;
+  width: 100%;
+}*/
