@@ -9,7 +9,7 @@
       return (
         <div className="user-sidebar col-md-4">
           <LikeIndex/>
-          <FollowIndex />
+          <FollowIndex followedUsers={[]}/>
         </div>
       );
     }
