@@ -7,10 +7,10 @@
   
   root.Navbar = React.createClass({
     componentDidMount: function() {
-
+      console.log("MOUNTING?");
     },
     componentWillUnmount: function () {
-
+      console.log("UNMOUNTING???");
     },
     logout: function (e) {
       e.preventDefault();
