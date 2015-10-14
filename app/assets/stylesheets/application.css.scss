@@ -18,10 +18,21 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Lobster|Raleway);
 
+$content-container-min-width:  900px;
+$content-container-min-height: 500px;
+
 .clearfix:after {
   content: "";
   display: table;
   clear: both;
+}
+
+#content {
+  min-width: $content-container-min-width;
+}
+
+.row {
+  margin: 0;
 }
 
 body {
@@ -44,15 +55,30 @@ body {
   }
 }
 
+
+
+
 .dashboard {
   border-radius: 5px;
   border: 1px solid gray;
+  min-width: $content-container-min-width;
+  min-height: $content-container-min-height;
+}
+
+.dashboard-feed-container {
+}
+
+.dashboard-feed-index {
+  border: 1px solid gray;
+  border-radius: 5px;
+  min-height: $content-container-min-height;
 }
 
 .current-user-sidebar {
-  width: 300px;
   border: 1px solid gray;
   border-radius: 5px;
+  height: inherit;
+  min-height: $content-container-min-height;
 }
 
 .like-index {

@@ -6,7 +6,7 @@
   root.CurrentUserSidebar = React.createClass({
     render: function () {
       return (
-        <div className="current-user-sidebar">
+        <div className="current-user-sidebar col-md-4">
           <LikeIndex/>
           <FollowIndex />
         </div>

@@ -16,9 +16,11 @@
       console.log("render dashboard");
       if(window.currentUser === "1235123sdv#&#Gbsdvba72n987r@&#!8as9d0as9dbfasdf") {
         return (
-          <div>
-            <h2>Feed</h2>
-            <DashboardFeedIndex />
+          <div className="dashboard row">
+            <div className="dashboard-feed-container">
+              <h2>Feed</h2>
+              <DashboardFeedIndex />
+            </div>
             <CurrentUserSidebar />
           </div>
         );
