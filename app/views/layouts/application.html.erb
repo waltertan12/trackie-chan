@@ -9,7 +9,7 @@
 <body>
   <% if current_user %>
     <script type="text/javascript">
-      window.currentUser = "1235123sdv#&#Gbsdvba72n987r@&#!8as9d0as9dbfasdf"
+      window.currentUser = <%= (current_user.to_json.html_safe) %>
     </script>
     <% end %>
   </div>

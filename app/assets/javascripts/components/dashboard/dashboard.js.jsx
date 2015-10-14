@@ -14,7 +14,7 @@
     },
     render: function () {
       console.log("render dashboard");
-      if(window.currentUser === "1235123sdv#&#Gbsdvba72n987r@&#!8as9d0as9dbfasdf") {
+      if(window.currentUser !== "undefined") {
         return (
           <div className="dashboard row">
             <div className="dashboard-feed-container">
@@ -61,7 +61,7 @@
                   Good Artist
                 </div>
               </div>
-              <div class="description">
+              <div className="description">
                 <h3>You gonna have so much FOMO if you do not sign up</h3>
                 <p>no lie..</p>
                 <a href="/users/new" className="btn btn-success">
