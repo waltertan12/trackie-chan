@@ -9,7 +9,7 @@ $(function () {
   // Globals to see if music is playing...
   // Not sure if it's okay
   currentlyPlaying = false;
-  currentAudio = new Audio();
+  currentAudio = {trackId: -1, audio: new Audio()};
 
   var App = React.createClass({
     render: function () {

@@ -6,7 +6,7 @@
   root.TrackIndexItem = React.createClass({
     getInitialState: function () {
       var playState;
-      if (currentlyPlaying && currentAudio === this.audio) {
+      if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
         playState = "Pause";
       } else {
         playState = "Play"
@@ -16,24 +16,21 @@
     componentDidMount: function () {
       var audio_url = this.props.track.track_url;
       this.audio = new Audio(audio_url);
-      this.playState;
-
-      if (currentlyPlaying && currentAudio === this.audio) {
-        this.playState = "Pause";
-      } else {
-        this.playState = "Play"
-      }
-      console.log(this.playState);
     },
     playOrPause: function () {
-      if (currentlyPlaying) {
-        currentlyPlaying = false;
-        currentAudio.pause();
-        this.setState({playState: "Play"});
+      checkid = this.props.track;
+      console.log(this.props.track.id);
+      console.log(typeof this.props.track.id);
+
+      if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
+            currentlyPlaying = false;
+            // currentAudio = {trackId: this.props.track.id, audio: this.audio};
+            currentAudio.audio.pause();
+            this.setState({playState: "Play"});
       } else {
         currentlyPlaying = true;
-        currentAudio = this.audio;
-        this.audio.play();
+        currentAudio = {trackId: this.props.track.id, audio: this.audio};
+        currentAudio.audio.play();
         this.setState({playState: "Pause"});
       }
     },
