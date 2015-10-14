@@ -25,10 +25,16 @@
       var user = (this.state.user === null ? {} : this.state.user)
 
       return (
-        <div>
+        <div className="user-show row">
           <div className="jumbotron">
             <h1>{user.username}</h1>
           </div>
+          <div className="user-feed-container col-md-8">
+            <div className="track-index">
+              track index placeholder
+            </div>
+          </div>
+          <UserSidebar user={this.state.user}/>
         </div>
       );
     }

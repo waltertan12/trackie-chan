@@ -1,10 +1,10 @@
 (function (root) {
-  "user strict";
-  if (typeof root.CurrentUserSidebar === "undefined") {
-    root.CurrentUserSidebar = {};
+  "use strict";
+  if (typeof root.UserSidebar === "undefined") {
+    root.UserSidebar = {};
   }
 
-  root.CurrentUserSidebar = React.createClass({
+  root.UserSidebar = React.createClass({
     render: function () {
       return (
         <div className="user-sidebar col-md-4">

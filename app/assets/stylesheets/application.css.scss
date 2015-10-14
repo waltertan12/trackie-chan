@@ -39,15 +39,6 @@ $content-container-min-height: 500px;
 body {
   font-family: Raleway, Ubuntu, Helvetica;
 }
-/*
-.jumbotron h1 {
-
-    font-family: Lobster;
-    color: #eeeeee;
-    background-color: white;
-    display: inline-block;
-
-}*/
 
 .sign-in-sign-up-header {
   margin: 0 auto;
@@ -56,8 +47,7 @@ body {
   }
 }
 
-
-
+/* dashboard */
 
 .dashboard {
   border-radius: 5px;
@@ -75,28 +65,7 @@ body {
   min-height: $content-container-min-height;
 }
 
-.current-user-sidebar {
-  border: 1px solid gray;
-  border-radius: 5px;
-  height: inherit;
-  min-height: $content-container-min-height;
-}
-
-.like-index {
-  border: 1px solid gray;
-  border-radius: 5px;
-  ul {
-    list-style-type: none;
-  }
-}
-
-.follow-index {
-  border: 1px solid gray;
-  border-radius: 5px;
-  ul {
-    list-style-type: none;
-  }  
-}
+/* dashboard */
 
 .landing-page {
   font-weight: bold;
@@ -110,11 +79,6 @@ body {
   background-color: white;
   h1 {
   }
-}
-
-.jumbotron h1 {
-  background-color: white;
-  font-family: Lobster;
 }
 
 .feature {
@@ -131,12 +95,54 @@ body {
   padding: 10px 0;
 }
 
-/*
-.form-control {
-  max-width: 600px;
+.description {
+
 }
 
-.center-form {
-  margin: 0 auto;
-  width: 100%;
-}*/
+/* current user sidebar */
+
+.user-sidebar {
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: inherit;
+  min-height: $content-container-min-height;
+}
+
+/* like index */
+
+.like-index {
+  border: 1px solid gray;
+  border-radius: 5px;
+  ul {
+    list-style-type: none;
+  }
+  min-height: 200px;
+}
+
+/* follow index */
+
+.follow-index {
+  border: 1px solid gray;
+  border-radius: 5px;
+  ul {
+    list-style-type: none;
+  }
+  min-height: 200px;  
+}
+
+/* user show*/
+
+.user-show {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.user-feed-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.user-show-sidebar {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
