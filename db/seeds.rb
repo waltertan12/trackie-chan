@@ -31,7 +31,7 @@ ron = User.create!(
 )
 
 chance = User.create!(
-  username: "Chance Acid Rapper",
+  username: "Chance the Rapper",
   email: "chance@acidrapper.com",
   password_digest: BCrypt::Password.create("password")
 )
