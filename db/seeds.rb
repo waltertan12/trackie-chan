@@ -30,9 +30,16 @@ ron = User.create!(
   password_digest: BCrypt::Password.create("password")
 )
 
-play_by_play = Track.create!(
-  title: "Autre ne Veut - Play by Play",
+track_one = Track.create!(
+  title: "Ravinswod",
   description: "WOWOWOWOW",
   user_id: harry.id,
-  track_url: "/media/walter/Storage/Music/Autre Ne Veut/Autre Ne Veut - Anxiety (V0)/01 - Play by Play.mp3",
+  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/ravinswod.mp3",
+)
+
+track_two = Track.create!(
+  title: "Hobbes",
+  description: "levioaSAAA",
+  user_id: hermione.id,
+  track_url: "http://dublindonut.com/Content/Sounds/musicplayer/hobbes.mp3",
 )

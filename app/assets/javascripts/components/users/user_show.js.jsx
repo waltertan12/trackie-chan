@@ -22,7 +22,7 @@
       this.setState({user: root.UserStore.user()});
     },
     render: function () {
-      var user = (this.state.user === null ? {} : this.state.user)
+      var user = (this.state.user === null ? {tracks: []} : this.state.user)
 
       return (
         <div className="user-show row">
@@ -31,10 +31,10 @@
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">
-              track index placeholder
+              <TrackIndex tracks={user.tracks} />
             </div>
           </div>
-          <UserSidebar user={this.state.user}/>
+          <UserSidebar user={user}/>
         </div>
       );
     }

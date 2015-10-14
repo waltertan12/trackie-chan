@@ -54,6 +54,11 @@
           console.log(err.responseText);
         }
       })
+    },
+    fetchTrack: function (trackId, callback) {
+      $.ajax({
+        url: ""
+      })
     }
   };
 })(this);

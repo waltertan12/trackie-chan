@@ -6,7 +6,6 @@
   root.ApiActions = {
     receiveSingleUser: function (userId) {
       var dispatchCallback = function (user) {
-        console.log("Dispatching");
         root.AppDispatcher.dispatch({
           actionType: root.UserConstants.USER_RECEIVED,
           user: user
@@ -24,6 +23,16 @@
     deleteSession: function () {
       window.location.assign("/");
       ApiUtils.destroySession();
+    },
+    receiveTracks: function (userId) {
+      var dispatchCallback = function (tracks) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACKS_RECEIVED,
+          tracks: tracks
+        });
+      };
+
+      ApiUtils.fetchTracks(userId, dispatchCallback);
     }
   };
 })(this);

@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   validates :admin, inclusion: { in: [true, false] }
 
   after_initialize :ensure_session_token
+  has_many :tracks
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
