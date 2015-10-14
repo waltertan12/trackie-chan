@@ -2,6 +2,11 @@
 <div id="content"></div>
 <div class="navbar">
   <ul class="nav nav-tabs">
+    <li class="navbar-right" style="border-bottom:1px solid lightgray;background: white">
+      <a style="background:white">
+        <strong style="background:white;color: black">TrackieChan</strong>
+      </a>
+    </li>
     <li class="active">
       <a href="#sign_up" data-toggle="tab">Create an Account</a>
     </li>
@@ -65,3 +70,10 @@
     </div>
   </div>
 </div>
+
+<script>
+  React.render(
+    React.createElement(Navbar),
+    document.getElementById("content")
+  )
+</script>

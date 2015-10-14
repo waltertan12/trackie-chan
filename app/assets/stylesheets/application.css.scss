@@ -18,15 +18,23 @@
 @import "bootstrap";
 @import url(https://fonts.googleapis.com/css?family=Lobster|Raleway);
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {
   font-family: Raleway, Ubuntu, Helvetica;
 }
 
-.jumbotron h1 {
-  font-family: Lobster;
-  color: #eeeeee;
-  background-color: white;
-  display: inline-block;
+.jumbotron {
+  h1 {
+    font-family: Lobster;
+    color: #eeeeee;
+    background-color: white;
+    display: inline-block;
+  }
 }
 
 .sign-in-sign-up-header {
@@ -36,11 +44,33 @@ body {
   }
 }
 
-.clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
+.dashboard {
+  border-radius: 5px;
+  border: 1px solid gray;
 }
+
+.current-user-sidebar {
+  width: 300px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.like-index {
+  border: 1px solid gray;
+  border-radius: 5px;
+  ul {
+    list-style-type: none;
+  }
+}
+
+.follow-index {
+  border: 1px solid gray;
+  border-radius: 5px;
+  ul {
+    list-style-type: none;
+  }  
+}
+
 /*
 .form-control {
   max-width: 600px;

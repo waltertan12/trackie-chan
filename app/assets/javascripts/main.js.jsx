@@ -19,9 +19,8 @@ $(function () {
 
   var routes = (
     <Route path="/" component={App}>
-      <Route path="users/:userId" component={UserShow}/>
       <IndexRoute component={Dashboard} />
-
+      <Route path="users/:userId" component={UserShow}/>
     </Route>
   );
 
