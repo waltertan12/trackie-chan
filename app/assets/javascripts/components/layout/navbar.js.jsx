@@ -18,9 +18,21 @@
           <ul className="nav navbar-nav navbar-right">
             <li><a href="#">Upload</a></li>
             <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+              <a href="#" 
+                 className="dropdown-toggle" 
+                 data-toggle="dropdown" 
+                 role="button" 
+                 aria-haspopup="true" 
+                 aria-expanded="false">
+                  {window.currentUser.username}
+                <span className="caret"></span>
+              </a>
               <ul className="dropdown-menu">
-                <li><Link to={"/users/" + window.currentUser.id}>Profile</Link></li>
+                <li>
+                  <Link to={"/users/" + window.currentUser.id}>
+                    Profile
+                  </Link>
+                </li>
                 <li><a href="#">lol</a></li>
                 <li><a href="#">so cool</a></li>
                 <li role="separator" className="divider"></li>
@@ -42,11 +54,11 @@
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
               <ul className="dropdown-menu">
-                <li><a href="#"></a></li>
-                <li><a href="#">lol</a></li>
-                <li><a href="#">so cool</a></li>
+                <li><a href="/sign">Sign Up</a></li>
+                <li><a href="/sign">for real</a></li>
+                <li><a href="/sign">please sign up</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">what i am even doing...</a></li>
+                <li><a href="/sign">or sign in...</a></li>
               </ul>
             </li>
           </ul>
