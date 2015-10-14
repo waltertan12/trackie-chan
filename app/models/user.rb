@@ -64,12 +64,12 @@ class User < ActiveRecord::Base
   end
 
   # Following logic
-  def follow(other_user)
-    active_relationships.create(followed_id: other_user.id)
+  def follow(other_user_id)
+    active_relationships.create(followed_id: other_user_id)
   end
   
-  def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+  def unfollow(other_user_id)
+    active_relationships.find_by(followed_id: other_user_id).destroy
   end
   
   def following?(other_user)

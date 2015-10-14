@@ -9,7 +9,8 @@
 <body>
   <% if current_user %>
     <script type="text/javascript">
-      window.currentUser = <%= (current_user.to_json.html_safe) %>
+      window.currentUser = <%= current_user.to_json.html_safe %>
+      window.CURRENT_USER_ID = <%= current_user.id %>
     </script>
     <% end %>
   </div>

@@ -55,6 +55,32 @@
         }
       })
     },
+    followUser: function (user) {
+      $.ajax({
+        type: "POST",
+        url: "/api/followings",
+        data: {followed_id: user.id},
+        success: function (follow) {
+          console.log("following " + user.username);
+        },
+        error: function (err) {
+          console.log(err.responseText)
+        }
+      })
+    },
+    unfollowUser: function (user) {
+      $.ajax({
+        type: "DELETE",
+        url: "/api/followings",
+        data: {followed_id: user.id},
+        success: function (follow) {
+          console.log("unfollowing " + user.username);
+        },
+        error: function (err) {
+          console.log(err.responseText)
+        }
+      })
+    },
     fetchTrack: function (trackId, callback) {
       $.ajax({
         url: ""

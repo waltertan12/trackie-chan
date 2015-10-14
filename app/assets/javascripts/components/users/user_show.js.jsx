@@ -25,12 +25,14 @@
     },
     render: function () {
       console.log(this);
-      var user = (this.state.user === null ? {tracks: []} : this.state.user)
+      var user = (this.state.user === null ? {tracks: []} : this.state.user);
+      console.log(user.is_current_user_following);
       return (
         <div className="user-show row">
           <div className="jumbotron">
             <h1>{user.username}</h1>
-            <FollowButton follow={user.is_current_user_following} />
+            <FollowButton user={user} 
+                          followState={user.is_current_user_following} />
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">

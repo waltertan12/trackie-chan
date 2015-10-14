@@ -20,6 +20,12 @@
     deleteSingleUser: function (user) {
 
     },
+    followUser: function (user) {
+      ApiUtils.followUser(user);
+    },
+    unfollowUser: function (user) {
+      ApiUtils.unfollowUser(user);
+    },
     deleteSession: function () {
       window.location.assign("/");
       ApiUtils.destroySession();

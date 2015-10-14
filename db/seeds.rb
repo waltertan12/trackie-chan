@@ -50,9 +50,16 @@ track_two = Track.create!(
   track_url: "http://dublindonut.com/Content/Sounds/musicplayer/hobbes.mp3"
 )
 
-israal = Track.create!(
+israel = Track.create!(
   title: "Israel (Sparring) feat. Noname Gypsy",
   description: "levioaSAAA",
   user_id: chance.id,
   track_url: "http://70mack.co/wp-content/upload/2015/08/Chance_The_Rapper_Israel_Sparring_Ft_Noname_Gypsy.mp3"
+)
+
+sunday = Track.create!(
+  title: "Sunday Candy",
+  description: "candy on sunday?",
+  user_id: chance.id,
+  track_url: "http://dl.findmp3.mobi/178525956/donnie+trumpet+the+social+experiment+sunday+candy.mp3"
 )

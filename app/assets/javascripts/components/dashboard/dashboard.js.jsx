@@ -14,7 +14,7 @@
     },
     render: function () {
       console.log("render dashboard");
-      if(typeof window.currentUser !== "undefined") {
+      if(typeof window.CURRENT_USER_ID !== "undefined") {
         return (
           <div className="dashboard row">
             <div className="dashboard-feed-container">
