@@ -47,7 +47,7 @@ body {
   }
 }
 
-/* dashboard */
+/* dashboard - current user */
 
 .dashboard {
   border-radius: 5px;
@@ -65,7 +65,7 @@ body {
   min-height: $content-container-min-height;
 }
 
-/* dashboard */
+/* dashboard - no current user */
 
 .landing-page {
   font-weight: bold;
@@ -171,4 +171,11 @@ body {
   &:hover {
     cursor: pointer;
   }
+}
+
+/* track show */
+.track-show-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+  min-height: $content-container-min-height;
 }

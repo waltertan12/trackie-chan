@@ -15,7 +15,7 @@ $(function () {
     render: function () {
       return (
         <div>
-          <Navbar currentUser={window.currentUser}/>
+          <Navbar/>
           <div className="container">
             {this.props.children}
           </div>
@@ -33,12 +33,13 @@ $(function () {
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>
+        <Route path=":trackId" component={TrackShow}/>
       </Route>
     </Route>
   );
 
   React.render(
-    <Router currentUser={window.currentUser}>{routes}</Router>,
+    <Router>{routes}</Router>,
     root
   );
 });
