@@ -37,7 +37,7 @@
             </div>
           </div>
           <div className="track-show-container col-md-8">
-            <CommentIndex />
+            <CommentIndex comments={this.state.track.comments}/>
           </div>
           <CurrentUserSidebar currentUser={UserStore.currentUser()}/>
         </div>
