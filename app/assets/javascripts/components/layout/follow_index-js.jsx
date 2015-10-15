@@ -23,6 +23,7 @@
       }
       return (
         <div className="follow-index">
+          <h3>Following</h3>
           <ul>
             {content}
           </ul>

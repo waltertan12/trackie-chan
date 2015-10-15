@@ -34,7 +34,7 @@
       if (typeof window.CURRENT_USER_ID !== "undefined") {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Upload</a></li>
+            <li><Link to="/">Upload</Link></li>
             <li className="dropdown">
               <a href="#" 
                  className="dropdown-toggle" 
@@ -56,7 +56,6 @@
                     Settings
                   </Link>
                 </li>
-                <li><a href="#">so cool</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a href="#" onClick={this.logout}>Logout</a></li>
               </ul>
