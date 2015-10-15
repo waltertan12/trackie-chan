@@ -85,7 +85,15 @@
     },
     fetchTrack: function (trackId, callback) {
       $.ajax({
-        url: ""
+        url: "api/tracks/" + trackId,
+        type: "GET",
+        dataType: "json",
+        success: function (track) {
+          callback(track);
+        },
+        error: function(err) {
+          console.log(err.responseText);
+        }
       })
     },
     uploadTrackToCloudinary: function (uploadData, callback) {

@@ -71,8 +71,17 @@
 
       ApiUtils.fetchTracks(userId, dispatchCallback);
     },
+    receiveSingleTrack: function (trackId) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_RECEIVED,
+          track: track
+        });
+      };
+
+      ApiUtils.fetchTrack(trackId, dispatchCallback);
+    },
     uploadTrack: function (uploadData) {
-      alert("Uploading Track!");
       var dispatchCallback = function (track) {
         root.AppDispatcher.dispatch({
           actionType: root.TrackConstants.TRACK_CREATED,

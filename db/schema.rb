@@ -41,13 +41,13 @@ ActiveRecord::Schema.define(version: 20151014185655) do
   add_index "tracks", ["user_id"], name: "index_tracks_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",                                                      null: false
-    t.string   "email",                                                         null: false
-    t.string   "password_digest",                                               null: false
-    t.string   "session_token",                                                 null: false
-    t.string   "image_url",       default: "http://i.imgur.com/AZuwasa.jpg?1/", null: false
-    t.datetime "created_at",                                                    null: false
-    t.datetime "updated_at",                                                    null: false
+    t.string   "username",                                                   null: false
+    t.string   "email",                                                      null: false
+    t.string   "password_digest",                                            null: false
+    t.string   "session_token",                                              null: false
+    t.string   "image_url",       default: "http://i.imgur.com/AZuwasa.jpg", null: false
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
     t.boolean  "admin",           default: false
   end
 

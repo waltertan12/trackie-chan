@@ -163,6 +163,7 @@ body {
 /* track index */
 .track-index-item {
   height: 100px;
+  max-width: 600px;
   border: 1px solid gray;
   border-radius: 5px;
 }
@@ -178,4 +179,17 @@ body {
   border: 1px solid gray;
   border-radius: 5px;
   min-height: $content-container-min-height;
+}
+
+.track-show-header {
+  position: relative;
+  min-width: $content-container-min-width;
+  img {
+    position: absolute;
+    border-radius: 5px;
+    right: 5%;
+  }
+  .track-index-item {
+    width: 80%;
+  }
 }

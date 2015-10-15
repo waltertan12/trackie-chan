@@ -9,7 +9,11 @@
         <div className="track-index">
           {
             this.props.tracks.map( function (track) {
-              return <TrackIndexItem key={track.id} track={track} />;
+              return (
+                <TrackIndexItem key={track.id} 
+                                track={track} 
+                                makeLink={true} />
+              );
             })
           }
         </div>

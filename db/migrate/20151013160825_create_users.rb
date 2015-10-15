@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration
                                  index: true, 
                                  unique: true
       t.string :image_url, null: false, 
-                           default: "http://i.imgur.com/AZuwasa.jpg?1/"
+                           default: "http://i.imgur.com/AZuwasa.jpg"
 
       t.timestamps null: false
     end

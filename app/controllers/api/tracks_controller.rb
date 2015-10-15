@@ -9,6 +9,15 @@ class Api::TracksController < ApplicationController
     end
   end
 
+  def show
+    @track = Track.find(params[:id])
+    if @track
+      render :show
+    else
+      render json: @track.errors.full_messages, status: 422
+    end
+  end
+
   private
   def track_params
     params.require(:track).permit(
