@@ -9,26 +9,17 @@
 <body>
   <% if current_user %>
     <script type="text/javascript">
-      window.currentUserObject = {
-        id: <%= current_user.id %>,
-        following: <%= current_user.following.to_json.html_safe %>,
-        followers: <%= current_user.followers.to_json %>
-      };
-      // console.log(currentUserObject);
-      window.currentUser = currentUserObject;
       window.CURRENT_USER_ID = <%= current_user.id %>
     </script>
+  <% end %>
+  <div class="container">
+    <% flash.each do |type, message|%>
+      <div class="container alert-<%= type %>">
+        <%= message %>
+      </div>
     <% end %>
   </div>
 
-  <% flash.each do |type, message|%>
-    <div class="container alert-<%= type %>">
-      <%= message %>
-    </div>
-  <% end %>
-<!-- 
-  <div class="container"> -->
-    <%= yield %>
-  <!-- </div> -->
+  <%= yield %>
 </body>
 </html>

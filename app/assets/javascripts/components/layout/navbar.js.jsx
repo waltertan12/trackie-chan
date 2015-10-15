@@ -6,14 +6,32 @@
   var Link = ReactRouter.Link;
   
   root.Navbar = React.createClass({
+    getInitialState: function () {
+      return {currentUser: UserStore.currentUser()};
+    },
+    componentDidMount: function () {
+      if (typeof window.CURRENT_USER_ID !== "undefined") {
+        UserStore.addChangeListener(this.setCurrentUser);
+        this.getCurrentUser();
+      }
+    },
+    componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setCurrentUser);
+    },
+    getCurrentUser: function () {
+      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+    },
+    setCurrentUser: function () {
+      this.setState({currentUser: UserStore.currentUser()});
+    },
     logout: function (e) {
       e.preventDefault();
       ApiActions.deleteSession();
     },
     render: function () {
       var navbarRight;
-
-      if (typeof window.currentUser !== "undefined") {
+      console.log("Window.")
+      if (typeof window.CURRENT_USER_ID !== "undefined") {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
             <li><a href="#">Upload</a></li>
@@ -24,12 +42,12 @@
                  role="button" 
                  aria-haspopup="true" 
                  aria-expanded="false">
-                  {window.currentUser.username}
+                  {this.state.currentUser.username}
                 <span className="caret"></span>
               </a>
               <ul className="dropdown-menu">
                 <li>
-                  <Link to={"/users/" + window.currentUser.id}>
+                  <Link to={"/users/" + this.state.currentUser.id}>
                     Profile
                   </Link>
                 </li>
