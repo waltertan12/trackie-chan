@@ -1,11 +1,13 @@
 class Api::FollowingsController < ApplicationController
   def create
-    current_user.follow(params[:followed_id])
-    render json: "Follow successful"
+    @following = current_user.follow(params[:followed_id])
+    @user = current_user
+    render :create
   end
 
   def destroy
-    current_user.unfollow(params[:followed_id])
-    render json: "Unfollow successful"
+    @unfollowing = current_user.unfollow(params[:followed_id])
+    @user = current_user
+    render :destroy
   end
 end

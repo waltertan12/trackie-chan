@@ -7,10 +7,18 @@
     getInitialState: function () {
       return {followState: ""};
     },
-
-    componentWillReceiveProps: function (nextProps) {
+    // componentWillReceiveProps: function (nextProps) {
+    //   var followState;
+    //   if (this.nextProps.followState) {
+    //     followState = "Unfollow";
+    //   } else {
+    //     followState = "Follow";
+    //   }
+    //   this.setState({followState: followState});
+    // },
+    componentWillMount: function () {
       var followState;
-      if (nextProps.followState) {
+      if (this.props.followState) {
         followState = "Unfollow";
       } else {
         followState = "Follow";

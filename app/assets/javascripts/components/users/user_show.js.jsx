@@ -24,14 +24,7 @@
       this.setState({user: root.UserStore.user()});
     },
     render: function () {
-      var user;
-      // if (this.state.user === null) {
-      //   user = {followed: [], tracks: []};
-      // } else {
-        user = this.state.user;
-      // }
-      console.log("user show");
-      console.log(user);
+      var user = this.state.user;
       return (
         <div className="user-show row">
           <div className="jumbotron">

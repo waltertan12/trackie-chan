@@ -57,26 +57,26 @@
         }
       })
     },
-    followUser: function (user) {
+    followUser: function (user, callback) {
       $.ajax({
         type: "POST",
         url: "/api/followings",
         data: {followed_id: user.id},
-        success: function (follow) {
-          console.log("following " + user.username);
+        success: function (currentUser) {
+          callback(currentUser);
         },
         error: function (err) {
           console.log(err.responseText)
         }
       })
     },
-    unfollowUser: function (user) {
+    unfollowUser: function (user, callback) {
       $.ajax({
         type: "DELETE",
         url: "/api/followings",
         data: {followed_id: user.id},
-        success: function (follow) {
-          console.log("unfollowing " + user.username);
+        success: function (currentUser) {
+          callback(currentUser);
         },
         error: function (err) {
           console.log(err.responseText)

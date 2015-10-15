@@ -38,10 +38,24 @@
 
     },
     followUser: function (user) {
-      ApiUtils.followUser(user);
+      var dispatchCallback = function (current_user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.CURRENT_USER_RECEIVED,
+          current_user: current_user
+        });
+      };
+
+      ApiUtils.followUser(user, dispatchCallback);
     },
     unfollowUser: function (user) {
-      ApiUtils.unfollowUser(user);
+      var dispatchCallback = function (current_user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.CURRENT_USER_RECEIVED,
+          current_user: current_user
+        });
+      };
+
+      ApiUtils.unfollowUser(user, dispatchCallback);
     },
     deleteSession: function () {
       window.location.assign("/");

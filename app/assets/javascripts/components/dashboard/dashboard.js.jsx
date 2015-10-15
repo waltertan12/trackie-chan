@@ -21,6 +21,7 @@
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     setCurrentUser: function () {
+      console.log("Setting current user");
       this.setState({currentUser: UserStore.currentUser()});
     },
     render: function () {
