@@ -211,3 +211,15 @@ body {
   border-radius: 5px;
   border: 1px solid gray;
 }
+
+/* comment index */
+.comment-index {
+  ul {
+    list-style-type: none;
+  }
+  .comment-index-item {
+    border-radius: 5px;
+    border: 1px solid gray;
+    height: 50px;
+  }
+}

@@ -9,7 +9,9 @@
       console.log(this.props);
       var commentItems = "hi";
       if (this.props.comments.length === 0) {
-        commentItems = <li>No comments yet...</li>;
+        commentItems = (
+          <li className="comment-index-item">No comments yet...</li>
+        );
       } else {
         commentItems = (
           this.props.comments.map( function (comment) {

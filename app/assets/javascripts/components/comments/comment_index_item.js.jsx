@@ -5,9 +5,16 @@
 
   root.CommentIndexItem = React.createClass({
     render: function () {
+      var comment = this.props.comment;
       return (
         <li className="comment-index-item">
-          A comment!
+          {comment.body}
+          <p>
+            Made by 
+            <Link to={"/users/" + comment.user_id}>
+              {comment.username}
+            </Link>
+          </p>
         </li>
       );
     }
