@@ -27,7 +27,7 @@
       var user = this.state.user;
       return (
         <div className="user-show row">
-          <div className="jumbotron">
+          <div className="jumbotron user-header">
             <h1>{user.username}</h1>
             <img className="profile-image"
                  src={user.image_url} 

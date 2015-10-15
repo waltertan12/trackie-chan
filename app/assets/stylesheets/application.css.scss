@@ -146,3 +146,23 @@ body {
   border: 1px solid gray;
   border-radius: 5px;
 }
+
+.user-header {
+  position: relative;
+  h1 {
+    display: inline-block
+  }
+  .profile-image {
+    position: absolute;
+    border-radius: 5px;
+    right: 5%;
+  }
+}
+
+
+/* track index */
+.track-index-item {
+  height: 100px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
