@@ -6,6 +6,7 @@ class Track < ActiveRecord::Base
   before_save :ensure_image_url
 
   belongs_to :user
+  has_many :comments
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?

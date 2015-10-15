@@ -190,6 +190,7 @@ body {
 .track-show-header {
   position: relative;
   min-width: $content-container-min-width;
+  width: 100%;
   display: inline-block;
   .track-image {
     position: absolute;
@@ -204,4 +205,9 @@ body {
   background: -o-linear-gradient(bottom right, lightgray, lightblue);
   background: -moz-linear-gradient(bottom right, lightgray, lightblue);
   background: linear-gradient(to bottom right, lightgray, lightblue);
+}
+
+.track-description {
+  border-radius: 5px;
+  border: 1px solid gray;
 }

@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :passive_relationships, source: :follower
 
   has_many :tracks
+  has_many :comments
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

@@ -31,7 +31,10 @@
         <div className="container track-show row">
           <TrackShowHeader track={this.state.track}/>
           <div className="container-fullwidth track-description">
-            <p>{this.state.track.description}</p>
+            <div className="container">
+              <h3>Description</h3>
+              <p>{this.state.track.description}</p>
+            </div>
           </div>
           <div className="track-show-container col-md-8">
             <CommentIndex />
