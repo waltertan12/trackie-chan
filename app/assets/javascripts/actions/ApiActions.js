@@ -20,12 +20,19 @@
           actionType: root.UserConstants.CURRENT_USER_RECEIVED,
           current_user: current_user
         });
-      }
+      };
 
       ApiUtils.fetchUser(currentUserId, dispatchCallback);
     },
-    updateSingleUser: function (user, params) {
+    updateUser: function (currentUserId, params) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.USER_UPDATED,
+          user: user
+        });
+      };
 
+      ApiUtils.updateUser(currentUserId, params, dispatchCallback);
     },
     deleteSingleUser: function (user) {
 

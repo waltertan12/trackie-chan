@@ -33,7 +33,11 @@
                     Profile
                   </Link>
                 </li>
-                <li><a href="#">lol</a></li>
+                <li>
+                  <Link to={"/users/settings"}>
+                    Settings
+                  </Link>
+                </li>
                 <li><a href="#">so cool</a></li>
                 <li role="separator" className="divider"></li>
                 <li><a href="#" onClick={this.logout}>Logout</a></li>
@@ -51,7 +55,7 @@
               <a href="/users/new">Create an Account</a>
             </p>
             <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CHumbawaomba <span className="caret"></span></a>
               <ul className="dropdown-menu">
                 <li><a href="/sign">Sign Up</a></li>
                 <li><a href="/sign">for real</a></li>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinalProject</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if current_user %>
+    <script type="text/javascript">
+      window.currentUserObject = {
+        id: <%= current_user.id %>,
+        following: <%= current_user.following.to_json.html_safe %>,
+        followers: <%= current_user.followers.to_json %>
+      };
+      // console.log(currentUserObject);
+      window.currentUser = currentUserObject;
+      window.CURRENT_USER_ID = <%= current_user.id %>
+    </script>
+    <% end %>
+  </div>
+
+  <% flash.each do |type, message|%>
+    <div class="container alert-<%= type %>">
+      <%= message %>
+    </div>
+  <% end %>
+<!-- 
+  <div class="container"> -->
+    <%= yield %>
+  <!-- </div> -->
+</body>
+</html>

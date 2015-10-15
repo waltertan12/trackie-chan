@@ -66,6 +66,10 @@
         resetCurrentUser(payload.current_user);
         root.UserStore.emit(CHANGE_EVENT);
       }
+      if(payload.actionType === UserConstants.USER_UPDATED) {
+        resetCurrentUser(payload.user);
+        root.UserStore.emit(CHANGE_EVENT);
+      }
     })
   });
 

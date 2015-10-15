@@ -17,13 +17,15 @@
         }
       })
     },
-    updateUser: function (user) {
+    updateUser: function (userId, params, callback) {
       $.ajax({
-        url: "/api/users/" + user.id,
+        url: "/api/users/" + userId,
         type: "PUT",
         dataType: "json",
+        data: {user: params},
         success: function (user) {
-
+          console.log(user);
+          callback(user);
         },
         error: function (err) {
           console.log(err.responseText);

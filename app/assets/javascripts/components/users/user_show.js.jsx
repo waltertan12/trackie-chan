@@ -36,7 +36,7 @@
         <div className="user-show row">
           <div className="jumbotron">
             <h1>{user.username}</h1>
-            <img className="profile-image pull-right"
+            <img className="profile-image"
                  src={user.image_url} 
                  height="100" 
                  width="100"/>
