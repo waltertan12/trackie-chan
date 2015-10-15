@@ -47,24 +47,6 @@
         imageFormData = undefined;
       }
 
-      // $.ajax({
-      //   url: "https://api.cloudinary.com/" + 
-      //         window.CLOUDINARY_VERSION + 
-      //         "/" + 
-      //         window.CLOUDINARY_NAME +
-      //         "/video/upload",
-      //   type: "POST",
-      //   processData: false,
-      //   contentType: false,
-      //   data: formData,
-      //   success: function (cloudinaryResponse) {
-      //     console.log(cloudinaryResponse);
-      //   },
-      //   error: function (cloudinaryResponse) {
-      //     console.log(cloudinaryResponse.responseText);
-      //   }
-      // })
-
       ApiActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,

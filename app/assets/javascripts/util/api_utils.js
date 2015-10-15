@@ -91,7 +91,7 @@
     uploadTrackToCloudinary: function (uploadData, callback) {
       var utils = this,
           metadata = uploadData.metadata,
-          audio = uploadData.audio
+          audio = uploadData.audio,
           image;
       if (typeof uploadData.image !== "undefined") {
         image = uploadData.image;
@@ -109,8 +109,8 @@
         data: audio,
         success: function (cloudinaryResponse) {
           console.log(cloudinaryResponse);
-          metadata.track_url = cloudinaryReseponse.url;
-          utils.uploadTrack(metadata);
+          metadata.track_url = cloudinaryResponse.url;
+          utils.uploadTrack(metadata, callback);
         },
         error: function (cloudinaryResponse) {
           console.log(cloudinaryResponse.responseText);

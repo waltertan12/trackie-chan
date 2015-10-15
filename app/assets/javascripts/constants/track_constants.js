@@ -4,7 +4,8 @@
   }
 
   root.TrackConstants = {
-    TRACK_RECEIVED: "TRACK_RECEIVED"
+    TRACK_RECEIVED: "TRACK_RECEIVED",
+    TRACK_CREATED: "TRACK_CREATED"
   };
 
 })(this);
