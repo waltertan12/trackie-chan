@@ -34,7 +34,7 @@
       if (typeof window.CURRENT_USER_ID !== "undefined") {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
-            <li><Link to="/">Upload</Link></li>
+            <li><Link to="/tracks/upload">Upload</Link></li>
             <li className="dropdown">
               <a href="#" 
                  className="dropdown-toggle" 
@@ -65,7 +65,7 @@
       } else {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="#">Upload</a></li>
+            <li><a href="/sign">Upload</a></li>
             <p className="navbar-text">
               <a href="/sessions/new">Sign In</a> 
               &nbsp;or&nbsp; 

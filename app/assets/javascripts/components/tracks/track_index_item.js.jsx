@@ -45,7 +45,10 @@
       return (
         <div className="track-index-item">
           {this.props.track.title}
-          <div onClick={this.playOrPause}>{this.state.playState}</div>
+          <div className="play-button" 
+               onClick={this.playOrPause}>
+               {this.state.playState}
+          </div>
         </div>
       );
     }

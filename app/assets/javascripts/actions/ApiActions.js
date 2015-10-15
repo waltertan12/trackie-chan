@@ -70,6 +70,16 @@
       };
 
       ApiUtils.fetchTracks(userId, dispatchCallback);
+    },
+    uploadTrack: function (uploadData) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_CREATED,
+          track: track
+        });
+      };
+
+      ApiUtils.uploadTrackToCloudinary(uploadData, dispatchCallback);
     }
   };
 })(this);

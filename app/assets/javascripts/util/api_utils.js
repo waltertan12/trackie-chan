@@ -87,6 +87,48 @@
       $.ajax({
         url: ""
       })
+    },
+    uploadTrackToCloudinary: function (uploadData, callback) {
+      var utils = this,
+          metadata = uploadData.metadata,
+          audio = uploadData.audio
+          image;
+      if (typeof uploadData.image !== "undefined") {
+        image = uploadData.image;
+      }
+      // Upload audio to cloudinary
+      $.ajax({
+        url: "https://api.cloudinary.com/" + 
+              window.CLOUDINARY_VERSION + 
+              "/" + 
+              window.CLOUDINARY_NAME +
+              "/video/upload",
+        type: "POST",
+        processData: false,
+        contentType: false,
+        data: audio,
+        success: function (cloudinaryResponse) {
+          console.log(cloudinaryResponse);
+          metadata.track_url = cloudinaryReseponse.url;
+          utils.uploadTrack(metadata);
+        },
+        error: function (cloudinaryResponse) {
+          console.log(cloudinaryResponse.responseText);
+        }
+      })
+    },
+    uploadTrack: function (audioData, callback) {
+      $.ajax({
+        url: "/api/tracks",
+        type: "POST",
+        data: {track: audioData},
+        success: function (track) {
+          callback(track);
+        },
+        error: function (err) {
+          console.log(err.responseText);
+        }
+      })
     }
   };
 })(this);

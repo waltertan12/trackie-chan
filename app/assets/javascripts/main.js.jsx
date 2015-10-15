@@ -31,6 +31,9 @@ $(function () {
         <Route path="settings" component={UserSettings}/>
         <Route path=":userId" component={UserShow}/>
       </Route>
+      <Route path="tracks">
+        <Route path="upload" component={TrackUpload}/>
+      </Route>
     </Route>
   );
 
