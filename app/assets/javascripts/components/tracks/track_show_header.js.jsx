@@ -11,11 +11,11 @@
           <div>
             <h1>Wow</h1>
             <TrackIndexItem track={track} />
-          </div>
-          <img className="profile-image"
+          <img className="track-image"
                  src={track.image_url} 
-                 height="150" 
-                 width="150"/>
+                 height="100" 
+                 width="100"/>
+          </div>
         </div>
       );
     }

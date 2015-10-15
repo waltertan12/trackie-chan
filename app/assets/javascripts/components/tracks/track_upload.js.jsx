@@ -101,6 +101,7 @@
             <input type="submit" 
                    className="btn btn-success" 
                    value="Upload!"/>
+            <Link to="/" className="btn btn-danger">Cancel</Link>
           </form>
         </div>
       )

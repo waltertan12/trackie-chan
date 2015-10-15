@@ -157,6 +157,10 @@ body {
     border-radius: 5px;
     right: 5%;
   }
+  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+  background: -o-linear-gradient(bottom right, lightgray, lightblue);
+  background: -moz-linear-gradient(bottom right, lightgray, lightblue);
+  background: linear-gradient(to bottom right, lightgray, lightblue);
 }
 
 
@@ -169,8 +173,10 @@ body {
 }
 
 .play-button {
+  width: 40px;
   &:hover {
     cursor: pointer;
+    background-color: lightpink;
   }
 }
 
@@ -184,12 +190,18 @@ body {
 .track-show-header {
   position: relative;
   min-width: $content-container-min-width;
-  img {
+  display: inline-block;
+  .track-image {
     position: absolute;
     border-radius: 5px;
     right: 5%;
   }
   .track-index-item {
+    display: inline-block;
     width: 80%;
   }
+  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+  background: -o-linear-gradient(bottom right, lightgray, lightblue);
+  background: -moz-linear-gradient(bottom right, lightgray, lightblue);
+  background: linear-gradient(to bottom right, lightgray, lightblue);
 }

@@ -36,6 +36,12 @@ chance = User.create!(
   password_digest: BCrypt::Password.create("password")
 )
 
+cashmere = User.create!(
+  username: "CVSHMERE CVT",
+  email: "cashmere@cat.com",
+  password_digest: BCrypt::Password.create("password")
+)
+
 track_one = Track.create!(
   title: "Ravinswod",
   description: "WOWOWOWOW",
@@ -62,4 +68,17 @@ sunday = Track.create!(
   description: "candy on sunday?",
   user_id: chance.id,
   track_url: "http://dl.findmp3.mobi/178525956/donnie+trumpet+the+social+experiment+sunday+candy.mp3"
+)
+acid = Track.create!(
+  title: "Acid Rain",
+  description: "i am on acid",
+  user_id: chance.id,
+  track_url: "http://cdn.epitonic.com/uploads/tracks/Chance_the_Rapper_-_Acid_Rain_Produced_by_Jake_One.mp3"
+)
+
+mirror = Track.create!(
+  title: "Mirror Maru",
+  description: "watching rap transform from a canine dominated industry ( think Snoop Dog and DMX) to a more feline one, via Meow the Jewels and Danny Brown, confirms my existence.",
+  user_id: cashmere.id,
+  track_url: "http://www.controlaltdelight.com/Music/Cashmere%20Cat/Mirror%20Maru.mp3"
 )
