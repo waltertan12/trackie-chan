@@ -4,6 +4,7 @@
   }
 
   var _tracks = [],
+      _playlist = [],
       resetTracks = function (tracks) {
         _tracks = tracks;
       },
