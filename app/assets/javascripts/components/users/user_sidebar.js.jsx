@@ -10,7 +10,7 @@
       return (
         <div className="user-sidebar col-md-4">
           <LikeIndex/>
-          <FollowIndex followedUsers={user.followed} />
+          <FollowIndex following={user.following} />
         </div>
       );
     }

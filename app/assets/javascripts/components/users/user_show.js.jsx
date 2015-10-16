@@ -61,8 +61,9 @@
                  src={user.image_url} 
                  height="100" 
                  width="100"/>
-            <FollowButton user={user} 
-                          followState={user.is_current_user_following} />
+            <FollowButton 
+              user={user} 
+              followState={UserStore.doesCurrentUserFollow(user)} />
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">

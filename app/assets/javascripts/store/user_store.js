@@ -3,8 +3,9 @@
     root.UserStore = {};
   }
 
-  var _user = {id: null, tracks: [], followers: [], followed: []},
-      _currentUser = {id: null, tracks: [], followers: [], followed: []},
+  var _placeholderUser = {id: -1, tracks: [], followers: [], following: []},
+      _user = _placeholderUser,
+      _currentUser = _placeholderUser,
       _retrievedUsers = {},
       compareUsers = function (userOne, userTwo) {
         return JSON.stringify(userOne) === JSON.stringify(userTwo);
@@ -47,12 +48,20 @@
     currentUser: function () {
       return _currentUser;
     },
+    doesCurrentUserFollow: function (user) {
+      for (var i = 0; i < _currentUser.following.length; i++) {
+        if (_currentUser.following[i].id === user.id) {
+          return true;
+        }
+      }
+      return false
+    },
     retrievedUsers: function () {
       return _retrievedUsers;
     },
     findUser: function (userId) {
       if (typeof _retrievedUsers[userId] === "undefined") {
-        return {id: -1, tracks: [], followers: [], followed: []};
+        return _placeholderUser;
       } else {
         return _retrievedUsers[userId];
       }

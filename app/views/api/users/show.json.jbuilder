@@ -11,4 +11,4 @@ json.extract!(
 json.tracks @user.tracks
 
 json.followers @user.followers
-json.followed  @user.following
+json.following  @user.following
