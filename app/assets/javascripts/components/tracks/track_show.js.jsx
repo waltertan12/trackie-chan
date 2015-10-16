@@ -19,9 +19,9 @@
       TrackStore.removeChangeListener(this.setTrack);
     },
     componentWillReceiveProps: function (nextProps) {
-      var userId = this.props.userId,
+      var userId = this.props.params.userId,
           trackId = nextProps.params.trackId,
-          newTrack = TrackStore.findTrack(trackId, this.props.userId);
+          newTrack = TrackStore.findTrack(trackId, userId);
 
       if (parseInt(trackId) === newTrack.id) {
         this.setTrack(trackId);
@@ -30,14 +30,13 @@
       }
     },
     getTrack: function (props) {
-      var userId = this.props.userId,
-          trackId = nextProps.params.trackId;
+      var trackId = props.params.trackId;
 
-      TrackActions.receiveSingleTrack(userId, trackId);
+      TrackActions.receiveSingleTrack(trackId);
     },
     setTrack: function (optionalTrackId) {
-      var trackId = this.props.params.trackId,
-          userId  = this.props.userId;
+      var trackId = parseInt(this.props.params.trackId),
+          userId  = parseInt(this.props.params.userId);
       // if (typeof optionalTrackId === "undefined") {
 
       // } else {
@@ -47,6 +46,7 @@
       // }
     },
     render: function () {
+      console.log(this.props);
       return (
         <div className="container track-show row">
           <TrackShowHeader track={this.state.track}/>

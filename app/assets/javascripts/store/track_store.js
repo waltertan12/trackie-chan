@@ -42,6 +42,19 @@
           _tracks[userId].push(track);
         }
       },
+      storeTrack = function (userId, track) {
+        if (typeof _tracks[userId] === "undefined") {
+          _tracks[userId] = [track];
+        } else {
+          for (var i = 0; i < _tracks[userId].length; i++) {
+            if (_tracks[userId][i].id === track.id) {
+              _tracks[userId][i] = track;
+              return;
+            }
+          }
+          _tracks[userId].push(track);
+        }
+      },
       CHANGE_EVENT = "CHANGE_EVENT";
 
   root.TrackStore = $.extend({}, EventEmitter.prototype,{
@@ -61,20 +74,12 @@
         return _tracks[userId];
       }
     },
-    find: function (trackId) {
-      for (var i = 0; i < _tracks.length; i++) {
-        if (_tracks[i].trackId === parseInt(trackId)) {
-          return _tracks[i];
-        }
-      }
-      return _placeholderTrack;
-    },
     findTrack: function (userId, trackId) {
       if (typeof _tracks[userId] === "undefined") {
         return _placeholderTrack;
       } else {
         for (var i = 0; i < _tracks[userId].length; i++) {
-          if (_tracks[userId][i] === trackId) {
+          if (_tracks[userId][i].id === trackId) {
             return _tracks[userId][i];
           }
         }
@@ -86,10 +91,10 @@
         resetTracks(payload.userId, payload.tracks);
         root.TrackStore.emit(CHANGE_EVENT);
       } else if(payload.actionType === TrackConstants.TRACK_RECEIVED) {
-        pushTrack(payload.userId, payload.track);
+        storeTrack(payload.userId, payload.track);
         root.TrackStore.emit(CHANGE_EVENT);
       } else if(payload.actionType === TrackConstants.TRACK_CREATED) {
-        pushTrack(payload.track);
+        pushTrack(payload.userId, payload.track);
         root.TrackStore.emit(CHANGE_EVENT);
       }
     })

@@ -30,7 +30,7 @@
       } else {
         commentItems = (
           this.state.comments.map( function (comment) {
-            return <CommentIndexItem comment={comment}/>;
+            return <CommentIndexItem key={comment.id} comment={comment}/>;
           })
         );
       }

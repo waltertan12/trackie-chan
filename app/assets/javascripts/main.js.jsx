@@ -29,11 +29,12 @@ $(function () {
       <IndexRoute component={Dashboard} />
       <Route path="users">
         <Route path="settings" component={UserSettings}/>
-        <Route path=":userId" component={UserShow}/>
+        <Route path=":userId" component={UserShow}>
+        </Route>
+          <Route path=":userId/tracks/:trackId" component={TrackShow}/>
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>
-        <Route path=":trackId" component={TrackShow}/>
       </Route>
     </Route>
   );

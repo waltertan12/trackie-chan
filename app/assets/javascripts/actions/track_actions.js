@@ -15,7 +15,7 @@
 
       ApiUtils.fetchTracks(userId, dispatchCallback);
     },
-    receiveSingleTrack: function (userId, trackId) {
+    receiveSingleTrack: function (trackId) {
       var dispatchCallback = function (userId, track) {
         root.AppDispatcher.dispatch({
           actionType: root.TrackConstants.TRACK_RECEIVED,
@@ -24,7 +24,7 @@
         });
       };
 
-      ApiUtils.fetchTrack(userId, trackId, dispatchCallback);
+      ApiUtils.fetchTrack(trackId, dispatchCallback);
     },
     uploadTrack: function (uploadData) {
       var dispatchCallback = function (track) {

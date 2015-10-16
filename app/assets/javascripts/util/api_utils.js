@@ -98,13 +98,13 @@
         }
       })
     },
-    fetchTrack: function (userId, trackId, callback) {
+    fetchTrack: function (trackId, callback) {
       $.ajax({
         url: "api/tracks/" + trackId,
         type: "GET",
         dataType: "json",
         success: function (track) {
-          callback(userId, track);
+          callback(track.user_id, track);
         },
         error: function(err) {
           console.log(err.responseText);

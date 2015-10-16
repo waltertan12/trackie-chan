@@ -5,7 +5,8 @@ json.array!(@tracks) do |track|
     :title,
     :description,
     :track_url,
-    :image_url
+    :image_url,
+    :user_id
   )
 
   json.username track.user.username

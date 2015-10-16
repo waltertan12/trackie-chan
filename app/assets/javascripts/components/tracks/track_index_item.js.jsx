@@ -46,7 +46,7 @@
       var trackTitle;
       if (this.props.makeLink) {
         trackTitle = (
-          <Link to={"/tracks/" + this.props.track.id}>
+          <Link to={"/users/" + this.props.track.user_id + "/tracks/" + this.props.track.id}>
             {this.props.track.title}
           </Link>
         );
