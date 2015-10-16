@@ -9,6 +9,7 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
+      UserLikeStore.addChangeListener(this.setCurrentUserLikes);
       if (typeof window.CURRENT_USER_ID !== "undefined" &&
           window.CURRENT_USER_ID !== this.state.currentUser.id) {
         this.getCurrentUser();
@@ -16,12 +17,19 @@
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setCurrentUser);
+      UserLikeStore.removeChangeListener(this.setCurrentUserLikes);
     },
     getCurrentUser: function () {
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     setCurrentUser: function () {
       this.setState({currentUser: UserStore.currentUser()});
+    },
+    getCurrentUserLikes: function () {
+
+    },
+    setCurrentUserLikes: function () {
+
     },
     render: function () {
       if(window.CURRENT_USER_ID > 0) {
