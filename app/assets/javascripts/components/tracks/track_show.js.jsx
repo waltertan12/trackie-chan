@@ -37,7 +37,7 @@
             </div>
           </div>
           <div className="track-show-container col-md-8">
-            <CommentIndex comments={this.state.track.comments}/>
+            <CommentIndex trackId= {this.props.params.trackId} />
           </div>
           <CurrentUserSidebar currentUser={UserStore.currentUser()}/>
         </div>

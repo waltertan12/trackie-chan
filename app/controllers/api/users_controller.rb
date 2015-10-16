@@ -12,8 +12,6 @@ class Api::UsersController < ApplicationController
   def update
     @user = current_user
 
-    if params[:password]
-
     if @user.update(user_update_params)
       render :edit
     else

@@ -9,11 +9,16 @@
     },
     _onSubmit: function (e) {
       e.preventDefault();
+      var commentData = this.state;
+      commentData.track_id = this.props.trackId;
+      CommentActions.createComment(commentData, this.props.trackId);
+      this.setState({body: ""});
     },
     updateBody: function (e) {
       this.setState({body: e.target.value})
     },
     render: function () {
+      console.log(this.state);
       return (
         <div className="comment-form">
           <h3>Add a comment</h3>
@@ -21,7 +26,8 @@
             <div className="form-group">
               <input type="text"
                      className="form-control"
-                     onChange={this.updateBody} />
+                     onChange={this.updateBody}
+                     value={this.state.body} />
             </div>
 
             <input type="submit" 

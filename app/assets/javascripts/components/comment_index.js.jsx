@@ -4,24 +4,39 @@
   }
 
   root.CommentIndex = React.createClass({
+    getInitialState: function () {
+      var trackId = parseInt(this.props.trackId);
+      return {comments: CommentStore.getComments(trackId)};
+    },
+    componentDidMount: function () {
+      CommentStore.addChangeListener(this.setComments);
+      this.getComments(this.props);
+    },
+    componentWillUnmount: function () {
+      CommentStore.removeChangeListener(this.setComments);
+    },
+    getComments: function (props) {
+      CommentActions.receiveComments(props.trackId);
+    },
+    setComments: function () {
+      this.setState({comments: CommentStore.getComments(this.props.trackId)})
+    },
     render: function () {
-      console.log("Props for comment index");
-      console.log(this.props);
-      var commentItems = "hi";
-      if (this.props.comments.length === 0) {
+      var commentItems;
+      if (this.state.comments.length === 0) {
         commentItems = (
           <li className="comment-index-item">No comments yet...</li>
         );
       } else {
         commentItems = (
-          this.props.comments.map( function (comment) {
+          this.state.comments.map( function (comment) {
             return <CommentIndexItem comment={comment}/>;
           })
         );
       }
       return (
         <div className="comment-index">
-          <CommentForm />
+          <CommentForm trackId={this.props.trackId}/>
           <h2>Comments</h2>
           <ul>
             {commentItems}

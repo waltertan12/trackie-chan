@@ -112,6 +112,7 @@
               window.CLOUDINARY_NAME +
               "/video/upload",
         type: "POST",
+        dataType: "json",
         processData: false,
         contentType: false,
         data: audio,
@@ -129,9 +130,38 @@
       $.ajax({
         url: "/api/tracks",
         type: "POST",
+        dataType: "json",
         data: {track: audioData},
         success: function (track) {
           callback(track);
+        },
+        error: function (err) {
+          console.log(err.responseText);
+        }
+      })
+    },
+    createComment: function (comment, trackId, callback) {
+      $.ajax({
+        url: "/api/comments",
+        type: "POST",
+        data: {comment: comment},
+        dataType: "json",
+        success: function (comment) {
+          callback(comment, trackId);
+        },
+        error: function (err) {
+          console.log(err.responseText);
+        }
+      })
+    },
+    fetchComments: function (trackId, callback) {
+      $.ajax({
+        url: "/api/comments",
+        type: "GET",
+        dataType: "json",
+        data: {track_id: trackId},
+        success: function (comments) {
+          callback(comments, trackId);
         },
         error: function (err) {
           console.log(err.responseText);

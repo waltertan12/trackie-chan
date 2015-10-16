@@ -8,4 +8,3 @@ json.extract!(
 )
 
 json.username @track.user.username
-json.comments @track.comments
