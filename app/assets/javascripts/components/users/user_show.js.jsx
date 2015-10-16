@@ -5,23 +5,35 @@
 
   root.UserShow = React.createClass({
     getInitialState: function () {
-      return ({user: root.UserStore.user()});
+      var userId = this.props.params.userId;
+      return ({user: root.UserStore.findUser(userId)});
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
-      this.getUser(this.props);
+      if (parseInt(this.props.params.userId) !== this.state.user.id) {
+        this.getUser(this.props);
+      } 
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setUser);
     },
     componentWillReceiveProps: function (nextProps) {
-      this.getUser(nextProps);
+      var newUser = UserStore.findUser(nextProps.params.userId);
+      if (parseInt(nextProps.params.userId) === newUser.id) {
+        this.setUser(newUser.id);
+      } else {
+        this.getUser(nextProps);
+      }
     },
     getUser: function (props) {
       ApiActions.receiveSingleUser(props.params.userId);
     },
-    setUser: function () {
-      this.setState({user: root.UserStore.user()});
+    setUser: function (optionalUserId) {
+      if (typeof optionalUserId === "undefined") {
+        this.setState({user: root.UserStore.user()});
+      } else {
+        this.setState({user: UserStore.findUser(optionalUserId)});
+      }
     },
     render: function () {
       var user = this.state.user;

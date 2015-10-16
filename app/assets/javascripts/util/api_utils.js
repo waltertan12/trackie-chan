@@ -47,7 +47,8 @@
     },
     destroySession: function() {
       $.ajax({
-        url: "/logout",
+        url: "sessions",
+        dataType: "json",
         type: "DELETE",
         success: function(response) {
           window.location.assign("/");

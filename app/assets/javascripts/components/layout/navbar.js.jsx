@@ -7,11 +7,12 @@
   
   root.Navbar = React.createClass({
     getInitialState: function () {
-      return {currentUser: UserStore.currentUser()};
+      return {currentUser: UserStore.findUser(window.CURRENT_USER_ID)};
     },
     componentDidMount: function () {
-      if (typeof window.CURRENT_USER_ID !== "undefined") {
-        UserStore.addChangeListener(this.setCurrentUser);
+      UserStore.addChangeListener(this.setCurrentUser);
+      if (typeof window.CURRENT_USER_ID !== "undefined" &&
+          window.CURRENT_USER_ID !== this.state.currentUser.id) {
         this.getCurrentUser();
       }
     },
@@ -26,11 +27,11 @@
     },
     logout: function (e) {
       e.preventDefault();
+      // window.location.assign("/");
       ApiActions.deleteSession();
     },
     render: function () {
       var navbarRight;
-      console.log("Window.")
       if (typeof window.CURRENT_USER_ID !== "undefined") {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">

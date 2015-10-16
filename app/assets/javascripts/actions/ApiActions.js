@@ -58,7 +58,7 @@
       ApiUtils.unfollowUser(user, dispatchCallback);
     },
     deleteSession: function () {
-      window.location.assign("/");
+      // window.location.assign("/");
       ApiUtils.destroySession();
     },
     receiveTracks: function (userId) {

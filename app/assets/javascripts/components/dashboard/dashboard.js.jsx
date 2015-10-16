@@ -5,12 +5,12 @@
 
   root.Dashboard = React.createClass({
     getInitialState: function () {
-      return {currentUser: UserStore.currentUser()};
+      return {currentUser: UserStore.findUser(window.CURRENT_USER_ID)};
     },
     componentDidMount: function () {
+      UserStore.addChangeListener(this.setCurrentUser);
       if (typeof window.CURRENT_USER_ID !== "undefined" &&
           window.CURRENT_USER_ID !== this.state.currentUser.id) {
-        UserStore.addChangeListener(this.setCurrentUser);
         this.getCurrentUser();
       }
     },
@@ -21,11 +21,9 @@
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     setCurrentUser: function () {
-      console.log("Setting current user");
       this.setState({currentUser: UserStore.currentUser()});
     },
     render: function () {
-      console.log("render dashboard");
       if(window.CURRENT_USER_ID > 0) {
         return (
           <div className="dashboard row">

@@ -50,6 +50,16 @@
     retrievedUsers: function () {
       return _retrievedUsers;
     },
+    findUser: function (userId) {
+      if (typeof _retrievedUsers[userId] === "undefined") {
+        return {id: -1, tracks: [], followers: [], followed: []};
+      } else {
+        return _retrievedUsers[userId];
+      }
+    },
+    storeUser: function (user) {
+      _retrievedUsers[user.id] = user;
+    },
     pushToRetrievedUsers: function (user) {
       if (typeof _retrievedUsers[user.id] === "undefined") {
         _retrievedUsers[user.id] = user;
@@ -59,14 +69,17 @@
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === UserConstants.USER_RECEIVED) {
+        root.UserStore.storeUser(payload.user);
         resetUser(payload.user);
         root.UserStore.emit(CHANGE_EVENT);
       }
       if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
+        root.UserStore.storeUser(payload.current_user);
         resetCurrentUser(payload.current_user);
         root.UserStore.emit(CHANGE_EVENT);
       }
       if(payload.actionType === UserConstants.USER_UPDATED) {
+        root.UserStore.storeUser(payload.user);
         resetCurrentUser(payload.user);
         root.UserStore.emit(CHANGE_EVENT);
       }
