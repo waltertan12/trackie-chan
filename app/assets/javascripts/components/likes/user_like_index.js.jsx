@@ -1,9 +1,9 @@
 (function (root) {
-  if (typeof root.LikeIndex === "undefined") {
-    root.LikeIndex = {};
+  if (typeof root.UserLikeIndex === "undefined") {
+    root.UserLikeIndex = {};
   }
 
-  root.LikeIndex = React.createClass({
+  root.UserLikeIndex = React.createClass({
     render: function () {
       return (
         <div className="like-index">

@@ -9,7 +9,7 @@
       var currentUser = this.props.currentUser;
       return (
         <div className="user-sidebar col-md-4">
-          <LikeIndex/>
+          <UserLikeIndex likes={currentUser.likes}/>
           <FollowIndex following={currentUser.following}/>
         </div>
       );
