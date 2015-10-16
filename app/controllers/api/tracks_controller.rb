@@ -1,4 +1,9 @@
 class Api::TracksController < ApplicationController
+  def index
+    @tracks = Track.includes(:user).where(user_id: params[:user_id])
+    render :index
+  end
+
   def create
     @track = Track.new(track_params)
     @track.user_id = current_user.id

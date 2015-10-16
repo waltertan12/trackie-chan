@@ -60,6 +60,36 @@
     deleteSession: function () {
       // window.location.assign("/");
       ApiUtils.destroySession();
+    },
+    receiveTracks: function (userId) {
+      var dispatchCallback = function (tracks) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACKS_RECEIVED,
+          tracks: tracks
+        });
+      };
+
+      ApiUtils.fetchTracks(userId, dispatchCallback);
+    },
+    receiveSingleTrack: function (trackId) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_RECEIVED,
+          track: track
+        });
+      };
+
+      ApiUtils.fetchTrack(trackId, dispatchCallback);
+    },
+    uploadTrack: function (uploadData) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_CREATED,
+          track: track
+        });
+      };
+      
+      ApiUtils.uploadTrackToCloudinary(uploadData, dispatchCallback);
     }
   };
 })(this);

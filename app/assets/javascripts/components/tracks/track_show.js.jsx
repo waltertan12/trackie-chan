@@ -6,7 +6,8 @@
   root.TrackShow = React.createClass({
     getInitialState: function () {
       var trackId = this.props.params.trackId;
-      return {track: TrackStore.find(trackId)};
+      var userId = this.props.userId;
+      return {track: TrackStore.findTrack(userId, trackId)};
     },
     componentDidMount: function () {
       TrackStore.addChangeListener(this.setTrack);
@@ -18,13 +19,32 @@
       TrackStore.removeChangeListener(this.setTrack);
     },
     componentWillReceiveProps: function (nextProps) {
-      this.getTrack(nextProps);
+      var userId = this.props.userId,
+          trackId = nextProps.params.trackId,
+          newTrack = TrackStore.findTrack(trackId, this.props.userId);
+
+      if (parseInt(trackId) === newTrack.id) {
+        this.setTrack(trackId);
+      } else {
+        this.getTrack(nextProps);
+      }
     },
     getTrack: function (props) {
-      ApiActions.receiveSingleTrack(props.params.trackId);
+      var userId = this.props.userId,
+          trackId = nextProps.params.trackId;
+
+      TrackActions.receiveSingleTrack(userId, trackId);
     },
-    setTrack: function () {
-      this.setState({track: TrackStore.find(this.props.params.trackId)});
+    setTrack: function (optionalTrackId) {
+      var trackId = this.props.params.trackId,
+          userId  = this.props.userId;
+      // if (typeof optionalTrackId === "undefined") {
+
+      // } else {
+        this.setState({
+          track: TrackStore.findTrack(userId, trackId)
+        });
+      // }
     },
     render: function () {
       return (

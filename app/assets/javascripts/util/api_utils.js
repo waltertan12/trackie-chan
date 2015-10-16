@@ -84,13 +84,27 @@
         }
       })
     },
-    fetchTrack: function (trackId, callback) {
+    fetchTracks: function (userId, callback) {
+      $.ajax({
+        url: "api/tracks",
+        data: {user_id: userId},
+        type: "GET",
+        dataType: "json",
+        success: function (tracks) {
+          callback(userId, tracks);
+        },
+        error: function(err) {
+          console.log(err.responseText);
+        }
+      })
+    },
+    fetchTrack: function (userId, trackId, callback) {
       $.ajax({
         url: "api/tracks/" + trackId,
         type: "GET",
         dataType: "json",
         success: function (track) {
-          callback(track);
+          callback(userId, track);
         },
         error: function(err) {
           console.log(err.responseText);

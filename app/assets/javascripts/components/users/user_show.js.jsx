@@ -6,16 +6,22 @@
   root.UserShow = React.createClass({
     getInitialState: function () {
       var userId = this.props.params.userId;
-      return ({user: root.UserStore.findUser(userId)});
+      return ({
+        user: UserStore.findUser(userId),
+        tracks: TrackStore.findUserTracks(userId)
+      });
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
+      TrackStore.addChangeListener(this.setUserTracks);
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
-      } 
+        this.getUserTracks(this.props);
+      }
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setUser);
+      TrackStore.removeChangeListener(this.setUserTracks);
     },
     componentWillReceiveProps: function (nextProps) {
       var newUser = UserStore.findUser(nextProps.params.userId);
@@ -24,6 +30,7 @@
       } else {
         this.getUser(nextProps);
       }
+      this.getUserTracks(nextProps);
     },
     getUser: function (props) {
       ApiActions.receiveSingleUser(props.params.userId);
@@ -35,8 +42,17 @@
         this.setState({user: UserStore.findUser(optionalUserId)});
       }
     },
+    getUserTracks: function (props) {
+      TrackActions.receiveTracks(props.params.userId);
+    },
+    setUserTracks: function () {
+      var userId = this.props.params.userId
+      this.setState({tracks: TrackStore.findUserTracks(userId)});
+    },
     render: function () {
       var user = this.state.user;
+      var tracks = this.state.tracks;
+
       return (
         <div className="user-show row">
           <div className="jumbotron user-header">
@@ -50,7 +66,7 @@
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">
-              <TrackIndex tracks={user.tracks} />
+              <TrackIndex userId={user.id} tracks={tracks} />
             </div>
           </div>
           <UserSidebar user={user}/>
