@@ -26,7 +26,6 @@
       this.setState({followState: followState});
     },
     followOrUnfollow: function () {
-      console.log("click");
       if (this.state.followState === "Follow") {
         ApiActions.followUser(this.props.user);
         this.setState({followState: "Unfollow"});

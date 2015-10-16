@@ -43,19 +43,24 @@
       }
     },
     render: function () {
-      var trackTitle;
+      var track = this.props.track,
+          likeState = UserStore.doesCurrentUserLike("Track", track.id),
+          trackTitle;
       if (this.props.makeLink) {
         trackTitle = (
-          <Link to={"/users/" + this.props.track.user_id + "/tracks/" + this.props.track.id}>
-            {this.props.track.title}
+          <Link to={"/users/" + track.user_id + "/tracks/" + track.id}>
+            {track.title}
           </Link>
         );
       } else {
-        trackTitle = this.props.track.title;
+        trackTitle = track.title;
       }
       return (
         <div className="track-index-item">
           {trackTitle}
+          <LikeButton likableType="Track" 
+                      likableId={this.props.track.id}
+                      likeState={likeState}/>
           <div className="play-button" 
                onClick={this.playOrPause}>
                {this.state.playState}

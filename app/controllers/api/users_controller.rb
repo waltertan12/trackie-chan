@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   def show
-    @user = User.includes(:tracks).find(params[:id])
+    @user = User.includes(:tracks, :likings).find(params[:id])
     render :show
   end
 

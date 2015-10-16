@@ -12,3 +12,4 @@ json.tracks @user.tracks
 
 json.followers @user.followers
 json.following  @user.following
+json.likes @user.likes

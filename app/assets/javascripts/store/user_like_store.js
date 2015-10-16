@@ -39,7 +39,10 @@
       return typeof _userLikes[userId] !== "undefined"
     },
     dispatcherId: AppDispatcher.register(function (payload) {
-      if (payload.actionType === UserLikeConstants.USER_LIKES_RECEIVED) {
+      if (payload.actionType === LikeConstants.USER_LIKES_RECEIVED) {
+        resetUserLikes(payload.userId, payload.likes);
+        root.UserLikeStore.emit(CHANGE_EVENT);
+      } else if (payload.actionType === LikeConstants.LIKE_CREATED) {
         resetUserLikes(payload.userId, payload.likes);
         root.UserLikeStore.emit(CHANGE_EVENT);
       }

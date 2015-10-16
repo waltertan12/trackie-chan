@@ -51,7 +51,7 @@
           <ul>
             {
               this.state.likes.map( function (like) {
-                return <UserLikeIndexItem like={like}/>;
+                return <UserLikeIndexItem key={like.id} like={like}/>;
               })
             }
           </ul>

@@ -1,12 +1,12 @@
 (function (root) {
-  if (typeof root.UserLikeConstants === "undefined") {
-    root.UserLikeConstants = {}
+  if (typeof root.LikeConstants === "undefined") {
+    root.LikeConstants = {}
   }
 
   root.UserLikeConstants = {
     USER_LIKES_RECEIVED: "USER_LIKES_RECEIVED",
     USER_LIKE_RECEIVED: "USER_LIKE_RECEIVED",
-    USER_LIKE_CREATED: "USER_LIKE_CREATED"
+    LIKE_CREATED: "LIKE_CREATED"
   };
 
 })(this);

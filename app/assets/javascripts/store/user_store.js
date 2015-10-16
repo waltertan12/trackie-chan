@@ -3,7 +3,14 @@
     root.UserStore = {};
   }
 
-  var _placeholderUser = {id: -1, tracks: [], followers: [], following: []},
+  var _placeholderUser = {
+        id: -1, 
+        tracks: [], 
+        followers: [], 
+        following: [],
+        likes: [],
+        playlists: []
+      },
       _user = _placeholderUser,
       _currentUser = _placeholderUser,
       _retrievedUsers = {},
@@ -55,6 +62,17 @@
         }
       }
       return false
+    },
+    doesCurrentUserLike: function (likableType, likableId) {
+      var like;
+      for (var i = 0; i < _currentUser.likes.length; i++) {
+        like = _currentUser.likes[i];
+        if (like.likable_type === likableType && 
+            like.likable_id === likableId) {
+          return true;
+        }
+      }
+      return false;
     },
     retrievedUsers: function () {
       return _retrievedUsers;
