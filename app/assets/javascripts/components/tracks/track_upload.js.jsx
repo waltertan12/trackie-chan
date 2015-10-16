@@ -3,6 +3,7 @@
     root.TrackUpload = {};
   }
 
+  var Link = ReactRouter.Link;
   root.TrackUpload = React.createClass({
     getInitialState: function () {
       return (
@@ -54,8 +55,6 @@
       });
     },
     render: function () {
-      console.log("State");
-      console.log(this.state);
       return (
         <div className="container track-upload col-md-6 col-md-offset-3">
           <h1>Upload a new Track!</h1>
