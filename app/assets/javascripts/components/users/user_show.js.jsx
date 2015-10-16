@@ -14,6 +14,8 @@
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
       TrackStore.addChangeListener(this.setUserTracks);
+      console.log(typeof this.state.user.id);
+      console.log
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
         this.getUserTracks(this.props);
@@ -24,7 +26,7 @@
       TrackStore.removeChangeListener(this.setUserTracks);
     },
     componentWillReceiveProps: function (nextProps) {
-      var newUser = UserStore.findUser(nextProps.params.userId);
+      var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
       if (parseInt(nextProps.params.userId) === newUser.id) {
         this.setUser(newUser.id);
       } else {

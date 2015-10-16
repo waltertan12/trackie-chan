@@ -34,6 +34,7 @@
     },
     _onSubmit: function (e) {
       e.preventDefault();
+
       var audioFile = this.audioFile.files[0],
           audioFormData = new FormData(),
           imageFormData = new FormData();
@@ -48,7 +49,7 @@
         imageFormData = undefined;
       }
 
-      ApiActions.uploadTrack({
+      TrackActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,
         image: imageFormData
@@ -59,22 +60,22 @@
         <div className="container track-upload col-md-6 col-md-offset-3">
           <h1>Upload a new Track!</h1>
           <form onSubmit={this._onSubmit}>
-            <div class="form-group">
-              <label for="title">Title</label><br/>
+            <div className="form-group">
+              <label>Title</label><br/>
               <input type="text"
                      className="form-control"
                      onChange={this.updateTitle}/>
             </div><br/><br/>
 
-            <div class="form-group">
-              <label for="tags">Tags</label><br/>
+            <div className="form-group">
+              <label>Tags</label><br/>
               <input type="text"
                      className="form-control"
                      onChange={this.updateTags}/>
             </div><br/><br/>
 
-            <div class="form-group">
-              <label for="description">Description</label><br/>
+            <div className="form-group">
+              <label>Description</label><br/>
               <textarea rows="5"
                         className="form-control"
                         onChange={this.updateDescription}/>
@@ -82,16 +83,16 @@
 
 
 
-            <div class="form-group">
-              <label for="file">Choose a file</label><br/>
+            <div className="form-group">
+              <label>Choose a file</label><br/>
               <input type="file"
                      className="track-upload-input"
                      accept="audio/*"
                      onChange={this.updateTrackFile}/>
             </div><br/><br/>
 
-            <div class="form-group">
-              <label for="file">Upload an image <em>(optional)</em></label><br/>
+            <div className="form-group">
+              <label>Upload an image <em>(optional)</em></label><br/>
               <input type="file"
                      accept="image/*"
                      onChange={this.updateImageFile}/>

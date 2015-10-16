@@ -30,6 +30,7 @@
       var dispatchCallback = function (track) {
         root.AppDispatcher.dispatch({
           actionType: root.TrackConstants.TRACK_CREATED,
+          userId: track.user_id,
           track: track
         });
       };

@@ -116,6 +116,7 @@
           metadata = uploadData.metadata,
           audio = uploadData.audio,
           image;
+
       if (typeof uploadData.image !== "undefined") {
         image = uploadData.image;
       }
@@ -154,6 +155,9 @@
           console.log(err.responseText);
         }
       })
+    },
+    checkUploadProgress: function () {
+
     },
     createComment: function (comment, trackId, callback) {
       $.ajax({

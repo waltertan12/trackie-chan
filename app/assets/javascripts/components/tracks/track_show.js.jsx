@@ -5,8 +5,10 @@
 
   root.TrackShow = React.createClass({
     getInitialState: function () {
-      var trackId = this.props.params.trackId;
-      var userId = this.props.userId;
+      var trackId = parseInt(this.props.params.trackId),
+          userId = parseInt(this.props.params.userId);
+      console.log(trackId);
+      console.log(userId);
       return {track: TrackStore.findTrack(userId, trackId)};
     },
     componentDidMount: function () {
@@ -19,8 +21,8 @@
       TrackStore.removeChangeListener(this.setTrack);
     },
     componentWillReceiveProps: function (nextProps) {
-      var userId = this.props.params.userId,
-          trackId = nextProps.params.trackId,
+      var userId = parseInt(nextProps.params.userId),
+          trackId = parseInt(nextProps.params.trackId),
           newTrack = TrackStore.findTrack(trackId, userId);
 
       if (parseInt(trackId) === newTrack.id) {
