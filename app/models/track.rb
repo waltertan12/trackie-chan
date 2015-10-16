@@ -7,6 +7,7 @@ class Track < ActiveRecord::Base
 
   belongs_to :user
   has_many :comments
+  has_many :likes, as: :likable
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?
