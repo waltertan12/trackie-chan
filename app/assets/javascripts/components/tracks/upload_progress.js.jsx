@@ -2,6 +2,8 @@
   if (typeof root.UploadProgress === "undefined") {
     root.UploadProgress = {};
   }
+  
+  var Link = ReactRouter.Link;
   root.UploadProgress = React.createClass({
     getInitialState: function () {
       return {value: 0, userId: -1, trackId: -1};

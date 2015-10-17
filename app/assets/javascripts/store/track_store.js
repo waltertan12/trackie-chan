@@ -39,7 +39,7 @@
         }
       },
       resetUploadedTrack = function (track) {
-        _uploadedTrackMetadata = track;
+        _lastUploadedTrack = track;
       },
       // Uploading a new track
       pushTrack = function (userId, track) {
@@ -119,7 +119,7 @@
 
       } else if(payload.actionType === TrackConstants.TRACK_CREATED) {
         pushTrack(payload.userId, payload.track);
-        resetUploadedTrackMetadata(payload.track);
+        resetUploadedTrack(payload.track);
 
         root.TrackStore.emit(CHANGE_EVENT);
 
