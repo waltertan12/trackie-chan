@@ -16,18 +16,27 @@
       LikeUtils.fetchUserLikes(userId, dispatchCallback);
     },
     like: function (likableType, likableId) {
-      AppDispatcher.dispatch({
-        actionType: LikeConstants.LIKE_CREATED,
-        userId: userId,
-        likes: likes
-      });
+      var dispatchCallback = function (like) {
+        AppDispatcher.dispatch({
+          actionType: LikeConstants.LIKE_CREATED,
+          userId: like.user_id,
+          like: like
+        });
+      };
+
+      LikeUtils.createLike(likableType, likableId, dispatchCallback);
     },
     unlike: function (likableType, likableId) {
-      AppDispatcher.dispatch({
-        actionType: LikeConstants.LIKE_CREATED,
-        userId: userId,
-        likes: likes
-      });
+      var dispatchCallback = function (like) {
+        console.log(like);
+        AppDispatcher.dispatch({
+          actionType: LikeConstants.LIKE_DESTROYED,
+          userId: like.user_id,
+          like: like
+        });
+      };
+
+      LikeUtils.destroyLike(likableType, likableId, dispatchCallback);
     }
   };
 })(this);

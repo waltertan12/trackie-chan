@@ -14,7 +14,46 @@
           callback(userId, likes);
         },
         error: function (err) {
-          console.log(error.responseText);
+          console.log(err.responseText);
+        }
+      })
+    },
+    createLike: function (likableType, likableId, callback) {
+      $.ajax({
+        url: "/api/likes",
+        dataType: "json",
+        type: "POST",
+        data: {
+          like: {
+            likable_type: likableType,
+            likable_id: likableId
+          }
+        },
+        success: function (like) {
+          callback(like);
+        },
+        error: function (err) {
+          console.log(err);
+        }
+      })
+    },
+    destroyLike: function (likableType, likableId, callback) {
+      $.ajax({
+        url: "/api/likes/" + likableId,
+        dataType: "json",
+        type: "DELETE",
+        data: {
+          like: {
+            likable_type: likableType,
+            likable_id: likableId
+          }
+        },
+        success: function (like) {
+          console.log(like);
+          callback(like);
+        },
+        error: function (err) {
+          console.log(err);
         }
       })
     }

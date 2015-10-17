@@ -10,28 +10,30 @@
     componentWillMount: function () {
       var likeState;
       if (this.props.likeState) {
-        likeState = "Unlike";
+        likeState = "</3";
       } else {
-        likeState = "Like";
+        likeState = "<3";
       }
       this.setState({likeState: likeState});
     },
     componentWillReceiveProps: function (nextProps) {
       var likeState;
       if (nextProps.likeState) {
-        likeState = "Unlike";
+        likeState = "</3";
       } else {
-        likeState = "Like";
+        likeState = "<3";
       }
       this.setState({likeState: likeState});
     },
     likeOrUnlike: function () {
       var likableType = this.props.likableType
           likableId   = this.props.likableId;
-      if (this.state.likeState === "Like") {
+      if (this.state.likeState === "<3") {
         LikeActions.like(likableType, likableId);
+        this.setState({likeState: "</3"});
       } else {
         LikeActions.unlike(likableType, likableId);
+        this.setState({likeState: "<3"});
       }
     },
     render: function () {

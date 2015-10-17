@@ -11,4 +11,5 @@ json.extract!(
 json.tracks @user.tracks
 json.is_current_user_following current_user.following?(@user)
 json.followers @user.followers
-json.followed  @user.following
+json.following  @user.following
+json.likes @user.likes

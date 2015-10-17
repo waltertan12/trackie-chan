@@ -24,7 +24,6 @@
         dataType: "json",
         data: {user: params},
         success: function (user) {
-          console.log(user);
           callback(user);
         },
         error: function (err) {

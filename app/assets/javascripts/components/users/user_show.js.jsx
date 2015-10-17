@@ -14,8 +14,6 @@
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
       TrackStore.addChangeListener(this.setUserTracks);
-      console.log(typeof this.state.user.id);
-      console.log
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
         this.getUserTracks(this.props);

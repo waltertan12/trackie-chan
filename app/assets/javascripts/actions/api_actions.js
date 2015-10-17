@@ -1,8 +1,9 @@
+/* global ApiUtils */
 (function (root) {
+  "use strict";
   if (typeof root.ApiActions === "undefined") {
     root.ApiActions = {};
   }
-
   root.ApiActions = {
     receiveSingleUser: function (userId) {
       var dispatchCallback = function (user) {

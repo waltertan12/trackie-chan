@@ -8,10 +8,20 @@
         _userLikes[userId] = likes;
       },
       addUserLike = function (userId, like) {
-
+        if (typeof _userLikes[userId] === "undefined") {
+          _userLikes[userId] = [like];
+        } else {
+          _userLikes[userId].push(like);
+        }
       },
       removeUserLike = function (userId, like) {
-
+        if (typeof _userLikes[userId] !== "undefined") {
+          for (var i = 0; i < _userLikes[userId].length; i++) {
+            if (_userLikes[userId][i].id === like.id) {
+              return _userLikes[userId].splice(i, 1);
+            }
+          };
+        }
       },
       findUserLikeIndex = function (like) {
 
@@ -43,7 +53,10 @@
         resetUserLikes(payload.userId, payload.likes);
         root.UserLikeStore.emit(CHANGE_EVENT);
       } else if (payload.actionType === LikeConstants.LIKE_CREATED) {
-        resetUserLikes(payload.userId, payload.likes);
+        addUserLike(payload.userId, payload.like);
+        root.UserLikeStore.emit(CHANGE_EVENT);
+      } else if (payload.actionType === LikeConstants.LIKE_DESTROYED) {
+        removeUserLike(payload.userId, payload.like);
         root.UserLikeStore.emit(CHANGE_EVENT);
       }
     })
