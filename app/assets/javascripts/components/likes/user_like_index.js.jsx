@@ -11,6 +11,8 @@
       var userId = this.props.userId;
       UserLikeStore.addChangeListener(this.setLikes);
       if (UserLikeStore.hasUserLikes(userId)) {
+        this.setLikes(userId);
+      } else {
         this.getLikes(this.props);
       }
     },
@@ -18,12 +20,13 @@
       UserLikeStore.removeChangeListener(this.setLikes);
     },
     componentWillReceiveProps: function (nextProps) {
-      // if (true) {
-
-      // } else {
-
-      // }
-      this.getLikes(nextProps)
+      console.log("nextProps for UserLikeIndex");
+      console.log(nextProps);
+      if (UserLikeStore.hasUserLikes(nextProps.userId)) {
+        this.setLikes(nextProps.userId);
+      } else {
+        this.getLikes(nextProps);
+      }
     },
     getLikes: function (props) {
       var userId = props.userId;

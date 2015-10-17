@@ -14,6 +14,7 @@
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
       TrackStore.addChangeListener(this.setUserTracks);
+
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
         this.getUserTracks(this.props);
@@ -30,13 +31,21 @@
     },
     componentWillReceiveProps: function (nextProps) {
       var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
+      
       if (parseInt(nextProps.params.userId) === newUser.id) {
         this.setUser(newUser.id);
         UserActions.updateUserShow(newUser);
+
+        // Only send a backend request if necessary
+        if (newUser.tracks.length !== this.state.tracks.length) {
+          this.getUserTracks(this.props);
+        } else {
+          this.setUserTracks()
+        }
       } else {
         this.getUser(nextProps);
+        this.getUserTracks(nextProps);
       }
-      this.getUserTracks(nextProps);
     },
     getUser: function (props) {
       ApiActions.receiveSingleUser(props.params.userId);

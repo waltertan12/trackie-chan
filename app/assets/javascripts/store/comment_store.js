@@ -58,6 +58,9 @@
         return typeof _comments[trackId] !== "undefined";
       }
     },
+    hasCommentsForTrack: function (trackId) {
+      return typeof _comments[trackId] !== "undefined";
+    },
     getComments: function (trackId) {
       if (this.trackCommentsAreStored(trackId)) {
         return _comments[trackId];
