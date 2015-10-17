@@ -19,10 +19,9 @@ class Api::LikesController < ApplicationController
       user_id: current_user.id,
       likable_type: params[:like][:likable_type],
       likable_id: params[:like][:likable_id]
-    )
-    p @like
+    ).first
 
-    if @like.first.destroy
+    if @like.destroy
       render :destroy
     else
       render json: @like.errors.full_messages, status: 422

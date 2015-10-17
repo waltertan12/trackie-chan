@@ -9,7 +9,6 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setLike);
-      // this.getLike();
       this.setLike();
     },
     componentWillReceiveProps: function (nextProps) {
@@ -17,9 +16,6 @@
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setLike);
-    },
-    getLike: function () {
-
     },
     setLike: function (props) {
       if (typeof props === "undefined") {
@@ -38,9 +34,11 @@
           likableId   = this.props.likableId;
       if (this.state.likeState === "<3") {
         LikeActions.like(likableType, likableId);
+        ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
         this.setState({likeState: "</3"});
       } else {
         LikeActions.unlike(likableType, likableId);
+        ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
         this.setState({likeState: "<3"});
       }
     },

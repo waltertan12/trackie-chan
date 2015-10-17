@@ -18,16 +18,7 @@
         return JSON.stringify(userOne) === JSON.stringify(userTwo);
       },
       resetCurrentUser = function (currentUser) {
-        // if (typeof _retrievedUsers[currentUser.id] === "undefined") {
-        //   _retrievedUsers[currentUser.id] = currentUser;
-        //   _currentUser = currentUser;
-        // } else if (_retrievedUsers[currentUser.id] !== currentUser) {
-        //   _retrievedUsers[currentUser.id] = currentUser;
         _currentUser = currentUser;
-        // } 
-        // else {
-        //   _currentUser = _retrievedUsers[_currentUser.id]
-        // }
       }
       resetUser = function (user) {
         // if (typeof _retrievedUsers[user.id] === "undefined") {
