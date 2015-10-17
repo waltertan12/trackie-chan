@@ -5,24 +5,21 @@
   var Link = ReactRouter.Link;
   root.TrackIndexItem = React.createClass({
     getInitialState: function () {
+      return {playState: ""};
+    },
+    componentDidMount: function () {
+      var audio_url = this.props.track.track_url,
+          track = this.props.track;
+      this.audio = new Audio(audio_url);
+      this.likeState = UserStore.doesCurrentUserLike("Track", track.id);
       var playState;
       if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
         playState = "Pause";
       } else {
         playState = "Play"
       }
-      return {playState: playState};
-    },
-    componentDidMount: function () {
-      var audio_url = this.props.track.track_url;
-      this.audio = new Audio(audio_url);
-    },
-    componentDidUpdate: function () {
-      var audio_url = this.props.track.track_url;
-      this.audio = new Audio(audio_url);
     },
     playOrPause: function () {
-
       if (currentlyPlaying && 
           currentAudio.trackId === this.props.track.id) {
             currentlyPlaying = false;
@@ -44,8 +41,9 @@
     },
     render: function () {
       var track = this.props.track,
-          likeState = UserStore.doesCurrentUserLike("Track", track.id),
           trackTitle;
+
+      // Make title linkable
       if (this.props.makeLink) {
         trackTitle = (
           <Link to={"/users/" + track.user_id + "/tracks/" + track.id}>
@@ -59,8 +57,7 @@
         <div className="track-index-item">
           {trackTitle}
           <LikeButton likableType="Track" 
-                      likableId={this.props.track.id}
-                      likeState={likeState}/>
+                      likableId={this.props.track.id} />
           <div className="play-button" 
                onClick={this.playOrPause}>
                {this.state.playState}

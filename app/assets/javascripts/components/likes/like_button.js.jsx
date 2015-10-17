@@ -7,23 +7,31 @@
     getInitialState: function () {
       return {likeState: ""};
     },
-    componentWillMount: function () {
-      var likeState;
-      if (this.props.likeState) {
-        likeState = "</3";
-      } else {
-        likeState = "<3";
-      }
-      this.setState({likeState: likeState});
+    componentDidMount: function () {
+      UserStore.addChangeListener(this.setLike);
+      // this.getLike();
+      this.setLike();
     },
     componentWillReceiveProps: function (nextProps) {
-      var likeState;
-      if (nextProps.likeState) {
-        likeState = "</3";
-      } else {
-        likeState = "<3";
+      this.setLike(nextProps);
+    },
+    componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setLike);
+    },
+    getLike: function () {
+
+    },
+    setLike: function (props) {
+      if (typeof props === "undefined") {
+        props = this.props;
       }
-      this.setState({likeState: likeState});
+      var likableType = props.likableType,
+          likableId   = props.likableId;
+      if (UserStore.doesCurrentUserLike(likableType, likableId)) {
+        this.setState({likeState: "</3"});
+      } else {
+        this.setState({likeState: "<3"});
+      }
     },
     likeOrUnlike: function () {
       var likableType = this.props.likableType

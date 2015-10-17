@@ -6,6 +6,7 @@
   root.TrackShowHeader = React.createClass({
     render: function () {
       var track = this.props.track
+      console.log("Re-rendering with " + this.likeState);
       return (
         <div className="jumbotron track-show-header">
           <div>
