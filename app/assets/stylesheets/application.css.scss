@@ -219,6 +219,18 @@ body {
   min-height: $content-container-min-height;
 }
 
+/* track upload */
+.progress-show {
+  text-align: center;
+  progress {
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 0;
+    height: 100px;
+    border-radius: 9px;
+  }
+}
+
 /* comment index */
 .comment-index {
   ul {

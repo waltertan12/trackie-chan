@@ -34,8 +34,21 @@
           track: track
         });
       };
+
+      var progressCallback = function (progress, userId, trackId) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_PROGRESS,
+          userId: userId,
+          trackId: trackId,
+          progress: progress
+        })
+      };
       
-      ApiUtils.uploadTrackToCloudinary(uploadData, dispatchCallback);
+      ApiUtils.uploadTrackToCloudinary(
+        uploadData, 
+        dispatchCallback, 
+        progressCallback
+      );
     }
   };
 })(this);

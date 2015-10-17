@@ -5,6 +5,7 @@
 
   var Link = ReactRouter.Link;
   root.TrackUpload = React.createClass({
+    mixins: [ReactRouter.History],
     getInitialState: function () {
       return (
         {
@@ -54,6 +55,8 @@
         audio: audioFormData,
         image: imageFormData
       });
+
+      this.history.pushState(null, "/tracks/progress");
     },
     render: function () {
       var cancel = "No, I don't want to share my awesome tunes :(";

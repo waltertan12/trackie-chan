@@ -35,6 +35,7 @@ $(function () {
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>
+        <Route path="progress" component={UploadProgress} />
       </Route>
     </Route>
   );

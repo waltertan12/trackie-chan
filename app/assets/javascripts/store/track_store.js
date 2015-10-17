@@ -15,7 +15,11 @@
         comments: [],
         likes: []
       },
-      // Receiving all tracks from a user
+      _lastUploadedTrack = _placeholderTrack,
+      _progress = 0,
+      resetProgress = function (progress) {
+        _progress = parseFloat(progress);
+      },
       resetTracks = function (userId, tracks) {
         _tracks[userId] = tracks;
       },
@@ -33,6 +37,9 @@
           }
           _tracks[userId].push(track);
         }
+      },
+      resetUploadedTrack = function (track) {
+        _uploadedTrackMetadata = track;
       },
       // Uploading a new track
       pushTrack = function (userId, track) {
@@ -55,7 +62,8 @@
           _tracks[userId].push(track);
         }
       },
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = "CHANGE_EVENT",
+      UPLOAD_EVENT = "UPLOAD_EVENT";
 
   root.TrackStore = $.extend({}, EventEmitter.prototype,{
     addChangeListener: function (callback) {
@@ -63,6 +71,15 @@
     },
     removeChangeListener: function (callback) {
       this.removeListener(CHANGE_EVENT, callback);
+    },
+    getProgress: function () {
+      return _progress;
+    },
+    addUploadListener: function (callback) {
+      this.on(UPLOAD_EVENT, callback);
+    },
+    removeUploadListener: function (callback) {
+      this.removeListener(UPLOAD_EVENT, callback);
     },
     all: function () {
       return _tracks;
@@ -86,16 +103,30 @@
         return _placeholderTrack;
       }
     },
+    findLastUploadedTrack: function () {
+      return _lastUploadedTrack;
+    },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
         resetTracks(payload.userId, payload.tracks);
+
         root.TrackStore.emit(CHANGE_EVENT);
+
       } else if(payload.actionType === TrackConstants.TRACK_RECEIVED) {
         storeTrack(payload.userId, payload.track);
+
         root.TrackStore.emit(CHANGE_EVENT);
+
       } else if(payload.actionType === TrackConstants.TRACK_CREATED) {
         pushTrack(payload.userId, payload.track);
+        resetUploadedTrackMetadata(payload.track);
+
         root.TrackStore.emit(CHANGE_EVENT);
+
+      } else if (payload.actionType === TrackConstants.TRACK_PROGRESS) {
+        resetProgress(payload.progress);
+
+        root.TrackStore.emit(UPLOAD_EVENT);
       }
     })
   });

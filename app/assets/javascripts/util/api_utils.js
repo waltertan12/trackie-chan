@@ -110,7 +110,7 @@
         }
       })
     },
-    uploadTrackToCloudinary: function (uploadData, callback) {
+    uploadTrackToCloudinary: function (uploadData, callback, uploadCallback) {
       var utils = this,
           metadata = uploadData.metadata,
           audio = uploadData.audio,
@@ -131,6 +131,20 @@
         processData: false,
         contentType: false,
         data: audio,
+        xhr: function() {
+          var xhr = new window.XMLHttpRequest();
+          asdfasdf = xhr;
+          //Upload progress
+          xhr.upload.addEventListener("progress", function(evt){
+            if (evt.lengthComputable) {
+              var percentComplete = evt.loaded / evt.total;
+              console.log(percentComplete);
+              console.log(xhr);
+              uploadCallback(percentComplete * 100);
+            }
+          }, false);
+          return xhr;
+        },
         success: function (cloudinaryResponse) {
           console.log(cloudinaryResponse);
           metadata.track_url = cloudinaryResponse.url;
@@ -155,9 +169,6 @@
         }
       })
     },
-    checkUploadProgress: function () {
-
-    },
     createComment: function (comment, trackId, callback) {
       $.ajax({
         url: "/api/comments",
@@ -165,7 +176,7 @@
         data: {comment: comment},
         dataType: "json",
         success: function (comment) {
-          callback(comment, trackId);
+          callback(comment);
         },
         error: function (err) {
           console.log(err.responseText);
