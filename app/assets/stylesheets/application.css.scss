@@ -212,6 +212,13 @@ body {
   border: 1px solid gray;
 }
 
+.track-sidebar {
+  border: 1px solid gray;
+  border-radius: 5px;
+  height: inherit;
+  min-height: $content-container-min-height;
+}
+
 /* comment index */
 .comment-index {
   ul {

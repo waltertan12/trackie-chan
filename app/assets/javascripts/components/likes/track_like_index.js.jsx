@@ -6,8 +6,8 @@
   root.TrackLikeIndex = React.createClass({
     render: function () {
       return (
-        <div className="like-index">
-          <h3>Liked Tracks</h3>
+        <div className="track-like-index">
+          <h3>Likes</h3>
           <ul>
             <li>No likes...</li>
           </ul>

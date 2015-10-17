@@ -19,6 +19,9 @@
         this.getUserTracks(this.props);
       } else {
         UserActions.updateUserShow(this.state.user);
+        if (this.state.user.tracks.length !== this.state.tracks.length) {
+          this.getUserTracks(this.props);
+        }
       }
     },
     componentWillUnmount: function () {

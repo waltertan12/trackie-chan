@@ -7,8 +7,7 @@
     getInitialState: function () {
       var trackId = parseInt(this.props.params.trackId),
           userId = parseInt(this.props.params.userId);
-      console.log(trackId);
-      console.log(userId);
+
       return {track: TrackStore.findTrack(userId, trackId)};
     },
     componentDidMount: function () {
@@ -39,16 +38,12 @@
     setTrack: function (optionalTrackId) {
       var trackId = parseInt(this.props.params.trackId),
           userId  = parseInt(this.props.params.userId);
-      // if (typeof optionalTrackId === "undefined") {
 
-      // } else {
-        this.setState({
-          track: TrackStore.findTrack(userId, trackId)
-        });
-      // }
+      this.setState({
+        track: TrackStore.findTrack(userId, trackId)
+      });
     },
     render: function () {
-      console.log(this.props);
       return (
         <div className="container track-show row">
           <TrackShowHeader track={this.state.track}/>
@@ -61,7 +56,7 @@
           <div className="track-show-container col-md-8">
             <CommentIndex trackId= {this.props.params.trackId} />
           </div>
-          <CurrentUserSidebar currentUser={UserStore.currentUser()}/>
+          <TrackSidebar track={this.state.track}/>
         </div>
       );
     }
