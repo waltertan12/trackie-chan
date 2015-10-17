@@ -87,20 +87,20 @@
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === UserConstants.USER_RECEIVED) {
-        console.log(payload);
         root.UserStore.storeUser(payload.user);
         resetUser(payload.user);
         root.UserStore.emit(CHANGE_EVENT);
-      }
-      if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
+      } else if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
         console.log(payload);
         root.UserStore.storeUser(payload.current_user);
         resetCurrentUser(payload.current_user);
         root.UserStore.emit(CHANGE_EVENT);
-      }
-      if(payload.actionType === UserConstants.USER_UPDATED) {
+      } else if(payload.actionType === UserConstants.USER_UPDATED) {
         root.UserStore.storeUser(payload.user);
         resetCurrentUser(payload.user);
+        root.UserStore.emit(CHANGE_EVENT);
+      } else if (payload.actionType === UserConstants.SET_USER_SHOW) {
+        resetUser(payload.user);
         root.UserStore.emit(CHANGE_EVENT);
       }
     })

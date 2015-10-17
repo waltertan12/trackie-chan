@@ -17,6 +17,8 @@
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
         this.getUserTracks(this.props);
+      } else {
+        UserActions.updateUserShow(this.state.user);
       }
     },
     componentWillUnmount: function () {
@@ -27,6 +29,7 @@
       var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
       if (parseInt(nextProps.params.userId) === newUser.id) {
         this.setUser(newUser.id);
+        UserActions.updateUserShow(newUser);
       } else {
         this.getUser(nextProps);
       }
@@ -50,6 +53,8 @@
       this.setState({tracks: TrackStore.findUserTracks(userId)});
     },
     render: function () {
+      console.log("Rendering UserShow component");
+      console.log(this);
       var user = this.state.user;
       var tracks = this.state.tracks;
 

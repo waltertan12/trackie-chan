@@ -18,7 +18,17 @@
       } else {
         playState = "Play"
       }
+      this.setState({playState: playState});
     },
+    // componentWillReceiveProps: function (nextProps) {
+    //   var playState;
+    //   if (currentlyPlaying && currentAudio.trackId === nextProps.track.id) {
+    //     playState = "Pause";
+    //   } else {
+    //     playState = "Play"
+    //   }
+    //   this.setState({playState: playState});
+    // },
     playOrPause: function () {
       if (currentlyPlaying && 
           currentAudio.trackId === this.props.track.id) {
