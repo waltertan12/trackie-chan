@@ -56,6 +56,7 @@
       });
     },
     render: function () {
+      var cancel = "No, I don't want to share my awesome tunes :(";
       return (
         <div className="container track-upload col-md-6 col-md-offset-3">
           <h1>Upload a new Track!</h1>
@@ -81,8 +82,6 @@
                         onChange={this.updateDescription}/>
             </div><br/><br/>
 
-
-
             <div className="form-group">
               <label>Choose a file</label><br/>
               <input type="file"
@@ -99,9 +98,9 @@
             </div><br/><br/>
 
             <input type="submit" 
-                   className="btn btn-success" 
-                   value="Upload!"/>
-            <Link to="/" className="btn btn-danger">Cancel</Link>
+                   className="btn btn-success"
+                   value="Upload!"/>&nbsp;
+            <Link to="/" className="btn btn-danger">{cancel}</Link>
           </form>
         </div>
       )
