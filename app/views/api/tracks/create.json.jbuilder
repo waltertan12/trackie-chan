@@ -10,3 +10,4 @@ json.extract!(
 )
 
 json.username @track.user.username
+json.tags @track.tags

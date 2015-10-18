@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require cloudinary
+//= require taggle
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require flux

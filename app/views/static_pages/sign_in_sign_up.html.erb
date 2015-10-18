@@ -1,72 +1,74 @@
 
 <div id="content"></div>
-<div class="navbar">
-  <ul class="nav nav-tabs">
-    <li class="navbar-right" style="border-bottom:1px solid lightgray;background: white">
-      <a style="background:white">
-        <strong style="background:white;color: black">TrackieChan</strong>
-      </a>
-    </li>
-    <li class="active">
-      <a href="#sign_up" data-toggle="tab">Create an Account</a>
-    </li>
-    <li><a href="#sign_in" data-toggle="tab">Sign In</a></li>
-  </ul>
+<div class="col-md-6 col-md-offset-3"
+  <div class="navbar">
+    <ul class="nav nav-tabs">
+      <li class="navbar-right" style="border-bottom:1px solid lightgray;background: white">
+        <a style="background:white">
+          <strong style="background:white;color: black">TrackieChan</strong>
+        </a>
+      </li>
+      <li class="active">
+        <a href="#sign_up" data-toggle="tab">Create an Account</a>
+      </li>
+      <li><a href="#sign_in" data-toggle="tab">Sign In</a></li>
+    </ul>
 
-  <div class="tab-content">
-    <div class="tab-pane active" id="sign_up">
-      <!-- <h2>Create an Account</h2> -->
-      <form action="/users" method="POST">
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value="<%= form_authenticity_token %>">
+    <div class="tab-content">
+      <div class="tab-pane active" id="sign_up">
+        <!-- <h2>Create an Account</h2> -->
+        <form action="/users" method="POST">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
 
-        <label for="username">Username</label><br>
-        <input type="text" 
-               name="user[username]"
-               class="form-control"/><br>
+          <label for="username">Username</label><br>
+          <input type="text" 
+                 name="user[username]"
+                 class="form-control"/><br>
 
-        <label for="email">Email</label><br>
-        <input type="text" 
-               name="user[email]"
-               class="form-control"/><br>
+          <label for="email">Email</label><br>
+          <input type="text" 
+                 name="user[email]"
+                 class="form-control"/><br>
 
-        <label for="password">Password</label><br>
-        <input type="password" 
-               name="user[password]"
-               class="form-control"/><br>
+          <label for="password">Password</label><br>
+          <input type="password" 
+                 name="user[password]"
+                 class="form-control"/><br>
 
-        <label for="password">Password Confirmation</label><br>
-        <input type="password" 
-               name="user[password_confirmation]"
-               class="form-control"/><br>
+          <label for="password">Password Confirmation</label><br>
+          <input type="password" 
+                 name="user[password_confirmation]"
+                 class="form-control"/><br>
 
-        <input type="submit" 
-               value="Create an Account!" 
-               class="btn btn-primary"/><br>
-      </form>
-    </div>
-    <div class="tab-pane" id="sign_in">
-      <!-- <h2>Sign in</h2> -->
-      <form action="/sessions" method="POST">
-        <input
-          type="hidden"
-          name="authenticity_token"
-          value="<%= form_authenticity_token %>">
+          <input type="submit" 
+                 value="Create an Account!" 
+                 class="btn btn-primary"/><br>
+        </form>
+      </div>
+      <div class="tab-pane" id="sign_in">
+        <!-- <h2>Sign in</h2> -->
+        <form action="/sessions" method="POST">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
 
-        <label for="username">Email</label><br>
-        <input type="text" 
-               name="user[email]"
-               class="form-control"/><br>
+          <label for="username">Email</label><br>
+          <input type="text" 
+                 name="user[email]"
+                 class="form-control"/><br>
 
-        <label for="password">Password</label><br>
-        <input type="password" 
-               name="user[password]"
-               class="form-control"/><br>
+          <label for="password">Password</label><br>
+          <input type="password" 
+                 name="user[password]"
+                 class="form-control"/><br>
 
-        <input type="submit" value="Login!" class="btn btn-primary"/><br>
-      </form>
+          <input type="submit" value="Login!" class="btn btn-primary"/><br>
+        </form>
+      </div>
     </div>
   </div>
 </div>

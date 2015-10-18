@@ -15,6 +15,16 @@
         }
       );
     },
+    componentDidMount: function () {
+      this.tagInput = new Taggle("tag-field", 
+        {tags: [
+          "wow", 
+          "such track", 
+          "very sound",
+          "much cloud"
+        ]}
+      );
+    },
     updateTitle: function (e) {
       var value = e.target.value,
           newState = this.state;
@@ -35,10 +45,10 @@
     },
     _onSubmit: function (e) {
       e.preventDefault();
-
       var audioFile = this.audioFile.files[0],
           audioFormData = new FormData(),
-          imageFormData = new FormData();
+          imageFormData = new FormData(),
+          tags = this.tagInput.getTagValues();
 
       audioFormData.append("upload_preset", window.CLOUDINARY_PRESET);
       audioFormData.append("file", audioFile);
@@ -53,7 +63,8 @@
       TrackActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,
-        image: imageFormData
+        image: imageFormData,
+        tags: tags
       });
 
       this.history.pushState(null, "/tracks/progress");
@@ -71,11 +82,13 @@
                      onChange={this.updateTitle}/>
             </div><br/><br/>
 
-            <div className="form-group">
+            <div>
               <label>Tags</label><br/>
-              <input type="text"
-                     className="form-control"
-                     onChange={this.updateTags}/>
+              <div id="tag-field"
+                   className="textarea input"
+                   onChange={this.handleChange}
+                   placeholder="enter tag">
+              </div>
             </div><br/><br/>
 
             <div className="form-group">

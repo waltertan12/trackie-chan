@@ -6,7 +6,7 @@ json.extract!(
   :track_url,
   :image_url,
   :user_id,
-
 )
 
 json.username @track.user.username
+json.tags @track.tags

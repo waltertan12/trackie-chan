@@ -10,4 +10,5 @@ json.array!(@tracks) do |track|
   )
 
   json.username track.user.username
+  json.tags track.tags
 end
