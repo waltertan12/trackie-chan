@@ -5,10 +5,14 @@ class Api::TracksController < ApplicationController
   end
 
   def create
+    debugger
     @track = Track.new(track_params)
     @track.user_id = current_user.id
-    
+    p @track
+    p params[:track][:tags]
     if @track.save
+      track_id = @track.id
+      add_tags(params[:track][:tags], track_id)
       render :create
     else
       render json: @track.errors.full_messages, status: 422
@@ -58,5 +62,21 @@ class Api::TracksController < ApplicationController
       :image_url,
       :boolean
     )
+  end
+
+  def add_tags(tag_array, track_id)
+    tag_array.each do |tag_name|
+      if Tag.exists?(name: tag_name)
+        tag = Tag.find_by(name: tag_name)
+      else
+        tag = Tag.create(name: tag_name)
+      end
+
+      Tagging.create(
+          tag_id: tag.id, 
+          taggable_id: track_id,
+          taggable_type: "Track" 
+      )
+    end
   end
 end

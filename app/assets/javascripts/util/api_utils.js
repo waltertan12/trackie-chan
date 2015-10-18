@@ -116,9 +116,11 @@
           audio = uploadData.audio,
           image;
 
-      if (typeof uploadData.image !== "undefined") {
-        image = uploadData.image;
-      }
+      metadata.tags = uploadData.tags;
+
+      // if (typeof uploadData.image !== "undefined") {
+      //   image = uploadData.image;
+      // }
       // Upload audio to cloudinary
       $.ajax({
         url: "https://api.cloudinary.com/" + 
@@ -133,16 +135,14 @@
         data: audio,
         xhr: function() {
           var xhr = new window.XMLHttpRequest();
-          asdfasdf = xhr;
-          //Upload progress
+
           xhr.upload.addEventListener("progress", function(evt){
             if (evt.lengthComputable) {
               var percentComplete = evt.loaded / evt.total;
-              console.log(percentComplete);
-              console.log(xhr);
               uploadCallback(percentComplete * 100);
             }
           }, false);
+          
           return xhr;
         },
         success: function (cloudinaryResponse) {

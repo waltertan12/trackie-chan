@@ -49,6 +49,7 @@
           audioFormData = new FormData(),
           imageFormData = new FormData(),
           tags = this.tagInput.getTagValues();
+      console.log(tags);
 
       audioFormData.append("upload_preset", window.CLOUDINARY_PRESET);
       audioFormData.append("file", audioFile);
@@ -56,14 +57,13 @@
       if (typeof this.imageFile !== "undefined") {
         imageFormData.append("upload_preset", window.CLOUDINARY_PRESET);
         imageFormData.append("file", imageFile);
-      } else {
-        imageFormData = undefined;
       }
+
+      console.log(imageFormData);
 
       TrackActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,
-        image: imageFormData,
         tags: tags
       });
 
