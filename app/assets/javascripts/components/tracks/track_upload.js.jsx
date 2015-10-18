@@ -64,6 +64,7 @@
       TrackActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,
+        image: imageFormData,
         tags: tags
       });
 

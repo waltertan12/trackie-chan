@@ -8,8 +8,7 @@ class Api::TracksController < ApplicationController
     debugger
     @track = Track.new(track_params)
     @track.user_id = current_user.id
-    p @track
-    p params[:track][:tags]
+
     if @track.save
       track_id = @track.id
       add_tags(params[:track][:tags], track_id)

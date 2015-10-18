@@ -118,10 +118,10 @@
 
       metadata.tags = uploadData.tags;
 
-      // if (typeof uploadData.image !== "undefined") {
-      //   image = uploadData.image;
-      // }
-      // Upload audio to cloudinary
+      if (typeof uploadData.image !== "undefined") {
+        image = uploadData.image;
+      }
+
       $.ajax({
         url: "https://api.cloudinary.com/" + 
               window.CLOUDINARY_VERSION + 
@@ -142,7 +142,7 @@
               uploadCallback(percentComplete * 100);
             }
           }, false);
-          
+
           return xhr;
         },
         success: function (cloudinaryResponse) {
