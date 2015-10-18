@@ -162,6 +162,7 @@
       _currentAudio.trackId = track.id;
       _currentAudio.track = audio;
 
+      // Add listener to play next track
       _currentAudio.track.addEventListener('ended', function (e) {
         if ((_currentTrackNumber + 1) < _currentAudio.playlist.length) {
           var newTrack = _currentAudio.playlist[_currentTrackNumber + 1];
@@ -169,11 +170,13 @@
           root.TrackStore.playTrack(newTrack)
           root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
         }
-
       }, false);
+
+      _currentAudio.playing = true;
       _currentAudio.track.play();
     },
     pauseTrack: function () {
+      _currentAudio.playing = false;
       _currentAudio.track.pause();
     },
     findTrackInPlaylist: function (track) {
@@ -190,6 +193,8 @@
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
         resetTracks(payload.userId, payload.tracks);
         if (!root.TrackStore.isATrackCurrentlyPlaying()) {
+          console.log("TrackStore - Resetting tracks");
+          console.log(payload.tracks);
           resetPlaylist(payload.tracks);
         }
 

@@ -22,6 +22,8 @@
         UserActions.updateUserShow(this.state.user);
         if (this.state.user.tracks.length !== this.state.tracks.length) {
           this.getUserTracks(this.props);
+        } else {
+          TrackStore.resetPlaylist(this.state.tracks);
         }
       }
     },
@@ -32,16 +34,34 @@
     componentWillReceiveProps: function (nextProps) {
       var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
       
+      // Check if the user is found in the store
       if (parseInt(nextProps.params.userId) === newUser.id) {
-        this.setUser(newUser.id);
         UserActions.updateUserShow(newUser);
+        this.setUser(newUser.id);
+        this.setUserTracks(newUser.id);
+        TrackActions.resetPlaylist(newUser.tracks);
 
+        // Get tracks for the user
+        // Check if the user is the same
+        // if (this.props.params.userId === nextProps.params.userId) {
+          // if (newUser.tracks.length !== this.state.tracks.length) {
+          // console.log("back end request for tracks");
+            // this.getUserTracks(this.props);
+          // }
+        // } else {
+        //   TrackActions.resetPlaylist(newUser.tracks);
+        //   this.setUserTracks(nextProps.params.userId);
+        // }
         // Only send a backend request if necessary
-        if (newUser.tracks.length !== this.state.tracks.length) {
-          this.getUserTracks(this.props);
-        } else {
-          this.setUserTracks()
-        }
+        // if (newUser.tracks.length !== this.state.tracks.length) {
+          // console.log("back end request for tracks");
+          // this.getUserTracks(this.props);
+        // } else {
+        //   console.log("Reseting playlist without a backend request");
+        //   console.log(newUser);
+        //   TrackActions.resetPlaylist(newUser.tracks);
+        //   this.setUserTracks();
+        // }
       } else {
         this.getUser(nextProps);
         this.getUserTracks(nextProps);
@@ -60,9 +80,13 @@
     getUserTracks: function (props) {
       TrackActions.receiveTracks(props.params.userId);
     },
-    setUserTracks: function () {
-      var userId = this.props.params.userId
-      this.setState({tracks: TrackStore.findUserTracks(userId)});
+    setUserTracks: function (optionalUserId) {
+      if (typeof optionalUserId === "undefined") {
+        var userId = this.props.params.userId
+        this.setState({tracks: TrackStore.findUserTracks(userId)});
+      } else {
+        this.setState({tracks: TrackStore.findUserTracks(optionalUserId)});
+      }
     },
     render: function () {
       var user = this.state.user;

@@ -10,12 +10,13 @@
     componentDidMount: function () {
       TrackStore.addPlaylistListener(this.setPlayState);
       var track = this.props.track,
-          currentlyPlaying = TrackStore.isATrackCurrentlyPlaying,
+          currentlyPlaying = TrackStore.isATrackCurrentlyPlaying(),
+          currentTrackId = TrackStore.getCurrentTrackId(),
           playState;
 
       this.likeState = UserStore.doesCurrentUserLike("Track", track.id);
 
-      if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
+      if (currentlyPlaying && currentTrackId === this.props.track.id) {
         playState = "Pause";
       } else {
         playState = "Play";
@@ -26,10 +27,6 @@
       TrackStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
-      console.log("Setting play state");
-      console.log("current track id: " + TrackStore.getCurrentTrackId());
-      console.log("trackitem id: " + this.props.track.id);
-      console.log(TrackStore.getCurrentTrackId() === this.props.track.id)
       if (TrackStore.getCurrentTrackId() === this.props.track.id) {
         this.setState({playState: "Pause"});
       } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
