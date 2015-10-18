@@ -179,6 +179,24 @@
       _currentAudio.playing = false;
       _currentAudio.track.pause();
     },
+    nextTrack: function () {
+      root.TrackStore.pauseTrack();
+      if ((_currentTrackNumber + 1) < _currentAudio.playlist.length) {
+        var newTrack = _currentAudio.playlist[_currentTrackNumber + 1];
+        
+        root.TrackStore.playTrack(newTrack)
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+      }
+    },
+    previousTrack: function () {
+      root.TrackStore.pauseTrack();
+      if ((_currentTrackNumber - 1) >= 0) {
+        var newTrack = _currentAudio.playlist[_currentTrackNumber - 1];
+        
+        root.TrackStore.playTrack(newTrack)
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+      }
+    },
     findTrackInPlaylist: function (track) {
       console.log(_currentAudio.playlist);
       for (var i = 0; i < _currentAudio.playlist.length; i++) {
@@ -230,7 +248,16 @@
         root.TrackStore.pauseTrack();
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+      } else if (payload.actionType === TrackConstants.NEXT_TRACK) {
+        root.TrackStore.nextTrack();
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+      } else if (payload.actionType === TrackConstants.PREVIOUS_TRACK) {
+        root.TrackStore.previousTrack();
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
       }
+
     })
   });
 })(this);

@@ -108,6 +108,10 @@
         resetUser(payload.user);
 
         root.UserStore.emit(CHANGE_EVENT);
+      } else if (payload.actionType === TrackConstants.TRACK_CREATED &&
+                 payload.userId === _currentUser.id) {
+        _currentUser.tracks.push(payload.track);
+        root.UserStore.storeUser(_currentUser);
       }
     })
   });

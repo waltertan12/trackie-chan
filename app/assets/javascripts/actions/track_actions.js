@@ -22,6 +22,11 @@
         actionType: TrackConstants.NEXT_TRACK
       })
     },
+    previousTrack: function () {
+      AppDispatcher.dispatch({
+        actionType: TrackConstants.PREVIOUS_TRACK
+      })
+    },
     resetPlaylist: function (tracks) {
       console.log("Track action resetting playlist");
       AppDispatcher.dispatch({
