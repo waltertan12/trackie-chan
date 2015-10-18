@@ -63,14 +63,14 @@
       console.log(this.currentUser);
       console.log(this.state);
       return (
-        <div className="container-fullwidth">
+        <div className="col-md-6 col-md-offset-3">
           <div className="user-settings-header">
             <h1>User Settings</h1>
             <p>
               Type in password and password confirmation before saving changes
             </p>
           </div>
-          <form className="form col-md-6 col-md-offset-3" onSubmit={this._onSubmit}>
+          <form className="form" onSubmit={this._onSubmit}>
             <div className="form-group">
               <label for="username">Username</label>
               <input className="form-control" 

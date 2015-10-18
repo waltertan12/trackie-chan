@@ -4,7 +4,11 @@
   }
 
   var _tracks = {},
-      _currentAudio = {playing: false, playlist: []},
+
+      _currentTrackNumber = -1,
+      
+      _currentAudio = {playing: false, trackId: -1, track: new Audio(), playlist: []},
+      
       _placeholderTrack = {
         id: -1, 
         track_url: "",
@@ -16,15 +20,37 @@
         likes: [],
         tags: []
       },
+      
       _lastUploadedTrack = _placeholderTrack,
+      
       _progress = 0,
+      
+      resetPlaylist = function (tracks) {
+        _currentAudio.playlist = tracks;
+      },
+      
+      addSongToCurrentAudio = function (track) {
+        _currentAudio.playlist.push(track);
+      },
+      
+      removeSongFromCurrentAudio = function (track) {
+        var playlist = _currentAudio.playlist;
+
+        for (var i = 0; i < playlist.length; i++) {
+          if (playlist[i].id === track.id) {
+            playlist.splice(i, 1);
+          }
+        }
+      },
+      
       resetProgress = function (progress) {
         _progress = parseFloat(progress);
       },
+      
       resetTracks = function (userId, tracks) {
         _tracks[userId] = tracks;
       },
-      // Editing / updating a track
+
       resetTrack = function (userId, track) {
         if (typeof _tracks[userId] === "undefined") {
           _tracks[userId] = [track];
@@ -39,10 +65,11 @@
           _tracks[userId].push(track);
         }
       },
+      
       resetUploadedTrack = function (track) {
         _lastUploadedTrack = track;
       },
-      // Uploading a new track
+      
       pushTrack = function (userId, track) {
         if (typeof _tracks[userId] === "undefined") {
           _tracks[userId] = [track];
@@ -50,6 +77,7 @@
           _tracks[userId].push(track);
         }
       },
+      
       storeTrack = function (userId, track) {
         if (typeof _tracks[userId] === "undefined") {
           _tracks[userId] = [track];
@@ -63,8 +91,11 @@
           _tracks[userId].push(track);
         }
       },
+      
       CHANGE_EVENT = "CHANGE_EVENT",
-      UPLOAD_EVENT = "UPLOAD_EVENT";
+      
+      UPLOAD_EVENT = "UPLOAD_EVENT",
+      CURRENT_PLAYLIST_EVENT = "CURRENT_PLAYLIST_EVENT";
 
   root.TrackStore = $.extend({}, EventEmitter.prototype,{
     addChangeListener: function (callback) {
@@ -81,6 +112,12 @@
     },
     removeUploadListener: function (callback) {
       this.removeListener(UPLOAD_EVENT, callback);
+    },
+    addPlaylistListener: function (callback) {
+      this.on(CURRENT_PLAYLIST_EVENT, callback);
+    },
+    removePlaylistListener: function (callback) {
+      this.removeListener(CURRENT_PLAYLIST_EVENT, callback);
     },
     all: function () {
       return _tracks;
@@ -107,9 +144,48 @@
     findLastUploadedTrack: function () {
       return _lastUploadedTrack;
     },
+    isATrackCurrentlyPlaying: function () {
+      return _currentAudio.playing;
+    },
+    getPlaylist: function () {
+      return _currentAudio.playlist;
+    },
+    getCurrentTrackId: function () {
+      return _currentAudio.trackId;
+    },
+    playTrack: function (track) {
+      root.TrackStore.pauseTrack();
+      root.TrackStore.findTrackInPlaylist(track);
+      var audio_url = _currentAudio.playlist[_currentTrackNumber].track_url;
+      var audio = new Audio(audio_url);
+
+      _currentAudio.track_id = track.id;
+      _currentAudio.track = audio;
+      _currentAudio.track.play();
+    },
+    pauseTrack: function () {
+      _currentAudio.track.pause();
+    },
+    findTrackInPlaylist: function (track) {
+      console.log(_currentAudio.playlist);
+      for (var i = 0; i < _currentAudio.playlist.length; i++) {
+        console.log("playlisttrack");
+        console.log(_currentAudio.playlist[i]);
+        console.log("Track to compare");
+        console.log(track.id);
+
+        if (_currentAudio.playlist[i].id === track.id) {
+          console.log("setting current trak to i");
+          _currentTrackNumber = i;
+        }
+      }
+    },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
         resetTracks(payload.userId, payload.tracks);
+        if (!root.TrackStore.isATrackCurrentlyPlaying()) {
+          resetPlaylist(payload.tracks);
+        }
 
         root.TrackStore.emit(CHANGE_EVENT);
 
@@ -128,6 +204,21 @@
         resetProgress(payload.progress);
 
         root.TrackStore.emit(UPLOAD_EVENT);
+
+      } else if (payload.actionType === TrackConstants.RESET_PLAYLIST) {
+        resetPlaylist(payload.tracks);
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+
+      } else if (payload.actionType === TrackConstants.PLAY_TRACK) {
+        root.TrackStore.playTrack(payload.track);
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+
+      } else if (payload.actionType === TrackConstants.PAUSE_TRACK) {
+        root.TrackStore.pauseTrack();
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
       }
     })
   });

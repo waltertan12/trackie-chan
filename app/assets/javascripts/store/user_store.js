@@ -65,7 +65,7 @@
       }
       return false;
     },
-    retrievedUsers: function () {
+    all: function () {
       return _retrievedUsers;
     },
     findUser: function (userId) {
@@ -78,29 +78,35 @@
     storeUser: function (user) {
       _retrievedUsers[user.id] = user;
     },
-    pushToRetrievedUsers: function (user) {
-      if (typeof _retrievedUsers[user.id] === "undefined") {
-        _retrievedUsers[user.id] = user;
-      } else if (_retrievedUsers[user.id] !== user) {
-        _retrievedUsers[user.id] = user;
-      }
-    },
+    // pushToRetrievedUsers: function (user) {
+    //   if (typeof _retrievedUsers[user.id] === "undefined") {
+    //     _retrievedUsers[user.id] = user;
+    //   } else if (_retrievedUsers[user.id] !== user) {
+    //     _retrievedUsers[user.id] = user;
+    //   }
+    // },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === UserConstants.USER_RECEIVED) {
         root.UserStore.storeUser(payload.user);
         resetUser(payload.user);
+
         root.UserStore.emit(CHANGE_EVENT);
+
       } else if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
-        console.log(payload);
         root.UserStore.storeUser(payload.current_user);
         resetCurrentUser(payload.current_user);
+
         root.UserStore.emit(CHANGE_EVENT);
+
       } else if(payload.actionType === UserConstants.USER_UPDATED) {
         root.UserStore.storeUser(payload.user);
         resetCurrentUser(payload.user);
+
         root.UserStore.emit(CHANGE_EVENT);
+
       } else if (payload.actionType === UserConstants.SET_USER_SHOW) {
         resetUser(payload.user);
+
         root.UserStore.emit(CHANGE_EVENT);
       }
     })

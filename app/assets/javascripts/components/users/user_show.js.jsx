@@ -65,8 +65,6 @@
       this.setState({tracks: TrackStore.findUserTracks(userId)});
     },
     render: function () {
-      console.log("Rendering UserShow component");
-      console.log(this);
       var user = this.state.user;
       var tracks = this.state.tracks;
 

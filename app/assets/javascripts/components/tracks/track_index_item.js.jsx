@@ -8,17 +8,30 @@
       return {playState: ""};
     },
     componentDidMount: function () {
-      var audio_url = this.props.track.track_url,
-          track = this.props.track;
-      this.audio = new Audio(audio_url);
+      TrackStore.addPlaylistListener(this.setPlayState);
+      // var audio_url = this.props.track.track_url,
+      var track = this.props.track,
+          currentlyPlaying = TrackStore.isATrackCurrentlyPlaying,
+          playState;
+
+      // this.audio = new Audio(audio_url);
+
       this.likeState = UserStore.doesCurrentUserLike("Track", track.id);
-      var playState;
+
       if (currentlyPlaying && currentAudio.trackId === this.props.track.id) {
         playState = "Pause";
       } else {
-        playState = "Play"
+        playState = "Play";
       }
       this.setState({playState: playState});
+    },
+    componentWillUnmount: function () {
+      TrackStore.removePlaylistListener(this.setPlayState);
+    },
+    setPlayState: function () {
+      if (TrackStore.getCurrentTrackId !== this.props.track.id) {
+        this.setState({playState: "Play"});
+      }
     },
     // componentWillReceiveProps: function (nextProps) {
     //   var playState;
@@ -30,23 +43,32 @@
     //   this.setState({playState: playState});
     // },
     playOrPause: function () {
-      if (currentlyPlaying && 
-          currentAudio.trackId === this.props.track.id) {
-            currentlyPlaying = false;
-            currentAudio.audio.pause();
-            this.setState({playState: "Play"});
-      } else if (currentlyPlaying && 
-          currentAudio.trackId !== this.props.track.id) {
-            currentAudio.audio.pause();
-            currentAudio = {trackId: this.props.track.id, audio: this.audio};
-            currentAudio.audio.play();
-            this.setState({playState: "Pause"});
-      }
-        else {
-        currentlyPlaying = true;
-        currentAudio = {trackId: this.props.track.id, audio: this.audio};
-        currentAudio.audio.play();
+      // if (currentlyPlaying && 
+      //     currentAudio.trackId === this.props.track.id) {
+      //       currentlyPlaying = false;
+      //       currentAudio.audio.pause();
+      //       this.setState({playState: "Play"});
+      // } else if (currentlyPlaying && 
+      //     currentAudio.trackId !== this.props.track.id) {
+      //       currentAudio.audio.pause();
+      //       currentAudio = {trackId: this.props.track.id, audio: this.audio};
+      //       currentAudio.audio.play();
+      //       this.setState({playState: "Pause"});
+      // }
+      //   else {
+      //   currentlyPlaying = true;
+      //   currentAudio = {trackId: this.props.track.id, audio: this.audio};
+      //   currentAudio.audio.play();
+      //   this.setState({playState: "Pause"});
+      // }
+      var playState = this.state.playState;
+
+      if (playState === "Play") {
+        TrackActions.playOrPauseTrack(true,  this.props.track);
         this.setState({playState: "Pause"});
+      } else {
+        TrackActions.playOrPauseTrack(false, this.props.track);
+        this.setState({playState: "Play"});
       }
     },
     render: function () {

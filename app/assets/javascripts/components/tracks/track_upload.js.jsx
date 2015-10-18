@@ -108,7 +108,7 @@
             </div><br/><br/>
 
             <div className="form-group">
-              <label>Upload an image <em>(optional)</em></label><br/>
+              <label>Upload an image <em>(optional aka it does not work)</em></label><br/>
               <input type="file"
                      accept="image/*"
                      onChange={this.updateImageFile}/>
