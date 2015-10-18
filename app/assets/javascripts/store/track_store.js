@@ -235,7 +235,12 @@
         root.TrackStore.emit(UPLOAD_EVENT);
 
       } else if (payload.actionType === TrackConstants.RESET_PLAYLIST) {
-        resetPlaylist(payload.tracks);
+        if (!root.TrackStore.isATrackCurrentlyPlaying()) {
+          resetPlaylist(payload.tracks);
+        } else {
+          console.log(payload.tracks);
+          GLOBALTRACKS = payload.tracks;
+        }
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
 
