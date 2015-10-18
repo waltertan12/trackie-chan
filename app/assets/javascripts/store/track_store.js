@@ -24,6 +24,8 @@
       _lastUploadedTrack = _placeholderTrack,
       
       _progress = 0,
+
+      _nextPlaylist = [],
       
       resetPlaylist = function (tracks) {
         _currentAudio.playlist = tracks;
@@ -156,6 +158,12 @@
     playTrack: function (track) {
       root.TrackStore.pauseTrack();
       root.TrackStore.findTrackInPlaylist(track);
+
+      if (_currentTrackNumber === -1) {
+        _currentAudio.playlist = _nextPlaylist.slice();
+        root.TrackStore.findTrackInPlaylist(track);
+      }
+
       var audio_url = _currentAudio.playlist[_currentTrackNumber].track_url;
       var audio = new Audio(audio_url);
 
@@ -204,16 +212,18 @@
         if (_currentAudio.playlist[i].id === track.id) {
           console.log("Setting current track to" + i);
           _currentTrackNumber = i;
-        }
+          return;
+        } 
       }
+      _currentTrackNumber = -1;
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
         resetTracks(payload.userId, payload.tracks);
         if (!root.TrackStore.isATrackCurrentlyPlaying()) {
-          console.log("TrackStore - Resetting tracks");
-          console.log(payload.tracks);
           resetPlaylist(payload.tracks);
+        } else {
+          _nextPlaylist = payload.tracks;
         }
 
         root.TrackStore.emit(CHANGE_EVENT);
@@ -239,7 +249,7 @@
           resetPlaylist(payload.tracks);
         } else {
           console.log(payload.tracks);
-          GLOBALTRACKS = payload.tracks;
+          _nextPlaylist = payload.tracks;
         }
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
