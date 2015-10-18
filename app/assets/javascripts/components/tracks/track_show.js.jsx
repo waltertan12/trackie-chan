@@ -51,6 +51,8 @@
             <div className="container">
               <h3>Description</h3>
               <p>{this.state.track.description}</p>
+              <h3>Tags</h3>
+              <Tags tags={this.state.track.tags}/>
             </div>
           </div>
           <div className="track-show-container col-md-8">

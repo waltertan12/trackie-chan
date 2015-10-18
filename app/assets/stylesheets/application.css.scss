@@ -242,3 +242,20 @@ body {
     height: 50px;
   }
 }
+
+/* tags */
+.tags-index {
+  list-style-type: none;
+  li {
+    display: inline-block;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+  }
+  li:hover {
+    cursor: pointer;
+    background-color: darkgray;
+    color: white;
+  }
+}

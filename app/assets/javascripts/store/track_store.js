@@ -13,7 +13,8 @@
         image_url: "http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg",
         username: "",
         comments: [],
-        likes: []
+        likes: [],
+        tags: []
       },
       _lastUploadedTrack = _placeholderTrack,
       _progress = 0,

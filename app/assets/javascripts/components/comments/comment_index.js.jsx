@@ -18,7 +18,7 @@
       }
     },
     componentWillReceiveProps: function (nextProps) {
-      if (CommentStore.hasCommentsForTrack(trackId)) {
+      if (CommentStore.hasCommentsForTrack(nextProps.trackId)) {
         this.setComments();
       } else {
         this.getComments(this.props);
