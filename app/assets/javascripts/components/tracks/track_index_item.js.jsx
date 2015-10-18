@@ -9,12 +9,9 @@
     },
     componentDidMount: function () {
       TrackStore.addPlaylistListener(this.setPlayState);
-      // var audio_url = this.props.track.track_url,
       var track = this.props.track,
           currentlyPlaying = TrackStore.isATrackCurrentlyPlaying,
           playState;
-
-      // this.audio = new Audio(audio_url);
 
       this.likeState = UserStore.doesCurrentUserLike("Track", track.id);
 
@@ -29,38 +26,17 @@
       TrackStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
-      if (TrackStore.getCurrentTrackId !== this.props.track.id) {
+      console.log("Setting play state");
+      console.log("current track id: " + TrackStore.getCurrentTrackId());
+      console.log("trackitem id: " + this.props.track.id);
+      console.log(TrackStore.getCurrentTrackId() === this.props.track.id)
+      if (TrackStore.getCurrentTrackId() === this.props.track.id) {
+        this.setState({playState: "Pause"});
+      } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
         this.setState({playState: "Play"});
       }
     },
-    // componentWillReceiveProps: function (nextProps) {
-    //   var playState;
-    //   if (currentlyPlaying && currentAudio.trackId === nextProps.track.id) {
-    //     playState = "Pause";
-    //   } else {
-    //     playState = "Play"
-    //   }
-    //   this.setState({playState: playState});
-    // },
     playOrPause: function () {
-      // if (currentlyPlaying && 
-      //     currentAudio.trackId === this.props.track.id) {
-      //       currentlyPlaying = false;
-      //       currentAudio.audio.pause();
-      //       this.setState({playState: "Play"});
-      // } else if (currentlyPlaying && 
-      //     currentAudio.trackId !== this.props.track.id) {
-      //       currentAudio.audio.pause();
-      //       currentAudio = {trackId: this.props.track.id, audio: this.audio};
-      //       currentAudio.audio.play();
-      //       this.setState({playState: "Pause"});
-      // }
-      //   else {
-      //   currentlyPlaying = true;
-      //   currentAudio = {trackId: this.props.track.id, audio: this.audio};
-      //   currentAudio.audio.play();
-      //   this.setState({playState: "Pause"});
-      // }
       var playState = this.state.playState;
 
       if (playState === "Play") {

@@ -159,8 +159,18 @@
       var audio_url = _currentAudio.playlist[_currentTrackNumber].track_url;
       var audio = new Audio(audio_url);
 
-      _currentAudio.track_id = track.id;
+      _currentAudio.trackId = track.id;
       _currentAudio.track = audio;
+
+      _currentAudio.track.addEventListener('ended', function (e) {
+        if ((_currentTrackNumber + 1) < _currentAudio.playlist.length) {
+          var newTrack = _currentAudio.playlist[_currentTrackNumber + 1];
+          
+          root.TrackStore.playTrack(newTrack)
+          root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+        }
+
+      }, false);
       _currentAudio.track.play();
     },
     pauseTrack: function () {
@@ -169,13 +179,9 @@
     findTrackInPlaylist: function (track) {
       console.log(_currentAudio.playlist);
       for (var i = 0; i < _currentAudio.playlist.length; i++) {
-        console.log("playlisttrack");
-        console.log(_currentAudio.playlist[i]);
-        console.log("Track to compare");
-        console.log(track.id);
 
         if (_currentAudio.playlist[i].id === track.id) {
-          console.log("setting current trak to i");
+          console.log("Setting current track to" + i);
           _currentTrackNumber = i;
         }
       }
