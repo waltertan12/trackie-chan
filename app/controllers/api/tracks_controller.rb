@@ -1,6 +1,7 @@
 class Api::TracksController < ApplicationController
   def index
-    @tracks = Track.includes(:user).where(user_id: params[:user_id])
+    @tracks = Track.includes(:user, :tags, :likes, {likes: :user}, :comments)
+                   .where(user_id: params[:user_id])
     render :index
   end
 
@@ -33,7 +34,8 @@ class Api::TracksController < ApplicationController
   end
 
   def show
-    @track = Track.includes(:comments).find(params[:id])
+    @track = Track.includes(:user, :tags, :likes, {likes: :user}, :comments)
+                  .find(params[:id])
 
     if @track
       render :show

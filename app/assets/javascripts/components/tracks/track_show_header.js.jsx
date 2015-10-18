@@ -13,8 +13,8 @@
             <TrackIndexItem track={track} />
           <img className="track-image"
                  src={track.image_url} 
-                 height="100" 
-                 width="100"/>
+                 height="150" 
+                 width="150"/>
           </div>
         </div>
       );

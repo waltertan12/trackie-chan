@@ -6,9 +6,15 @@ json.array!(@tracks) do |track|
     :description,
     :track_url,
     :image_url,
-    :user_id
+    :user_id,
   )
 
   json.username track.user.username
   json.tags track.tags
+
+  json.likes(track.likes) do |like|
+    json.user_id like.user_id
+    json.username like.user.username
+    json.image_url like.user.image_url
+  end
 end

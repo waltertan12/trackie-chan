@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FinalProject</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <title>TrackieChan</title>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -17,7 +17,7 @@
   <% end %>
   <div class="container">
     <% flash.each do |type, message|%>
-      <div class="container alert-<%= type %>">
+      <div class="container alert-<%= type.to_s %>">
         <%= message %>
       </div>
     <% end %>

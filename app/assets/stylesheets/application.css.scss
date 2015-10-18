@@ -170,6 +170,7 @@ body {
   max-width: 600px;
   border: 1px solid gray;
   border-radius: 5px;
+  background-color: white;
 }
 
 .play-button {
@@ -187,6 +188,12 @@ body {
   min-height: $content-container-min-height;
 }
 
+.track-like-index {
+  ul {
+    list-style-type: none;
+  }
+}
+
 .track-show-header {
   position: relative;
   min-width: $content-container-min-width;
@@ -196,6 +203,7 @@ body {
     position: absolute;
     border-radius: 5px;
     right: 5%;
+    bottom: 48px;
   }
   .track-index-item {
     display: inline-block;
