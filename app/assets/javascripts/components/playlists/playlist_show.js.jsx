@@ -4,6 +4,9 @@
   }
 
   root.PlaylistShow = React.createClass({
+    getInitialState: function () {
+
+    },
     render: function () {
       return (
         <div className="playlist-show row">
@@ -12,7 +15,7 @@
           </div>
           <div className="playlist-show-container col-md-8">
             <div className="track-index">
-              <TrackIndex userId={1} tracks={[]} />
+              <TrackIndex tracks={[]} />
             </div>
           </div>
           <TrackSidebar likes={[]}/>

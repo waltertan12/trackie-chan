@@ -39,7 +39,7 @@
         UserActions.updateUserShow(newUser);
         this.setUser(newUser.id);
         // Check if TrackStore has newUser's tracks
-        var trackStoreCache = TrackStore.findUserTracks(userId);
+        var trackStoreCache = TrackStore.findUserTracks(newUser.id);
         if (trackStoreCache.length === newUser.tracks.length) {
           this.setUserTracks(newUser.id);
           TrackActions.resetPlaylist(newUser.tracks);
@@ -90,7 +90,7 @@
           </div>
           <div className="user-feed-container col-md-8">
             <div className="track-index">
-              <TrackIndex userId={user.id} tracks={tracks} />
+              <TrackIndex tracks={tracks} />
             </div>
           </div>
           <UserSidebar user={user}/>
