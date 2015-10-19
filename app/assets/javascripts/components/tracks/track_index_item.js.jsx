@@ -27,7 +27,8 @@
       TrackStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
-      if (TrackStore.getCurrentTrackId() === this.props.track.id) {
+      if (TrackStore.getCurrentTrackId() === this.props.track.id &&
+          TrackStore.isATrackCurrentlyPlaying()) {
         this.setState({playState: "Pause"});
       } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
         this.setState({playState: "Play"});

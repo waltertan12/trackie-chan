@@ -19,6 +19,7 @@ $(function () {
           <div className="container">
             {this.props.children}
           </div>
+          <Player />
         </div>
       );
     }

@@ -193,6 +193,9 @@
     getCurrentTrackId: function () {
       return _currentAudio.trackId;
     },
+    getCurrentTrackMetadata: function () {
+      return _currentAudio.playlist[_currentTrackNumber];
+    },
     playTrack: function (track) {
       root.TrackStore.pauseTrack();
       root.TrackStore.findTrackInPlaylist(track);
@@ -243,6 +246,13 @@
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
       }
     },
+    playCurrentTrack: function () {
+      _currentAudio.playing = true;
+      _currentAudio.track.play();
+    },
+    pauseCurrentTrack: function () {
+      root.TrackStore.pauseTrack();
+    },
     findTrackInPlaylist: function (track) {
       console.log(_currentAudio.playlist);
       for (var i = 0; i < _currentAudio.playlist.length; i++) {
@@ -251,7 +261,7 @@
           console.log("Setting current track to" + i);
           _currentTrackNumber = i;
           return;
-        } 
+        }
       }
       _currentTrackNumber = -1;
     },
@@ -299,6 +309,16 @@
 
       } else if (payload.actionType === TrackConstants.PLAY_TRACK) {
         root.TrackStore.playTrack(payload.track);
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+
+      } else if (payload.actionType === TrackConstants.PLAY_CURRENT_TRACK) {
+        root.TrackStore.playCurrentTrack();
+
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+
+      } else if (payload.actionType === TrackConstants.PAUSE_CURRENT_TRACK) {
+        root.TrackStore.pauseCurrentTrack();
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
 

@@ -17,6 +17,17 @@
         })
       }
     },
+    playerPlayOrPause: function (action) {
+      if (action) {
+        AppDispatcher.dispatch({
+          actionType: TrackConstants.PLAY_CURRENT_TRACK
+        })
+      } else {
+        AppDispatcher.dispatch({
+          actionType: TrackConstants.PAUSE_CURRENT_TRACK
+        })
+      }
+    },
     nextTrack: function () {
       AppDispatcher.dispatch({
         actionType: TrackConstants.NEXT_TRACK

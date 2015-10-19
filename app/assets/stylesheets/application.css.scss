@@ -175,6 +175,25 @@ body {
 
 .play-button {
   width: 40px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    background-color: lightpink;
+  }
+}
+
+.next-button {
+  width: 40px;
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    background-color: lightpink;
+  }
+}
+
+.previous-button {
+  width: 100px;
+  text-align: center;
   &:hover {
     cursor: pointer;
     background-color: lightpink;
@@ -265,5 +284,22 @@ body {
     cursor: pointer;
     background-color: darkgray;
     color: white;
+  }
+}
+
+/* player */
+.music-player {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 100px;
+  background-color: purple;
+  color: white;
+  display: inline;
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
   }
 }
