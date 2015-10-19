@@ -310,6 +310,7 @@
 
         root.TrackStore.emit(UPLOAD_EVENT);
 
+      // Global Playlist responses
       } else if (payload.actionType === TrackConstants.RESET_PLAYLIST) {
         if (!root.TrackStore.isATrackCurrentlyPlaying()) {
           resetPlaylist(payload.tracks);
@@ -347,8 +348,10 @@
         root.TrackStore.previousTrack();
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
-      }
-
+      } else if (payload.actionType === PlaylistConstants.PLAYLIST_RECEIVED)
+        resetPlaylist(payload.playlist.tracks);
+        
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
     })
   });
 })(this);

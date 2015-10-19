@@ -13,7 +13,18 @@
         });
       }
 
-      ApiUtils.fetchPlaylist(playlistId, dispatchCallback);
+      PlaylistUtils.fetchPlaylist(playlistId, dispatchCallback);
+    },
+    receivePlaylists: function (userId) {
+      var dispatchCallback = function (playlists) {
+        AppDispatcher.dispatch({
+          actionType: PlaylistConstants.PLAYLISTS_RECEIVED,
+          userId: playlist.user_id,
+          playlists: playlists
+        });
+      }
+
+      PlaylistUtils.fetchPlaylists(userId, dispatchCallback);
     }
   };
 })(this);

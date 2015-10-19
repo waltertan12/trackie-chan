@@ -15,6 +15,8 @@ class Playlist < ActiveRecord::Base
     foreign_key: :likable_id,
     primary_key: :id,
     dependent: :destroy
+  has_many :taggings, as: :taggable
+  has_many :tags, through: :taggings
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?

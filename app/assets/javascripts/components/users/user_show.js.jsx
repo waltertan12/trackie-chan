@@ -72,6 +72,12 @@
         this.setState({tracks: TrackStore.findUserTracks(optionalUserId)});
       }
     },
+    getUserPlaylists: function (props) {
+
+    },
+    setUserPlaylists: function (optionalUserId) {
+
+    },
     render: function () {
       var user = this.state.user;
       var tracks = this.state.tracks;

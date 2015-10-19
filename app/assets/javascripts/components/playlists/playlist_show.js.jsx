@@ -23,10 +23,10 @@
       PlaylistActions.receivePlaylist(playlistId);
     },
     setPlaylist: function () {
-      var userId = this.props.params.userId,
-          playlistId = this.props.params.playlistId,
+      var userId = parseInt(this.props.params.userId),
+          playlistId = parseInt(this.props.params.playlistId),
           playlist = PlaylistStore.findPlaylist(userId, playlistId);
-
+          
       this.setState({playlist: playlist});
     },
     render: function () {

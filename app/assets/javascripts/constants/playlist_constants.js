@@ -4,7 +4,8 @@
   }
 
   root.PlaylistConstants = {
-    
+    PLAYLIST_RECEIVED: "PLAYLIST_RECEIVED",
+    PLAYLISTS_RECEIVED: "PLAYLISTS_RECEIVED"
   };
 
 })(this);
