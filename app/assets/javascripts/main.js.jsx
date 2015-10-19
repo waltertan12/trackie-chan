@@ -27,6 +27,7 @@ $(function () {
         <Route path=":userId" component={UserShow}>
         </Route>
           <Route path=":userId/tracks/:trackId" component={TrackShow}/>
+          <Route path=":userId/playlists/:playlistId" component={PlaylistShow}/>
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>

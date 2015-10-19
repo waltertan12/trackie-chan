@@ -7,7 +7,7 @@
     render: function () {
       return (
         <div className="track-sidebar col-md-4">
-          <TrackLikeIndex likes={this.props.track.likes}/>
+          <TrackLikeIndex likes={this.props.likes}/>
         </div>
       );
     }

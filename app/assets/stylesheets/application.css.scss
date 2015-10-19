@@ -327,3 +327,14 @@ body {
     display: inline;
   }
 }
+
+.playlist-show {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.playlist-show-container {
+  border: 1px solid gray;
+  border-radius: 5px;
+  min-height: $content-container-min-height;
+}

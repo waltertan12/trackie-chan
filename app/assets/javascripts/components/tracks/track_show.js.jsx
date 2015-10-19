@@ -59,7 +59,7 @@
           <div className="track-show-container col-md-8">
             <CommentIndex trackId= {this.props.params.trackId} />
           </div>
-          <TrackSidebar track={this.state.track}/>
+          <TrackSidebar track={this.state.track} likes={this.state.track.likes}/>
         </div>
       );
     }
