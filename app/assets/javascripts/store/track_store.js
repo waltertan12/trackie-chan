@@ -143,12 +143,50 @@
         return _placeholderTrack;
       }
     },
+    findLikeIndex: function (track) {
+      for (var i = 0; i < track.likes.length; i++) {
+        if (track.likes[i].user_id === _currentUser.id) {
+          return i;
+        }
+      }
+      return -1;
+    },
+    addLikeToTrack: function (trackId, user) {
+      console.log("Adding like to track");
+      console.log(trackId);
+      console.log(user);
+      
+      var track = root.TrackStore.findTrack(user.id, trackId);
+      console.log(track);
+
+      if (track.id !== -1) {
+        var like = {
+          user_id: user.id, 
+          username: user.username,
+          image_url: user.image_url
+        }
+        console.log(track);
+        track.likes.push(like);
+      }
+    },
+    removeLikeFromTrack: function (trackId, user) {
+      var track = root.TrackStore.findTrack(user.id, trackId);
+
+      console.log("Removing like from track");
+      if (track.id !== -1) {
+        var likeIndex = root.TrackStore.findLikeIndex(track);
+
+        track.like.splice(likeIndex, 1);
+      }
+    },
     findLastUploadedTrack: function () {
       return _lastUploadedTrack;
     },
     isATrackCurrentlyPlaying: function () {
       return _currentAudio.playing;
     },
+
+    // Playlist methods
     getPlaylist: function () {
       return _currentAudio.playlist;
     },

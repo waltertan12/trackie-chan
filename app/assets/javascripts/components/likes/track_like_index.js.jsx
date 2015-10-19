@@ -4,6 +4,9 @@
   }
 
   root.TrackLikeIndex = React.createClass({
+    componentWillReceiveProps: function (nextProps) {
+
+    },
     render: function () {
       var likeItems;
       if (this.props.likes.length === 0) {

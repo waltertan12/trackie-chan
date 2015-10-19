@@ -5,6 +5,7 @@ json.array!(@likes) do |like|
     :likable_id,
     :user_id
   )
+
   json.likable_type like.likable_type.downcase
   json.title like.likable.title
   json.artist_id like.likable.user.id
