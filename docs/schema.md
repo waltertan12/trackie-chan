@@ -74,7 +74,7 @@ description | text      | not null
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-track_id     | integer   | not null, foreign key (references track), indexed, unique [playlist_id]
+track_id    | integer   | not null, foreign key (references track), indexed, unique [playlist_id]
 playlist_id | integer   | not null, foreign key (references playlist), indexed
 
 ## feedings

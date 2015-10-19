@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
   has_many :tracks
   has_many :comments, dependent: :destroy
   has_many :likings, dependent: :destroy
+  has_many :playlists
 
 
   def self.find_by_credentials(email, password)
