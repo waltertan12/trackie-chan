@@ -2,15 +2,15 @@
 [TrackieChan](http://trackiechan.herokuapp.com)
 
 ## Minimum Viable Product
-- [ ] Create / update an account
-- [ ] Log in / Log out
-- [ ] Follow users
-- [ ] Songs
-  - [ ] Upload songs
-  - [ ] Play songs
-  - [ ] Tag songs
-  - [ ] Comment on songs
-  - [ ] Like songs
+- [x] Create / update an account
+- [x] Log in / Log out
+- [x] Follow users
+- [x] Songs
+  - [x] Upload songs
+  - [x] Play songs
+  - [x] Tag songs
+  - [x] Comment on songs
+  - [x] Like songs
 - [ ] Create playlists
 - [ ] View feed from followed users
 - [ ] Search for users and songs
