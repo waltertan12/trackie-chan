@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  has_many :tracks
+  has_many :tracks, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likings, dependent: :destroy
-  has_many :playlists
+  has_many :playlists, dependent: :destroy
 
 
   def self.find_by_credentials(email, password)

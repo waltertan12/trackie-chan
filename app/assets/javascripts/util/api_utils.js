@@ -176,7 +176,7 @@
         data: {comment: comment},
         dataType: "json",
         success: function (comment) {
-          callback(comment);
+          callback(comment, trackId);
         },
         error: function (err) {
           console.log(err.responseText);

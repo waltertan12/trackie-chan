@@ -9,23 +9,23 @@
     },
     componentDidMount: function () {
       PlaylistStore.addChangeListener(this.setPlaylist);
-      this.getPlaylist();
+      this.getPlaylist(this.props);
     },
     componentWillUnmount: function () {
       PlaylistStore.addChangeListener(this.setPlaylist);
     },
     componentWillReceiveProps: function (nextProps) {
-
+      this.getPlaylist(nextProps);
     },
-    getPlaylist: function () {
-      var userId = this.props.params.userId,
-          playlistId = this.props.params.playlistId;
-      PlaylistActions.receivePlaylist(userId, playlistId);
+    getPlaylist: function (props) {
+      var userId = props.params.userId,
+          playlistId = props.params.playlistId;
+      PlaylistActions.receivePlaylist(playlistId);
     },
     setPlaylist: function () {
       var userId = this.props.params.userId,
           playlistId = this.props.params.playlistId,
-          playlist = PlaylistStore.findPlaylist(userId playlistId);
+          playlist = PlaylistStore.findPlaylist(userId, playlistId);
 
       this.setState({playlist: playlist});
     },
