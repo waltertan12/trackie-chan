@@ -5,11 +5,6 @@ $(function () {
   var Link = ReactRouter.Link;
   var IndexRoute = ReactRouter.IndexRoute;
 
-  // Globals to see if music is playing...
-  // Not sure if it's okay
-  // currentlyPlaying = false;
-  // currentAudio = {trackId: -1, audio: new Audio()};
-
   var App = React.createClass({
     render: function () {
       return (
