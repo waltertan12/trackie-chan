@@ -9,7 +9,7 @@
         <div className="tags-index">
           {
             this.props.tags.map(function (tag) {
-              return <li className="tag">{tag.name}</li>
+              return <li key={tag.id} className="tag">{tag.name}</li>
             })
           }
         </div>

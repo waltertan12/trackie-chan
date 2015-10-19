@@ -11,8 +11,9 @@ json.extract!(
 json.username @track.user.username
 json.tags @track.tags
 
-json.array!(@track.likes) do |like|
-  json.user_id like.user_id,
+json.likes(@track.likes) do |like|
+  json.id like.id
+  json.user_id like.user_id
   json.username like.user.username
-  json.user_image_url like.user.image_url
+  json.image_url like.user.image_url
 end

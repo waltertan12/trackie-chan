@@ -14,7 +14,7 @@
       } else {
         likeItems = (
           this.props.likes.map( function (like) {
-            return <TrackLikeIndexItem like={like} />
+            return <TrackLikeIndexItem key={like.id} like={like} />
           })
         );
       }
