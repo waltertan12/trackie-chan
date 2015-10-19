@@ -12,7 +12,8 @@
       var metadata = TrackStore.getCurrentTrackMetadata(),
           info;
 
-      if (typeof metadata.title !== "undefined") {
+      if (typeof metadata !== "undefined" && 
+          typeof metadata.title !== "undefined") {
         info = <marquee>{metadata.title} by {metadata.username}</marquee>;
       } else {
         info = <marquee>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</marquee>;
