@@ -5,6 +5,7 @@
   var _placeholderPlaylist = {
         id: -1,
         tracks: [],
+        tags: [],
         likes: [],
         title: "",
         description: ""
