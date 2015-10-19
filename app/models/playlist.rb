@@ -5,6 +5,16 @@ class Playlist < ActiveRecord::Base
   before_save :ensure_image_url
 
   belongs_to :user
+  has_many :playlistings
+  has_many :tracks,
+    through: :playlistings,
+    source: :track
+  has_many :likes,
+    as: :likable,
+    class_name: "Liking",
+    foreign_key: :likable_id,
+    primary_key: :id,
+    dependent: :destroy
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?

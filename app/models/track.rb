@@ -15,6 +15,10 @@ class Track < ActiveRecord::Base
     dependent: :destroy
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
+  has_many :playlistings
+  has_many :playlists, 
+    through: :playlistings,
+    source: :playlist
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?

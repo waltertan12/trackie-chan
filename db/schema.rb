@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019163104) do
+ActiveRecord::Schema.define(version: 20151019164017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,17 @@ ActiveRecord::Schema.define(version: 20151019163104) do
   add_index "likings", ["likable_type"], name: "index_likings_on_likable_type", using: :btree
   add_index "likings", ["user_id", "likable_id", "likable_type"], name: "index_likings_on_user_id_and_likable_id_and_likable_type", unique: true, using: :btree
   add_index "likings", ["user_id"], name: "index_likings_on_user_id", using: :btree
+
+  create_table "playlistings", force: :cascade do |t|
+    t.integer  "track_id",    null: false
+    t.integer  "playlist_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "playlistings", ["playlist_id"], name: "index_playlistings_on_playlist_id", using: :btree
+  add_index "playlistings", ["track_id", "playlist_id"], name: "index_playlistings_on_track_id_and_playlist_id", unique: true, using: :btree
+  add_index "playlistings", ["track_id"], name: "index_playlistings_on_track_id", using: :btree
 
   create_table "playlists", force: :cascade do |t|
     t.integer  "user_id",     null: false
