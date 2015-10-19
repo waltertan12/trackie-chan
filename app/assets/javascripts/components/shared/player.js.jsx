@@ -5,18 +5,28 @@
 
   root.Player = React.createClass({
     getInitialState: function () {
-      return {playState: "", trackName: ""};
+      return {playState: "", info: ""};
     },
     componentDidMount: function () {
       TrackStore.addPlaylistListener(this.setPlayState);
+      var metadata = TrackStore.getCurrentTrackMetadata(),
+          info;
+
+      if (typeof metadata.title !== "undefined") {
+        info = <marquee>{metadata.title} by {metadata.username}</marquee>;
+      } else {
+        info = <marquee>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</marquee>;
+      }
 
       if (TrackStore.isATrackCurrentlyPlaying()) {
         this.setState({
-          playState: "Pause"
+          playState: "Pause",
+          info: info
         });
       } else {
         this.setState({
-          playState: "Play"
+          playState: "Play",
+          info: info
         });
       }
     },
@@ -24,13 +34,24 @@
       TrackStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
+      var metadata = TrackStore.getCurrentTrackMetadata(),
+          info;
+
+      if (typeof metadata.title !== "undefined") {
+        info = <marquee>{metadata.title} by {metadata.username}</marquee>;
+      } else {
+        info = <marquee>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</marquee>;
+      }
+
       if (TrackStore.isATrackCurrentlyPlaying()) {
         this.setState({
-          playState: "Pause"
+          playState: "Pause",
+          info: info
         });
       } else {
         this.setState({
-          playState: "Play" 
+          playState: "Play",
+          info: info
         });
       }
     },
@@ -52,22 +73,43 @@
       TrackActions.playerPlayOrPause(action);
     },
     render: function () {
-      var playState = this.state.playState;
+      var playState = this.state.playState,
+          metadata = TrackStore.getCurrentTrackMetadata();
+
       return (
-        <ul className="music-player">
-          <li className="previous-button" 
-               onClick={this.handlePrevious}>
-            Previous
-          </li>
-          <li className="play-button" 
-               onClick={this.handlePlay}>
-            {playState}
-          </li>
-          <li className="next-button" 
-               onClick={this.handleNext}>
-            Next
-          </li>
-        </ul>
+        <div className="music-player">
+          <ul>
+            <li className="previous-button" 
+                 onClick={this.handlePrevious}>
+              Previous
+            </li>
+            <li className="play-button" 
+                 onClick={this.handlePlay}>
+              {playState}
+            </li>
+            <li className="next-button" 
+                 onClick={this.handleNext}>
+              Next
+            </li>
+            <li>
+              <strong>
+                {this.state.info}
+              </strong>
+            </li>
+          </ul>
+          
+          <marquee direction="left" behavior="scroll">
+            wow 
+            MOM 
+            wow 
+            nomom 
+            nograon Zone 
+            <strong>\/\/o\/\/</strong> 
+            souch good song 
+            <em>u r artist</em> 
+            bohemian lyfe 
+          </marquee>
+        </div>
       );
     }
   });

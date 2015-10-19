@@ -248,7 +248,13 @@
     },
     playCurrentTrack: function () {
       _currentAudio.playing = true;
-      _currentAudio.track.play();
+      if (_currentAudio.trackId === -1) {
+        var track = _currentAudio.playlist[0];
+        root.TrackStore.playTrack(track);
+      } else {
+        _currentAudio.track.play();
+      }
+
     },
     pauseCurrentTrack: function () {
       root.TrackStore.pauseTrack();

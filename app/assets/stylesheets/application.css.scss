@@ -292,7 +292,7 @@ body {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 100px;
+  height: 75px;
   background-color: purple;
   color: white;
   display: inline;
@@ -301,5 +301,9 @@ body {
   }
   li {
     display: inline-block;
+  }
+  marquee {
+    width: 100vw;
+    display: inline;
   }
 }
