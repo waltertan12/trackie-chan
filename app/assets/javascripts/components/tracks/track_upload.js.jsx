@@ -101,10 +101,13 @@
 
             <div className="form-group">
               <label>Choose a file</label><br/>
+              <span className="btn btn-primary btn-file">
+              Browse
               <input type="file"
                      className="track-upload-input"
                      accept="audio/*"
                      onChange={this.updateTrackFile}/>
+              </span>
             </div><br/><br/>
 
             <div className="form-group">

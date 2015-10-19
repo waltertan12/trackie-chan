@@ -1,5 +1,4 @@
 $(function () {
-  console.log("REACT reloading???");
   var root = document.getElementById("content");
   var Route = ReactRouter.Route;
   var Router = ReactRouter.Router;
@@ -8,8 +7,8 @@ $(function () {
 
   // Globals to see if music is playing...
   // Not sure if it's okay
-  currentlyPlaying = false;
-  currentAudio = {trackId: -1, audio: new Audio()};
+  // currentlyPlaying = false;
+  // currentAudio = {trackId: -1, audio: new Audio()};
 
   var App = React.createClass({
     render: function () {

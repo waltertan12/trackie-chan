@@ -38,8 +38,14 @@
       if (parseInt(nextProps.params.userId) === newUser.id) {
         UserActions.updateUserShow(newUser);
         this.setUser(newUser.id);
-        this.setUserTracks(newUser.id);
-        TrackActions.resetPlaylist(newUser.tracks);
+        // Check if TrackStore has newUser's tracks
+        var trackStoreCache = TrackStore.findUserTracks(userId);
+        if (trackStoreCache.length === newUser.tracks.length) {
+          this.setUserTracks(newUser.id);
+          TrackActions.resetPlaylist(newUser.tracks);
+        } else {
+          this.getUserTracks(nextProps);
+        }
       } else {
         this.getUser(nextProps);
         this.getUserTracks(nextProps);

@@ -5,6 +5,8 @@
 
   var _tracks = {},
 
+      _hasPlayBeenPressed = false,
+
       _currentTrackNumber = -1,
       
       _currentAudio = {playing: false, trackId: -1, track: new Audio(), playlist: []},
@@ -197,6 +199,7 @@
       return _currentAudio.playlist[_currentTrackNumber];
     },
     playTrack: function (track) {
+      _hasPlayBeenPressed = true;
       root.TrackStore.pauseTrack();
       root.TrackStore.findTrackInPlaylist(track);
 
@@ -248,6 +251,7 @@
     },
     playCurrentTrack: function () {
       _currentAudio.playing = true;
+      _hasPlayBeenPressed = true;
       if (_currentAudio.trackId === -1) {
         var track = _currentAudio.playlist[0];
         root.TrackStore.playTrack(track);
@@ -270,6 +274,9 @@
         }
       }
       _currentTrackNumber = -1;
+    },
+    hasPlayBeenPressed: function () {
+      return _hasPlayBeenPressed;
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
