@@ -26,6 +26,7 @@
 
       if (parseInt(trackId) === newTrack.id) {
         this.setTrack(trackId);
+        TrackActions.resetPlaylist([newTrack]);
       } else {
         this.getTrack(nextProps);
       }

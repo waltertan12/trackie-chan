@@ -230,6 +230,11 @@
 
       } else if(payload.actionType === TrackConstants.TRACK_RECEIVED) {
         storeTrack(payload.userId, payload.track);
+        if (!root.TrackStore.isATrackCurrentlyPlaying()) {
+          resetPlaylist([payload.track]);
+        } else {
+          _nextPlaylist = [payload.track];
+        }
 
         root.TrackStore.emit(CHANGE_EVENT);
 
