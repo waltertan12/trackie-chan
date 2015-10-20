@@ -30,6 +30,54 @@
 
         }
       })
+    },
+    addTrackToPlaylist: function (trackId, playlistId, callback) {
+      $.ajax({
+        url: "/api/playlists/add_track",
+        data: {track_id: trackId, playlist_id: playlistId},
+        type: "POST",
+        dataType: "json",
+        success: function (playlist) {
+          callback(playlist);
+        },
+        error: function (err) {
+          console.log(err.responseText);
+          console.log(err);
+        }
+      })
+
+    },
+    removeTrackFromPlaylist: function (trackId, playlistId, callback) {
+      $.ajax({
+        url: "/api/playlists/remove_track",
+        data: {track_id: trackId, playlist_id: playlistId},
+        type: "DELETE",
+        dataType: "json",
+        success: function (playlist) {
+          callback(playlist);
+        },
+        error: function (err) {
+          console.log(err.responseText);
+          console.log(err);
+        }
+      })
+
+    },
+    createPlaylist: function (playlist) {
+      $.ajax({
+        url: "api/playlists",
+        dataType: "json",
+        type: "POST",
+        data: {playlist: playlist},
+        success: function () {
+
+        },
+        error: function (err) {
+          console.log(err.responseText);
+          console.log(err);
+        }
+
+      })
     }
   };
 })(this);
