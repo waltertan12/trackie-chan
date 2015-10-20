@@ -51,9 +51,6 @@
       } else {
         return _playlists[userId];
       }
-      // if (typeof _playlists[userId] !== "undefined") {
-      //   return _playlists[userId];
-      // }
     },
     findPlaylist: function (userId, playlistId) {
       if (typeof _playlists[userId] === "undefined") {

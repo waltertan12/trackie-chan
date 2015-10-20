@@ -95,12 +95,34 @@
               user={user} 
               followState={UserStore.doesCurrentUserFollow(user)} />
           </div>
-          <div className="user-feed-container col-md-8">
-            <div className="track-index">
-              <TrackIndex tracks={tracks} />
-            </div>
 
-            <PlaylistIndex userId={user.id} />
+          <div className="user-feed-container col-md-8">
+            <div className="navbar">
+              <ul className="nav nav-tabs">
+                <li role="presentation" className="active">
+                  <a href="#tracks" data-toggle="tab">
+                    Tracks
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#playlists" data-toggle="tab">
+                    Playlists
+                  </a>
+                </li>
+              </ul>
+
+              <div className="tab-content">
+                <div id="tracks" className="tab-pane active">
+                  <div className="track-index">
+                    <TrackIndex tracks={tracks} />
+                  </div>
+                </div>
+
+                <div id="playlists" className="tab-pane">
+                  <PlaylistIndex userId={user.id} />
+                </div>
+              </div>
+            </div>
           </div>
           <UserSidebar user={user}/>
         </div>

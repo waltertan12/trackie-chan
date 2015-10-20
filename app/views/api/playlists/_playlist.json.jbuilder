@@ -8,7 +8,10 @@ json.extract!(
   :updated_at
 )
 
-json.tracks playlist.tracks
+json.tracks(playlist.tracks) do |track|
+  json.partial! "api/tracks/track", track: track
+end
+
 json.likes playlist.likes
 json.tags playlist.tags
 json.username playlist.user.username

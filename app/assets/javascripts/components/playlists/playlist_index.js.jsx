@@ -15,13 +15,13 @@
       PlaylistStore.removeChangeListener(this.setPlaylists);
     },
     componentWillReceiveProps: function (nextProps) {
-      var playlists = PlaylistStore.findUserPlaylists(nextProps.userId);
-      // if (typeof playlists === "undefined") {
-      if (playlists.length === 0) {
+      // var playlists = PlaylistStore.findUserPlaylists(nextProps.userId);
+
+      // if (playlists.length === 0) {
         this.getPlaylists(nextProps);
-      } else {
-        this.setPlaylists({playlists: playlists});
-      }
+      // } else {
+      //   this.setPlaylists({playlists: playlists});
+      // }
     },
     getPlaylists: function (props) {
       PlaylistActions.receivePlaylists(props.userId);
