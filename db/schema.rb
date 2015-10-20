@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019164017) do
+ActiveRecord::Schema.define(version: 20151020205222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 20151019164017) do
 
   add_index "comments", ["track_id"], name: "index_comments_on_track_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "feeds", force: :cascade do |t|
+    t.integer  "user_id",                   null: false
+    t.integer  "source_id",                 null: false
+    t.string   "source_type",               null: false
+    t.float    "rank",        default: 0.0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "feeds", ["source_id"], name: "index_feeds_on_source_id", using: :btree
+  add_index "feeds", ["source_type"], name: "index_feeds_on_source_type", using: :btree
+  add_index "feeds", ["user_id", "source_id", "source_type"], name: "index_feeds_on_user_id_and_source_id_and_source_type", unique: true, using: :btree
+  add_index "feeds", ["user_id"], name: "index_feeds_on_user_id", using: :btree
 
   create_table "followings", force: :cascade do |t|
     t.integer  "follower_id", null: false

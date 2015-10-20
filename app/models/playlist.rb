@@ -17,6 +17,24 @@ class Playlist < ActiveRecord::Base
     dependent: :destroy
   has_many :taggings, as: :taggable
   has_many :tags, through: :taggings
+  has_many :feeds, as: :source, dependent: :destroy
+
+  after_save do |playlist|
+    feed = Feed.find_by(source_id: playlist.id, source_type: "Playlist")
+    if feed
+      rank = playlist.user.followers.count + playlist.likes.count
+      feed.update(updated_at: playlist.updated_at, rank: rank)
+    else
+      rank = playlist.user.followers.count
+
+      Feed.create(
+        user_id: playlist.user_id, 
+        source_id: playlist.id, 
+        source_type: "Track",
+        rank: rank
+      )
+    end
+  end
 
   def ensure_image_url
     self.image_url ||= User.find(self.user_id).image_url if self.new_record?

@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   post "playlists/add_track" => "playlists#add_track_to_playlist"
   delete "playlists/remove_track" => 
          "playlists#remove_track_from_playlist"
+
+  get "feed" => "feeds#dashboard_feed"
  end
 end
