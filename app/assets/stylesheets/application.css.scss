@@ -258,7 +258,7 @@ body {
   }
 }
 
-.btn-file {
+/*.btn-file {
     position: relative;
     overflow: hidden;
 }
@@ -276,7 +276,7 @@ body {
     background: white;
     cursor: inherit;
     display: block;
-}
+}*/
 
 /* comment index */
 .comment-index {
@@ -337,4 +337,16 @@ body {
   border: 1px solid gray;
   border-radius: 5px;
   min-height: $content-container-min-height;
+}
+
+.playlist-form-index {
+  width: 100%;
+  ul {
+    list-style-type: none;
+    display: inline;
+  }
+  li {
+    display: inline-block;
+    width: 100%;
+  }
 }

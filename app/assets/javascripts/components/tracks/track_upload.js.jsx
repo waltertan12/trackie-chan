@@ -22,7 +22,7 @@
           "such track", 
           "very sound",
           "much cloud"
-        ]}
+        ], duplicateTagClass: 'bounce'}
       );
     },
     updateTitle: function (e) {
@@ -49,7 +49,6 @@
           audioFormData = new FormData(),
           imageFormData = new FormData(),
           tags = this.tagInput.getTagValues();
-      console.log(tags);
 
       audioFormData.append("upload_preset", window.CLOUDINARY_PRESET);
       audioFormData.append("file", audioFile);
@@ -86,8 +85,7 @@
             <div>
               <label>Tags</label><br/>
               <div id="tag-field"
-                   className="textarea input"
-                   onChange={this.handleChange}
+                   className="textarea input clearfix"
                    placeholder="enter tag">
               </div>
             </div><br/><br/>
@@ -101,13 +99,10 @@
 
             <div className="form-group">
               <label>Choose a file</label><br/>
-              <span className="btn btn-primary btn-file">
-              Browse
               <input type="file"
                      className="track-upload-input"
                      accept="audio/*"
                      onChange={this.updateTrackFile}/>
-              </span>
             </div><br/><br/>
 
             <div className="form-group">

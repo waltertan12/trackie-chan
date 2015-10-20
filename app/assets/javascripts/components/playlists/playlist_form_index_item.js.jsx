@@ -3,6 +3,8 @@
     root.PlaylistFormIndexItem = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.PlaylistFormIndexItem = React.createClass({
     getInitialState: function () {
       return {addState: ""};
@@ -51,9 +53,11 @@
       var playlist = this.props.playlist,
           addState = this.state.addState;
       return (
-        <li>
-          {playlist.title}
-          <button className="btn btn-primary"
+        <li className="playlist-form-index-item row">
+          <div className="col-md-4">
+            <Link to={"/users/" + "/playlist/"}>{playlist.title}</Link>
+          </div>
+          <button className="btn btn-primary col-md-offset-4"
                   onClick={this.handleClick}>
             {addState}
           </button>

@@ -79,16 +79,25 @@
     },
     dispatchId: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
+        
         case PlaylistConstants.PLAYLIST_RECEIVED:
           resetPlaylist(payload.userId, payload.playlist);
           root.PlaylistStore.emit(CHANGE_EVENT);
           break;
+
         case PlaylistConstants.PLAYLISTS_RECEIVED:
           resetUserPlaylists(payload.userId, payload.playlists);
           root.PlaylistStore.emit(CHANGE_EVENT);
           break;
+
         case PlaylistConstants.PLAYLIST_UPDATED:
           resetPlaylist(payload.playlist.user_id, payload.playlist);
+          root.PlaylistStore.emit(CHANGE_EVENT);
+          break;
+
+        case PlaylistConstants.PLAYLIST_CREATED:
+          var userId = payload.playlist.user_id;
+          addPlaylist(userId, payload.playlist);
           root.PlaylistStore.emit(CHANGE_EVENT);
           break;
       }

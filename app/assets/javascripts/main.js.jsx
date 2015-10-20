@@ -28,12 +28,12 @@ $(function () {
         </Route>
           <Route path=":userId/tracks/:trackId" component={TrackShow}/>
           <Route path=":userId/playlists/:playlistId" component={PlaylistShow}/>
+          <Route path=":userId/tracks/:trackId/playlist-form" component={PlaylistForm}/>
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>
         <Route path="progress" component={UploadProgress} />
       </Route>
-      <Route path="playlist-form/:trackId" component={PlaylistForm}/>
     </Route>
   );
 

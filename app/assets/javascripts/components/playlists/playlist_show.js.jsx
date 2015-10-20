@@ -35,6 +35,8 @@
         <div className="playlist-show row">
           <div className="jumbotron playlist-show-header">
             <h1>{playlist.title}</h1>
+            <LikeButton likableType="Playlist" 
+                      likableId={playlist.id} />
             <h3>Description</h3>
             <p>{playlist.description}</p>
             <h3>Tags</h3>

@@ -46,6 +46,8 @@
       }
     },
     render: function () {
+      console.log("Track Index Item");
+      console.log(this);
       var track = this.props.track,
           trackTitle;
 
@@ -64,7 +66,7 @@
           {trackTitle}
           <LikeButton likableType="Track" 
                       likableId={this.props.track.id} />
-          <AddToPlaylistButton trackId= {this.props.track.id}
+          <AddToPlaylistButton userId={this.props.track.user_id}
                                trackId={this.props.track.id}/>
           <div className="play-button" 
                onClick={this.playOrPause}>

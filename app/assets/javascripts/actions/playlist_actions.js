@@ -54,8 +54,18 @@
         dispatchCallback
       );
     },
-    createPlaylist: function (userId) {
+    createPlaylist: function (data) {
+      var dispatchCallback = function (playlist) {
+        AppDispatcher.dispatch({
+          actionType: PlaylistConstants.PLAYLIST_CREATED,
+          playlist: playlist
+        })
+      };
 
+      PlaylistUtils.createPlaylist(
+        data,
+        dispatchCallback
+      );
     }
   };
 })(this);

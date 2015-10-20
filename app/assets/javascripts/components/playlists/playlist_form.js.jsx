@@ -7,10 +7,17 @@
     mixings: [ReactRouter.History],
     getInitialState: function () {
       var userId = window.CURRENT_USER_ID;
-      return {playlists: PlaylistStore.findUserPlaylists(userId)}
+      return ({
+        playlists: PlaylistStore.findUserPlaylists(userId),
+        title: "",
+        description: "",
+        trackId: -1
+      });
     },
     componentDidMount: function () {
       PlaylistStore.addChangeListener(this.setPlaylists);
+      this.tagInput = new Taggle("playlist-tag-field");
+      this.setState({trackId: this.props.trackId});
       this.getPlaylists();
     },
     componentWillUnmount: function () {
@@ -26,11 +33,35 @@
       var userId = window.CURRENT_USER_ID;
       this.setState({playlists: PlaylistStore.findUserPlaylists(userId)})
     },
+    createPlaylist: function (e) {
+      e.preventDefault();
+      var data = {
+        playlist: {
+          title: this.state.title,
+          description: this.state.description
+        },
+        track_id: this.props.params.trackId,
+        tags: this.tagInput.getTagValues()
+      };
+      console.log("Playlist params");
+      console.log(data);
+      PlaylistActions.createPlaylist(data);
+    },
     handleCancel: function () {
-      this.history.back();
+      var userId = this.props.params.userId,
+          trackId = this.props.params.trackId;
+      this.props.history.pushState(null, "/users/" + 
+                                         userId + 
+                                         "/tracks/" + 
+                                         trackId);
+    },
+    updateTitle: function (e) {
+      this.setState({title: e.target.value});
+    },
+    updateDescription: function (e) {
+      this.setState({description: e.target.value});
     },
     render: function () {
-      console.log(this);
       var playlists = this.state.playlists,
           trackId = this.props.params.trackId,
           playlistComponents;
@@ -48,6 +79,7 @@
           })
         );
       }
+
       return (
         <div className="navbar">
           <ul className="nav nav-tabs">
@@ -65,18 +97,56 @@
 
           <div className="tab-content">
             <div className="tab-pane active" id="add">
-              <h1>Add to Existing Playlist</h1>
-              <ul>
-                {playlistComponents}
-                <br/><br/>
-                <button className="btn btn-danger" 
-                        onClick={this.handleCancel}>
-                  Cancel
-                </button>
-              </ul>
+              <div className="col-md-6 col-md-offset-3">
+                <h1>Add to Existing Playlist</h1>
+                <ul className="playlist-form-index">
+                  {playlistComponents}
+                  <br/><br/>
+                  <button className="btn btn-danger" 
+                          onClick={this.handleCancel}>
+                    Cancel
+                  </button>
+                </ul>
+              </div>
             </div>
+
             <div className="tab-pane" id="create">
-              <h1>Create New</h1>
+              <div className="col-md-6 col-md-offset-3">
+              <h1>Create a New Playlist</h1>
+                <form onSubmit={this.createPlaylist}>
+                  <div className="form-group">
+                    <label>Title</label><br/>
+                    <input className="form-control"
+                           onChange={this.updateTitle}
+                           type="text"/>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Description</label><br/>
+                    <textarea className="form-control"
+                           onChange={this.updateDescription}
+                              type="text"
+                              rows="5"/>
+                  </div>
+
+                  <div>
+                    <label>Tags</label><br/>
+                    <div id="playlist-tag-field"
+                         className="textarea input clearfix"
+                         placeholder="enter tag">
+                    </div>
+                  </div><br/>
+
+                  <input className="btn btn-success"
+                         type="submit" 
+                         value="Create Playlist"/>
+                  &nbsp;
+                  <button className="btn btn-danger" 
+                          onClick={this.handleCancel}>
+                    Cancel
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

@@ -62,14 +62,18 @@
         }
       })
     },
-    createPlaylist: function (playlist) {
+    createPlaylist: function (data, callback) {
       $.ajax({
         url: "api/playlists",
         dataType: "json",
         type: "POST",
-        data: {playlist: playlist},
-        success: function () {
-
+        data: {
+          playlist: data.playlist,
+          track_id: data.track_id,
+          tags: data.tags
+        },
+        success: function (playlist) {
+          callback(playlist);
         },
         error: function (err) {
           console.log(err.responseText);

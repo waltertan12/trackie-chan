@@ -1,6 +1,6 @@
 class Playlist < ActiveRecord::Base
-  validates :user_id, :title, :image_url, presence: true
-  validates :user_id, uniqueness: { scope: :title }
+  validates :user_id, :title, presence: true
+  validates :user_id, uniqueness: { scope: [:title] }
   
   before_save :ensure_image_url
 

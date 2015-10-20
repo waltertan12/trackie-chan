@@ -7,10 +7,15 @@
   
   root.AddToPlaylistButton = React.createClass({
     render: function () {
-      var trackId = this.props.trackId;
+      var trackId = this.props.trackId,
+          userId = this.props.userId;
       return (
         <Link className="btn btn-add-to-playlist btn-danger"
-              to={"/playlist-form/" + trackId} >
+              to={"/users/" +  
+                  userId + 
+                  "/tracks/" +  
+                  trackId + 
+                  "/playlist-form"} >
           +Playlist
         </Link>
       );
