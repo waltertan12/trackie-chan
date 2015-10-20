@@ -64,6 +64,19 @@
         return _placeholderPlaylist;
       }
     },
+    isTrackInPlaylist: function (userId, trackId, playlistId) {
+      if (typeof _playlists[userId] === "undefined") {
+        return false;
+      } else {
+        var playlist = root.PlaylistStore.findPlaylist(userId, playlistId);
+        for (var i = 0; i < playlist.tracks.length; i++) {
+          if (playlist.tracks[i].id === trackId) {
+            return true;
+          }
+        }
+      }
+      return false;
+    },
     dispatchId: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
         case PlaylistConstants.PLAYLIST_RECEIVED:

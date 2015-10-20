@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :comments, only: [:index, :create, :edit, :update, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :playlists, only: [:create, :show, :update, :destroy]
+  get "user_playlists" => "playlists#user_playlists"
   get "user_likes" => "likes#user_index"
  end
 end

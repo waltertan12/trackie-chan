@@ -33,6 +33,7 @@ $(function () {
         <Route path="upload" component={TrackUpload}/>
         <Route path="progress" component={UploadProgress} />
       </Route>
+      <Route path="playlist-form/:trackId" component={PlaylistForm}/>
     </Route>
   );
 

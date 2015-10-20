@@ -64,6 +64,8 @@
           {trackTitle}
           <LikeButton likableType="Track" 
                       likableId={this.props.track.id} />
+          <AddToPlaylistButton trackId= {this.props.track.id}
+                               trackId={this.props.track.id}/>
           <div className="play-button" 
                onClick={this.playOrPause}>
                {this.state.playState}

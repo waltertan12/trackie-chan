@@ -16,10 +16,10 @@
       PlaylistUtils.fetchPlaylist(playlistId, dispatchCallback);
     },
     receivePlaylists: function (userId) {
-      var dispatchCallback = function (playlists) {
+      var dispatchCallback = function (userId, playlists) {
         AppDispatcher.dispatch({
           actionType: PlaylistConstants.PLAYLISTS_RECEIVED,
-          userId: playlist.user_id,
+          userId: userId,
           playlists: playlists
         });
       }
