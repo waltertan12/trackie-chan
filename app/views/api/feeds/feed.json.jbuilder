@@ -1,4 +1,4 @@
-json.feed do
+# json.feed do
   json.array!(@feed.each) do |feed|
 
     source = feed.source
@@ -9,4 +9,4 @@ json.feed do
       json.partial! "api/playlists/playlist", playlist: source
     end
   end
-end
+# end

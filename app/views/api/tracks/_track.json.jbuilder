@@ -9,6 +9,8 @@ json.extract!(
   :likes
 )
 
+json.type "Track"
+
 json.username track.user.username
 json.tags track.tags
 
