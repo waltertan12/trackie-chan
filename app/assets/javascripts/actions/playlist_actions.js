@@ -25,6 +25,37 @@
       }
 
       PlaylistUtils.fetchPlaylists(userId, dispatchCallback);
+    },
+    addTrackToPlaylist: function (trackId, playlistId) {
+      var dispatchCallback = function (playlist) {
+        AppDispatcher.dispatch({
+          actionType: PlaylistConstants.PLAYLIST_UPDATED,
+          playlist: playlist
+        })
+      }
+
+      PlaylistUtils.addTrackToPlaylist(
+        trackId,
+        playlistId,
+        dispatchCallback
+      );
+    },
+    removeTrackFromPlaylist: function (trackId, playlistId) {
+      var dispatchCallback = function (playlist) {
+        AppDispatcher.dispatch({
+          actionType: PlaylistConstants.PLAYLIST_UPDATED,
+          playlist: playlist
+        })
+      }
+
+      PlaylistUtils.removeTrackFromPlaylist(
+        trackId,
+        playlistId,
+        dispatchCallback
+      );
+    },
+    createPlaylist: function (userId) {
+
     }
   };
 })(this);

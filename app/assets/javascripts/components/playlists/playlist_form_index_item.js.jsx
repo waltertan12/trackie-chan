@@ -8,13 +8,14 @@
       return {addState: ""};
     },
     componentDidMount: function () {
-      this.setState(this.props);
+      PlaylistStore.addChangeListener(this.setAddState);
+      this.setAddState(this.props);
     },
     componentWillUnmount: function () {
-
+      PlaylistStore.removeChangeListener(this.setAddState);
     },
     componentWillReceiveProps: function (nextProps) {
-      setState(nextProps);
+      this.setAddState(nextProps);
 
     },
     setAddState: function (props) {
@@ -38,9 +39,11 @@
 
       if (this.state.addState === "Add") {
         // Call playlist action to add track to playlist
+        PlaylistActions.addTrackToPlaylist(trackId, playlistId);
         this.setState({addState: "Added"});
       } else {
         // Call playlist action to add track to playlist
+        PlaylistActions.removeTrackFromPlaylist(trackId, playlistId);
         this.setState({addState: "Add"});
       }
     },

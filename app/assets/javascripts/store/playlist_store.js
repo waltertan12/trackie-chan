@@ -87,6 +87,10 @@
           resetUserPlaylists(payload.userId, payload.playlists);
           root.PlaylistStore.emit(CHANGE_EVENT);
           break;
+        case PlaylistConstants.PLAYLIST_UPDATED:
+          resetPlaylist(payload.playlist.user_id, payload.playlist);
+          root.PlaylistStore.emit(CHANGE_EVENT);
+          break;
       }
     })
   }); 
