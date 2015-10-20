@@ -61,7 +61,6 @@
           console.log(err);
         }
       })
-
     },
     createPlaylist: function (playlist) {
       $.ajax({
@@ -78,6 +77,7 @@
         }
 
       })
+
     }
   };
 })(this);
