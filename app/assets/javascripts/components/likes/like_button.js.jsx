@@ -35,15 +35,26 @@
 
       if (this.state.likeState === "<3") {
         LikeActions.like(likableType, likableId);
-        if (likableType === "Track") {
-          TrackActions.receiveSingleTrack(likableId);
+        switch(likableType) {
+          case "Track":
+            TrackActions.receiveSingleTrack(likableId);
+            break;
+          case "Playlist":
+            PlaylistActions.receivePlaylist(likableId);
+            break;
         }
         this.setState({likeState: "</3"});
       } else {
         LikeActions.unlike(likableType, likableId);
-        if (likableType === "Track") {
-          TrackActions.receiveSingleTrack(likableId);
+        switch(likableType) {
+          case "Track":
+            TrackActions.receiveSingleTrack(likableId);
+            break;
+          case "Playlist":
+            PlaylistActions.receivePlaylist(likableId);
+            break;
         }
+
         this.setState({likeState: "<3"});
       }
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);

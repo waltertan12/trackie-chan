@@ -14,8 +14,6 @@
           currentTrackId = TrackStore.getCurrentTrackId(),
           playState;
 
-      this.likeState = UserStore.doesCurrentUserLike("Track", track.id);
-
       if (currentlyPlaying && currentTrackId === this.props.track.id) {
         playState = "Pause";
       } else {
