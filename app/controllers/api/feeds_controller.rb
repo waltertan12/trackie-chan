@@ -8,11 +8,11 @@ class Api::FeedsController < ApplicationController
                 .where(user_id: ids)
                 .order(updated_at: :desc)
                 .limit(FEED_LIMIT)
-    render json: @feed
+    render :feed
   end
 
   def explore_feed
     @feed = Feed.includes(:user, :source).all.limit(FEED_LIMIT)
-    render json: @feed
+    render :feed
   end
 end

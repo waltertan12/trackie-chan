@@ -26,5 +26,6 @@ Rails.application.routes.draw do
          "playlists#remove_track_from_playlist"
 
   get "feed" => "feeds#dashboard_feed"
+  get "explore_feed" => "feeds#explore_feed"
  end
 end
