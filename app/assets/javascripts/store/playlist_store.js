@@ -51,6 +51,9 @@
       } else {
         return _playlists[userId];
       }
+      // if (typeof _playlists[userId] !== "undefined") {
+      //   return _playlists[userId];
+      // }
     },
     findPlaylist: function (userId, playlistId) {
       if (typeof _playlists[userId] === "undefined") {
@@ -79,7 +82,7 @@
     },
     dispatchId: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
-        
+
         case PlaylistConstants.PLAYLIST_RECEIVED:
           resetPlaylist(payload.userId, payload.playlist);
           root.PlaylistStore.emit(CHANGE_EVENT);

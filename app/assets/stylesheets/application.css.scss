@@ -163,6 +163,18 @@ body {
   background: linear-gradient(to bottom right, lightgray, lightblue);
 }
 
+/* playlist index item */
+.playlist-index-item {
+  height: 250px;
+  max-width: 600px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: white;
+  .playlist-index-item-track-container {
+    height: inherit;
+    overflow-y: scroll;
+  }
+}
 
 /* track index */
 .track-index-item {

@@ -44,8 +44,6 @@
       }
     },
     render: function () {
-      console.log("Track Index Item");
-      console.log(this);
       var track = this.props.track,
           trackTitle;
 

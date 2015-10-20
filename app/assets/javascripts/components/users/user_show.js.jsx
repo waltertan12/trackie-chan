@@ -81,7 +81,8 @@
     render: function () {
       var user = this.state.user;
       var tracks = this.state.tracks;
-
+      console.log("user show");
+      console.log(user);
       return (
         <div className="user-show row">
           <div className="jumbotron user-header">
@@ -98,6 +99,8 @@
             <div className="track-index">
               <TrackIndex tracks={tracks} />
             </div>
+
+            <PlaylistIndex userId={user.id} />
           </div>
           <UserSidebar user={user}/>
         </div>

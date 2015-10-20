@@ -13,4 +13,6 @@ json.tracks @user.tracks
 json.followers @user.followers
 json.following  @user.following
 json.likes @user.likes
-json.playlists @user.playlists
+json.playlists(@user.playlists) do |playlist|
+  json.partial! "api/playlists/playlist", playlist: playlist
+end
