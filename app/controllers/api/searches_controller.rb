@@ -1,5 +1,5 @@
 class Api::SearchesController < ApplicationController
-  def search
+  def search
     query = params[:query]
     query.downcase!
 
@@ -19,12 +19,15 @@ class Api::SearchesController < ApplicationController
       tag_id = Tag.where("lower(name) ~ ?", query).first
       @results = Tagging.where(tag_id: tag_id).includes(:taggable)
                         .map { |tagging| tagging.taggable } +
-                 User.where("lower(username) ~ ?", query) +
-                 Track.where("lower(title) ~ ?", query) + 
-                 Playlist.where("lower(title) ~ ?", query)
+                 User.includes(:tracks, :likings, :following, :followers)
+                     .where("lower(username) ~ ?", query) +
+                 Track.includes(:user, :tags, :likes, :taggings)
+                      .where("lower(title) ~ ?", query) + 
+                 Playlist.includes(:user, :tags, :likes, :taggings)
+                         .where("lower(title) ~ ?", query)
 
       @results.uniq!
     end
-    render json: @results
+    render :search
   end
 end
