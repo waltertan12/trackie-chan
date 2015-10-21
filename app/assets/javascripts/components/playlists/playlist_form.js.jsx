@@ -63,6 +63,7 @@
     },
     render: function () {
       var playlists = this.state.playlists,
+          userId = this.props.params.userId,
           trackId = this.props.params.trackId,
           playlistComponents;
 
@@ -73,6 +74,7 @@
           playlists.map( function (playlist) {
             return (
               <PlaylistFormIndexItem trackId={trackId}
+                                     userId={userId}
                                      key={playlist.id} 
                                      playlist={playlist}/>
             );

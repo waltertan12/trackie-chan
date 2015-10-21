@@ -3,7 +3,11 @@ class StaticPagesController < ApplicationController
     render :index
   end
 
-  def sign_in_sign_up
-    render :sign_in_sign_up
+  def sign_in
+    render :sign_in
+  end
+
+  def sign_up
+    render :sign_up
   end
 end

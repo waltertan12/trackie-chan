@@ -1,4 +1,4 @@
-<div id="content"></div>
+<div id="navbar"></div>
 <div class="col-md-6 col-md-offset-3"
   <div class="navbar">
     <ul class="nav nav-tabs">
@@ -14,7 +14,7 @@
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane active" id="sign_up">
+      <div class="tab-pane" id="sign_up">
         <!-- <h2>Create an Account</h2> -->
         <form action="/users" method="POST">
           <input
@@ -47,7 +47,7 @@
                  class="btn btn-primary"/><br>
         </form>
       </div>
-      <div class="tab-pane" id="sign_in">
+      <div class="tab-pane active" id="sign_in">
         <!-- <h2>Sign in</h2> -->
         <form action="/sessions" method="POST">
           <input
@@ -73,8 +73,8 @@
 </div>
 
 <script>
-  // React.render(
-  //   React.createElement(Navbar),
-  //   document.getElementById("content")
-  // )
+  React.render(
+    React.createElement(Navbar),
+    document.getElementById("navbar")
+  )
 </script>

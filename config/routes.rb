@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
  root to: "static_pages#index"
 
- get "sign" => "static_pages#sign_in_sign_up"
+ get "sign_in" => "static_pages#sign_in"
+ get "sign_up" => "static_pages#sign_up"
 
  resource :sessions, only: [:new, :create, :destroy]
 

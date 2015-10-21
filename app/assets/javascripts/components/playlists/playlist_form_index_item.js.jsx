@@ -51,11 +51,15 @@
     },
     render: function () {
       var playlist = this.props.playlist,
-          addState = this.state.addState;
+          addState = this.state.addState
+          link = "/users/" + 
+                 window.CURRENT_USER_ID + 
+                 "/playlists/" + 
+                 playlist.id;
       return (
         <li className="playlist-form-index-item row">
           <div className="col-md-4">
-            <Link to={"/users/" + "/playlist/"}>{playlist.title}</Link>
+            <Link to={link}>{playlist.title}</Link>
           </div>
           <button className="btn btn-primary col-md-offset-4"
                   onClick={this.handleClick}>
