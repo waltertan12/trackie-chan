@@ -1,0 +1,38 @@
+/* player */
+.music-player {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 40px;
+  background-color: lightgray;
+  color: white;
+  display: inline;
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline-block;
+  }
+  .music-player-button {
+    color: darkgray;
+    float: left;
+    &:hover {
+      color: white;
+    }
+  }
+  .next-button {
+    font-size: 20px;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .previous-button {
+    font-size: 20px;
+    text-align: center;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

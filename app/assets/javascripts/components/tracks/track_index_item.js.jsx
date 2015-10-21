@@ -39,7 +39,7 @@
       var playState = this.state.playState;
 
       if (playState === this.play) {
-        TrackActions.playOrPauseTrack(true,  this.props.track);
+        TrackActions.playOrPauseTrack(true,  this.props.track, [this.props.track]);
         this.setState({playState: this.pause});
       } else {
         TrackActions.playOrPauseTrack(false, this.props.track);

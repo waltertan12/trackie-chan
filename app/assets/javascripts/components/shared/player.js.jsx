@@ -64,17 +64,17 @@
         return (
           <div className="music-player">
             <ul>
-              <li className="previous-button" 
+              <li className="music-player-button previous-button" 
                    onClick={this.handlePrevious}>
-                Previous
+                <span className=" glyphicon glyphicon-backward" />
               </li>
-              <li className="play-button" 
+              <li className="music-player-button play-button" 
                    onClick={this.handlePlay}>
                 {playState}
               </li>
-              <li className="next-button" 
+              <li className="music-player-button next-button" 
                    onClick={this.handleNext}>
-                Next
+                <span className=" glyphicon glyphicon-forward" />
               </li>
               <li>
                 <strong>

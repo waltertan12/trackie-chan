@@ -244,24 +244,6 @@ body {
   }
 }
 
-.next-button {
-  width: 40px;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
-    background-color: lightpink;
-  }
-}
-
-.previous-button {
-  width: 70px;
-  text-align: center;
-  &:hover {
-    cursor: pointer;
-    background-color: lightpink;
-  }
-}
-
 /* track show */
 .track-show-container {
   border: 1px solid gray;
@@ -369,26 +351,7 @@ body {
   }
 }
 
-/* player */
-.music-player {
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  height: 40px;
-  background-color: lightgray;
-  color: black;
-  display: inline;
-  ul {
-    list-style-type: none;
-  }
-  li {
-    display: inline-block;
-  }
-  marquee {
-    width: 100vw;
-    display: inline;
-  }
-}
+/* playlist */
 
 .playlist-show {
   border: 1px solid gray;
@@ -412,6 +375,8 @@ body {
     width: 100%;
   }
 }
+
+/* Search index */
 
 .search-index {
   list-style-type: none;
