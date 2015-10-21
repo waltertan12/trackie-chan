@@ -4,6 +4,7 @@
   }
 
   root.SearchBar = React.createClass({
+    mixins: [ReactRouter.History],
     getInitialState: function () {
       return {query: ""};
     },
@@ -12,18 +13,8 @@
     },
     handleSubmit: function (e) {
       e.preventDefault();
-      $.ajax({
-        url: "api/search",
-        type: "GET",
-        dataType: "json",
-        data: {query: this.state.query, options: "all"},
-        success: function (results) {
-          console.log(results);
-        },
-        error: function (err) {
-          console.log(err);
-        }
-      })
+      SearchActions.receiveQuery(this.state.query, "all")
+      this.history.pushState(null, "/search");
     },
     render: function () {
       var classname;

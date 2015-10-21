@@ -7,6 +7,15 @@
     getInitialState: function () {
       return {results: []};
     },
+    componentDidMount: function () {
+      SearchStore.addChangeListener(this.setResults);
+    },
+    componentWillUnmount: function () {
+      SearchStore.removeChangeListener(this.setResults);
+    },
+    setResults: function () {
+      this.setState({results: SearchStore.results()});
+    },
     returnCorrectComponent: function (result, key) {
       switch(result.type) {
         case "Track":
@@ -35,8 +44,8 @@
       } else {
         resultComponents = (
           this.state.results.map( function (result, key) {
-            return returnCorrectComponent(result, key);
-          })
+            return this.returnCorrectComponent(result, key);
+          }.bind(this))
         );
       }
 
