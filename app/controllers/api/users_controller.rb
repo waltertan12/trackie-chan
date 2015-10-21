@@ -42,7 +42,11 @@ class Api::UsersController < ApplicationController
 
   def user_update_params
     if params[:password]
-      user_params
+      if current_user.is_password?(params[:password_confirmation])
+        user_params
+      else
+        # nope
+      end
     else
       params.require(:user).permit(:username, :email, :image_url)
     end
