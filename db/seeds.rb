@@ -72,6 +72,18 @@ owl_city = User.create!(
   password_digest: BCrypt::Password.create("password")
 )
 
+chairlift = User.create!(
+  username: "Chairlift",
+  email: "chair@lift.com",
+  password_digest: BCrypt::Password.create("password")
+)
+
+japandroids = User.create!(
+  username: "Japandroids",
+  email: "post@nothing.com",
+  password_digest: BCrypt::Password.create("password")
+)
+
 track_one = Track.create!(
   title: "Ravinswod",
   description: "WOWOWOWOW",
@@ -154,4 +166,25 @@ fireflies = Track.create!(
   description: "woof",
   user_id: owl_city.id,
   track_url: "http://wheelweb.net/dogandcatfireflypiano.mp3"
+)
+
+forget = Track.create!(
+  title: "I Already Forget Everything You Said",
+  description: ":(",
+  user_id: dig.id,
+  track_url: "http://dublindonut.com/Content/Sounds/03%20I%20Already%20Forgot%20Everything%20You%20Said.mp3"
+)
+
+bruises = Track.create!(
+  title: "Bruises",
+  description: "so, so sad",
+  user_id: chairlift.id,
+  track_url: "http://dublindonut.com/Content/Sounds/04%20-%20Bruises.mp3"
+)
+
+wet_hair = Track.create!(
+  title: "Wet Hair",
+  description: "say what you will",
+  user_id: japandroids.id,
+  track_url: "http://dublindonut.com/Content/Sounds/03%20wet%20hair.mp3"
 )

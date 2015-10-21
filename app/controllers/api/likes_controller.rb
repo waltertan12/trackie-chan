@@ -1,4 +1,6 @@
 class Api::LikesController < ApplicationController
+  before_action :ensure_user_logged_in, only: [:create, :destroy]
+
   def user_index
     @likes = Liking.includes(:likable, {likable: :user}).where(user_id: params[:user_id])
     render :index

@@ -1,4 +1,6 @@
 class Api::PlaylistsController < ApplicationController
+  before_action :ensure_user_logged_in, except: [:show, :user_playlists]
+
   def show
     @playlist = Playlist.includes(:likes, :tracks, :user).find(params[:id])
     render :show

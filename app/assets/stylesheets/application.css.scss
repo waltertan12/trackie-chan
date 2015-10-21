@@ -385,7 +385,10 @@ body {
 .user-index-item {
   list-style-type: none;
   height: 100px;
+  padding: 5px 20px;
   max-width: 600px;
+  border-radius: 5px;
+  border: 1px solid gray;
   img {
     display: inline-block;
     height: 75px;

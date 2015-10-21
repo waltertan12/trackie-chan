@@ -10,6 +10,7 @@
     componentDidMount: function () {
       FeedStore.addChangeListener(this.setFeedItems);
       FeedActions.startPolling(this.props.type);
+      this.getFeedItems();
       this.setFeedItems();
     },
     componentWillReceiveProps: function () {
@@ -20,6 +21,9 @@
     },
     setFeedItems: function () {
       this.setState({feedItems: FeedStore.userFeed()});
+    },
+    getFeedItems: function () {
+      FeedActions.receiveUserFeed();
     },
     trackOrPlaylistRender: function (source, key) {
       switch(source.type) {

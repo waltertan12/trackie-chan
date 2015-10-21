@@ -1,4 +1,6 @@
 class Api::TracksController < ApplicationController
+  before_action :ensure_user_logged_in, except: [:show, :index]
+
   def index
     @tracks = Track.includes(:user, :tags, :likes, {likes: :user}, :comments)
                    .where(user_id: params[:user_id])

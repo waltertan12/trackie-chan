@@ -1,4 +1,6 @@
 class Api::CommentsController < ApplicationController
+  before_action :ensure_user_logged_in, only: [:create, :update, :destroy]
+
   def index
     @comments = Comment.includes(:user).where(track_id: params[:track_id])
     render :index
