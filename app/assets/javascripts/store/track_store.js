@@ -198,14 +198,22 @@
     getCurrentTrackMetadata: function () {
       return _currentAudio.playlist[_currentTrackNumber];
     },
-    playTrack: function (track) {
+    playTrack: function (track, tracks) {
       _hasPlayBeenPressed = true;
       root.TrackStore.pauseTrack();
       root.TrackStore.findTrackInPlaylist(track);
 
       if (_currentTrackNumber === -1) {
+        var tempPlaylist = _currentAudio.playlist.slice();
         _currentAudio.playlist = _nextPlaylist.slice();
         root.TrackStore.findTrackInPlaylist(track);
+
+        if (typeof _currentAudio[_currentTrackNumber] === "undefined" &&
+            typeof tracks !== "undefined") {
+          _nextPlaylist = tempPlaylist.slice();
+          _currentAudio.playlist = tracks;
+          TrackStore.findTrackInPlaylist(track);
+        }
       }
 
       var audio_url = _currentAudio.playlist[_currentTrackNumber].track_url;
@@ -322,7 +330,7 @@
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
 
       } else if (payload.actionType === TrackConstants.PLAY_TRACK) {
-        root.TrackStore.playTrack(payload.track);
+        root.TrackStore.playTrack(payload.track, payload.tracks);
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
 

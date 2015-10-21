@@ -9,6 +9,8 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setLike);
+      this.unlike = <span className="glyphicon glyphicon-heart"/>;
+      this.like = <span className="glyphicon glyphicon-heart-empty"/>;
       this.setLike();
     },
     componentWillReceiveProps: function (nextProps) {
@@ -24,16 +26,16 @@
       var likableType = props.likableType,
           likableId   = props.likableId;
       if (UserStore.doesCurrentUserLike(likableType, likableId)) {
-        this.setState({likeState: "</3"});
+        this.setState({likeState: this.unlike});
       } else {
-        this.setState({likeState: "<3"});
+        this.setState({likeState: this.like});
       }
     },
     likeOrUnlike: function () {
       var likableType = this.props.likableType
           likableId   = this.props.likableId;
 
-      if (this.state.likeState === "<3") {
+      if (this.state.likeState === this.like) {
         LikeActions.like(likableType, likableId);
         switch(likableType) {
           case "Track":
@@ -43,7 +45,7 @@
             PlaylistActions.receivePlaylist(likableId);
             break;
         }
-        this.setState({likeState: "</3"});
+        this.setState({likeState: this.unlike});
       } else {
         LikeActions.unlike(likableType, likableId);
         switch(likableType) {
@@ -55,15 +57,21 @@
             break;
         }
 
-        this.setState({likeState: "<3"});
+        this.setState({likeState: this.like});
       }
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     render: function () {
-      var likeState = this.state.likeState;
+      var likeState = this.state.likeState,
+          classname;
+      if (likeState === this.like) {
+        classname = "Like";
+      } else {
+        classname = "Liked"
+      }
       return (
-        <button className={"btn " + likeState} onClick={this.likeOrUnlike} >
-          {likeState}
+        <button className={"btn " + classname} onClick={this.likeOrUnlike} >
+          {likeState} {classname}
         </button>
       );
     }

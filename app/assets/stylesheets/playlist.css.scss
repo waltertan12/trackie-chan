@@ -1,0 +1,42 @@
+/* playlist index item */
+.playlist-index-item {
+  height: 250px;
+  max-width: 600px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: white;
+  padding: 0 20px;
+  p {
+    margin: 0;
+  }
+  a {
+    color: gray;
+    &:hover {
+      text-decoration: none;
+      color: gray;
+    }
+  }
+  .playlist-index-item-track-container {
+    height: 150px;
+    overflow-y: auto;
+  }
+  .playlist-index-item-track-item {
+    .play-button {
+      font-size: 15px;
+      &:hover {
+        color: white;
+      }
+    }
+    &:hover {
+      background-color: lightgray;
+    }
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    padding: 0px;
+    margin: 0px;
+  }
+}

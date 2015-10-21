@@ -15,18 +15,22 @@
             link = "/users/" +
                    this.props.playlist.user_id + 
                    "/playlists/" +
-                   this.props.playlist.id;
+                   this.props.playlist.id,
+            userLink = "/users/" + this.props.playlist.user_id;
         return (
           <div className="playlist-index-item">
-            <Link to={link}>{playlist.title}</Link>
+            <p><Link to={userLink}>{playlist.username}</Link></p>
+            <b><Link to={link}>{playlist.title}</Link></b>
+            <hr/>
             <ul className="playlist-index-item-track-container">
               {
                 tracks.map( function (track) {
                   return (
-                    <PlaylistIndexItemTrackItem key={track.id} 
+                    <PlaylistIndexItemTrackItem tracks={tracks}
+                                                key={track.id} 
                                                 track={track} />
                   );
-                })
+                }.bind(this))
               }
             </ul>
           </div>

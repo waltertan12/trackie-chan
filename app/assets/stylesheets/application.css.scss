@@ -209,19 +209,6 @@ body {
   background: linear-gradient(to bottom right, lightgray, lightblue);
 }
 
-/* playlist index item */
-.playlist-index-item {
-  height: 250px;
-  max-width: 600px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  background-color: white;
-  .playlist-index-item-track-container {
-    height: inherit;
-    overflow-y: scroll;
-  }
-}
-
 /* track index */
 .track-index-item {
   height: 100px;
@@ -250,9 +237,9 @@ body {
   text-align: center;
   font-size: 27px;
   float: left;
+  color: gray;
   &:hover {
     cursor: pointer;
-    text-shadow: 0 0 10px darkgray;
     color: lightgray;
   }
 }
@@ -439,4 +426,22 @@ body {
     height: 75px;
     width: 75px;
   }
+}
+
+/* like button */
+.Liked {
+  border-color: orange;
+  color: orange;
+  &:hover {
+    color: orange;
+  }
+  width: 84px;
+}
+
+.Like {
+  &:hover {
+    color: orange;
+    border-color: orange;
+  }
+  width: 84px;
 }

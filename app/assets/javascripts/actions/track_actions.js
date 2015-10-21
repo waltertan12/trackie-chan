@@ -4,16 +4,18 @@
   }
 
   root.TrackActions = {
-    playOrPauseTrack: function (action, track) {
+    playOrPauseTrack: function (action, track, optionalTracks) {
       if (action) {
         AppDispatcher.dispatch({
           actionType: TrackConstants.PLAY_TRACK,
-          track: track
+          track: track,
+          tracks: optionalTracks
         })
       } else {
         AppDispatcher.dispatch({
           actionType: TrackConstants.PAUSE_TRACK,
-          track: track
+          track: track,
+          tracks: optionalTracks
         })
       }
     },
