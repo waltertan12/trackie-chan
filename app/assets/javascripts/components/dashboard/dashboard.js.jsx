@@ -3,6 +3,8 @@
     root.Dashboard = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.Dashboard = React.createClass({
     getInitialState: function () {
       return {currentUser: UserStore.findUser(window.CURRENT_USER_ID)};
@@ -32,6 +34,7 @@
 
     },
     render: function () {
+      var tagline = "It's like 4chan and Jackie Chan combined except it's not like that at all";
       if(window.CURRENT_USER_ID > 0) {
         return (
           <div className="dashboard row">
@@ -46,37 +49,41 @@
         return (
           <div>
             <div className="jumbotron landing-page">
-              wow so many songs. good muzik. eargasm
-              aka trackiechan
-              <input type="search" placeholder="Explore :(" className="form-control"/>
+              <h1>TrackieChan</h1>
+              <h4>{tagline}</h4>
+              <SearchBar isNav={false}/>
             </div>
             <div className="feature">
               <div className="row">
+                <Link to="users/5">
+                  <div className="col-md-3 user-feature">
+                    <h4>Chance the Rapper</h4>
+                  </div>
+                </Link>
+                <Link to="users/6">
+                  <div className="col-md-3 user-feature">
+                    <h4>Cashmere Cat</h4>
+                  </div>
+                </Link>
                 <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
                 <div className="col-md-3 user-feature">
-                  Good Artist
-                </div>
-                <div className="col-md-3 user-feature">
-                  Good Artist
-                </div>
-                <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
                 <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
                 <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
                 <div className="col-md-3 user-feature">
-                  Good Artist
+                  <h4>Good Artist</h4>
                 </div>
               </div>
               <div className="description">

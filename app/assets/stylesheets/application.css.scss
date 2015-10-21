@@ -16,7 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(https://fonts.googleapis.com/css?family=Audimat|Lato);
+@import url(https://fonts.googleapis.com/css?family=Pacifico|Lato);
 
 $content-container-min-width:  900px;
 $content-container-min-height: 500px;
@@ -47,6 +47,11 @@ body {
   }
 }
 
+/* navbar */
+.navbar-brand {
+  font-family: Pacifico;
+}
+
 /* dashboard - current user */
 
 .dashboard {
@@ -68,35 +73,66 @@ body {
 /* dashboard - no current user */
 
 .landing-page {
+  text-shadow: 0 0 10px darkgray;
   font-weight: bold;
   font-size: 5em;
   font-style: bold;
-  background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");
+  /*background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");*/
+  background: url("https://unsplash.com/photos/MRxD-J9-4ps/download");
   background-size: cover;
   background-repeat: no-repeat;
   height: 400px;
   color: white;
   background-color: white;
+  .landing-page-search-bar {
+    width: 70%;
+    max-width: 600px;
+    .form-control {
+      border-radius: 5px 0 0 5px;
+    }
+    margin: auto auto;
+    btn {
+      background-color: transparent;
+      float: left;
+    }
+  }
   h1 {
+    font-family: Pacifico;
+  }
+  h4 {
+    font-style: italic;
   }
 }
+
 
 .feature {
   padding: 0px;
   text-align: center;
   .user-feature {
-    height: 200px;
+    height: 225px;
     background: url("http://www.tehcute.com/pics/201108/sad-pug-is-sad-big.jpg");
     background-size: auto 100%;
     border-color: 1px solid gray;
     border-radius: 5px;
     box-shadow: 0 0 10px lightgray;
+    font-weight: bold;
+    color: white;
+    h4 {
+      margin: 40% 0;
+      font-weight: bold;
+    }
+  }
+  .user-feature:hover {
+    opacity: 0.5;
   }
   padding: 10px 0;
 }
 
 .description {
-
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px 0;
 }
 
 /* current user sidebar */

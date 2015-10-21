@@ -9,13 +9,18 @@
       </li>
       <li>
         <a href="#sign_up" data-toggle="tab">Create an Account</a>
-      </li class="active">
-      <li><a href="#sign_in" data-toggle="tab">Sign In</a></li>
+      </li>
+      <li class="active">
+        <a href="#sign_in" data-toggle="tab">
+          Sign In
+        </a>
+      </li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane" id="sign_up">
         <!-- <h2>Create an Account</h2> -->
+        <br>
         <form action="/users" method="POST">
           <input
             type="hidden"
@@ -49,6 +54,7 @@
       </div>
       <div class="tab-pane active" id="sign_in">
         <!-- <h2>Sign in</h2> -->
+        <br>
         <form action="/sessions" method="POST">
           <input
             type="hidden"
@@ -65,7 +71,7 @@
                  name="user[password]"
                  class="form-control"/><br>
 
-          <input type="submit" value="Login!" class="btn btn-primary"/><br>
+          <input type="submit" value="Sign In!" class="btn btn-primary"/><br>
         </form>
       </div>
     </div>

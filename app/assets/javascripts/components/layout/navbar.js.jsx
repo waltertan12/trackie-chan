@@ -27,7 +27,6 @@
     },
     logout: function (e) {
       e.preventDefault();
-      // window.location.assign("/");
       ApiActions.deleteSession();
     },
     render: function () {
@@ -69,19 +68,9 @@
             <li><a href="/sign_up">Upload</a></li>
             <p className="navbar-text">
               <a href="/sign_in">Sign In</a> 
-              &nbsp;or&nbsp; 
+              &nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;
               <a href="/sign_up">Create an Account</a>
             </p>
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome! <span className="caret"></span></a>
-              <ul className="dropdown-menu">
-                <li><a href="/sign_up">Sign Up</a></li>
-                <li><a href="/sign_up">for real</a></li>
-                <li><a href="/sign_up">please sign up</a></li>
-                <li role="separator" className="divider"></li>
-                <li><a href="/sign_in">or sign in...</a></li>
-              </ul>
-            </li>
           </ul>
         );
       }
