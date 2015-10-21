@@ -73,13 +73,19 @@ body {
 /* dashboard - no current user */
 
 .landing-page {
+  border-radius: 0;
   text-shadow: 0 0 10px darkgray;
   font-weight: bold;
   font-size: 5em;
   font-style: bold;
-  /*background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");*/
-  background: url("https://unsplash.com/photos/MRxD-J9-4ps/download");
+  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+  background: -o-linear-gradient(bottom right, lightgray, lightblue);
+  background: -moz-linear-gradient(bottom right, lightgray, lightblue);
+  background: linear-gradient(to bottom right, lightgray, lightblue);
+  background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");
+  /*background: url("https://unsplash.com/photos/MRxD-J9-4ps/download");*/
   background-size: cover;
+  background-position: center-bottom;
   background-repeat: no-repeat;
   height: 400px;
   color: white;
@@ -118,8 +124,12 @@ body {
     font-weight: bold;
     color: white;
     h4 {
-      margin: 40% 0;
+      background-color: black;
       font-weight: bold;
+      border-radius: 5px 5px 0 0;
+    }
+    a:hover {
+      text-decoration: none;
     }
   }
   .user-feature:hover {
@@ -219,14 +229,31 @@ body {
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
+  padding: 0 10px;
+  .track-index-item-header {
+    color: gray;
+    p {
+      margin: 0;
+    }
+    a {
+      color: gray;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 .play-button {
   width: 40px;
   text-align: center;
+  font-size: 27px;
+  float: left;
   &:hover {
     cursor: pointer;
-    background-color: lightpink;
+    text-shadow: 0 0 10px darkgray;
+    color: lightgray;
   }
 }
 
@@ -360,9 +387,9 @@ body {
   position: fixed;
   bottom: 0;
   width: 100vw;
-  height: 75px;
-  background-color: purple;
-  color: white;
+  height: 40px;
+  background-color: lightgray;
+  color: black;
   display: inline;
   ul {
     list-style-type: none;

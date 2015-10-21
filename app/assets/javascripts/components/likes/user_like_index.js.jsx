@@ -63,7 +63,7 @@
       }
       return (
         <div className="like-index">
-          <h3>Liked Tracks</h3>
+          <h3>Likes</h3>
           {likeList}
         </div>
       );

@@ -34,7 +34,7 @@
 
     },
     render: function () {
-      var tagline = "It's like 4chan and Jackie Chan combined except it's not like that at all";
+      var tagline = "Find new artists. Discover new songs.";
       if(window.CURRENT_USER_ID > 0) {
         return (
           <div className="dashboard row">
@@ -54,43 +54,76 @@
               <SearchBar isNav={false}/>
             </div>
             <div className="feature">
+              <h2>Listen now:</h2>
               <div className="row">
-                <Link to="users/5">
-                  <div className="col-md-3 user-feature">
-                    <h4>Chance the Rapper</h4>
-                  </div>
-                </Link>
-                <Link to="users/6">
-                  <div className="col-md-3 user-feature">
-                    <h4>Cashmere Cat</h4>
-                  </div>
-                </Link>
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="users/5">
+                    <div className="user-feature">
+                      <h4>Chance the Rapper</h4>
+                    </div>
+                  </Link>
                 </div>
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="users/6">
+                    <div className="user-feature">
+                      <h4>Cashmere Cat</h4>
+                    </div>
+                  </Link>
+                </div>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
+                </div>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
                 </div>
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
                 </div>
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
                 </div>
-                <div className="col-md-3 user-feature">
-                  <h4>Good Artist</h4>
+                <div className="col-md-3">
+                  <Link to="/">
+                    <div className="user-feature">
+                      <h4>Good Artist</h4>
+                    </div>
+                  </Link>
                 </div>
               </div>
               <div className="description">
                 <h3>You gonna have so much FOMO if you do not sign up</h3>
                 <p>no lie..</p>
-                <a href="/users/new" className="btn btn-success">
+                <a href="/sign_up" className="btn btn-success">
                   Please... sign up
+                </a>
+                <p>or, if you already have an account</p>
+                <a href="/sign_in" className="btn btn-success">
+                  Sign In
                 </a>
               </div>
             </div>

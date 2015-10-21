@@ -10,6 +10,8 @@
     componentDidMount: function () {
       TrackStore.addPlaylistListener(this.setPlayState);
       this.setPlayState();
+      this.pause = <span className='glyphicon glyphicon-pause'/>;
+      this.play = <span className='glyphicon glyphicon-play'/>;
     },
     componentWillUnmount: function () {
       TrackStore.removePlaylistListener(this.setPlayState);
@@ -20,19 +22,19 @@
 
       if (typeof metadata !== "undefined" &&
           typeof metadata.title !== "undefined") {
-        info = <marquee>{metadata.title} by {metadata.username}</marquee>;
+        info = <p>{metadata.title} by {metadata.username}</p>;
       } else {
-        info = <marquee>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</marquee>;
+        info = <p>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</p>;
       }
 
       if (TrackStore.isATrackCurrentlyPlaying()) {
         this.setState({
-          playState: "Pause",
+          playState: this.pause,
           info: info
         });
       } else {
         this.setState({
-          playState: "Play",
+          playState: this.play,
           info: info
         });
       }
@@ -45,11 +47,13 @@
     },
     handlePlay: function () {
       var action;
-      if (this.state.playState === "Play") {
-        this.setState({playState: "Pause"});
+      if (this.state.playState === this.play) {
+        this.setState({
+          playState: this.pause
+        });
         action = true;
       } else {
-        this.setState({playState: "Play"});
+        this.setState({playState: this.play});
         action = false;
       }
       TrackActions.playerPlayOrPause(action);
@@ -78,27 +82,6 @@
                 </strong>
               </li>
             </ul>
-            
-            <marquee direction="left" behavior="scroll">
-              wow 
-              MOM 
-              wow 
-              nomom 
-              nograon Zone 
-              <strong>\/\/o\/\/</strong> 
-              souch good song 
-              <em>u r artist</em> 
-              bohemian lyfe
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              &nbsp;
-              wowowow
-              &nbsp;
-              &nbsp;
-              such such
-              &nbsp;
-            </marquee>
           </div>
         );
       } else {

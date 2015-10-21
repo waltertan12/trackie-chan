@@ -14,10 +14,13 @@
           currentTrackId = TrackStore.getCurrentTrackId(),
           playState;
 
+      this.pause = <span className='glyphicon glyphicon-pause'/>;
+      this.play = <span className='glyphicon glyphicon-play'/>;
+
       if (currentlyPlaying && currentTrackId === this.props.track.id) {
-        playState = "Pause";
+        playState = this.pause;
       } else {
-        playState = "Play";
+        playState = this.play;
       }
       this.setState({playState: playState});
     },
@@ -27,20 +30,20 @@
     setPlayState: function () {
       if (TrackStore.getCurrentTrackId() === this.props.track.id &&
           TrackStore.isATrackCurrentlyPlaying()) {
-        this.setState({playState: "Pause"});
+        this.setState({playState: this.pause});
       } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
-        this.setState({playState: "Play"});
+        this.setState({playState: this.play});
       }
     },
     playOrPause: function () {
       var playState = this.state.playState;
 
-      if (playState === "Play") {
+      if (playState === this.play) {
         TrackActions.playOrPauseTrack(true,  this.props.track);
-        this.setState({playState: "Pause"});
+        this.setState({playState: this.pause});
       } else {
         TrackActions.playOrPauseTrack(false, this.props.track);
-        this.setState({playState: "Play"});
+        this.setState({playState: this.play});
       }
     },
     render: function () {
@@ -59,14 +62,23 @@
       }
       return (
         <div className="track-index-item">
-          {trackTitle}
-          <LikeButton likableType="Track" 
-                      likableId={this.props.track.id} />
-          <AddToPlaylistButton userId={this.props.track.user_id}
-                               trackId={this.props.track.id}/>
-          <div className="play-button" 
-               onClick={this.playOrPause}>
-               {this.state.playState}
+          <div className="track-index-item-header">
+            <div className="play-button" 
+                 onClick={this.playOrPause}>
+                 {this.state.playState}
+            </div>
+            <p>
+              <Link to={"/users/" + track.user_id}>
+                {track.username}
+              </Link>
+            </p>
+            <b>{trackTitle}</b>
+          </div>
+          <div className="track-index-item-buttons">
+            <LikeButton likableType="Track" 
+                        likableId={this.props.track.id} />
+            <AddToPlaylistButton userId={this.props.track.user_id}
+                                 trackId={this.props.track.id}/>
           </div>
         </div>
       );
