@@ -8,6 +8,8 @@ json.extract!(
   :updated_at
 )
 
+json.type "User"
+
 json.tracks user.tracks
 
 json.followers user.followers

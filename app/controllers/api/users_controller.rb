@@ -45,7 +45,7 @@ class Api::UsersController < ApplicationController
       if current_user.is_password?(params[:password_confirmation])
         user_params
       else
-        # nope
+        nil
       end
     else
       params.require(:user).permit(:username, :email, :image_url)
