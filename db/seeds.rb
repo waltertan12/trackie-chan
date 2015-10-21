@@ -45,31 +45,31 @@ cashmere = User.create!(
 dig = User.create!(
   username: "The Dig",
   email: "dig@me.com",
-  password_digest: Bcrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password")
 )
 
 toro = User.create!(
   username: "Toro y Moi",
   email: "toroandme@wow.com",
-  password_digest: Bcrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password")
 )
 
 mike_jones = User.create!(
   username: "Who? Mike Joooonnnessss",
   email: "mike.jones@theoneandonly.com",
-  password_digest: Bcrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password")
 )
 
 meow_the_jewels = User.create!(
   username: "Meow the Jewels",
   email: "rtj@cool.com",
-  password_digest: Bcrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password")
 )
 
-owl_city = Track.create!(
-  username: "Meow the Jewels",
-  email: "rtj@cool.com",
-  password_digest: Bcrypt::Password.create("password")
+owl_city = User.create!(
+  username: "Owl City",
+  email: "owl@city.com",
+  password_digest: BCrypt::Password.create("password")
 )
 
 track_one = Track.create!(
