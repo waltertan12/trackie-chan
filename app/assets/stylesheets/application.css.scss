@@ -16,7 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import url(https://fonts.googleapis.com/css?family=Lobster|Raleway);
+@import url(https://fonts.googleapis.com/css?family=Audimat|Lato);
 
 $content-container-min-width:  900px;
 $content-container-min-height: 500px;
@@ -37,7 +37,7 @@ $content-container-min-height: 500px;
 }
 
 body {
-  font-family: "Comic Sans MS", Raleway, Ubuntu, Helvetica;
+  font-family: Lato, "Comic Sans MS", Raleway, Ubuntu, Helvetica;
 }
 
 .sign-in-sign-up-header {
