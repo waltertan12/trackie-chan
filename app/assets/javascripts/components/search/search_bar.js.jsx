@@ -14,6 +14,7 @@
     handleSubmit: function (e) {
       e.preventDefault();
       SearchActions.receiveQuery(this.state.query, "all")
+      this.setState({query: ""});
       this.history.pushState(null, "/search");
     },
     render: function () {

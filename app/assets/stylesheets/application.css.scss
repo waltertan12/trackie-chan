@@ -362,3 +362,18 @@ body {
     width: 100%;
   }
 }
+
+.search-index {
+  list-style-type: none;
+}
+
+.user-index-item {
+  list-style-type: none;
+  height: 100px;
+  max-width: 600px;
+  img {
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+  }
+}

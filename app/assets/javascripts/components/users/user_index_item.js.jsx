@@ -11,7 +11,7 @@
       return (
         <li className="user-index-item">
           <Link to={"/users/" + user.id}>
-            <img src={user.image_url} height="20" width="20" />
+            <img src={user.image_url} />
             {user.username}
           </Link>
         </li>
