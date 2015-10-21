@@ -76,7 +76,7 @@
                    onClick={this.handleNext}>
                 <span className=" glyphicon glyphicon-forward" />
               </li>
-              <li>
+              <li className="music-player-info">
                 <strong>
                   {this.state.info}
                 </strong>
