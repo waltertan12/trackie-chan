@@ -169,6 +169,25 @@
         }
       })
     },
+    updateTrack: function (trackData, callback, redirect) {
+      $.ajax({
+        url: "/api/tracks/" + trackData.id,
+        type: "PUT",
+        dataType: "json",
+        data: {track: trackData},
+        success: function (track) {
+          console.log("response");
+          console.log(track);
+          callback(track);
+          var uri = "/users/" + track.user_id +
+                    "/tracks/" + track.id;
+          redirect(uri);
+        },
+        error: function (err) {
+          ErrorActions.receiveErrors(err.responseJSON);
+        }
+      })
+    },
     createComment: function (comment, trackId, callback) {
       $.ajax({
         url: "/api/comments",

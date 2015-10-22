@@ -91,6 +91,17 @@
         dispatchCallback, 
         progressCallback
       );
+    },
+    updateTrack: function (trackData, redirect) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_UPDATED,
+          userId: track.user_id,
+          track: track
+        });
+      };
+
+      ApiUtils.updateTrack(trackData, dispatchCallback, redirect);
     }
   };
 })(this);

@@ -62,7 +62,7 @@
         } else {
           for (var i = 0; i < _tracks[userId].length; i++) {
             if (_tracks[userId][i]) {
-              _tracks[userId][i] === track;
+              _tracks[userId][i] = track;
               return;
             }
           }
@@ -317,7 +317,13 @@
         resetProgress(payload.progress);
 
         root.TrackStore.emit(UPLOAD_EVENT);
+      } else if (payload.actionType === TrackConstants.TRACK_UPDATED) {
+        console.log("Resetting track");
+        console.log(payload.track);
+        resetTrack(payload.userId, payload.track);
 
+        root.TrackStore.emit(CHANGE_EVENT);
+        
       // Global Playlist responses
       } else if (payload.actionType === TrackConstants.RESET_PLAYLIST) {
         if (!root.TrackStore.isATrackCurrentlyPlaying()) {

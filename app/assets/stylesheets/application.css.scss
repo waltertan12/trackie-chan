@@ -283,7 +283,11 @@ a {
 
 .track-like-index {
   ul {
+    padding: 0;
     list-style-type: none;
+  }
+  li {
+    padding: 5px 0;
   }
 }
 
@@ -352,6 +356,7 @@ a {
 /* comment index */
 .comment-index {
   ul {
+    padding: 0;
     list-style-type: none;
   }
   .comment-index-item {

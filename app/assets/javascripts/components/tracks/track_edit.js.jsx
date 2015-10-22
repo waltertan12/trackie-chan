@@ -6,6 +6,7 @@
   var Link = ReactRouter.Link;
 
   root.TrackEdit = React.createClass({
+    mixins: [ReactRouter.History],
     getInitialState: function () {
       return {
         id: -1, 
@@ -22,24 +23,30 @@
     },
     componentDidMount: function () {
       TrackStore.addChangeListener(this.setTrack);
+      ErrorStore.addChangeListener(this.setErrors);
 
       this.tagInput = new Taggle("tag-field", 
         {duplicateTagClass: 'bounce'}
       );
       
-      var userId = this.props.params.userId,
-          trackId = this.props.params.trackId,
+      var userId = parseInt(this.props.params.userId),
+          trackId = parseInt(this.props.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
-      
+
+      console.log("track found?");
+      console.log(newTrack);
       if (newTrack.id === -1) {
         this.getTrack(this.props);
       } else {
         this.setTrack();
       }
     },
+    componentWillUnmount: function () {
+      ErrorStore.removeChangeListener(this.setErrors);
+    },
     componentWillReceiveProps: function (nextProps) {
-      var userId = nextProps.params.userId,
-          trackId = nextProps.params.trackId,
+      var userId = parseInt(nextProps.params.userId),
+          trackId = parseInt(nextProps.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
       
       if (newTrack.id === -1) {
@@ -60,8 +67,7 @@
           trackId = parseInt(this.props.params.trackId);
 
       var track = TrackStore.findTrack(userId, trackId);
-      console.log(track);
-      
+
       this.processTags(track.tags);
 
       this.setState(track)
@@ -69,9 +75,35 @@
     getTrack: function (props) {
       TrackActions.receiveSingleTrack(props.params.trackId);
     },
+    setErrors: function  () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(<ErrorDisplay errors={ErrorStore.all()}/>, node);
+      this.setState({errors: ErrorStore.all()});
+    },
     _onSubmit: function (e) {
       e.preventDefault();
-      console.log("click");
+      var hist = this.props.history,
+          tags = this.tagInput.getTagValues(),
+          track = this.state;
+          redirect = function (optionalPath) {
+            if (typeof optionalPath === "undefined") {
+              hist.goBack();
+            } else {
+              hist.pushState(null, optionalPath);
+            }
+          };
+          
+      track.tags = tags;
+
+      TrackActions.updateTrack(track, redirect);
+    },
+    handleCancel: function (e) {
+      e.preventDefault();
+      this.props.history.goBack();
+    },
+    handleDestroy: function (e) {
+      e.preventDefault();
+      console.log(":(");
     },
     updateTitle: function (e) {
       var value = e.target.value,
@@ -86,10 +118,12 @@
       this.setState(newState);
     },
     updateImageFile: function (e) {
-      this.imageFile = e.target;
+      var value = e.target.value,
+          newState = this.state;
+      newState.image_url = value;
+      this.setState(newState);
     },
     render: function () {
-      console.log(this.state);
       return (
         <div className="track-edit col-md-offset-3 col-md-6">
           <h1>Edit Track</h1>
@@ -120,16 +154,20 @@
             </div><br/><br/>
 
             <div className="form-group">
-              <label>Upload an image <em>(optional aka it does not work)</em></label><br/>
-              <input type="file"
-                     accept="image/*"
+              <label>Update Image Link</label><br/>
+              <input type="text"
+                     className="form-control"
+                     value={this.state.image_url}
                      onChange={this.updateImageFile} />
             </div><br/><br/>
 
             <input type="submit" 
                    className="btn btn-success"
-                   value="Save"/>&nbsp;OR&nbsp;
-            <Link to="/" className="btn btn-danger">Destroy Track :(</Link>
+                   value="Save"/>&nbsp;
+            <button onClick={this.handleCancel} 
+                    className="btn btn-warning">Cancel</button>&nbsp;
+            <button onClick={this.handleDestroy}
+                    className="btn btn-danger">Destroy Track :(</button>
           </form>
         </div>
       );

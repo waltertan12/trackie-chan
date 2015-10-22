@@ -25,17 +25,29 @@ class Api::TracksController < ApplicationController
   end
 
   def update
-    @track = Track.find(params[:id])
+    @track = Track.includes(:tags, {tags: :taggings}).find(params[:id])
 
-    if @track.save
-      render json: @track
+    if @track.update(track_params)
+      if params[:track][:tags] && 
+         @track.tags.pluck(:name) != params[:track][:tags]
+
+        update_tags(@track.tags.pluck(:name), 
+                    params[:track][:tags], 
+                    @track.id)
+        
+        @track = Track.includes(:tags, {tags: :taggings}).find(params[:id])
+      end
+
+      p @track.tags.pluck(:name)
+
+      render :show
     else
       render json: @track.errors.full_messages, status: 422
     end
   end
 
   def show
-    @track = Track.includes(:user, :tags, :likes, {likes: :user}, :comments)
+    @track = Track.includes(:user, {user: :likings}, :tags, :likes, {likes: :user}, :comments)
                   .find(params[:id])
 
     if @track
@@ -46,7 +58,7 @@ class Api::TracksController < ApplicationController
   end
 
   def destroy
-    @track = Track.find(params[:id])
+    @track = Track.includes(:tags).find(params[:id])
 
     if @track.destroy
       render json: @track
@@ -62,23 +74,44 @@ class Api::TracksController < ApplicationController
       :description, 
       :track_url, 
       :image_url,
-      :boolean
+      :boolean,
     )
+  end
+
+  def update_tags(current_tags, new_tags, track_id)
+    # Check if we need to remove tags
+    current_tags.each do |tag_name|
+      unless new_tags.include?(tag_name)
+        tag = Tag.find_by(name: tag_name)
+        Tagging.find_by(tag_id: tag.id).destroy
+      end
+    end
+
+    # Check if we need to add tags
+    new_tags.each do |tag_name|
+      unless current_tags.include?(tag_name)
+        add_tag(tag_name, track_id)
+      end
+    end
   end
 
   def add_tags(tag_array, track_id)
     tag_array.each do |tag_name|
-      if Tag.exists?(name: tag_name)
-        tag = Tag.find_by(name: tag_name)
-      else
-        tag = Tag.create(name: tag_name)
-      end
-
-      Tagging.create(
-          tag_id: tag.id, 
-          taggable_id: track_id,
-          taggable_type: "Track" 
-      )
+      add_tag(tag_name, track_id)
     end
+  end
+
+  def add_tag(tag_name, track_id)
+    if Tag.exists?(name: tag_name)
+      tag = Tag.find_by(name: tag_name)
+    else
+      tag = Tag.create(name: tag_name)
+    end
+
+    Tagging.create(
+        tag_id: tag.id, 
+        taggable_id: track_id,
+        taggable_type: "Track" 
+    )
   end
 end

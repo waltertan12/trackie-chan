@@ -2,7 +2,14 @@ class Api::PlaylistsController < ApplicationController
   before_action :ensure_user_logged_in, except: [:show, :user_playlists]
 
   def show
-    @playlist = Playlist.includes(:likes, :tracks, :user).find(params[:id])
+    @playlist = Playlist.includes(
+                  :likes, 
+                  :tracks, 
+                  {tracks: :tags}, 
+                  :user,
+                  {user: :likings},
+                  :tags
+                ).find(params[:id])
     render :show
   end
 
@@ -43,7 +50,14 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def user_playlists
-    @playlists = Playlist.where(user_id: params[:user_id])
+    @playlists =  Playlist.includes(
+                    :likes, 
+                    :tracks, 
+                    {tracks: :tags}, 
+                    :user,
+                    {user: :likings},
+                    :tags
+                  ).where(user_id: params[:user_id])
     render :user_playlists
   end
 
