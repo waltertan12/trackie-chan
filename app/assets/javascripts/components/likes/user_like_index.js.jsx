@@ -20,8 +20,6 @@
       UserLikeStore.removeChangeListener(this.setLikes);
     },
     componentWillReceiveProps: function (nextProps) {
-      console.log("nextProps for UserLikeIndex");
-      console.log(nextProps);
       if (UserLikeStore.hasUserLikes(nextProps.userId)) {
         this.setLikes(nextProps.userId);
       } else {

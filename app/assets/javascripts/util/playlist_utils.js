@@ -62,7 +62,7 @@
         }
       })
     },
-    createPlaylist: function (data, callback) {
+    createPlaylist: function (data, callback, redirect) {
       $.ajax({
         url: "api/playlists",
         dataType: "json",
@@ -74,10 +74,14 @@
         },
         success: function (playlist) {
           callback(playlist);
+          var url = "/users/" + 
+                    playlist.user_id + 
+                    "/playlists/" + 
+                    playlist.id;
+          redirect(url);
         },
         error: function (err) {
-          console.log(err.responseText);
-          console.log(err);
+          ErrorActions.receiveErrors(err.responseJSON);
         }
 
       })

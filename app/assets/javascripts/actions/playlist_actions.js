@@ -54,7 +54,7 @@
         dispatchCallback
       );
     },
-    createPlaylist: function (data) {
+    createPlaylist: function (data, redirect) {
       var dispatchCallback = function (playlist) {
         AppDispatcher.dispatch({
           actionType: PlaylistConstants.PLAYLIST_CREATED,
@@ -64,7 +64,8 @@
 
       PlaylistUtils.createPlaylist(
         data,
-        dispatchCallback
+        dispatchCallback,
+        redirect
       );
     }
   };
