@@ -92,6 +92,9 @@
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <SearchBar inNav={true}/>
+              <Link className="navbar-text trend-link" to="/explore">
+                Trending
+              </Link>
               {navbarRight}
             </div>
           </div>

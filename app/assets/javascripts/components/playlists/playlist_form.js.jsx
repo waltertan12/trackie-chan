@@ -19,6 +19,8 @@
       this.tagInput = new Taggle("playlist-tag-field");
       this.setState({trackId: this.props.trackId});
       this.getPlaylists();
+      ts = this;
+      hist = this.props.history;
     },
     componentWillUnmount: function () {
       PlaylistStore.removeChangeListener(this.setPlaylists);
@@ -43,17 +45,14 @@
         track_id: this.props.params.trackId,
         tags: this.tagInput.getTagValues()
       };
-      console.log("Playlist params");
-      console.log(data);
+      
       PlaylistActions.createPlaylist(data);
+      this.props.history.goBack();
     },
     handleCancel: function () {
       var userId = this.props.params.userId,
           trackId = this.props.params.trackId;
-      this.props.history.pushState(null, "/users/" + 
-                                         userId + 
-                                         "/tracks/" + 
-                                         trackId);
+      this.props.history.goBack();
     },
     updateTitle: function (e) {
       this.setState({title: e.target.value});

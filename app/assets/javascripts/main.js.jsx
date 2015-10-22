@@ -35,6 +35,7 @@ $(function () {
         <Route path="progress" component={UploadProgress} />
       </Route>
       <Route path="search" component={SearchIndex}/>
+      <Route path="explore" component={ExploreFeed}/>
     </Route>
   );
 

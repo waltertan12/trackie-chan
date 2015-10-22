@@ -10,7 +10,6 @@
     componentDidMount: function () {
       FeedStore.addChangeListener(this.setFeedItems);
       FeedActions.startPolling(this.props.type);
-      this.getFeedItems();
       this.setFeedItems();
     },
     componentWillReceiveProps: function () {
@@ -20,10 +19,14 @@
       FeedStore.removeChangeListener(this.setFeedItems);
     },
     setFeedItems: function () {
-      this.setState({feedItems: FeedStore.userFeed()});
-    },
-    getFeedItems: function () {
-      FeedActions.receiveUserFeed();
+      switch(this.props.type) {
+        case "user":
+          this.setState({feedItems: FeedStore.userFeed()});
+          break;
+        case "explore":
+          this.setState({feedItems: FeedStore.exploreFeed()});
+          break;
+      }
     },
     trackOrPlaylistRender: function (source, key) {
       switch(source.type) {
@@ -46,7 +49,6 @@
         feedItems = <li>There is nothing in your feed</li>
       } else {
         console.log(this.state);
-        asdfasdfadsf = this.state;
         feedItems = this.state.feedItems.map( function (item, index) {
           item = this.trackOrPlaylistRender(item, index);
           return item;

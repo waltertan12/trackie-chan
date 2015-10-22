@@ -28,9 +28,13 @@
     followOrUnfollow: function () {
       if (this.state.followState === "Follow") {
         ApiActions.followUser(this.props.user);
+        // Temporary solution to update feed
+        FeedActions.receiveUserFeed();
         this.setState({followState: "Unfollow"});
       } else {
         ApiActions.unfollowUser(this.props.user);
+        // Temporary solution to update feed
+        FeedActions.receiveUserFeed();
         this.setState({followState: "Follow"});
       }
     },

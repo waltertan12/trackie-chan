@@ -20,6 +20,8 @@
 
 $content-container-min-width:  900px;
 $content-container-min-height: 500px;
+$header-height: 295px;
+$header-image-size: 150px;
 
 .clearfix:after {
   content: "";
@@ -50,6 +52,13 @@ body {
 /* navbar */
 .navbar-brand {
   font-family: Pacifico;
+}
+
+.trend-link {
+  &:hover {
+    text-decoration: none;
+    color: #333;
+  }
 }
 
 /* dashboard - current user */
@@ -195,10 +204,13 @@ body {
 
 .user-header {
   position: relative;
+  height: $header-height;
   h1 {
     display: inline-block
   }
   .profile-image {
+    height: $header-image-size;
+    width: $header-image-size;
     position: absolute;
     border-radius: 5px;
     right: 5%;

@@ -18,7 +18,7 @@
       this.history.pushState(null, "/search");
     },
     render: function () {
-      var classname;
+      var classname, placeholderText;
 
       if (this.props.inNav) {
         classname = "navbar-form navbar-left";
