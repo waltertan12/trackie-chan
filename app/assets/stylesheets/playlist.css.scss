@@ -1,7 +1,15 @@
+$content-container-min-width:  900px;
+$content-container-min-height: 500px;
+$header-height: 295px;
+$header-image-size: 150px;
+
+
 /* playlist index item */
 .playlist-index-item {
-  height: 250px;
   max-width: 600px;
+  max-height: 250px;
+  height: auto;
+
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
@@ -17,10 +25,12 @@
     }
   }
   .playlist-index-item-track-container {
-    height: 150px;
+    max-height: 150px;
     overflow-y: auto;
+    padding-bottom: 5px;
   }
   .playlist-index-item-track-item {
+    transition-duration: 0.1s;
     .play-button {
       font-size: 15px;
       &:hover {
@@ -28,6 +38,7 @@
       }
     }
     &:hover {
+      cursor: pointer;
       background-color: lightgray;
     }
   }
@@ -38,5 +49,19 @@
   li {
     padding: 0px;
     margin: 0px;
+  }
+}
+
+.playlist-show-header{
+  height: $header-height;
+  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+  background: -o-linear-gradient(bottom right, lightgray, lightblue);
+  background: -moz-linear-gradient(bottom right, lightgray, lightblue);
+  background: linear-gradient(to bottom right, lightgray, lightblue);
+  img {
+    max-height: $header-image-size;
+    max-width: $header-image-size;
+    height: auto;
+    width: auto;
   }
 }

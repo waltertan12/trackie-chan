@@ -34,7 +34,7 @@
          * Class added to the container div when focused
          * @type {String}
          */
-        containerFocusClass:    'active',
+        containerFocusClass:    'activeNonBS',
 
         /**
          * Name added to the hidden inputs within each tag
@@ -314,7 +314,7 @@
          * @param {Number} width
          */
         function _setInputWidth(width) {
-            input.style.width = (width || 10) + 'px';
+            input.style.width = (width || 100) + 'px';
         }
 
         /**

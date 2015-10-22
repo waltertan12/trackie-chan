@@ -89,6 +89,7 @@
             <h1>{user.username}</h1>
             <img className="profile-image"
                  src={user.image_url}  />
+            <br/>
             <FollowButton 
               user={user} 
               followState={UserStore.doesCurrentUserFollow(user)} />

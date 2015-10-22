@@ -43,7 +43,7 @@
         return <div></div>;
       } else {
         return (
-          <button className={"btn " + this.followState}
+          <button className={"btn " + this.state.followState}
                   onClick={this.followOrUnfollow}>
             {this.state.followState}
           </button>

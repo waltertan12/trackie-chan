@@ -44,11 +44,12 @@
       console.log("playlist index item track item");
       console.log(this.props);
       return (
-        <div className="playlist-index-item-track-item clearfix">
+        <div className="playlist-index-item-track-item clearfix" 
+             onClick={this.playOrPause}>
           <div className="play-button" onClick={this.playOrPause}>
             {this.state.playState}
           </div>
-          <b>{track.title}</b> by {track.username}
+          <b>{track.title}</b> by <b>{track.username}</b>
         </div>
       );
     }

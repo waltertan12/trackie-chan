@@ -42,13 +42,20 @@
         redirectButton = <div><h3>Processing Track</h3></div>;
       }
       return (
-        <div className="progress-show">
-          <h1>Uploading Track</h1>
-          <progress className="progress" 
-                    max="100" 
-                    value={this.state.value}/>
-          <br/><br/>
-          {redirectButton}
+        <div className="progress">
+          <div  className={
+                  "progress-bar " + 
+                  "myProgress " +
+                  "progress-bar-success " + 
+                  "progress-bar-striped " + 
+                  "active"
+                }
+               role="progressbar" 
+               aria-valuenow={this.state.value + "%"} 
+               aria-valuemin="0" 
+               aria-valuemax="100"
+               style={{width: + this.state.value + "%"}}>
+          </div>
         </div>
       );
     }
