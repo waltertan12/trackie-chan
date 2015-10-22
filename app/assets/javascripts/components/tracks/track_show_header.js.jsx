@@ -5,7 +5,7 @@
 
   root.TrackShowHeader = React.createClass({
     render: function () {
-      var track = this.props.track
+      var track = this.props.track;
       return (
         <div className="jumbotron track-show-header">
           <div>
@@ -16,6 +16,8 @@
                  height="150" 
                  width="150"/>
           </div>
+          <br/>
+          <TrackEditButton userId={track.user_id} trackId={track.id}/>
         </div>
       );
     }
