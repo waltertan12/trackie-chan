@@ -83,9 +83,38 @@
         error: function (err) {
           ErrorActions.receiveErrors(err.responseJSON);
         }
-
       })
-
+    },
+    updatePlaylist: function (playlist, callback, redirect) {
+      $.ajax({
+        url: "/api/playlists/" + playlist.id,
+        type: "PUT",
+        dataType: "json",
+        data: {playlist: playlist},
+        success: function (playlist) {
+          callback(playlist);
+          var uri = "/users/" + playlist.user_id +
+                    "/playlists/" + playlist.id
+          redirect(uri);
+        },
+        error: function (err) {
+          ErrorActions.receiveErrors(err.responseJSON);
+        }
+      })
+    },
+    destroyPlaylist: function (playlistId, callback, redirect) {
+      $.ajax({
+        url: "/api/playlists/" + playlistId,
+        type: "DELETE",
+        dataType: "json",
+        success: function (playlistData) {
+          callback(playlistData);
+          redirect("/");
+        },
+        error: function () {
+          ErrorActions.receiveErrors(err.responseJSON);
+        }
+      })
     }
   };
 })(this);

@@ -29,12 +29,10 @@
         {duplicateTagClass: 'bounce'}
       );
       
-      var userId = parseInt(this.props.params.userId),
+      var userId = window.CURRENT_USER_ID,
           trackId = parseInt(this.props.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
 
-      console.log("track found?");
-      console.log(newTrack);
       if (newTrack.id === -1) {
         this.getTrack(this.props);
       } else {
@@ -45,7 +43,7 @@
       ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
-      var userId = parseInt(nextProps.params.userId),
+      var userId = window.CURRENT_USER_ID,
           trackId = parseInt(nextProps.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
       
@@ -92,7 +90,7 @@
               hist.pushState(null, optionalPath);
             }
           };
-          
+
       track.tags = tags;
 
       TrackActions.updateTrack(track, redirect);

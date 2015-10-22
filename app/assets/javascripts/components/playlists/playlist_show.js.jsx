@@ -37,6 +37,8 @@
             <h1>{playlist.title}</h1>
             <LikeButton likableType="Playlist" 
                       likableId={playlist.id} />
+            <PlaylistEditButton userId={playlist.user_id} 
+                                playlistId={playlist.id}/>
           </div>
           <div className="container-fullwidth track-description">
             <div className="container">

@@ -13,7 +13,7 @@ class Track < ActiveRecord::Base
     foreign_key: :likable_id,
     primary_key: :id,
     dependent: :destroy
-  has_many :taggings, as: :taggable
+  has_many :taggings, as: :taggable, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :playlistings
   has_many :playlists, 

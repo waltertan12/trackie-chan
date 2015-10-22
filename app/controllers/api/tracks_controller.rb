@@ -34,12 +34,10 @@ class Api::TracksController < ApplicationController
         update_tags(@track.tags.pluck(:name), 
                     params[:track][:tags], 
                     @track.id)
-        
+
         @track = Track.includes(:tags, {tags: :taggings}).find(params[:id])
       end
-
-      p @track.tags.pluck(:name)
-
+      
       render :show
     else
       render json: @track.errors.full_messages, status: 422

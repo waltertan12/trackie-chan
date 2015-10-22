@@ -1,6 +1,6 @@
 (function (root) {
   if (root.PlaylistForm === "undefined") {
-
+    root.PlaylistForm = {};
   }
 
   root.PlaylistForm = React.createClass({

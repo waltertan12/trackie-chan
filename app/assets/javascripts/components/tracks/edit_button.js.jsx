@@ -14,7 +14,7 @@
 
       if (window.CURRENT_USER_ID > 0 &&
           window.CURRENT_USER_ID === userId) {
-        return <Link to={link} className="btn Liked">Edit</Link>;
+        return <Link to={link} className="btn btn-primary Liked">Edit</Link>;
       } else {
         return <div></div>;
       }

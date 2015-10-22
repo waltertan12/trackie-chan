@@ -18,6 +18,23 @@
           _playlists[userId].push(playlist);
         }
       },
+      getPlaylistIndex = function (userId, playlistId) {
+        if (typeof _playlists[userId] !== "undefined") {
+          for (var i = 0; i < _playlists[userId].length; i++) {
+            if (_playlists[userId][i].id === playlistId) {
+              return i;
+            }
+          }
+        }
+
+        return -1;
+      },
+      removePlaylist = function (userId, playlistId) {
+        var playlistIndex = getPlaylistIndex(userId, playlistId);
+        if (playlistIndex >= 0) {
+          _playlists[userId].splice(playlistIndex, 1);
+        } 
+      },
       resetPlaylist = function (userId, playlist) {
         if (typeof _playlists[userId] === "undefined") {
           _playlists[userId] = [playlist];
@@ -98,6 +115,13 @@
         case PlaylistConstants.PLAYLIST_CREATED:
           var userId = payload.playlist.user_id;
           addPlaylist(userId, payload.playlist);
+          root.PlaylistStore.emit(CHANGE_EVENT);
+          break;
+
+        case PlaylistConstants.PLAYLIST_DESTROYED:
+          var userId = payload.userId,
+              playlistId = payload.playlistId;
+          removePlaylist(userId, playlistId);
           root.PlaylistStore.emit(CHANGE_EVENT);
           break;
       }

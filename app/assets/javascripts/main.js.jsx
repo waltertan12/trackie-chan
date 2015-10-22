@@ -27,7 +27,10 @@ $(function () {
         <Route path=":userId" component={UserShow}>
         </Route>
           <Route path=":userId/tracks/:trackId" component={TrackShow}/>
-          <Route path=":userId/playlists/:playlistId" component={PlaylistShow}/>
+          <Route path=":userId/playlists/:playlistId" 
+                 component={PlaylistShow}/>
+          <Route path=":userId/playlists/:playlistId/edit" 
+                 component={PlaylistEdit}/>
           <Route path=":userId/tracks/:trackId/playlist-form" 
                  component={PlaylistForm}/>
           <Route path=":userId/tracks/:trackId/edit" component={TrackEdit} />
