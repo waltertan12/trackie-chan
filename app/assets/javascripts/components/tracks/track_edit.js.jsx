@@ -16,7 +16,8 @@
         username: "",
         comments: [],
         likes: [],
-        tags: []
+        tags: [],
+        errors: []
       };
     },
     componentDidMount: function () {

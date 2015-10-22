@@ -1,0 +1,21 @@
+.errors-container {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .errors-container-close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
