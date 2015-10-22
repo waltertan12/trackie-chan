@@ -41,7 +41,6 @@
       })
     },
     resetPlaylist: function (tracks) {
-      console.log("Track action resetting playlist");
       AppDispatcher.dispatch({
         actionType: TrackConstants.RESET_PLAYLIST,
         tracks: tracks

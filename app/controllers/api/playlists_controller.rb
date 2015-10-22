@@ -13,7 +13,7 @@ class Api::PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:playlist_id])
       render :show
     else
-      render json: @playlisting.error.full_messages
+      render json: @playlisting.error.full_messages, status: 422
     end
   end
 
@@ -24,7 +24,7 @@ class Api::PlaylistsController < ApplicationController
       @playlist = Playlist.find(params[:playlist_id])
       render :show
     else
-      render json: @playlisting.error.full_messages
+      render json: @playlisting.error.full_messages, status: 422
     end
   end
 
@@ -33,12 +33,12 @@ class Api::PlaylistsController < ApplicationController
     @playlist.user_id = current_user.id
 
     if @playlist.save
-      add_tags(params[:tags], @playlist.id)
-      add_track(@playlist.id, params[:track_id])
+      add_tags(params[:tags], @playlist.id) if params[:tags]
+      add_track(@playlist.id, params[:track_id]) if params[:track_id]
 
       render :show
     else
-      render json: @playlist.errors.full_messages
+      render json: @playlist.errors.full_messages, status: 422
     end
   end
 

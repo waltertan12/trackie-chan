@@ -41,8 +41,6 @@
     },
     render: function () {
       var track = this.props.track;
-      console.log("playlist index item track item");
-      console.log(this.props);
       return (
         <div className="playlist-index-item-track-item clearfix" 
              onClick={this.playOrPause}>

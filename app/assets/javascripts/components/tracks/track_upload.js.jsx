@@ -16,6 +16,7 @@
       );
     },
     componentDidMount: function () {
+      ErrorStore.addChangeListener(this.setErrors);
       this.tagInput = new Taggle("tag-field", 
         {tags: [
           "wow", 
@@ -24,6 +25,15 @@
           "much cloud"
         ], duplicateTagClass: 'bounce'}
       );
+    },
+
+    componentWillUnmount: function () {
+      ErrorStore.removeChangeListener(this.setErrors);
+    },
+    setErrors: function  () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(<ErrorDisplay errors={ErrorStore.all()}/>, node);
+      this.setState({errors: ErrorStore.all()});
     },
     updateTitle: function (e) {
       var value = e.target.value,
@@ -43,8 +53,22 @@
     updateImageFile: function (e) {
       this.imageFile = e.target;
     },
+    validate: function (title, audiofile) {
+      errors = [];
+      if (title.length === 0) {
+        errors.push("Title can't be blank");
+      }
+      if (typeof audiofile === "undefined") {
+        errors.push("Must include audio file");
+      }
+      if (errors.length > 0) {
+        ErrorActions.receiveErrors(errors);
+      }
+    },
     _onSubmit: function (e) {
       e.preventDefault();
+      this.validate(this.state.title, this.audioFile);
+
       var audioFile = this.audioFile.files[0],
           audioFormData = new FormData(),
           imageFormData = new FormData(),
@@ -57,8 +81,6 @@
         imageFormData.append("upload_preset", window.CLOUDINARY_PRESET);
         imageFormData.append("file", imageFile);
       }
-
-      console.log(imageFormData);
 
       TrackActions.uploadTrack({
         metadata: this.state,
