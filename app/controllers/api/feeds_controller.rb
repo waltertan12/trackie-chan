@@ -4,7 +4,7 @@ class Api::FeedsController < ApplicationController
   def dashboard_feed
     ids = current_user.following.pluck(:id)
 
-    @feed = Feed.includes(:user, :source)
+    @feed = Feed.includes(:user, :source, {source: :tags}, {source: :likes})
                 .where(user_id: ids)
                 .order(updated_at: :desc)
                 .limit(FEED_LIMIT)
@@ -12,7 +12,13 @@ class Api::FeedsController < ApplicationController
   end
 
   def explore_feed
-    @feed = Feed.includes(:user, :source).all.limit(FEED_LIMIT)
+    @feed = Feed.includes(
+                  :user,
+                  {user: :tracks},
+                  :source, 
+                  {source: :tags},
+                  {source: :likes}
+                ).all.limit(FEED_LIMIT)
     render :feed
   end
 end

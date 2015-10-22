@@ -6,6 +6,7 @@ class Api::PlaylistsController < ApplicationController
                   :likes, 
                   :tracks, 
                   {tracks: :tags}, 
+                  {tracks: :likes},
                   :user,
                   {user: :likings},
                   :tags
@@ -28,7 +29,15 @@ class Api::PlaylistsController < ApplicationController
   def remove_track_from_playlist
     @playlisting = Playlisting.find(track_id: params[:track_id],
                                     playlist_id: params[:playlist_id])
-    @playlist = Playlist.find(params[:playlist_id])
+    @playlist = Playlist.includes(
+                  :likes, 
+                  :tracks, 
+                  {tracks: :tags}, 
+                  {tracks: :likes},
+                  :user,
+                  {user: :likings},
+                  :tags
+                ).find(params[:playlist_id])
 
     if current_user.id == @playlist.user_id && @playlisting.destroy
       render :show
@@ -56,6 +65,7 @@ class Api::PlaylistsController < ApplicationController
                     :likes, 
                     :tracks, 
                     {tracks: :tags}, 
+                    {tracks: :likes},
                     :user,
                     {user: :likings},
                     :tags
@@ -68,6 +78,7 @@ class Api::PlaylistsController < ApplicationController
                           :likes, 
                           :tracks, 
                           {tracks: :tags}, 
+                          {tracks: :likes},
                           :user,
                           {user: :likings},
                           :tags

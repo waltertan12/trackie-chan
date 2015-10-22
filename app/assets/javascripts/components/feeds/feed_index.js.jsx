@@ -12,8 +12,8 @@
       FeedActions.startPolling(this.props.type);
       this.setFeedItems();
     },
-    componentWillReceiveProps: function () {
-      FeedActions.startPolling(this.props.type);
+    componentWillReceiveProps: function (nextProps) {
+      FeedActions.startPolling(nextProps.type);
     },
     componentWillUnmount: function () {
       FeedStore.removeChangeListener(this.setFeedItems);
