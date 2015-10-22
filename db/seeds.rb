@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+# Creating users
 
 harry = User.create!(
   username: "boywholived",
@@ -83,6 +77,14 @@ japandroids = User.create!(
   email: "post@nothing.com",
   password_digest: BCrypt::Password.create("password")
 )
+
+chromatic = User.create!(
+  username: "Chromatic",
+  email: "chrom@tic.com",
+  password_digest: BCrypt::Password.create("password")
+)
+
+# Creating tracks
 
 track_one = Track.create!(
   title: "Ravinswod",
@@ -187,4 +189,46 @@ wet_hair = Track.create!(
   description: "say what you will",
   user_id: japandroids.id,
   track_url: "http://dublindonut.com/Content/Sounds/03%20wet%20hair.mp3"
+)
+
+amanaemonesia = Track.create!(
+  title: "Amanaemonesia",
+  description: "womp womp",
+  user_id: chairlift.id,
+  track_url: "http://dublindonut.com/Content/Sounds/07-chairlift-amanaemonesia-ftd.mp3"
+)
+
+sidewalk = Track.create!(
+  title: "Bruises",
+  description: "Roadkill",
+  user_id: chairlift.id,
+  track_url: "http://dublindonut.com/Content/Sounds/01-chairlift-sidewalk_safari-ftd.mp3"
+)
+
+younger = Track.create!(
+  title: "Younger Us",
+  description: "remember that night something something somethig...",
+  user_id: japandroids.id,
+  track_url: "http://dublindonut.com/Content/Sounds/01%20Japandroids%20-%20Younger%20Us.mp3"
+)
+
+grave = Track.create!(
+  title: "Back from the Grave",
+  description: ":O",
+  user_id: chromatic.id,
+  track_url: "http://dublindonut.com/Content/Sounds/03%20Back%20from%20the%20Grave.mp3"
+)
+
+pitch = Track.create!(
+  title: "Pitch Black feat. Rome Fortune",
+  description: "rap",
+  user_id: toro.id,
+  track_url: "http://dublindonut.com/Content/Sounds/05%20-%20Pitch%20Black%20(feat.%20Rome%20Fortune).mp3"
+)
+
+rose = Track.create!(
+  title: "Rose Quartz",
+  description: "chillest of the waves",
+  user_id: toro.id,
+  track_url: "http://dublindonut.com/Content/Sounds/04-toro_y_moi-rose_quartz.mp3"
 )
