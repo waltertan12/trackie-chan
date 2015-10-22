@@ -19,3 +19,15 @@
     }
   }
 }
+
+.flash {
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+  position: relative;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+}

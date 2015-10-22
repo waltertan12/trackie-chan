@@ -27,7 +27,11 @@
           callback(user);
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -40,7 +44,11 @@
 
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -66,7 +74,11 @@
           callback(currentUser);
         },
         error: function (err) {
-          console.log(err.responseText)
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -79,7 +91,11 @@
           callback(currentUser);
         },
         error: function (err) {
-          console.log(err.responseText)
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -165,7 +181,11 @@
           callback(track);
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -184,7 +204,11 @@
           redirect(uri);
         },
         error: function (err) {
-          ErrorActions.receiveErrors(err.responseJSON);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -198,7 +222,11 @@
           callback(comment, trackId);
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -212,7 +240,11 @@
           callback(comments, trackId);
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     }

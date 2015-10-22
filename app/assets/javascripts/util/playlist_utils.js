@@ -13,7 +13,11 @@
           callback(playlist);
         },
         error: function (err) {
-          console.log(err.responseText);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -27,7 +31,11 @@
           callback(userId, playlists);
         },
         error: function (err) {
-
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -41,8 +49,15 @@
           callback(playlist);
         },
         error: function (err) {
-          console.log(err.responseText);
-          console.log(err);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            if (err.responseText === "Not logged in error") {
+              window.location.assign("/sign_in"); 
+            } else {
+              ErrorActions.receiveErrors(err.responseJSON);
+            }
+          }
         }
       })
 
@@ -57,8 +72,15 @@
           callback(playlist);
         },
         error: function (err) {
-          console.log(err.responseText);
-          console.log(err);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            if (err.responseText === "Not logged in error") {
+              window.location.assign("/sign_in"); 
+            } else {
+              ErrorActions.receiveErrors(err.responseJSON);
+            }
+          }
         }
       })
     },
@@ -81,7 +103,11 @@
           redirect(url);
         },
         error: function (err) {
-          ErrorActions.receiveErrors(err.responseJSON);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -98,7 +124,11 @@
           redirect(uri);
         },
         error: function (err) {
-          ErrorActions.receiveErrors(err.responseJSON);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     },
@@ -112,7 +142,11 @@
           redirect("/");
         },
         error: function () {
-          ErrorActions.receiveErrors(err.responseJSON);
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
         }
       })
     }

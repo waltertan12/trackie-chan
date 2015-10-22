@@ -13,7 +13,8 @@
         playing: false, 
         trackId: -1, 
         track: new Audio(), 
-        playlist: []
+        playlist: [],
+        volume: 75
       },
       
       _placeholderTrack = {

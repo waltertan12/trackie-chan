@@ -14,6 +14,7 @@
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
       TrackStore.addChangeListener(this.setUserTracks);
+      ErrorStore.addChangeListener(this.setErrors);
 
       if (parseInt(this.props.params.userId) !== this.state.user.id) {
         this.getUser(this.props);
@@ -30,6 +31,7 @@
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setUser);
       TrackStore.removeChangeListener(this.setUserTracks);
+      ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
       var newUser = UserStore.findUser(parseInt(nextProps.params.userId));
@@ -50,6 +52,11 @@
         this.getUser(nextProps);
         this.getUserTracks(nextProps);
       }
+    },
+    setErrors: function  () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(<ErrorDisplay errors={ErrorStore.all()}/>, node);
+      this.setState({errors: ErrorStore.all()});
     },
     getUser: function (props) {
       ApiActions.receiveSingleUser(props.params.userId);

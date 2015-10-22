@@ -12,12 +12,15 @@
     },
     componentDidMount: function () {
       TrackStore.addChangeListener(this.setTrack);
+      ErrorStore.addChangeListener(this.setErrors);
+
       if (this.state.track.id === -1) {
         this.getTrack(this.props);
       }
     },
     componentWillUnmount: function () {
       TrackStore.removeChangeListener(this.setTrack);
+      ErrorStore.addChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = parseInt(nextProps.params.userId),
@@ -43,6 +46,11 @@
       this.setState({
         track: TrackStore.findTrack(userId, trackId)
       });
+    },
+    setErrors: function  () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(<ErrorDisplay errors={ErrorStore.all()}/>, node);
+      this.setState({errors: ErrorStore.all()});
     },
     render: function () {
       return (

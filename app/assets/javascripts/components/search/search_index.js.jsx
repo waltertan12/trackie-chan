@@ -111,7 +111,7 @@
             </div>
 
             <div className="search-results col-md-8">
-              <h1>Results</h1>
+              <h1>Results for: {this.props.location.query.query}</h1>
               <ul>
                 {resultComponents}
               </ul>
