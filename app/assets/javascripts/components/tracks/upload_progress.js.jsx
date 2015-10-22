@@ -27,6 +27,7 @@
     render: function () {
       var redirectButton;
       if (this.state.value === 100) {
+        setTimeout(function() {}, 500);
         redirectButton = (
           <Link to={"/users/" + 
                     this.state.userId +
@@ -42,20 +43,24 @@
         redirectButton = <div><h3>Processing Track</h3></div>;
       }
       return (
-        <div className="progress">
-          <div  className={
-                  "progress-bar " + 
-                  "myProgress " +
-                  "progress-bar-success " + 
-                  "progress-bar-striped " + 
-                  "active"
-                }
-               role="progressbar" 
-               aria-valuenow={this.state.value + "%"} 
-               aria-valuemin="0" 
-               aria-valuemax="100"
-               style={{width: + this.state.value + "%"}}>
-          </div>
+        <div className="progress-show">
+          <h1>Uploading Track</h1>
+          <div className="progress">
+            <div  className={
+                    "progress-bar " + 
+                    "myProgress " +
+                    "progress-bar-success " + 
+                    "progress-bar-striped " + 
+                    "active"
+                  }
+                 role="progressbar" 
+                 aria-valuenow={this.state.value + "%"} 
+                 aria-valuemin="0" 
+                 aria-valuemax="100"
+                 style={{width: + this.state.value + "%"}}>
+            </div>
+          </div><br/><br/>
+          {redirectButton}
         </div>
       );
     }
