@@ -7,16 +7,25 @@
 
   root.PlaylistIndexItem = React.createClass({
     render: function () {
+      var playlist = this.props.playlist,
+          tracks = this.props.playlist.tracks;
+          link = "/users/" +
+                 this.props.playlist.user_id + 
+                 "/playlists/" +
+                 this.props.playlist.id,
+          userLink = "/users/" + this.props.playlist.user_id;
       if (this.props.playlist.tracks.length === 0) {
-        return <ul><li>No tracks in this playlist</li></ul>;
+        return (
+          <div className="playlist-index-item">
+            <p><Link to={userLink}>{playlist.username}</Link></p>
+            <b><Link to={link}>{playlist.title}</Link></b>
+            <hr/>
+            <ul className="playlist-index-item-track-container">
+              <li>This playlist has no tracks</li>
+            </ul>
+          </div>
+        );
       } else {
-        var playlist = this.props.playlist,
-            tracks = this.props.playlist.tracks;
-            link = "/users/" +
-                   this.props.playlist.user_id + 
-                   "/playlists/" +
-                   this.props.playlist.id,
-            userLink = "/users/" + this.props.playlist.user_id;
         return (
           <div className="playlist-index-item">
             <p><Link to={userLink}>{playlist.username}</Link></p>

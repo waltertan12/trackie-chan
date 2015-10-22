@@ -2,8 +2,11 @@ class Api::UsersController < ApplicationController
   before_action :ensure_user_logged_in, except: [:show]
 
   def show
-    @user = User.includes(:tracks, {tracks: :tags}, :likings)
-                .find(params[:id])
+    @user = User.includes(:tracks, 
+                          :followers, 
+                          :following, 
+                          {tracks: :tags}, 
+                          :likings).find(params[:id])
     render :show
   end
 
@@ -23,7 +26,8 @@ class Api::UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = User.includes(:tracks, {tracks: :tags}, :likings)
+                .find(params[:id])
     if @user.destroy
       flash[:success] = "Bye forever..."
       redirect_to root_url

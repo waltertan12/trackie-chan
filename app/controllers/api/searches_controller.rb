@@ -10,21 +10,55 @@ class Api::SearchesController < ApplicationController
       @results = Tagging.where(tag_id: tag_id).includes(:taggable)
                         .map { |tagging| tagging.taggable }
     when "users"
-      @results = User.where("lower(username) ~ ?", query)
+      @results = User.includes(:tracks, 
+                          :followers, 
+                          :following, 
+                          {tracks: :tags}, 
+                          :likings)
+                     .where("lower(username) ~ ?", query)
     when "tracks"
-      @results = Track.where("lower(title) ~ ?", query)
+      @results = Track.includes(
+                        :user, 
+                        :tags, 
+                        :likes, 
+                        {likes: :user}, 
+                        :comments
+                      ).where("lower(title) ~ ?", query)
+
     when "playlists"
-      @results = Playlist.where("title ~ ?", query)
+      @results = Playlist.includes(
+                   :likes, 
+                   :tracks, 
+                   {tracks: :tags}, 
+                   :user,
+                   {user: :likings},
+                   :tags
+                 ).where("title ~ ?", query)
     else
       tag_id = Tag.where("lower(name) ~ ?", query).first
       @results = Tagging.where(tag_id: tag_id).includes(:taggable)
                         .map { |tagging| tagging.taggable } +
-                 User.includes(:tracks, :likings, :following, :followers)
+                 User.includes(:tracks, 
+                          :followers, 
+                          :following, 
+                          {tracks: :tags}, 
+                          :likings)
                      .where("lower(username) ~ ?", query) +
-                 Track.includes(:user, :tags, :likes, :taggings)
-                      .where("lower(title) ~ ?", query) + 
-                 Playlist.includes(:user, :tags, :likes, :taggings)
-                         .where("lower(title) ~ ?", query)
+                 Track.includes(
+                        :user, 
+                        :tags, 
+                        :likes, 
+                        {likes: :user}, 
+                        :comments
+                      ).where("lower(title) ~ ?", query) + 
+                 Playlist.includes(
+                   :likes, 
+                   :tracks, 
+                   {tracks: :tags}, 
+                   :user,
+                   {user: :likings},
+                   :tags
+                 ).where("lower(title) ~ ?", query)
 
       @results.uniq!
     end

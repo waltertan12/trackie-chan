@@ -4,12 +4,12 @@
   }
 
   root.SearchUtils = {
-    fetchQuery: function (query, options, callback) {
+    fetchQuery: function (query, callback) {
       $.ajax({
         url: "api/search",
         type: "GET",
         dataType: "json",
-        data: {query: query, options: options},
+        data: query,
         success: function (results) {
           callback(results);
         },

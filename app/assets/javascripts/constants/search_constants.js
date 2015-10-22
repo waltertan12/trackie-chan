@@ -4,7 +4,8 @@
   }
 
   root.SearchConstants = {
-    RESULTS_RECEIVED: "RESULTS_RECEIVED"
+    RESULTS_RECEIVED: "RESULTS_RECEIVED",
+    OPTION_RECEIVED: "OPTION_RECEIVED"
   };
 
 })(this);

@@ -4,7 +4,7 @@
   }
 
   root.SearchActions = {
-    receiveQuery: function (query, options) {
+    receiveQuery: function (query) {
       if (typeof options === "undefined") {
         options = "all";
       }
@@ -16,7 +16,16 @@
         })
       }
 
-      SearchUtils.fetchQuery(query, options, dispatchCallback);
+      SearchUtils.fetchQuery(query, dispatchCallback);
+    },
+    setOption: function (option) {
+      AppDispatcher.dispatch({
+        actionType: SearchConstants.OPTION_RECEIVED,
+        option: option
+      });
+    },
+    resetOption: function () {
+      SearchActions.setOption("all");
     }
   }
 })(this);

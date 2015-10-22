@@ -13,9 +13,17 @@
     },
     handleSubmit: function (e) {
       e.preventDefault();
-      SearchActions.receiveQuery(this.state.query, "all")
+      
+      var query = {
+        query: this.state.query,
+        options: SearchStore.option()
+      };
+
+      SearchActions.receiveQuery(query)
+      // SearchActions.receiveQuery();
       this.setState({query: ""});
-      this.history.pushState(null, "/search");
+
+      this.history.pushState(null, "/search", query);
     },
     render: function () {
       var classname, placeholderText;

@@ -9,7 +9,12 @@
 
       _currentTrackNumber = -1,
       
-      _currentAudio = {playing: false, trackId: -1, track: new Audio(), playlist: []},
+      _currentAudio = {
+        playing: false, 
+        trackId: -1, 
+        track: new Audio(), 
+        playlist: []
+      },
       
       _placeholderTrack = {
         id: -1, 
