@@ -8,10 +8,11 @@
       return {playState: ""};
     },
     componentDidMount: function () {
-      TrackStore.addPlaylistListener(this.setPlayState);
+      // TrackStore.addPlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.addPlaylistListener(this.setPlayState);
       var track = this.props.track,
-          currentlyPlaying = TrackStore.isATrackCurrentlyPlaying(),
-          currentTrackId = TrackStore.getCurrentTrackId(),
+          currentlyPlaying = CurrentPlaylistStore.isATrackCurrentlyPlaying(),
+          currentTrackId = CurrentPlaylistStore.getCurrentTrackId(),
           playState;
 
       this.pause = <span className='glyphicon glyphicon-pause'/>;
@@ -25,13 +26,16 @@
       this.setState({playState: playState});
     },
     componentWillUnmount: function () {
-      TrackStore.removePlaylistListener(this.setPlayState);
+      // TrackStore.removePlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
-      if (TrackStore.getCurrentTrackId() === this.props.track.id &&
-          TrackStore.isATrackCurrentlyPlaying()) {
+      if (CurrentPlaylistStore.getCurrentTrackId() === this.props.track.id &&
+          CurrentPlaylistStore.isATrackCurrentlyPlaying()) {
+
         this.setState({playState: this.pause});
-      } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
+
+      } else if (CurrentPlaylistStore.getCurrentTrackId !== this.props.track.id) {
         this.setState({playState: this.play});
       }
     },
@@ -39,10 +43,19 @@
       var playState = this.state.playState;
 
       if (playState === this.play) {
-        TrackActions.playOrPauseTrack(true,  this.props.track, [this.props.track]);
+        CurrentPlaylistActions.playOrPauseTrack(
+          true,  
+          this.props.track, 
+          [this.props.track]
+        );
+
         this.setState({playState: this.pause});
       } else {
-        TrackActions.playOrPauseTrack(false, this.props.track);
+        CurrentPlaylistActions.playOrPauseTrack(
+          false, 
+          this.props.track
+        );
+
         this.setState({playState: this.play});
       }
     },

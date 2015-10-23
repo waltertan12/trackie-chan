@@ -44,7 +44,7 @@
       },
       CHANGE_EVENT = "CHANGE_EVENT";
 
-  root.CommentStore = $.extend({}, EventEmitter.prototype,{
+  root.CommentStore = $.extend({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback)
     },

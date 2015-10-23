@@ -4,6 +4,9 @@
   }
 
   root.StoreHelper = {
+    compareObjects: function (objectOne, objectTwo ) {
+      return JSON.stringify(objectOne) === JSON.stringify(objectTwo);
+    },
     adder: function (object, outerId, objectToAdd) {
       if (typeof object[outerId] === "undefined") {
         object[outerId] = [objectToAdd];
@@ -37,6 +40,9 @@
     },
     resetOuterObject: function (object, outerId, objectToAdd) {
       object[outerId] = objectToAdd;
+    },
+    resetObject: function (object, objectReplacement) {
+      object = objectReplacement;
     }
   }
 })(this);

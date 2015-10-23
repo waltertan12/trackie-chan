@@ -8,16 +8,16 @@
       return {playState: "", info: ""};
     },
     componentDidMount: function () {
-      TrackStore.addPlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.addPlaylistListener(this.setPlayState);
       this.setPlayState();
       this.pause = <span className='glyphicon glyphicon-pause'/>;
       this.play = <span className='glyphicon glyphicon-play'/>;
     },
     componentWillUnmount: function () {
-      TrackStore.removePlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function () {
-      var metadata = TrackStore.getCurrentTrackMetadata(),
+      var metadata = CurrentPlaylistStore.getCurrentTrackMetadata(),
           info;
 
       if (typeof metadata !== "undefined" &&
@@ -27,7 +27,7 @@
         info = <p>MUCH jamz MUCH jamz MUCH jamz MUCH jamz</p>;
       }
 
-      if (TrackStore.isATrackCurrentlyPlaying()) {
+      if (CurrentPlaylistStore.isATrackCurrentlyPlaying()) {
         this.setState({
           playState: this.pause,
           info: info
@@ -40,10 +40,10 @@
       }
     },
     handleNext: function () {
-      TrackActions.nextTrack();
+      CurrentPlaylistActions.nextTrack();
     },
     handlePrevious: function () {
-      TrackActions.previousTrack();
+      CurrentPlaylistActions.previousTrack();
     },
     handlePlay: function () {
       var action;
@@ -56,11 +56,11 @@
         this.setState({playState: this.play});
         action = false;
       }
-      TrackActions.playerPlayOrPause(action);
+      CurrentPlaylistActions.playerPlayOrPause(action);
     },
     render: function () {
       var playState = this.state.playState;
-      if (TrackStore.hasPlayBeenPressed()) {
+      if (CurrentPlaylistStore.hasPlayBeenPressed()) {
         return (
           <div className="music-player">
             <ul>

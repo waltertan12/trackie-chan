@@ -8,16 +8,16 @@
       return {volume: 75};
     },
     componentDidMount: function () {
-      TrackStore.addVolumeListener(this.setVolume);
+      CurrentPlaylistStore.addVolumeListener(this.setVolume);
     },
     componentWillUnmount: function () {
-      TrackStore.removeVolumeListener(this.setVolume);
+      CurrentPlaylistStore.removeVolumeListener(this.setVolume);
     },
     setVolume: function () {
-      this.setState({volume: (TrackStore.getVolume() * 100)});
+      this.setState({volume: (CurrentPlaylistStore.getVolume() * 100)});
     },
     changeVolume: function (e) {
-      TrackActions.changeVolume(parseFloat(e.target.value / 100));
+      CurrentPlaylistActions.changeVolume(parseFloat(e.target.value / 100));
     },
     render: function () {
       var volume = this.state.volume;

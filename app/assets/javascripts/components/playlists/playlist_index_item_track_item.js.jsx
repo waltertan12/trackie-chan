@@ -8,7 +8,7 @@
       return {playState: ""};
     },
     componentDidMount: function () {
-      TrackStore.addPlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.addPlaylistListener(this.setPlayState);
       this.pause = <span className='glyphicon glyphicon-pause'/>;
       this.play = <span className='glyphicon glyphicon-play'/>;
       this.setPlayState(this.props);
@@ -17,14 +17,13 @@
       this.setPlayState(nextProps);
     },
     componentWillUnmount: function () {
-      TrackStore.removePlaylistListener(this.setPlayState);
+      CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
     },
     setPlayState: function (optionalProps) {
       if (typeof optionalProps === "undefined") {
         optionalProps = this.props;
       }
-      if (TrackStore.getCurrentTrackId() === optionalProps.track.id &&
-          TrackStore.isATrackCurrentlyPlaying()) {
+      if (CurrentPlaylistStore.getCurrentTrackId() === optionalProps.track.id && CurrentPlaylistStore.isATrackCurrentlyPlaying()) {
         this.setState({playState: this.pause});
       } else {
         this.setState({playState: this.play});
@@ -34,14 +33,17 @@
       var playState = this.state.playState;
 
       if (playState === this.play) {
-        TrackActions.playOrPauseTrack(
+        CurrentPlaylistActions.playOrPauseTrack(
           true, 
           this.props.track, 
           this.props.tracks
         );
         this.setState({playState: this.pause});
       } else {
-        TrackActions.playOrPauseTrack(false, this.props.track);
+        CurrentPlaylistActions.playOrPauseTrack(
+          false, 
+          this.props.track
+        );
         this.setState({playState: this.play});
       }
     },

@@ -15,7 +15,7 @@
     },
     render: function () {
       var errors = this.props.errors;
-      if (errors.length === 0) {
+      if (typeof errors !== "undefined" && errors.length === 0) {
         return <div></div>
       } else {
         return (

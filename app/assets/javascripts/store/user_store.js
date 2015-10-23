@@ -1,4 +1,6 @@
+/* global $, StoreHelper */
 (function (root) {
+  "use strict";
   if (typeof root.UserStore === "undefined") {
     root.UserStore = {};
   }
@@ -11,25 +13,21 @@
         likes: [],
         playlists: []
       },
+
       _user = _placeholderUser,
+
       _currentUser = _placeholderUser,
+
       _retrievedUsers = {},
+
       compareUsers = function (userOne, userTwo) {
         return JSON.stringify(userOne) === JSON.stringify(userTwo);
       },
       resetCurrentUser = function (currentUser) {
         _currentUser = currentUser;
-      }
+      },
       resetUser = function (user) {
-        // if (typeof _retrievedUsers[user.id] === "undefined") {
-        //   _retrievedUsers[user.id] = user;
-        //   _user = user;
-        // } else if (_retrievedUsers[user.id] !== user) {
-        //   _retrievedUsers[user.id] = user;
         _user = user;
-        // } else {
-        //   _user = [user.id];
-        // }
       },
       CHANGE_EVENT = "CHANGE_EVENT";
 
@@ -79,32 +77,34 @@
       _retrievedUsers[user.id] = user;
     },
     dispatcherID: AppDispatcher.register(function (payload) {
-      if(payload.actionType === UserConstants.USER_RECEIVED) {
-        root.UserStore.storeUser(payload.user);
-        resetUser(payload.user);
+      switch(payload.actionType) {
 
-        root.UserStore.emit(CHANGE_EVENT);
+        case UserConstants.USER_RECEIVED:
+          root.UserStore.storeUser(payload.user);
+          resetUser(payload.user);
 
-      } else if(payload.actionType === UserConstants.CURRENT_USER_RECEIVED) {
-        root.UserStore.storeUser(payload.current_user);
-        resetCurrentUser(payload.current_user);
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
 
-        root.UserStore.emit(CHANGE_EVENT);
+        case UserConstants.CURRENT_USER_RECEIVED:
+          root.UserStore.storeUser(payload.current_user);
+          resetCurrentUser(payload.current_user);
 
-      } else if(payload.actionType === UserConstants.USER_UPDATED) {
-        root.UserStore.storeUser(payload.user);
-        resetCurrentUser(payload.user);
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
 
-        root.UserStore.emit(CHANGE_EVENT);
+        case UserConstants.USER_UPDATED:
+          root.UserStore.storeUser(payload.user);
+          resetCurrentUser(payload.user);
 
-      } else if (payload.actionType === UserConstants.SET_USER_SHOW) {
-        resetUser(payload.user);
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
 
-        root.UserStore.emit(CHANGE_EVENT);
-      } else if (payload.actionType === TrackConstants.TRACK_CREATED &&
-                 payload.userId === _currentUser.id) {
-        _currentUser.tracks.push(payload.track);
-        root.UserStore.storeUser(_currentUser);
+        case UserConstants.SET_USER_SHOW:
+          resetUser(payload.user);
+
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
       }
     })
   });

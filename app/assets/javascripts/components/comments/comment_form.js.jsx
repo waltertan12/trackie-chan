@@ -18,7 +18,6 @@
       this.setState({body: e.target.value})
     },
     render: function () {
-      console.log(this.state);
       return (
         <div className="comment-form">
           <h3>Add a comment</h3>

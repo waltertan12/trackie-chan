@@ -10,8 +10,8 @@
         id: -1,
         tracks: [],
         tags: [],
-        likes: [],
         title: "",
+        likes: [],
         description: ""
       },
       

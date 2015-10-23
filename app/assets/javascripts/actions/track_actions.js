@@ -1,57 +1,11 @@
 (function (root) {
+  "use strict";
+
   if (typeof root.TrackActions === "undefined") {
     root.TrackActions = {};
   }
 
   root.TrackActions = {
-    playOrPauseTrack: function (action, track, optionalTracks) {
-      if (action) {
-        AppDispatcher.dispatch({
-          actionType: TrackConstants.PLAY_TRACK,
-          track: track,
-          tracks: optionalTracks
-        })
-      } else {
-        AppDispatcher.dispatch({
-          actionType: TrackConstants.PAUSE_TRACK,
-          track: track,
-          tracks: optionalTracks
-        })
-      }
-    },
-    playerPlayOrPause: function (action) {
-      if (action) {
-        AppDispatcher.dispatch({
-          actionType: TrackConstants.PLAY_CURRENT_TRACK
-        })
-      } else {
-        AppDispatcher.dispatch({
-          actionType: TrackConstants.PAUSE_CURRENT_TRACK
-        })
-      }
-    },
-    nextTrack: function () {
-      AppDispatcher.dispatch({
-        actionType: TrackConstants.NEXT_TRACK
-      })
-    },
-    previousTrack: function () {
-      AppDispatcher.dispatch({
-        actionType: TrackConstants.PREVIOUS_TRACK
-      })
-    },
-    changeVolume: function (volume) {
-      AppDispatcher.dispatch({
-        actionType: TrackConstants.VOLUME_CHANGED,
-        volume: volume
-      })
-    },
-    resetPlaylist: function (tracks) {
-      AppDispatcher.dispatch({
-        actionType: TrackConstants.RESET_PLAYLIST,
-        tracks: tracks
-      })
-    },
     receiveTracks: function (userId) {
       var dispatchCallback = function (userId, tracks) {
         root.AppDispatcher.dispatch({
@@ -61,7 +15,7 @@
         });
       };
 
-      ApiUtils.fetchTracks(userId, dispatchCallback);
+      TrackUtils.fetchTracks(userId, dispatchCallback);
     },
     receiveSingleTrack: function (trackId) {
       var dispatchCallback = function (userId, track) {
@@ -72,7 +26,7 @@
         });
       };
 
-      ApiUtils.fetchTrack(trackId, dispatchCallback);
+      TrackUtils.fetchTrack(trackId, dispatchCallback);
     },
     uploadTrack: function (uploadData) {
       var dispatchCallback = function (track) {
@@ -92,7 +46,7 @@
         })
       };
       
-      ApiUtils.uploadTrackToCloudinary(
+      TrackUtils.uploadTrackToCloudinary(
         uploadData, 
         dispatchCallback, 
         progressCallback
@@ -107,7 +61,7 @@
         });
       };
 
-      ApiUtils.destroyTrack(trackData, dispatchCallback, redirect);
+      TrackUtils.destroyTrack(trackData, dispatchCallback, redirect);
     },
     updateTrack: function (trackData, redirect) {
       var dispatchCallback = function (track) {
@@ -118,7 +72,7 @@
         });
       };
 
-      ApiUtils.updateTrack(trackData, dispatchCallback, redirect);
+      TrackUtils.updateTrack(trackData, dispatchCallback, redirect);
     }
   };
 })(this);

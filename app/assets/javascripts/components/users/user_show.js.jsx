@@ -24,7 +24,7 @@
         if (this.state.user.tracks.length !== this.state.tracks.length) {
           this.getUserTracks(this.props);
         } else {
-          TrackActions.resetPlaylist(this.state.tracks);
+          CurrentPlaylistActions.resetPlaylist(this.state.tracks);
         }
       }
     },
@@ -44,7 +44,7 @@
         var trackStoreCache = TrackStore.findUserTracks(newUser.id);
         if (trackStoreCache.length === newUser.tracks.length) {
           this.setUserTracks(newUser.id);
-          TrackActions.resetPlaylist(newUser.tracks);
+          CurrentPlaylistActions.resetPlaylist(newUser.tracks);
         } else {
           this.getUserTracks(nextProps);
         }
