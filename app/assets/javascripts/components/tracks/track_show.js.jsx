@@ -16,6 +16,8 @@
 
       if (this.state.track.id === -1) {
         this.getTrack(this.props);
+      } else {
+        this.setTrack();
       }
     },
     componentWillUnmount: function () {
@@ -28,7 +30,7 @@
           newTrack = TrackStore.findTrack(trackId, userId);
 
       if (parseInt(trackId) === newTrack.id) {
-        this.setTrack(trackId);
+        this.setTrack(userId, trackId);
         TrackActions.resetPlaylist([newTrack]);
       } else {
         this.getTrack(nextProps);
@@ -39,9 +41,17 @@
 
       TrackActions.receiveSingleTrack(trackId);
     },
-    setTrack: function (optionalTrackId) {
-      var trackId = parseInt(this.props.params.trackId),
-          userId  = parseInt(this.props.params.userId);
+    setTrack: function (optionalUserId, optionalTrackId) {
+      var trackId, userId;
+
+      if (typeof optionalTrackId !== "undefined" &&
+          typeof optionalUserId !== "undefined") {
+        userId = parseInt(optionalUserId);
+        trackId = parseInt(optionalTrackId);
+      } else {
+        trackId = parseInt(this.props.params.trackId);
+        userId  = parseInt(this.props.params.userId);
+      }
 
       this.setState({
         track: TrackStore.findTrack(userId, trackId)
@@ -53,6 +63,8 @@
       this.setState({errors: ErrorStore.all()});
     },
     render: function () {
+      console.log("State for track show");
+      console.log(this.state);
       return (
         <div className="container-fullwidth track-show row">
           <TrackShowHeader track={this.state.track}/>
@@ -67,7 +79,10 @@
             </div>
             <CommentIndex trackId= {this.props.params.trackId} />
           </div>
-          <TrackSidebar track={this.state.track} likes={this.state.track.likes}/>
+          <TrackSidebar type="Track"
+                        track={this.state.track} 
+                        likes={this.state.track.likes}
+                        playlists={this.state.track.playlists}/>
         </div>
       );
     }

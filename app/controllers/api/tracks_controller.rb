@@ -49,8 +49,14 @@ class Api::TracksController < ApplicationController
   end
 
   def show
-    @track = Track.includes(:user, {user: :likings}, :tags, :likes, {likes: :user}, :comments)
-                  .find(params[:id])
+    @track = Track.includes(:user, 
+                            {user: :likings}, 
+                            :tags, 
+                            :likes, 
+                            {likes: :user}, 
+                            :comments,
+                            :playlists
+                  ).find(params[:id])
 
     if @track
       render :show

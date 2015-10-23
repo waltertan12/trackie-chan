@@ -6,7 +6,8 @@ json.extract!(
   :track_url,
   :image_url,
   :user_id,
-  :likes
+  :likes,
+  :playlists
 )
 
 json.type "Track"

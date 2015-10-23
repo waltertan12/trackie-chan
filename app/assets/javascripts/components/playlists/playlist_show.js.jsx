@@ -54,7 +54,9 @@
               <TrackIndex tracks={playlist.tracks} />
             </div>
           </div>
-          <TrackSidebar likes={playlist.likes}/>
+          <TrackSidebar type="Playlist" 
+                        playlists={[]} 
+                        likes={playlist.likes}/>
         </div>
       );
     }
