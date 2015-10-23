@@ -40,6 +40,12 @@
         actionType: TrackConstants.PREVIOUS_TRACK
       })
     },
+    changeVolume: function (volume) {
+      AppDispatcher.dispatch({
+        actionType: TrackConstants.VOLUME_CHANGED,
+        volume: volume
+      })
+    },
     resetPlaylist: function (tracks) {
       AppDispatcher.dispatch({
         actionType: TrackConstants.RESET_PLAYLIST,

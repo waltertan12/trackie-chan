@@ -42,12 +42,20 @@
       var commentItems;
       if (this.state.comments.length === 0) {
         commentItems = (
-          <li className="comment-index-item">No comments yet...</li>
+          <div>
+            <hr/>
+            <li className="comment-index-item">No comments yet...</li>
+          </div>
         );
       } else {
         commentItems = (
           this.state.comments.map( function (comment) {
-            return <CommentIndexItem key={comment.id} comment={comment}/>;
+            return (
+              <div>
+                <hr/>
+                <CommentIndexItem key={comment.id} comment={comment}/>
+              </div>
+            );
           })
         );
       }

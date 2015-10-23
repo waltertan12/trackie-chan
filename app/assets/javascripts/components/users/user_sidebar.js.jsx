@@ -10,6 +10,7 @@
       return (
         <div className="user-sidebar col-md-4">
           <UserLikeIndex userId={user.id}/>
+          <hr/>
           <FollowIndex following={user.following} />
         </div>
       );

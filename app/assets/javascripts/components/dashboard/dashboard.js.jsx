@@ -39,7 +39,8 @@
         return (
           <div className="dashboard row">
             <div className="dashboard-feed-container">
-              <h2>Feed</h2>
+              <h1>Feed</h1>
+              <hr/>
               <DashboardFeedIndex />
             </div>
             <CurrentUserSidebar currentUser={this.state.currentUser}/>

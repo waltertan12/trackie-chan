@@ -10,7 +10,7 @@ $(function () {
       return (
         <div>
           <Navbar/>
-          <div className="container">
+          <div className="main container">
             {this.props.children}
           </div>
           <Player />

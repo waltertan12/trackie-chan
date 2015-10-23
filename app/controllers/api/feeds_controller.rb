@@ -18,7 +18,14 @@ class Api::FeedsController < ApplicationController
                   :source, 
                   {source: :tags},
                   {source: :likes}
-                ).all.limit(FEED_LIMIT)
+                )
+                .where(
+                  'updated_at >= :five_days_ago',
+                  :five_days_ago  => Time.now - 5.days
+                )
+                .all
+                .order(rank: :desc)
+                .limit(FEED_LIMIT)
     render :feed
   end
 end

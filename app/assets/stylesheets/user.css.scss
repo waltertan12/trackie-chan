@@ -1,0 +1,62 @@
+$content-container-min-width:  800px;
+$content-container-max-width:  1000px;
+$content-container-min-height: 500px;
+$header-height: 295px;
+$header-image-size: 150px;
+
+/* user show*/
+
+.user-show {
+  min-width: $content-container-min-width;
+  max-width: $content-container-max-width;
+}
+
+.user-feed-container {
+  border-right: 1px solid lightgray;
+  min-height: $content-container-min-height;
+}
+
+.user-show-sidebar {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.user-header {
+  position: relative;
+  height: $header-height;
+  h1 {
+    display: inline-block
+  }
+  .profile-image {
+    height: $header-image-size;
+    width: $header-image-size;
+    position: absolute;
+    border-radius: 5px;
+    right: 5%;
+  }
+  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+  background: -o-linear-gradient(bottom right, lightgray, lightblue);
+  background: -moz-linear-gradient(bottom right, lightgray, lightblue);
+  background: linear-gradient(to bottom right, lightgray, lightblue);
+}
+
+/* current user sidebar */
+
+.user-sidebar {
+  height: inherit;
+  min-height: $content-container-min-height;
+}
+
+/* follow index */
+.follow-index {
+
+  border-radius: 5px;
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    padding: 5px 0;
+  }
+  min-height: 200px;  
+}

@@ -1,8 +1,33 @@
-$content-container-min-width:  900px;
+$content-container-min-width:  800px;
+$content-container-max-width:  1000px;
 $content-container-min-height: 500px;
 $header-height: 295px;
 $header-image-size: 150px;
 
+/* playlist */
+
+.playlist-show {
+
+}
+
+.playlist-show-container {
+  border-right: 1px solid lightgray;
+  min-height: $content-container-min-height;
+}
+
+/* playlist form index */
+
+.playlist-form-index {
+  width: 100%;
+  ul {
+    list-style-type: none;
+    display: inline;
+  }
+  li {
+    display: inline-block;
+    width: 100%;
+  }
+}
 
 /* playlist index item */
 .playlist-index-item {

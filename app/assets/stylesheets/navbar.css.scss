@@ -1,0 +1,32 @@
+$content-container-min-width:  800px;
+$content-container-max-width:  1000px;
+$content-container-min-height: 500px;
+$header-height: 295px;
+$header-image-size: 150px;
+
+/* navbar */
+.navbar-brand {
+  font-family: Pacifico;
+}
+
+.navbar-outer {
+  min-width: $content-container-min-width;
+  max-width: $content-container-max-width;
+  margin: 0 auto;
+  background-color: #F8F8F8;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-default {
+  border: 0;
+}
+
+.trend-link {
+  &:hover {
+    text-decoration: none;
+    color: #333;
+  }
+}

@@ -21,6 +21,7 @@
       return (
         <div className="track-like-index">
           <h3>Likes</h3>
+          <hr/>
           <ul>
             {likeItems}
           </ul>

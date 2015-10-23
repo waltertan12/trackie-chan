@@ -76,6 +76,7 @@
       }
 
       return (
+        <nav className="navbar-outer">
         <nav className="navbar navbar-default">
           <div className="container-fullwidth">
             <div className="navbar-header">
@@ -98,6 +99,7 @@
               {navbarRight}
             </div>
           </div>
+        </nav>
         </nav>
       );
     }

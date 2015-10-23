@@ -14,7 +14,7 @@
         trackId: -1, 
         track: new Audio(), 
         playlist: [],
-        volume: 75
+        volume: 0.75
       },
       
       _placeholderTrack = {
@@ -34,6 +34,11 @@
       _progress = 0,
 
       _nextPlaylist = [],
+
+      resetVolume = function (volume) {
+        _currentAudio.volume = volume;
+        _currentAudio.track.volume = volume;
+      },
       
       resetPlaylist = function (tracks) {
         _currentAudio.playlist = tracks;
@@ -105,7 +110,10 @@
       CHANGE_EVENT = "CHANGE_EVENT",
       
       UPLOAD_EVENT = "UPLOAD_EVENT",
-      CURRENT_PLAYLIST_EVENT = "CURRENT_PLAYLIST_EVENT";
+
+      CURRENT_PLAYLIST_EVENT = "CURRENT_PLAYLIST_EVENT",
+
+      VOLUME_EVENT = "VOLUME_EVENT";
 
   root.TrackStore = $.extend({}, EventEmitter.prototype,{
     addChangeListener: function (callback) {
@@ -129,6 +137,14 @@
     removePlaylistListener: function (callback) {
       this.removeListener(CURRENT_PLAYLIST_EVENT, callback);
     },
+    addVolumeListener: function (callback) {
+      this.on(VOLUME_EVENT, callback);
+    },
+    removeVolumeListener: function (callback) {
+      this.removeListener(VOLUME_EVENT, callback);
+    },
+
+    // Listeners
     all: function () {
       return _tracks;
     },
@@ -204,6 +220,9 @@
     getCurrentTrackMetadata: function () {
       return _currentAudio.playlist[_currentTrackNumber];
     },
+    setCurrentTrackVolume: function () {
+      _currentAudio.track.volume = _currentAudio.volume;
+    },
     playTrack: function (track, tracks) {
       _hasPlayBeenPressed = true;
       root.TrackStore.pauseTrack();
@@ -239,6 +258,7 @@
       }, false);
 
       _currentAudio.playing = true;
+      root.TrackStore.setCurrentTrackVolume();
       _currentAudio.track.play();
     },
     pauseTrack: function () {
@@ -292,6 +312,11 @@
     hasPlayBeenPressed: function () {
       return _hasPlayBeenPressed;
     },
+
+    getVolume: function () {
+      return _currentAudio.volume;
+    },
+
     dispatcherID: AppDispatcher.register(function (payload) {
       if(payload.actionType === TrackConstants.TRACKS_RECEIVED) {
         resetTracks(payload.userId, payload.tracks);
@@ -368,10 +393,15 @@
         root.TrackStore.previousTrack();
 
         root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
-      } else if (payload.actionType === PlaylistConstants.PLAYLIST_RECEIVED)
+      } else if (payload.actionType === PlaylistConstants.PLAYLIST_RECEIVED) {
         resetPlaylist(payload.playlist.tracks);
         
-        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);
+        root.TrackStore.emit(CURRENT_PLAYLIST_EVENT);  
+      } else if (payload.actionType === TrackConstants.VOLUME_CHANGED) {
+        resetVolume(payload.volume);
+
+        root.TrackStore.emit(VOLUME_EVENT);
+      }
     })
   });
 })(this);

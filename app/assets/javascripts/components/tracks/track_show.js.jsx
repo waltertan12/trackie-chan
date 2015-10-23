@@ -56,15 +56,15 @@
       return (
         <div className="container track-show row">
           <TrackShowHeader track={this.state.track}/>
-          <div className="container-fullwidth track-description">
-            <div className="container">
-              <h3>Description</h3>
-              <p>{this.state.track.description}</p>
-              <h3>Tags</h3>
-              <Tags tags={this.state.track.tags}/>
-            </div>
-          </div>
           <div className="track-show-container col-md-8">
+            <div className="container-fullwidth track-description">
+              <div className="container">
+                <h3>Description</h3>
+                <p>{this.state.track.description}</p>
+                <h3>Tags</h3>
+                <Tags tags={this.state.track.tags}/>
+              </div>
+            </div>
             <CommentIndex trackId= {this.props.params.trackId} />
           </div>
           <TrackSidebar track={this.state.track} likes={this.state.track.likes}/>

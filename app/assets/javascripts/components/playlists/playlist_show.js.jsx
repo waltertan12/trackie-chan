@@ -40,15 +40,15 @@
             <PlaylistEditButton userId={playlist.user_id} 
                                 playlistId={playlist.id}/>
           </div>
-          <div className="container-fullwidth track-description">
-            <div className="container">
-              <h3>Description</h3>
-              <p>{playlist.description}</p>
-              <h3>Tags</h3>
-              <Tags tags={playlist.tags}/>
-            </div>
-          </div>
           <div className="playlist-show-container col-md-8">
+            <div className="container-fullwidth track-description">
+              <div className="container">
+                <h3>Description</h3>
+                <p>{playlist.description}</p>
+                <h3>Tags</h3>
+                <Tags tags={playlist.tags}/>
+              </div>
+            </div>
             <div className="track-index">
               <h2>Tracks</h2>
               <TrackIndex tracks={playlist.tracks} />
