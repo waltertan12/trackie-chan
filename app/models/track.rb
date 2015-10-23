@@ -22,8 +22,7 @@ class Track < ActiveRecord::Base
   has_many :feeds, as: :source, dependent: :destroy
 
   after_save do |track|
-    feed = Feed.includes(:user)
-               .find_by(source_id: track.id, source_type: "Track")
+    feed = Feed.find_by(source_id: track.id, source_type: "Track")
     if feed
       rank = track.user.followers.count + track.likes.count
       feed.update(updated_at: track.updated_at, rank: rank)

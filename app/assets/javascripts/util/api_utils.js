@@ -13,7 +13,7 @@
           callback(user);
         },
         error: function (err) {
-          console.log(err.responseText);
+          ErrorActions.receiveErrors(err.responseJSON);
         }
       })
     },
@@ -62,7 +62,7 @@
           window.location.assign("/");
         },
         error: function (err) {
-          console.log(err.responseText);
+          ErrorActions.receiveErrors(err.responseJSON);
         }
       })
     },
@@ -110,7 +110,7 @@
           callback(userId, tracks);
         },
         error: function(err) {
-          console.log(err.responseText);
+          cErrorActions.receiveErrors(err.responseJSON);
         }
       })
     },
@@ -123,7 +123,7 @@
           callback(track.user_id, track);
         },
         error: function(err) {
-          console.log(err.responseText);
+          ErrorActions.receiveErrors(err.responseJSON);
         }
       })
     },
@@ -163,7 +163,6 @@
           return xhr;
         },
         success: function (cloudinaryResponse) {
-          console.log(cloudinaryResponse);
           metadata.track_url = cloudinaryResponse.url;
           utils.uploadTrack(metadata, callback);
         },
@@ -197,8 +196,6 @@
         dataType: "json",
         data: {track: trackData},
         success: function (track) {
-          console.log("response");
-          console.log(track);
           callback(track);
           var uri = "/users/" + track.user_id +
                     "/tracks/" + track.id;
@@ -208,7 +205,6 @@
           if (err.responseText === "Not logged in error") {
             window.location.assign("/sign_in"); 
           } else {
-            console.log(err);
             ErrorActions.receiveErrors(err.responseJSON);
           }
         }
