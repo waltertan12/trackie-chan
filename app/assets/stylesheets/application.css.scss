@@ -132,6 +132,16 @@ a {
   }
 }
 
+.track-playlist-index {
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+  li {
+    padding: 5px 0;
+  }
+}
+
 .track-show-header {
   position: relative;
   min-width: $content-container-min-width;

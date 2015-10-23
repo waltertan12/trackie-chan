@@ -13,8 +13,10 @@
         likeItems = <li>No likes</li>
       } else {
         likeItems = (
-          this.props.likes.map( function (like) {
-            return <TrackLikeIndexItem key={like.id} like={like} />
+          this.props.likes.map( function (like, index) {
+            if (index < 5) {
+              return <TrackLikeIndexItem key={like.id} like={like} />
+            }
           })
         );
       }

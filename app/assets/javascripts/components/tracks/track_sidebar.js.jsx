@@ -11,7 +11,9 @@
           <TrackPlaylistIndex playlists={this.props.playlists} />
         );
       } else {
-
+        playlistIndex= (
+          <div></div>
+        );
       }
       return (
         <div className="track-sidebar col-md-4">

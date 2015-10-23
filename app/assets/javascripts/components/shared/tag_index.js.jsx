@@ -1,4 +1,6 @@
 (function (root) {
+  "use strict";
+  
   if (typeof root.Tags === "undefined") {
     root.Tags = {};
   }
@@ -10,7 +12,7 @@
           {
             this.props.tags.map(function (tag) {
               return (
-                <TagIndexItem tag={tag} />
+                <TagIndexItem key={tag.id} tag={tag} />
               );
             })
           }

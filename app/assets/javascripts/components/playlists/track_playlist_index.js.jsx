@@ -5,8 +5,6 @@
 
   root.TrackPlaylistIndex = React.createClass({
     render: function () {
-      console.log("Props for playlistindex");
-      console.log(this.props);
       var playlistItems;
       if (this.props.playlists.length === 0) {
         playlistItems = <li>This track is not in any playlists</li>

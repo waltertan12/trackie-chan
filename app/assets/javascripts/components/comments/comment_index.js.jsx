@@ -51,9 +51,9 @@
         commentItems = (
           this.state.comments.map( function (comment) {
             return (
-              <div>
+              <div key={comment.id}>
                 <hr/>
-                <CommentIndexItem key={comment.id} comment={comment}/>
+                <CommentIndexItem comment={comment}/>
               </div>
             );
           })

@@ -63,8 +63,8 @@
       this.setState({errors: ErrorStore.all()});
     },
     render: function () {
-      console.log("State for track show");
-      console.log(this.state);
+      console.log("'this' for Track show");
+      console.log(this);
       return (
         <div className="container-fullwidth track-show row">
           <TrackShowHeader track={this.state.track}/>
@@ -80,7 +80,6 @@
             <CommentIndex trackId= {this.props.params.trackId} />
           </div>
           <TrackSidebar type="Track"
-                        track={this.state.track} 
                         likes={this.state.track.likes}
                         playlists={this.state.track.playlists}/>
         </div>
