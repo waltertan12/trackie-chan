@@ -51,8 +51,10 @@
         likeList = (
           <ul>
             {
-              this.state.likes.map( function (like) {
-                return <UserLikeIndexItem key={like.id} like={like}/>;
+              this.state.likes.map( function (like, index) {
+                if (index < 5) {
+                  return <UserLikeIndexItem key={like.id} like={like}/>;
+                }
               })
             }
           </ul>
