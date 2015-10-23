@@ -1,4 +1,4 @@
-/* global $, EventEmitter, AppDispatcher, TrackConstants */
+/* global $, EventEmitter, AppDispatcher, TrackConstants, StoreHelper */
 (function (root) {
   "use strict";
   if (typeof root.TrackStore === "undefined") {
@@ -32,18 +32,7 @@
       },
 
       resetTrack = function (userId, track) {
-        if (typeof _tracks[userId] === "undefined") {
-          _tracks[userId] = [track];
-          return true;
-        } else {
-          for (var i = 0; i < _tracks[userId].length; i++) {
-            if (_tracks[userId][i]) {
-              _tracks[userId][i] = track;
-              return;
-            }
-          }
-          _tracks[userId].push(track);
-        }
+        StoreHelper.resetInnerObject(_tracks, userId, track);
       },
       
       resetUploadedTrack = function (track) {
@@ -51,43 +40,15 @@
       },
       
       pushTrack = function (userId, track) {
-        if (typeof _tracks[userId] === "undefined") {
-          _tracks[userId] = [track];
-        } else {
-          _tracks[userId].push(track);
-        }
+        StoreHelper.adder(_tracks, userId, track);
       },
       
       storeTrack = function (userId, track) {
-        if (typeof _tracks[userId] === "undefined") {
-          _tracks[userId] = [track];
-        } else {
-          for (var i = 0; i < _tracks[userId].length; i++) {
-            if (_tracks[userId][i].id === track.id) {
-              _tracks[userId][i] = track;
-              return;
-            }
-          }
-          _tracks[userId].push(track);
-        }
-      },
-
-      findTrackIndex = function (userId, trackId) {
-        if (typeof _tracks[userId] !== "undefined") {
-          for (var i = 0; i < _tracks[userId].length; i++) {
-            if (_tracks[userId][i].id === trackId) {
-              return i;
-            }
-          }
-        }
-        return -1;
+        StoreHelper.resetInnerObject(_tracks, userId, track);
       },
 
       removeTrack = function (userId, trackId) {
-        var index = findTrackIndex(userId, trackId);
-        if (index >= 0) {
-          _tracks[userId].splice(index, 1);
-        }
+        StoreHelper.remover(_tracks, userId, trackId);
       },
       
       CHANGE_EVENT = "CHANGE_EVENT",
@@ -128,7 +89,7 @@
       this.removeListener(VOLUME_EVENT, callback);
     },
     // End listeners
-    
+
     all: function () {
       return _tracks;
     },
