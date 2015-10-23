@@ -208,6 +208,7 @@
           if (err.responseText === "Not logged in error") {
             window.location.assign("/sign_in"); 
           } else {
+            console.log(err);
             ErrorActions.receiveErrors(err.responseJSON);
           }
         }

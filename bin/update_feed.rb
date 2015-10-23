@@ -1,4 +1,6 @@
-Feed.includes(:user, {user: :followers}, {user: :following}).all.each do |feed_item|
+Feed.includes(:user, {user: :followers}, {user: :following})
+    .all
+    .each do |feed_item|
 
   source = feed_item.source
   if source

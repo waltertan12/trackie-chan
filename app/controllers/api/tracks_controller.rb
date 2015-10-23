@@ -27,7 +27,7 @@ class Api::TracksController < ApplicationController
   def update
     @track = Track.includes(:tags, {tags: :taggings}).find(params[:id])
 
-    if current_user.id == @track.id && @track.update(track_params)
+    if current_user.id == @track.user_id && @track.update(track_params)
       if params[:track][:tags] && 
          @track.tags.pluck(:name) != params[:track][:tags]
 
