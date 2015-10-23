@@ -1,7 +1,11 @@
+/* global StoreHelper, PlaylistConstants, $, EventEmitter, AppDispatcher */
 (function (root) {
+  "use strict";
+
   if (typeof root.PlaylistStore === "undefined") {
     root.PlaylistStore = {};
   }
+
   var _placeholderPlaylist = {
         id: -1,
         tracks: [],
@@ -10,46 +14,25 @@
         title: "",
         description: ""
       },
+      
       _playlists = {},
-      addPlaylist = function (userId, playlist) {
-        if (typeof _playlists[userId] === "undefined") {
-          _playlists[userId] = [playlist];
-        } else {
-          _playlists[userId].push(playlist);
-        }
-      },
-      getPlaylistIndex = function (userId, playlistId) {
-        if (typeof _playlists[userId] !== "undefined") {
-          for (var i = 0; i < _playlists[userId].length; i++) {
-            if (_playlists[userId][i].id === playlistId) {
-              return i;
-            }
-          }
-        }
 
-        return -1;
+      addPlaylist = function (userId, playlist) {
+        StoreHelper.adder(_playlists, userId, playlist);
       },
+
       removePlaylist = function (userId, playlistId) {
-        var playlistIndex = getPlaylistIndex(userId, playlistId);
-        if (playlistIndex >= 0) {
-          _playlists[userId].splice(playlistIndex, 1);
-        } 
+        StoreHelper.remover(_playlists, userId, playlistId);
       },
+
       resetPlaylist = function (userId, playlist) {
-        if (typeof _playlists[userId] === "undefined") {
-          _playlists[userId] = [playlist];
-        } else {
-          // _playlists[userId].push(playlist);
-          for (var i = 0; i < _playlists[userId].length; i++) {
-            if (_playlists[userId][i].id === playlist.id) {
-              _playlists[userId][i] = playlist;
-            }
-          }
-        }
+        StoreHelper.resetInnerObject(_playlists, userId, playlist);
       },
+
       resetUserPlaylists = function (userId, playlist) {
-        _playlists[userId] = playlist;
-      }
+        StoreHelper.resetOuterObject(_playlists, userId, playlist);
+      },
+
       CHANGE_EVENT = "CHANGE_EVENT";
 
   root.PlaylistStore =  $.extend({}, EventEmitter.prototype,{
