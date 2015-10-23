@@ -1,7 +1,7 @@
 $content-container-min-width:  800px;
 $content-container-max-width:  1000px;
 $content-container-min-height: 500px;
-$header-height: 295px;
+$header-height: 350px;
 $header-image-size: 150px;
 
 /* dashboard - current user */
@@ -21,8 +21,9 @@ $header-image-size: 150px;
 
 /* dashboard - no current user */
 
-.landing-page {
+div.landing-page {
   border-radius: 0;
+  text-align: center;
   text-shadow: 0 0 10px darkgray;
   font-weight: bold;
   font-size: 5em;
@@ -38,7 +39,6 @@ $header-image-size: 150px;
   background-repeat: no-repeat;
   height: 400px;
   color: white;
-  background-color: white;
   .landing-page-search-bar {
     width: 70%;
     max-width: 600px;
@@ -72,7 +72,7 @@ $header-image-size: 150px;
     box-shadow: 0 0 10px lightgray;
     font-weight: bold;
     color: white;
-    h4 {
+    h3 {
       background-color: black;
       font-weight: bold;
       border-radius: 5px 5px 0 0;

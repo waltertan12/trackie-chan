@@ -25,7 +25,7 @@
 
       ApiUtils.fetchUser(currentUserId, dispatchCallback);
     },
-    updateUser: function (currentUserId, params) {
+    updateUser: function (currentUserId, params, redirect) {
       var dispatchCallback = function (user) {
         root.AppDispatcher.dispatch({
           actionType: root.UserConstants.USER_UPDATED,
@@ -33,7 +33,7 @@
         });
       };
 
-      ApiUtils.updateUser(currentUserId, params, dispatchCallback);
+      ApiUtils.updateUser(currentUserId, params, dispatchCallback, redirect);
     },
     deleteSingleUser: function (user) {
 

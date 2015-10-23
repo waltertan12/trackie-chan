@@ -4,6 +4,7 @@
   }
 
   root.UserSettings = React.createClass({
+    mixins: [ReactRouter.History],
     getInitialState: function () {
       return ({
         username: "",
@@ -57,6 +58,14 @@
     },
     _onSubmit: function (e) {
       e.preventDefault();
+      var hist = this.props.history;
+      var redirect = function (optionalUrl) {
+        if (typeof optionalUrl === "undefined") {
+          hist.pushState(null, "/");
+        } else {
+          hist.pushState(null, optionalUrl);
+        }
+      }
       ApiActions.updateUser(this.currentUser.id, this.state);
     },
     render: function () {

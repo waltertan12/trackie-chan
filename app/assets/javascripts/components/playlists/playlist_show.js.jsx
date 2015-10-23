@@ -42,7 +42,7 @@
           </div>
           <div className="playlist-show-container col-md-8">
             <div className="container-fullwidth track-description">
-              <div className="container">
+              <div className="container-fullwidth">
                 <h3>Description</h3>
                 <p>{playlist.description}</p>
                 <h3>Tags</h3>

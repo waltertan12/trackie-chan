@@ -101,7 +101,15 @@
     },
     handleDestroy: function (e) {
       e.preventDefault();
-      console.log(":(");
+      var hist = this.props.history,
+          redirect = function (optionalPath) {
+            if (typeof optionalPath === "undefined") {
+              hist.goBack();
+            } else {
+              hist.pushState(null, optionalPath);
+            }
+          };
+      TrackActions.destroyTrack(this.state, redirect);
     },
     updateTitle: function (e) {
       var value = e.target.value,

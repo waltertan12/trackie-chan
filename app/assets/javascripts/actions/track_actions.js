@@ -98,12 +98,23 @@
         progressCallback
       );
     },
+    destroyTrack: function (trackData, redirect) {
+      var dispatchCallback = function (track) {
+        root.AppDispatcher.dispatch({
+          actionType: root.TrackConstants.TRACK_DELETED,
+          userId: track.user_id,
+          track: track
+        });
+      };
+
+      ApiUtils.destroyTrack(trackData, dispatchCallback, redirect);
+    },
     updateTrack: function (trackData, redirect) {
       var dispatchCallback = function (track) {
         root.AppDispatcher.dispatch({
           actionType: root.TrackConstants.TRACK_UPDATED,
           userId: track.user_id,
-          track: track
+          trackId: track.id
         });
       };
 

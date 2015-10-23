@@ -9,18 +9,24 @@
     },
     componentDidMount: function () {
       TrackStore.addPlaylistListener(this.setPlayState);
-      this.setPlayState();
       this.pause = <span className='glyphicon glyphicon-pause'/>;
       this.play = <span className='glyphicon glyphicon-play'/>;
+      this.setPlayState(this.props);
+    },
+    componentWillReceiveProps: function (nextProps) {
+      this.setPlayState(nextProps);
     },
     componentWillUnmount: function () {
       TrackStore.removePlaylistListener(this.setPlayState);
     },
-    setPlayState: function () {
-      if (TrackStore.getCurrentTrackId() === this.props.track.id &&
+    setPlayState: function (optionalProps) {
+      if (typeof optionalProps === "undefined") {
+        optionalProps = this.props;
+      }
+      if (TrackStore.getCurrentTrackId() === optionalProps.track.id &&
           TrackStore.isATrackCurrentlyPlaying()) {
         this.setState({playState: this.pause});
-      } else if (TrackStore.getCurrentTrackId !== this.props.track.id) {
+      } else {
         this.setState({playState: this.play});
       }
     },

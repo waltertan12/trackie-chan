@@ -34,7 +34,9 @@
 
     },
     render: function () {
-      var tagline = "Find new artists. Discover new songs.";
+      var tagline = (
+        <h3>Find your favorite artists <br/> Explore new sounds</h3>
+      );
       if(window.CURRENT_USER_ID > 0) {
         return (
           <div className="dashboard row">
@@ -50,8 +52,7 @@
         return (
           <div>
             <div className="jumbotron landing-page">
-              <h1>TrackieChan</h1>
-              <h4>{tagline}</h4>
+              {tagline}
               <SearchBar isNav={false}/>
             </div>
             <div className="feature">

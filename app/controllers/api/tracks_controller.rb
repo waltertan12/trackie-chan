@@ -27,7 +27,7 @@ class Api::TracksController < ApplicationController
   def update
     @track = Track.includes(:tags, {tags: :taggings}).find(params[:id])
 
-    if @track.update(track_params)
+    if current_user.id == @track.id && @track.update(track_params)
       if params[:track][:tags] && 
          @track.tags.pluck(:name) != params[:track][:tags]
 
@@ -40,7 +40,11 @@ class Api::TracksController < ApplicationController
       
       render :show
     else
-      render json: @track.errors.full_messages, status: 422
+      if current_user.id != @track.user_id
+        render json: ["This isn't your track"], status: 422
+      else
+        render json: @track.errors.full_messages, status: 422
+      end
     end
   end
 
@@ -58,10 +62,14 @@ class Api::TracksController < ApplicationController
   def destroy
     @track = Track.includes(:tags).find(params[:id])
 
-    if @track.destroy
+    if current_user.id == @track.user_id && @track.destroy
       render json: @track
     else
-      render json: @track.errors.full_messages
+      if current_user.id != @track.user_id
+        render json: ["This isn't your track"], status: 422
+      else
+        render json: @track.errors.full_messages, status: 422
+      end
     end
   end
 

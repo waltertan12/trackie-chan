@@ -5,10 +5,7 @@
 
   root.SearchActions = {
     receiveQuery: function (query) {
-      if (typeof options === "undefined") {
-        options = "all";
-      }
-
+      
       var dispatchCallback = function (results) {
         AppDispatcher.dispatch({
           actionType: SearchConstants.RESULTS_RECEIVED,

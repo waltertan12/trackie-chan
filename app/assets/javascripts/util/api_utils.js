@@ -17,7 +17,7 @@
         }
       })
     },
-    updateUser: function (userId, params, callback) {
+    updateUser: function (userId, params, callback, redirect) {
       $.ajax({
         url: "/api/users/" + userId,
         type: "PUT",
@@ -25,6 +25,7 @@
         data: {user: params},
         success: function (user) {
           callback(user);
+          redirect();
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
@@ -202,6 +203,24 @@
           var uri = "/users/" + track.user_id +
                     "/tracks/" + track.id;
           redirect(uri);
+        },
+        error: function (err) {
+          if (err.responseText === "Not logged in error") {
+            window.location.assign("/sign_in"); 
+          } else {
+            ErrorActions.receiveErrors(err.responseJSON);
+          }
+        }
+      })
+    },
+    destroyTrack: function (trackData, callback, redirect) {
+      $.ajax({
+        url: "/api/tracks/" + trackData.id,
+        type: "DELETE",
+        dataType: "json",
+        success: function (track) {
+          callback(track);
+          redirect();
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {

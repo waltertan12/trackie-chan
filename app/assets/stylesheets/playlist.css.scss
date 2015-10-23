@@ -1,8 +1,9 @@
 $content-container-min-width:  800px;
 $content-container-max-width:  1000px;
 $content-container-min-height: 500px;
-$header-height: 295px;
+$header-height: 350px;
 $header-image-size: 150px;
+
 
 /* playlist */
 
@@ -34,7 +35,7 @@ $header-image-size: 150px;
   max-width: 600px;
   max-height: 250px;
   height: auto;
-
+  margin: 5px 0;
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;

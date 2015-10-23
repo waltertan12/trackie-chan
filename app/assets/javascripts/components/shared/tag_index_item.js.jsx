@@ -7,8 +7,15 @@
     mixins: [ReactRouter.History],
     handleClick: function (e) {
       console.log("click");
-      SearchActions.receiveQuery(this.props.tag.name, "tags")
-      this.history.pushState(null, "/search");
+      SearchActions.setOption("tags");
+
+      var query = {
+        query: this.props.tag.name,
+        options: SearchStore.option()
+      };
+
+      SearchActions.receiveQuery(query)
+      this.history.pushState(null, "/search", query);
     },
     render: function () {
       return (

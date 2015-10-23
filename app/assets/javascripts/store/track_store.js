@@ -106,6 +106,24 @@
           _tracks[userId].push(track);
         }
       },
+
+      findTrackIndex = function (userId, trackId) {
+        if (typeof _tracks[userId] !== "undefined") {
+          for (var i = 0; i < _tracks[userId].length; i++) {
+            if (_tracks[userId][i].id === trackId) {
+              return i;
+            }
+          };
+        }
+        return -1;
+      },
+
+      removeTrack = function (userId, trackId) {
+        var index = findTrackIndex(userId, trackId);
+        if (index >= 0) {
+          _tracks[userId].splice(index, 1);
+        }
+      },
       
       CHANGE_EVENT = "CHANGE_EVENT",
       
@@ -176,12 +194,7 @@
       return -1;
     },
     addLikeToTrack: function (trackId, user) {
-      console.log("Adding like to track");
-      console.log(trackId);
-      console.log(user);
-      
       var track = root.TrackStore.findTrack(user.id, trackId);
-      console.log(track);
 
       if (track.id !== -1) {
         var like = {
@@ -189,14 +202,12 @@
           username: user.username,
           image_url: user.image_url
         }
-        console.log(track);
         track.likes.push(like);
       }
     },
     removeLikeFromTrack: function (trackId, user) {
       var track = root.TrackStore.findTrack(user.id, trackId);
 
-      console.log("Removing like from track");
       if (track.id !== -1) {
         var likeIndex = root.TrackStore.findLikeIndex(track);
 
@@ -298,11 +309,9 @@
       root.TrackStore.pauseTrack();
     },
     findTrackInPlaylist: function (track) {
-      console.log(_currentAudio.playlist);
       for (var i = 0; i < _currentAudio.playlist.length; i++) {
 
         if (_currentAudio.playlist[i].id === track.id) {
-          console.log("Setting current track to" + i);
           _currentTrackNumber = i;
           return;
         }
@@ -349,18 +358,20 @@
 
         root.TrackStore.emit(UPLOAD_EVENT);
       } else if (payload.actionType === TrackConstants.TRACK_UPDATED) {
-        console.log("Resetting track");
-        console.log(payload.track);
         resetTrack(payload.userId, payload.track);
 
         root.TrackStore.emit(CHANGE_EVENT);
         
+      } else if (payload.actionType === TrackConstants.TRACK_DESTROYED) {
+        removeTrack(payload.userId, payload.trackId);
+
+        root.TrackStore.emit(CHANGE_EVENT);
+
       // Global Playlist responses
       } else if (payload.actionType === TrackConstants.RESET_PLAYLIST) {
         if (!root.TrackStore.isATrackCurrentlyPlaying()) {
           resetPlaylist(payload.tracks);
         } else {
-          console.log(payload.tracks);
           _nextPlaylist = payload.tracks;
         }
 

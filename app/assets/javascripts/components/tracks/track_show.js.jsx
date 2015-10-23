@@ -54,11 +54,11 @@
     },
     render: function () {
       return (
-        <div className="container track-show row">
+        <div className="container-fullwidth track-show row">
           <TrackShowHeader track={this.state.track}/>
           <div className="track-show-container col-md-8">
             <div className="container-fullwidth track-description">
-              <div className="container">
+              <div className="container-fullwidth">
                 <h3>Description</h3>
                 <p>{this.state.track.description}</p>
                 <h3>Tags</h3>
