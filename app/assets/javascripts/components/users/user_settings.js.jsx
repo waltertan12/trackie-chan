@@ -66,7 +66,7 @@
           hist.pushState(null, optionalUrl);
         }
       }
-      ApiActions.updateUser(this.currentUser.id, this.state);
+      ApiActions.updateUser(this.currentUser.id, this.state, redirect);
     },
     render: function () {
       console.log(this.currentUser);
