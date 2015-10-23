@@ -68,7 +68,7 @@
         root.AppDispatcher.dispatch({
           actionType: root.TrackConstants.TRACK_UPDATED,
           userId: track.user_id,
-          trackId: track.id
+          track: track
         });
       };
 
