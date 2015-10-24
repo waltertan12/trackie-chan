@@ -55,9 +55,9 @@
     },
     componentDidUpdate: function () {
       // wavesurfer
-      if (typeof this.wavesurfer === "undefined" ) {
-        this.initWavesurfer(this.props.track);
-      }
+      // if (typeof this.wavesurfer === "undefined" ) {
+      //   this.initWavesurfer(this.props.track);
+      // }
     },
     playOrPause: function () {
       var playState = this.state.playState;
