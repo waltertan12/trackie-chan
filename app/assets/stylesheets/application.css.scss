@@ -20,9 +20,13 @@
 
 $content-container-min-width:  800px;
 $content-container-max-width:  1000px;
-$content-container-min-height: 500px;
+$content-container-min-height: 600px;
 $header-height: 350px;
 $header-image-size: 150px;
+
+hr {
+  color: lightgray;
+}
 
 .main {
   margin: 0 auto;
@@ -68,7 +72,7 @@ a {
 /* like index */
 
 .like-index {
-  padding: 10px;
+  /*padding: 10px;*/
   ul {
     list-style-type: none;
     padding: 0;

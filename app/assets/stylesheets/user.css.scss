@@ -1,8 +1,9 @@
 $content-container-min-width:  800px;
 $content-container-max-width:  1000px;
-$content-container-min-height: 500px;
+$content-container-min-height: 600px;
 $header-height: 350px;
 $header-image-size: 150px;
+
 
 /* user show*/
 
@@ -49,7 +50,7 @@ $header-image-size: 150px;
 
 /* follow index */
 .follow-index {
-  padding: 10px;
+  /*padding: 10px;*/
   border-radius: 5px;
   ul {
     padding: 0;
