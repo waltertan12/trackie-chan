@@ -24,16 +24,17 @@ $(function () {
       <IndexRoute component={Dashboard} />
       <Route path="users">
         <Route path="settings" component={UserSettings}/>
-        <Route path=":userId" component={UserShow}>
-        </Route>
-          <Route path=":userId/tracks/:trackId" component={TrackShow}/>
-          <Route path=":userId/playlists/:playlistId" 
-                 component={PlaylistShow}/>
-          <Route path=":userId/playlists/:playlistId/edit" 
-                 component={PlaylistEdit}/>
-          <Route path=":userId/tracks/:trackId/playlist-form" 
-                 component={PlaylistForm}/>
-          <Route path=":userId/tracks/:trackId/edit" component={TrackEdit} />
+        <Route path=":userId" component={UserShow} />
+        <Route path=":userId/:followType" component={FollowShow} />
+
+        <Route path=":userId/tracks/:trackId" component={TrackShow}/>
+        <Route path=":userId/playlists/:playlistId" 
+               component={PlaylistShow}/>
+        <Route path=":userId/playlists/:playlistId/edit" 
+               component={PlaylistEdit}/>
+        <Route path=":userId/tracks/:trackId/playlist-form" 
+               component={PlaylistForm}/>
+        <Route path=":userId/tracks/:trackId/edit" component={TrackEdit} />
       </Route>
       <Route path="tracks">
         <Route path="upload" component={TrackUpload}/>

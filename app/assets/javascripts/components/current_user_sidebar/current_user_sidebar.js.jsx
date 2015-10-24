@@ -11,7 +11,8 @@
         <div className="user-sidebar col-md-4">
           <UserLikeIndex userId={currentUser.id}/>
           <hr/>
-          <FollowIndex following={currentUser.following}/>
+          <FollowIndex userId={currentUser.id} 
+                       following={currentUser.following}/>
         </div>
       );
     }

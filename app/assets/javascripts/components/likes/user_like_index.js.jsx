@@ -3,6 +3,8 @@
     root.UserLikeIndex = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.UserLikeIndex = React.createClass({
     getInitialState: function () {
       return {likes: []};
@@ -63,7 +65,7 @@
       }
       return (
         <div className="like-index">
-          <h3>Likes</h3>
+          <Link to={"/users/" + userId + "/likes"}><h3>Likes</h3></Link>
           {likeList}
         </div>
       );

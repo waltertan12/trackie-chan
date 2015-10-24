@@ -3,6 +3,8 @@
     root.FollowIndex = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.FollowIndex = React.createClass({
     render: function () {
       var following = this.props.following,
@@ -13,8 +15,13 @@
         content = (
           <div>
             {
-              following.map( function (followedUser) {
-                return <FollowIndexItem key={followedUser.id} followedUser={followedUser} />;
+              following.map( function (followedUser, index) {
+                if (index < 5) {
+                  return (
+                    <FollowIndexItem key={followedUser.id} 
+                                     followedUser={followedUser} />
+                    );
+                }
               })
             }
           </div>
@@ -22,7 +29,11 @@
       }
       return (
         <div className="follow-index">
-          <h3>Following</h3>
+          <Link to={"/users/" + this.props.userId + "/following"}>
+              <h3>
+              Following
+              </h3>
+          </Link>
           <ul>
             {content}
           </ul>
