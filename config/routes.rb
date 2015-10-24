@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resource :followings, only: [:create, :destroy]
 
   resources :tracks, only: [:index, :show, :create, :edit, :update, :destroy]
+  get "tracks/track_url/:id" => "tracks#track_url"
 
   resources :comments, only: [:index, :create, :edit, :update, :destroy]
 

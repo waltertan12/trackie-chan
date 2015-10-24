@@ -15,6 +15,7 @@ gem 'factory_girl_rails'
 
 gem 'react-rails', '~>1.3.0'
 gem 'flux-rails-assets'
+gem 'rack-cors'
 
 group :production do
   gem 'pg'

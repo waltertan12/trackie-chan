@@ -8,7 +8,7 @@
       return {playState: ""};
     },
     componentDidMount: function () {
-      // TrackStore.addPlaylistListener(this.setPlayState);
+
       CurrentPlaylistStore.addPlaylistListener(this.setPlayState);
       var track = this.props.track,
           currentlyPlaying = CurrentPlaylistStore.isATrackCurrentlyPlaying(),
@@ -26,8 +26,22 @@
       this.setState({playState: playState});
     },
     componentWillUnmount: function () {
-      // TrackStore.removePlaylistListener(this.setPlayState);
       CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
+    },
+    initWavesurfer: function (track) {
+      if (parseInt(track.id) !== -1) {
+        wavesurfer = this.wavesurfer = Object.create(WaveSurfer);
+
+        wavesurfer.init({
+            container: document.querySelector("#track-" + track.id),
+            backend: "WebAudio",
+            waveColor: "lightgray",
+            progressColor: "orange"
+        });
+
+        wavesurfer.load(track.track_url);
+        ws = wavesurfer;
+      }
     },
     setPlayState: function () {
       if (CurrentPlaylistStore.getCurrentTrackId() === this.props.track.id &&
@@ -37,6 +51,12 @@
 
       } else if (CurrentPlaylistStore.getCurrentTrackId !== this.props.track.id) {
         this.setState({playState: this.play});
+      }
+    },
+    componentDidUpdate: function () {
+      // wavesurfer
+      if (typeof this.wavesurfer === "undefined" ) {
+        this.initWavesurfer(this.props.track);
       }
     },
     playOrPause: function () {
@@ -76,23 +96,26 @@
       return (
         <div className="track-index-item">
           <div className="track-index-item-header">
-            <div className="play-button" 
-                 onClick={this.playOrPause}>
-                 {this.state.playState}
+            <div className="track-index-item-controls">
+              <div className="play-button" 
+                   onClick={this.playOrPause}>
+                   {this.state.playState}
+              </div>
+              <p>
+                <Link to={"/users/" + track.user_id}>
+                  {track.username}
+                </Link>
+              </p>
+              <b>{trackTitle}</b>
             </div>
-            <p>
-              <Link to={"/users/" + track.user_id}>
-                {track.username}
-              </Link>
-            </p>
-            <b>{trackTitle}</b>
-          </div>
-          <div className="track-index-item-buttons">
-            <LikeButton likableType="Track" 
-                        likableId={this.props.track.id} />
-            <AddToPlaylistButton userId={this.props.track.user_id}
-                                 trackId={this.props.track.id}/>
-          </div>
+            <div className="track-index-item-buttons">
+              <LikeButton likableType="Track" 
+                          likableId={this.props.track.id} />
+              <AddToPlaylistButton userId={this.props.track.user_id}
+                                   trackId={this.props.track.id}/>
+            </div>
+            </div>
+            <div className="wave" id={"track-" + this.props.track.id} ></div>
         </div>
       );
     }

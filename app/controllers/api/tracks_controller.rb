@@ -1,5 +1,5 @@
 class Api::TracksController < ApplicationController
-  before_action :ensure_user_logged_in, except: [:show, :index]
+  before_action :ensure_user_logged_in, except: [:show, :index, :track_url]
 
   def index
     @tracks = Track.includes(:user, :tags, :likes, {likes: :user}, :comments)
@@ -22,6 +22,11 @@ class Api::TracksController < ApplicationController
 
   def edit
     render :edit
+  end
+
+  def track_url
+    @track = Track.find(params[:id])
+    render json: @track.track_url, status: 300
   end
 
   def update
