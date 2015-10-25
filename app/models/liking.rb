@@ -9,7 +9,7 @@ class Liking < ActiveRecord::Base
   belongs_to :user
 
   after_save do |like|
-    feed = Feed.includes(user: :followers, source: :likes,)
+    feed = Feed.includes(user: :followers, source: :likes)
                .find_by(source_id: like.likable_id, 
                         source_type: like.likable_type)
 
