@@ -11,9 +11,9 @@
   - [x] Tag songs
   - [x] Comment on songs
   - [x] Like songs
-- [ ] Create playlists
-- [ ] View feed from followed users
-- [ ] Search for users and songs
+- [x] Create playlists
+- [x] View feed from followed users
+- [x] Search for users and songs
 
 ## Design Docs
 - [Views](./docs/views.md)
@@ -51,19 +51,19 @@ Create a component `SearchIndex` that allows users to search for users, songs, a
 [Details](./docs/phases/phase_6.md)
 
 ### Phase 7: Styling (1 day)
-Make it look better...
+Style all views with a consistent theme
 
 [Details](./docs/phases/phase_7.md)
 
 ## Bonus Features
+- [x] Explore feed
+- [x] Trending Artists / Songs
+- [x] Continuous playback
 - [ ] Album art
 - [ ] Avatars
 - [ ] Waveform visualizer / Use WaveSurferJS
 - [ ] Facebook Auth
-- [ ] Trending Artists / Songs
 - [ ] Track collections / albums
-- [ ] Continuous playback
 - [ ] Public and private tracks
-- [ ] Explore feed
 - [ ] Download songs
 - [ ] Use SendGrid as mailserver
