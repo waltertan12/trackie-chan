@@ -1,10 +1,26 @@
-Feed.includes(:user, {user: :followers}, {user: :following})
-    .all
-    .each do |feed_item|
+def update_rank(feed)
+  source = feed.source
 
-  source = feed_item.source
-  if source
-    rank = source.user.followers.count + source.likes.count
-    feed_item.update(updated_at: source.updated_at, rank: rank)
+  rank = feed.source.user.followers.count
+
+  now = Time.now
+
+  total_time = now - source.created_at
+
+  source.likes.each do |like|
+    like_time = now - like.created_at
+    rank += (1 - (like_time / total_time))
+    p rank
+  end
+
+  feed.update(rank: rank)
+end
+
+Feed.includes(source: :likes, user: :followers)
+    .all
+    .each do |feed|
+
+  if feed.source
+    update_rank(feed)
   end
 end

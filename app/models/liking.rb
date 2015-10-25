@@ -9,14 +9,30 @@ class Liking < ActiveRecord::Base
   belongs_to :user
 
   after_save do |like|
-    feed = Feed.includes(source: :likes,).find_by(source_id: like.likable_id, 
+    feed = Feed.includes(user: :followers, source: :likes,)
+               .find_by(source_id: like.likable_id, 
                         source_type: like.likable_type)
 
     if feed
-      rank = like.likable.user.followers.count + 
-             like.likable.likes.count
-
-      feed.update(updated_at: track.updated_at, rank: rank)
+      update_rank(feed)
     end
+  end
+
+  def update_rank(feed)
+    source = feed.source
+
+    rank = feed.source.user.followers.count
+
+    now = Time.now
+
+    total_time = now - source.created_at
+
+    source.likes.each do |like|
+      like_time = now - like.created_at
+      rank += (1 - (like_time / total_time))
+      p rank
+    end
+
+    feed.update(rank: rank)
   end
 end
