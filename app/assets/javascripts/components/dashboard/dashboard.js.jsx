@@ -61,7 +61,7 @@
               <h2>Listen now:</h2>
               <div className="row">
                 <div className="col-md-3">
-                  <Link to="/users/28">
+                  <Link to="/users/35">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/iuQrQb7.jpg?1">
                         <h4>Toro Y Moi</h4>
@@ -78,7 +78,7 @@
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="/users/19">
+                  <Link to="/users/21">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/A2e3a5I.jpg?1" />
                       <h4>Future Islands</h4>
@@ -96,7 +96,7 @@
               </div>
               <div className="row">
                 <div className="col-md-3">
-                  <Link to="/users/27">
+                  <Link to="/users/34">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/ySgnZX5.jpg?1" />
                       <h4>TNGHT</h4>
@@ -104,7 +104,7 @@
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="/users/20">
+                  <Link to="/users/22">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/ttPfUsI.jpg" />
                       <h4>Japandroids</h4>
@@ -112,7 +112,7 @@
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="/users/31">
+                  <Link to="/users/38">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/89qng9H.jpg?1" />
                       <h4>Youth Lagoon</h4>
@@ -120,7 +120,7 @@
                   </Link>
                 </div>
                 <div className="col-md-3">
-                  <Link to="/users/26">
+                  <Link to="/users/32">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/qQ88bfI.jpg" />
                       <h4>The National</h4>
