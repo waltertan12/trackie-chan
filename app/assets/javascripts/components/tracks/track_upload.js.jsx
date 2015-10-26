@@ -11,7 +11,8 @@
         {
           title: "",
           description: "",
-          tags: ""
+          tags: "",
+          image_url: ""
         }
       );
     },
@@ -51,7 +52,10 @@
       this.audioFile = e.target;
     },
     updateImageFile: function (e) {
-      this.imageFile = e.target;
+      var value = e.target.value,
+          newState = this.state;
+      newState.image_url = value;
+      this.setState(newState);
     },
     validate: function (title, audiofile) {
       errors = [];
@@ -71,21 +75,14 @@
 
       var audioFile = this.audioFile.files[0],
           audioFormData = new FormData(),
-          imageFormData = new FormData(),
           tags = this.tagInput.getTagValues();
 
       audioFormData.append("upload_preset", window.CLOUDINARY_PRESET);
       audioFormData.append("file", audioFile);
 
-      if (typeof this.imageFile !== "undefined") {
-        imageFormData.append("upload_preset", window.CLOUDINARY_PRESET);
-        imageFormData.append("file", imageFile);
-      }
-
       TrackActions.uploadTrack({
         metadata: this.state,
         audio: audioFormData,
-        image: imageFormData,
         tags: tags
       });
 
@@ -129,7 +126,8 @@
 
             <div className="form-group">
               <label>Upload an image <em>(optional aka it does not work)</em></label><br/>
-              <input type="file"
+              <input type="text"
+                     className="form-control"
                      accept="image/*"
                      onChange={this.updateImageFile}/>
             </div><br/><br/>

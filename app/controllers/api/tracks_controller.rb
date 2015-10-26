@@ -89,7 +89,7 @@ class Api::TracksController < ApplicationController
     params.require(:track).permit(
       :title, 
       :description, 
-      :track_url, 
+      :track_url,
       :image_url,
       :boolean,
     )
