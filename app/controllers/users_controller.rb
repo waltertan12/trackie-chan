@@ -16,6 +16,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def popular
+    all = User.includes(:followers).all.
+    all.sort do |user_one, user_two|
+      user_one.followers.count <=> user_two.followers.count
+    end.take(8)
+  end
+
   private
   def user_params
     params.require(:user).permit(
