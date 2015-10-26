@@ -35,7 +35,9 @@
     },
     render: function () {
       var tagline = (
-        <h3>Find upcoming artists <br/> Explore new sounds</h3>
+        <h3>
+          Find upcoming artists <br/><br/> Explore new sounds<br/><br/>
+        </h3>
       );
       if(window.CURRENT_USER_ID > 0) {
         return (
