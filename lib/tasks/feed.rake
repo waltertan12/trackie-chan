@@ -1,5 +1,5 @@
-FOLLOWABLE_IDS = (7..32).to_a
-LIKABLE_TRACK_IDS = (3..59).to_a
+FOLLOWABLE_IDS = (7..40).to_a
+LIKABLE_TRACK_IDS = (3..80).to_a
 
 def update_rank(feed)
   source = feed.source

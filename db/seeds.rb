@@ -100,10 +100,22 @@ childish_gambino = User.create!(
   image_url: "http://i.imgur.com/Om1G65e.jpg?1"
 )
 
+christine_and_the_queens = User.create!(
+  username: "Christine and the Queens",
+  email: "asfasdnfadsfque@christineandthequeens.com",
+  password: "password"
+)
+
 chromatic = User.create!(
   username: "Chromatic",
   email: "chrom@tic.com",
   password_digest: BCrypt::Password.create("password")
+)
+
+chvrches = User.create!(
+  username: "CHRVCHES",
+  email: "iamscottish@chvrches.asfasdf",
+  password: "password"
 )
 
 fleetwood_mac = User.create!(
@@ -127,7 +139,7 @@ japandroids = User.create!(
 )
 
 mike_jones = User.create!(
-  username: "Who? Mike Joooonnnessss",
+  username: "Mike Jones",
   email: "mike.jones@theoneandonly.com",
   password_digest: BCrypt::Password.create("password")
 )
@@ -143,6 +155,31 @@ run_the_jewels = User.create!(
   email: "rtj@runningandstuff.com",
   password_digest: BCrypt::Password.create("password"),
   image_url: "http://i.imgur.com/OdbxiCI.jpg"
+)
+
+shamir = User.create!(
+  username: "Shamir",
+  email: "shamir@asdfasdfasdf.skinnydude",
+  password: "password"
+)
+
+sheer_mag = User.create!(
+  username: "Sheer Mag",
+  email: "shssermasdfasdfm@mag.com",
+  password: "password"
+)
+
+secret_songs = User.create!(
+  username: "Shh",
+  email: "shh@secret.songs",
+  password: "password",
+  image_url: "http://i.imgur.com/ZYLGkXk.jpg?1"
+)
+
+tei_shi = User.create!(
+  username: "Tei Shi",
+  email: "teishiteishietishehtshthsthsht@teishi.shi",
+  password: "password"
 )
 
 the_dig = User.create!(
@@ -162,6 +199,12 @@ the_national = User.create!(
   email: "areyoucryingyet@sosad.overwhelmingdepression",
   password_digest: BCrypt::Password.create("password"),
   image_url: "http://i.imgur.com/qQ88bfI.jpg"
+)
+
+tennis = User.create!(
+  username: "Tennis",
+  email: "tenisntesntensitnei@tenins.tennis",
+  password: "password"
 )
 
 tnght = User.create!(
@@ -403,6 +446,41 @@ three_thousand_and_five = Track.create!(
 
 three_thousand_and_five.taggings.create!(tag: rap_tag)
 
+retro = Track.create!(
+  title: "Retro",
+  description: "old",
+  user_id: childish_gambino.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Childish%20Gambino%20-%20Retro%20(Rough).mp3"
+)
+
+sober = Track.create!(
+  title: "3005",
+  description: "",
+  user_id: childish_gambino.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Childish%20Gambino%20-%20Sober.mp3"
+)
+
+telegraph_ave = Track.create!(
+  title: "Telegraph Ave (Oakland by Lloyd)",
+  description: "",
+  user_id: childish_gambino.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Childish%20Gambino%20-%20Telegraph%20Ave%20(''Oakland%20by%20Lloyd'').mp3"
+)
+
+it = Track.create!(
+  title: "iT",
+  description: "Be bold like Kanye",
+  user_id: christine_and_the_queens.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Christine%20and%20the%20Queens%20-%20iT.mp3"
+)
+
+paradis_perdus = Track.create!(
+  title: "Paradis Perdus",
+  description: "",
+  user_id: christine_and_the_queens.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Christine%20and%20the%20Queens%20-%20Paradis%20perdus.mp3"
+)
+
 back_from_the_grave = Track.create!(
   title: "Back from the Grave",
   description: "spooky",
@@ -415,6 +493,18 @@ cherry = Track.create!(
   description: "you might have heard this from Schoolboy Q...",
   user_id: chromatic.id,
   track_url: "http://dublindonut.com/Content/Sounds/transcoded/Chromatics%20-%20Cherry.mp3"
+)
+
+leave_a_trace = Track.create!(
+  title: "Leave a Trace",
+  user_id: chvrches.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/CHVRCHES%20-%20Leave%20A%20Trace.mp3"
+)
+
+the_mother_we_share = Track.create!(
+  title: "The Mother We Share",
+  user_id: chvrches.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/CHVRCHES%20-%20The%20Mother%20We%20Share.mp3"
 )
 
 everywhere = Track.create!(
@@ -469,6 +559,67 @@ young_hearts_spark_fires = Track.create!(
 
 young_hearts_spark_fires.taggings.create!(tag: canadian_tag)
 
+demon = Track.create!(
+  title: "Demon",
+  description: "",
+  user_id: shamir.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Shamir%20-%20Demon.mp3"
+)
+
+on_the_regular = Track.create!(
+  title: "On the Regular",
+  user_id: shamir.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Shamir%20-%20On%20The%20Regular.mp3"
+)
+
+rock_tag = Tag.create!(name: "rock")
+
+sit_and_cry = Track.create!(
+  title: "Sit and Cry",
+  user_id: sheer_mag.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/SHEER%20MAG%20-%20Sit%20and%20Cry.mp3"
+)
+
+sit_and_cry.taggings.create!(tag: rock_tag)
+
+what_you_want = Track.create!(
+  title: "What You Want",
+  user_id: sheer_mag.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/SHEER%20MAG%20-%20What%20You%20Want.mp3"
+)
+
+what_you_want.taggings.create!(tag: rock_tag)
+
+
+shh_tag = Tag.create!(name: "shh")
+
+naked = Track.create!(
+  title: "Henrik the Artist - Naked",
+  description: "shh",
+  user_id: secret_songs.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Henrik%20the%20Artist%20-%20naked.mp3"
+)
+
+naked.taggings.create!(tag: shh_tag)
+
+flamingo = Track.create!(
+  title: "Kero Kero Bonito - Flamingo",
+  description: "shh",
+  user_id: secret_songs.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Kero%20Kero%20Bonito%20-%20Flamingo.mp3"
+)
+
+
+flamingo.taggings.create!(tag: shh_tag)
+
+since_u_asked = Track.create!(
+  title: "swim good x Merival - Since You Asked",
+  user_id: secret_songs.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/swim%20good%20x%20Merival%20-%20since%20u%20asked.mp3"
+)
+
+since_u_asked.taggings.create!(tag: shh_tag)
+
 meow_tag = Tag.create!(name: "meow")
 
 close_your_eyes = Track.create!(
@@ -509,6 +660,31 @@ goooo = Track.create!(
 
 goooo.taggings.create!(tag: trap_tag)
 
+still_tippin = Track.create!(
+  title: "Still Tippin' (Great Fairy's Fountain Remix)",
+  description: "legend of zelda",
+  user_id: mike_jones.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Team%20Teamwork%20-%20Slim%20Thug%20&%20Mike%20Jones%20-%20Still%20Tippin'%20(Great%20Fairy's%20Fountain).mp3"
+)
+
+bassically = Track.create!(
+  title: "Bassically",
+  user_id: tei_shi.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Tei%20Shi%20-%20Bassically.mp3"
+)
+
+my_better_self = Track.create!(
+  title: "My Better Self",
+  user_id: tennis.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Tennis%20-%20My%20Better%20Self.mp3"
+)
+
+timothy = Track.create!(
+  title: "Timothy",
+  user_id: tennis.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Tennis%20-%20Timothy.mp3"
+)
+
 sad_tag = Tag.create!(name: "sad_tag")
 
 i_already_forgot_everything_you_said = Track.create!(
@@ -534,11 +710,30 @@ pass_this_on = Track.create!(
   track_url: "http://dublindonut.com/Content/Sounds/transcoded/The%20Knife%20-%20Pass%20This%20On.mp3"
 )
 
+return_to_the_moon = Track.create!(
+  title: "El Vy - Return to the Moon (Political Song for Didi Bloome to Sing, with Crescendo)",
+  description: "pop",
+  user_id: the_national.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/EL%20VY%20-%20Return%20to%20the%20Moon%20(Political%20Song%20for%20Didi%20Bloome%20to%20Sing,%20with%20Crescendo).mp3"
+)
+
 graceless = Track.create!(
   title: "Graceless",
   description: "Are you sad yet?",
   user_id: the_national.id,
   track_url: "http://dublindonut.com/Content/Sounds/transcoded/The%20National%20-%20Graceless.mp3"
+)
+
+exile_vilify = Track.create!(
+  title: "Exile Vilify",
+  user_id: the_national.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/The%20National%20-%20Exile%20Vilify%20(From%20the%20Game%20Portal%202).mp3"
+)
+
+think_you_can_wait = Track.create!(
+  title: "Think You Can Wait",
+  user_id: the_national.id,
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/The%20National%20-%20Think%20You%20Can%20Wait%20(from%20the%20Film%20Win%20Win).mp3"
 )
 
 i_need_my_girl = Track.create!(
