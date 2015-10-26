@@ -68,7 +68,7 @@
       return (
         <div className="container-fullwidth track-show row">
           <TrackShowHeader track={this.state.track}/>
-          <div className="track-show-container col-md-8">
+          <div className="col-md-8 track-show-container ">
             <div className="container-fullwidth track-description">
               <div className="container-fullwidth">
                 <h3>Description</h3>

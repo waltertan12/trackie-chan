@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   validates :admin, inclusion: { in: [true, false] }
 
   after_initialize :ensure_session_token
+  after_initialize :ensure_image_url
 
   # Associations
   has_many :active_relationships, class_name: "Following",
@@ -41,6 +42,16 @@ class User < ActiveRecord::Base
   has_many :likings, dependent: :destroy
   has_many :playlists, dependent: :destroy
 
+  def ensure_image_url
+    # if self.new_record?
+      self.image_url ||= [
+        "http://i.imgur.com/elhQmTE.jpg?1",
+        "http://i.imgur.com/0u478vM.jpg?1",
+        "http://i.imgur.com/lSIuik9.jpg?1",
+        "http://i.imgur.com/nLpkVgW.jpg?1"
+      ].sample 
+    # end
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

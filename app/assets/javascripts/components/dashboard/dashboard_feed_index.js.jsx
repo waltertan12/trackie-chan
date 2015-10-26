@@ -18,7 +18,7 @@
     },
     render: function () {
       return (
-        <div className="dashboard-feed-index col-md-8">
+        <div className="col-md-8 dashboard-feed-index ">
           <FeedIndex type={"user"}/>
         </div>
       );

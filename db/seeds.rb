@@ -82,6 +82,7 @@ cashmere_cat = User.create!(
 chairlift = User.create!(
   username: "Chairlift",
   email: "chair@lift.com",
+  image_url: "http://i.imgur.com/o6eIUdA.jpg?1",
   password_digest: BCrypt::Password.create("password")
 )
 
@@ -94,7 +95,8 @@ chance_the_rapper = User.create!(
 childish_gambino = User.create!(
   username: "Childish Gambino",
   email: "donald.gloverz@wow.mom",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/Om1G65e.jpg?1"
 )
 
 chromatic = User.create!(
@@ -112,13 +114,15 @@ fleetwood_mac = User.create!(
 future_islands = User.create!(
   username: "Future Islands",
   email: "futurefuturefuturefuture.islands@iamalive.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/A2e3a5I.jpg?1"
 )
 
 japandroids = User.create!(
   username: "Japandroids",
   email: "post@nothing.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/ttPfUsI.jpg"
 )
 
 mike_jones = User.create!(
@@ -136,7 +140,8 @@ owl_city = User.create!(
 run_the_jewels = User.create!(
   username: "Run the Jewels",
   email: "rtj@runningandstuff.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/OdbxiCI.jpg"
 )
 
 the_dig = User.create!(
@@ -160,13 +165,15 @@ the_national = User.create!(
 tnght = User.create!(
   username: "TNGHT",
   email: "tnghtnghtnghtngtnghtnghtgnthng@weareyoung.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/ySgnZX5.jpg?1"
 )
 
 toro_y_moi = User.create!(
   username: "Toro y Moi",
   email: "toroandme@wow.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/iuQrQb7.jpg?1"
 )
 
 wet = User.create!(
@@ -184,7 +191,8 @@ yelle = User.create!(
 youth_lagoon = User.create!(
   username: "Youth Lagoon",
   email: "youth.youth.youth.youth@lagoonnnnnnn.lagoonz",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/89qng9H.jpg?1"
 )
 
 zola_jesus = User.create!(

@@ -100,7 +100,7 @@
               followState={UserStore.doesCurrentUserFollow(user)} />
           </div>
 
-          <div className="user-feed-container col-md-8">
+          <div className="col-md-8 user-feed-container ">
             <div className="navbar">
               <ul className="nav nav-tabs">
                 <li role="presentation" className="active">

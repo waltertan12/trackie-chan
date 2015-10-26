@@ -27,9 +27,10 @@
       PlaylistUtils.fetchPlaylists(userId, dispatchCallback);
     },
     addTrackToPlaylist: function (trackId, playlistId) {
-      var dispatchCallback = function (playlist) {
+      var dispatchCallback = function (playlist, trackId) {
         AppDispatcher.dispatch({
           actionType: PlaylistConstants.PLAYLIST_UPDATED,
+          trackId: trackId,
           playlist: playlist
         })
       }
@@ -41,9 +42,10 @@
       );
     },
     removeTrackFromPlaylist: function (trackId, playlistId) {
-      var dispatchCallback = function (playlist) {
+      var dispatchCallback = function (playlist, trackId) {
         AppDispatcher.dispatch({
           actionType: PlaylistConstants.PLAYLIST_UPDATED,
+          trackId: trackId,
           playlist: playlist
         })
       }
