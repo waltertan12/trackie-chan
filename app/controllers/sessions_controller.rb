@@ -15,6 +15,20 @@ class SessionsController < ApplicationController
     end
   end
 
+  def guest
+    guest_user = User.new(
+      username: "guest_account",
+      email: "guest_account#{rand(999999999999999)}@sesamestreet.com",
+      password_digest: BCrypt::Password.create("password")
+    )
+    until guest_user.save
+      guest_user.email = "guest_account#{rand(999999999999999)}@sesamestreet.com"
+    end
+
+    log_in_user!(guest_user)
+    redirect_to root_url
+  end
+
   def destroy
     current_user.reset_session_token!
     session[:session_token] = nil

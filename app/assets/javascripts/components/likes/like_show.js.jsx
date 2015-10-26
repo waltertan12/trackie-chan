@@ -83,7 +83,7 @@
                     <h4>
                       <Link to={"/users/" + 
                                 like.artist_id + "/" + 
-                                like.likable_type  + "/" + "s" +
+                                like.likable_type  + "s/" +
                                 like.likable_id}>
                         {like.title}
                       </Link>

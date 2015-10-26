@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
  get "sign_in" => "static_pages#sign_in"
  get "sign_up" => "static_pages#sign_up"
+ get "guest" => "sessions#guest"
 
  resource :sessions, only: [:new, :create, :destroy]
 

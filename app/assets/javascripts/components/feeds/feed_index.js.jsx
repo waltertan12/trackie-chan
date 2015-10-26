@@ -3,6 +3,8 @@
     root.FeedIndex = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.FeedIndex = React.createClass({
     getInitialState: function () {
       return {feedItems: []};
@@ -46,7 +48,12 @@
     render: function () {
       var feedItems;
       if (this.state.feedItems.length === 0) {
-        feedItems = <li>There is nothing in your feed</li>
+        feedItems = (
+          <li>
+            There is nothing in your feed. 
+            Try checking out the <Link to="/explore">explore</Link> page!
+          </li>
+        );
       } else {
         console.log(this.state);
         feedItems = this.state.feedItems.map( function (item, index) {
