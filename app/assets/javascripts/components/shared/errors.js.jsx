@@ -9,7 +9,6 @@
       asdf = this;
     },
     _onClick: function () {
-      console.log("click");
       var mountNode = React.findDOMNode(document.getElementById("errors"));
       var unmount = React.unmountComponentAtNode(mountNode);
     },

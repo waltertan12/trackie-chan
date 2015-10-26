@@ -28,7 +28,6 @@
     },
     unlike: function (likableType, likableId) {
       var dispatchCallback = function (like) {
-        console.log(like);
         AppDispatcher.dispatch({
           actionType: LikeConstants.LIKE_DESTROYED,
           userId: like.user_id,

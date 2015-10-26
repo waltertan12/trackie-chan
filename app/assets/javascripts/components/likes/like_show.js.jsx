@@ -65,7 +65,6 @@
       this.setState({user: UserStore.findUser(userId)});
     },
     render: function () {
-      console.log(this.state);
       var likes = this.state.likes,
           user = this.state.user;
 

@@ -63,8 +63,6 @@
       this.setState({errors: ErrorStore.all()});
     },
     render: function () {
-      console.log("'this' for Track show");
-      console.log(this);
       return (
         <div className="container-fullwidth track-show row">
           <TrackShowHeader track={this.state.track}/>

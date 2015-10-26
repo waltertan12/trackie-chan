@@ -55,7 +55,6 @@
           </li>
         );
       } else {
-        console.log(this.state);
         feedItems = this.state.feedItems.map( function (item, index) {
           item = this.trackOrPlaylistRender(item, index);
           return item;

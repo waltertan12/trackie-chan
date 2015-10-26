@@ -12,7 +12,6 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
-      console.log(this);
       var userId = this.props.params.userId,
           user = UserStore.findUser(userId);
       if (user.id !== -1) {
@@ -44,7 +43,6 @@
     render: function () {
       var pathname = this.props.location.pathname,
           title, follows;
-      console.log(this);
       if (pathname.search(/\/followers/) > -1) {
         title = "Followers";
         follows = this.state.followers.slice();

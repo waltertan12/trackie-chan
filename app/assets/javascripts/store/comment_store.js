@@ -77,8 +77,6 @@
         root.CommentStore.emit(CHANGE_EVENT);
       }
       if (payload.actionType === CommentConstants.COMMENT_CREATED) {
-        console.log("COMMENT CREATED - comment store");
-        console.log(payload);
         pushComment(payload.trackId, payload.comment);
         root.CommentStore.emit(CHANGE_EVENT);
       }

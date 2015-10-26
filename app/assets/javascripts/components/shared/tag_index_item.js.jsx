@@ -6,7 +6,6 @@
   root.TagIndexItem = React.createClass({
     mixins: [ReactRouter.History],
     handleClick: function (e) {
-      console.log("click");
       SearchActions.setOption("tags");
 
       var query = {

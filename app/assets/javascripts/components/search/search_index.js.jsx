@@ -48,7 +48,6 @@
       });
     },
     changeOptions: function (e) {
-      console.log(e.target);
       this.setAllOptionsFalse();
       e.target.className = "option-selected";
       SearchActions.setOption(e.target.innerHTML);
