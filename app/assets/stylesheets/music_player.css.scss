@@ -1,6 +1,7 @@
 /* player */
 .music-player {
   position: fixed;
+  z-index: 2;
   bottom: 0;
   width: 100vw;
   height: 40px;

@@ -67,21 +67,37 @@ div.landing-page {
 .feature {
   padding: 0px;
   text-align: center;
+
   .user-feature {
     height: 225px;
-    background: url("http://www.tehcute.com/pics/201108/sad-pug-is-sad-big.jpg");
-    background-size: auto 100%;
+    width: 225px;
+    margin: 15px 0;
+
+    background: -webkit-linear-gradient(left top, orange, lightblue);
+    background: -o-linear-gradient(bottom right, orange, lightblue);
+    background: -moz-linear-gradient(bottom right, orange, lightblue);
+    background: linear-gradient(to bottom right, orange, lightblue);
+
     border-color: 1px solid gray;
     border-radius: 5px;
     box-shadow: 0 0 10px lightgray;
-    font-weight: bold;
+    font-weight: bolder;
     color: white;
-    h3 {
-      background-color: black;
-      font-weight: bold;
-      border-radius: 5px 5px 0 0;
+
+    img {
+      position: relative;
+      max-height: 100%;
+      max-width: 100%;
+      border-radius: 5px;
+    }
+    h4 {
+      position: relative;
+      text-shadow: 0 0 10px black;
+      top: -40%;
+      z-index: 1;
     }
     transition-duration: 0.3s;
+
     a:hover {
       text-decoration: none;
     }
@@ -89,7 +105,6 @@ div.landing-page {
   .user-feature:hover {
     opacity: 0.5;
   }
-  padding: 10px 0;
 }
 
 .description {

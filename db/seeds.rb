@@ -76,7 +76,8 @@ battles = User.create!(
 cashmere_cat = User.create!(
   username: "CVSHMERE CVT",
   email: "cashmere@cat.com",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/Muk75L3.jpg?1"
 )
 
 chairlift = User.create!(
@@ -159,7 +160,8 @@ the_knife = User.create!(
 the_national = User.create!(
   username: "The National",
   email: "areyoucryingyet@sosad.overwhelmingdepression",
-  password_digest: BCrypt::Password.create("password")
+  password_digest: BCrypt::Password.create("password"),
+  image_url: "http://i.imgur.com/qQ88bfI.jpg"
 )
 
 tnght = User.create!(
