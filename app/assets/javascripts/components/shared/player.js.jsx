@@ -65,9 +65,6 @@
         return (
           <div className="music-player">
             <ul>
-              <li>
-                <VolumeBar />
-              </li>
               <li className="music-player-button previous-button" 
                    onClick={this.handlePrevious}>
                 <span className=" glyphicon glyphicon-backward" />

@@ -23,6 +23,7 @@
       var volume = this.state.volume;
       return (
         <div className="volume-bar-container">
+          Vol: 
           <input className="volume" onChange={this.changeVolume}
                  type="range" 
                  min="0" 

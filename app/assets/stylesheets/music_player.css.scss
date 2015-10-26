@@ -10,6 +10,7 @@
   font-size: 25px;
   ul {
     padding: 0px;
+    display: inline;
     list-style-type: none;
   }
   li {
@@ -23,17 +24,30 @@
     }
   }
   .next-button {
+    font-size: 20px;
+    transform: translateY(-3px);
     &:hover {
       cursor: pointer;
     }
   }
 
   .previous-button {
+    font-size: 20px;
+    transform: translateY(-3px);
     &:hover {
       cursor: pointer;
     }
   }
   .music-player-info {
     padding-left: 20px;
+  }
+
+  .volume-bar-container {
+    float: left;
+    width: 200px;
+  }
+
+  .volume {
+
   }
 }
