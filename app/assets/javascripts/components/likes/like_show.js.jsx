@@ -25,7 +25,7 @@
       UserStore.addChangeListener(this.setUser);
       var userId = this.props.params.userId,
           likes = UserLikeStore.findLikes(userId);
-      if (likes[0].id === -1) {
+      if (typeof likes === "undefined") {
         this.getLikes(this.props);
         this.getUser(this.props);
       } else {
@@ -40,7 +40,7 @@
     componentWillReceiveProps: function (nextProps) {
       var userId = nextProps.params.userId,
           likes = UserLikeStore.findLikes(userId);
-      if (likes[0].id === -1) {
+      if (typeof likes === "undefined") {
         this.getUser(nextProps);
         this.getUser(nextProps);
       } else {

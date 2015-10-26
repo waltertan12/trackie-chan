@@ -335,7 +335,7 @@ amanaemonesia = Track.create!(
   title: "Amanaemonesia",
   description: "From the album 'Something'",
   user_id: chairlift.id,
-  track_url: ""
+  track_url: "http://dublindonut.com/Content/Sounds/transcoded/Chairlift%20-%20Amaneamonesia.mp3"
 )
 
 bruises = Track.create!(
@@ -352,7 +352,7 @@ i_belong_in_your_arms = Track.create!(
   track_url: "http://dublindonut.com/Content/Sounds/transcoded/Chairlift%20-%20I%20Belong%20In%20Your%20Arms.mp3"
 )
 
-sidewalk_safari = = Track.create!(
+sidewalk_safari = Track.create!(
   title: "Sidewalk Safari",
   description: "From the album 'Something'",
   user_id: chairlift.id,
@@ -499,7 +499,7 @@ goooo = Track.create!(
 
 goooo.taggings.create!(tag: trap_tag)
 
-sad_tag = Tag.create!(name: sad_tag)
+sad_tag = Tag.create!(name: "sad_tag")
 
 i_already_forgot_everything_you_said = Track.create!(
   title: "I Already Forgot Everything You Said",

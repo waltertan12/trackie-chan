@@ -40,9 +40,7 @@
       return _userLikes;
     },
     findLikes: function (userId) {
-      if (typeof _userLikes[userId] === "undefined") {
-        return [_placeholderLike];
-      } else {
+      if (typeof _userLikes[userId] !== "undefined") {
         return _userLikes[userId];
       }
     },
