@@ -8,56 +8,92 @@
   root.LikeShow = React.createClass({
     getInitialState: function () {
       var userId = parseInt(this.props.params.userId);
-      return UserStore.findUser(userId);
+      return ({
+        likes: [], 
+        user: {
+          id: -1, 
+          tracks: [], 
+          followers: [], 
+          following: [],
+          likes: [],
+          playlists: []
+        }
+      });
     },
     componentDidMount: function () {
+      UserLikeStore.addChangeListener(this.setLikes);
       UserStore.addChangeListener(this.setUser);
       var userId = this.props.params.userId,
-          user = UserStore.findUser(userId);
-      if (user.id !== -1) {
+          likes = UserLikeStore.findLikes(userId);
+      if (likes[0].id === -1) {
+        this.getLikes(this.props);
         this.getUser(this.props);
       } else {
+        this.setLikes();
         this.setUser();
       }
     },
     componentWillUnmount: function () {
-      UserStore.addChangeListener(this.setUser);
+      UserLikeStore.removeChangeListener(this.setLikes);
+      UserStore.removeChangeListener(this.setUser);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = nextProps.params.userId,
-          user = UserStore.findUser(userId);
-      if (user.id !== -1) {
+          likes = UserLikeStore.findLikes(userId);
+      if (likes[0].id === -1) {
+        this.getUser(nextProps);
         this.getUser(nextProps);
       } else {
         this.setUser();
+        this.setLikes();
       }
+    },
+    getLikes: function (props) {
+      var userId = props.params.userId;
+      LikeActions.receiveUserLikes(userId);
+    }, 
+    setLikes: function () {
+      var userId = parseInt(this.props.params.userId);
+      this.setState({likes: UserLikeStore.findLikes(userId)});
     },
     getUser: function (props) {
       var userId = props.params.userId;
       ApiActions.receiveSingleUser(userId);
-    },  
+    },
     setUser: function () {
-      var userId = this.props.params.userId;
-      this.setState(UserStore.findUser(userId));
+      var userId = parseInt(this.props.params.userId);
+      this.setState({user: UserStore.findUser(userId)});
     },
     render: function () {
-      var likes = this.state.likes;
+      console.log(this.state);
+      var likes = this.state.likes,
+          user = this.state.user;
 
       return (
-        <div>
+        <div className="likes-show-index">
           <h1>
             Likes for&nbsp;
-            <Link to={"/users/" + this.state.id}>{this.state.username}</Link>
+            <Link to={"/users/" + user.id}>{user.username}</Link>
           </h1>
-          <ul className="likes-show-index">
+          <ul>
             {
               likes.map( function (like, index) {
-                switch (like.type) {
-                  case "Track":
-                    break;
-                  case "Playlist":
-                    break;
-                }
+                return (
+                  <div>
+                    <h4>
+                      <Link to={"/users/" + 
+                                like.artist_id + "/" + 
+                                like.likable_type  + "/" + "s" +
+                                like.likable_id}>
+                        {like.title}
+                      </Link>
+                      &nbsp;by&nbsp;
+                      <Link to={"/users/" + like.artist_id}>
+                        {like.artist}
+                      </Link>
+                    </h4>
+                  </div>
+                );
               })
             }
           </ul>

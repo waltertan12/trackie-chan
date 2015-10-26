@@ -12,6 +12,7 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setUser);
+      console.log(this);
       var userId = this.props.params.userId,
           user = UserStore.findUser(userId);
       if (user.id !== -1) {
@@ -41,12 +42,13 @@
       this.setState(UserStore.findUser(userId));
     },
     render: function () {
-      var title, follows;
-      console.log(this.props.params);
-      if (this.props.params.followType === "followers") {
+      var pathname = this.props.location.pathname,
+          title, follows;
+      console.log(this);
+      if (pathname.search(/\/followers/) > -1) {
         title = "Followers";
         follows = this.state.followers.slice();
-      } else if (this.props.params.followType === "following") {
+      } else if (pathname.search(/\/following/) > -1) {
         title = "Following";
         follows = this.state.following.slice();
       }

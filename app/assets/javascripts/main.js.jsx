@@ -25,8 +25,9 @@ $(function () {
       <Route path="users">
         <Route path="settings" component={UserSettings}/>
         <Route path=":userId" component={UserShow} />
-        <Route path=":userId/:followType" component={FollowShow} />
-
+        <Route path=":userId/following" component={FollowShow} />
+        <Route path=":userId/followers" component={FollowShow} />
+        <Route path=":userId/likes" component={LikeShow} />
         <Route path=":userId/tracks/:trackId" component={TrackShow}/>
         <Route path=":userId/playlists/:playlistId" 
                component={PlaylistShow}/>

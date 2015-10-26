@@ -7,15 +7,18 @@
 
   root.FollowIndex = React.createClass({
     render: function () {
-      var following = this.props.following,
+      var follows = this.props.follows,
+          userId = this.props.userId,
+          type = this.props.type,
+          title,
           content;
-      if (following.length === 0) {
+      if (follows.length === 0) {
         content = <li>No follows yet...</li>;
       } else {
         content = (
           <div>
             {
-              following.map( function (followedUser, index) {
+              follows.map( function (followedUser, index) {
                 if (index < 5) {
                   return (
                     <FollowIndexItem key={followedUser.id} 
@@ -27,13 +30,21 @@
           </div>
         );
       }
+
+      if (type === "following") {
+        title = "Following";
+      } else if (type === "followers"){
+        title = "Followers";
+      }
+
       return (
         <div className="follow-index">
-          <Link to={"/users/" + this.props.userId + "/following"}>
-              <h3>
-              Following
-              </h3>
-          </Link>
+          <h3>
+            <Link to={"/users/" + userId + "/" + this.props.type}>
+              {title}:
+            </Link>
+            &nbsp;{follows.length}
+          </h3>
           <ul>
             {content}
           </ul>

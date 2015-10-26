@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       log_in_user!(@user)
-      flash[:success] = "Welcome, #{@user.user_name}"
+      flash[:success] = "Welcome, #{@user.username}"
       redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages

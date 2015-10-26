@@ -5,6 +5,7 @@
 
   root.Player = React.createClass({
     getInitialState: function () {
+      console.log("getting initla state for player");
       return {playState: "", info: ""};
     },
     componentDidMount: function () {

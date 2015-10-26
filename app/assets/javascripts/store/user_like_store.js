@@ -4,6 +4,13 @@
   }
 
   var _userLikes = {},
+      _placeholderLike = {
+        id: -1, 
+        title: "", 
+        likable_type: "track",
+        likable_id: -1,
+        artist: ""
+      },
       resetUserLikes = function (userId, likes) {
         _userLikes[userId] = likes;
       },
@@ -20,7 +27,7 @@
             if (_userLikes[userId][i].id === like.id) {
               return _userLikes[userId].splice(i, 1);
             }
-          };
+          }
         }
       },
       findUserLikeIndex = function (like) {
@@ -34,7 +41,7 @@
     },
     findLikes: function (userId) {
       if (typeof _userLikes[userId] === "undefined") {
-        return [];
+        return [_placeholderLike];
       } else {
         return _userLikes[userId];
       }

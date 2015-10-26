@@ -12,7 +12,8 @@
           <UserLikeIndex userId={currentUser.id}/>
           <hr/>
           <FollowIndex userId={currentUser.id} 
-                       following={currentUser.following}/>
+                       type="following"
+                       follows={currentUser.following}/>
         </div>
       );
     }
