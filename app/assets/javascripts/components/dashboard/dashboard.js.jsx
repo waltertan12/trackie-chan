@@ -35,7 +35,7 @@
     },
     render: function () {
       var tagline = (
-        <h3>Find your favorite artists <br/> Explore new sounds</h3>
+        <h3>Find upcoming artists <br/> Explore new sounds</h3>
       );
       if(window.CURRENT_USER_ID > 0) {
         return (
@@ -118,15 +118,17 @@
                 </div>
               </div>
               <div className="description">
-                <h3>You gonna have so much FOMO if you do not sign up</h3>
-                <p>no lie..</p>
+                <h3>Join in on the discovery</h3>
+                <p>Like songs. Create playlists.</p>
                 <a href="/sign_up" className="btn btn-success">
-                  Please... sign up
-                </a>
-                <p>or, if you already have an account</p>
-                <a href="/sign_in" className="btn btn-success">
-                  Sign In
-                </a>
+                  Create an account
+                </a><br/><br/>
+                <p>
+                  or, if you already have an account&nbsp;&nbsp;
+                  <a href="/sign_in" className="btn btn-success">
+                    Sign In
+                  </a>
+                </p>
               </div>
             </div>
           </div>
