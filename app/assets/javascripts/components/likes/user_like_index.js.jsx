@@ -43,7 +43,8 @@
     render: function () {
       var likeList
           userId = this.props.userId;
-      if (this.state.likes.length === 0 ) {
+      if (typeof this.state.likes === "undefined" ||
+          this.state.likes.length === 0 ) {
           likeList = (
             <ul>
               <li>No likes...</li>

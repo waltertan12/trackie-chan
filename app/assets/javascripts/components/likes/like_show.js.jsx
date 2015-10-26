@@ -78,7 +78,7 @@
             {
               likes.map( function (like, index) {
                 return (
-                  <div>
+                  <div key={index}>
                     <h4>
                       <Link to={"/users/" + 
                                 like.artist_id + "/" + 
