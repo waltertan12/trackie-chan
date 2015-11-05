@@ -13,7 +13,7 @@
       if (document.body.scrollHeight == 
           document.body.scrollTop +        
           window.innerHeight) {
-          alert("Bottom!");
+          // alert("Bottom!");
       }
     },
     render: function () {
