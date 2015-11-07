@@ -10,55 +10,38 @@ class Api::SearchesController < ApplicationController
       @results = Tagging.where(tag_id: tag_id).includes(:taggable)
                         .map { |tagging| tagging.taggable }
     when "users"
-      @results = User.includes(:tracks, 
-                          :followers, 
-                          :following, 
-                          {tracks: :tags}, 
-                          :likings)
+      @results = User.includes(:followers)
+                     .joins("LEFT OUTER JOIN followings ON users.id = followings.followed_id")
+                     .group("users.id")
+                     .order("count(users.id) desc")
                      .where("lower(username) ~ ?", query)
     when "tracks"
-      @results = Track.includes(
-                        :user, 
-                        :tags, 
-                        :likes, 
-                        {likes: :user}, 
-                        :comments
-                      ).where("lower(title) ~ ?", query)
+      @results = Track.includes(:user)
+                      .joins("LEFT OUTER JOIN likings ON likings.likable_id = tracks.id")
+                      .where("lower(title) ~ ?", query)
+                      .group("tracks.id")
+                      .order("count(tracks.id) desc")
+                      # .where("likings.likable_type = 'Track'")
 
     when "playlists"
-      @results = Playlist.includes(
-                   :likes, 
-                   :tracks, 
-                   {tracks: :tags}, 
-                   :user,
-                   {user: :likings},
-                   :tags
-                 ).where("title ~ ?", query)
+      @results = Playlist.includes(:tracks, :user, :likes)
+                         .joins("LEFT OUTER JOIN likings ON likings.likable_id = playlists.id")
+                         .group("playlists.id")
+                         .order("count(playlists.id) desc")
+                         .where("lower(title) ~ ?", query)
+                         # .where("likings.likable_type = 'Playlist'")
     else
       tag_id = Tag.where("lower(name) ~ ?", query).first
       @results = Tagging.where(tag_id: tag_id).includes(:taggable)
                         .map { |tagging| tagging.taggable } +
-                 User.includes(:tracks, 
-                          :followers, 
-                          :following, 
-                          {tracks: :tags}, 
-                          :likings)
-                     .where("lower(username) ~ ?", query) +
+                 User.where("lower(username) ~ ?", query) +
                  Track.includes(
-                        :user, 
-                        :tags, 
-                        :likes, 
-                        {likes: :user}, 
-                        :comments
+                        :user
                       ).where("lower(title) ~ ?", query) + 
                  Playlist.includes(
-                   :likes, 
                    :tracks, 
-                   {tracks: :tags}, 
                    :user,
-                   {user: :likings},
-                   :tags
-                 ).where("lower(title) ~ ?", query)
+                 ).where("title ~ ?", query)
 
       @results.uniq!
     end
