@@ -10,7 +10,7 @@
       return (
         <li className="comment-index-item">
           {comment.body}
-          <p>
+          <p className="comment-index-item-description">
             Made by&nbsp;
             <Link to={"/users/" + comment.user_id}>
               {comment.username}

@@ -125,7 +125,7 @@
             </div><br/><br/>
 
             <div className="form-group">
-              <label>Upload an image <em>(optional aka it does not work)</em></label><br/>
+              <label>Track Image URL<em>(optional)</em></label><br/>
               <input type="text"
                      className="form-control"
                      accept="image/*"

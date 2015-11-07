@@ -3,13 +3,17 @@
     root.TrackShowHeader = {};
   }
 
+  var Link = ReactRouter.Link;
+
   root.TrackShowHeader = React.createClass({
     render: function () {
       var track = this.props.track;
       return (
         <div className="jumbotron track-show-header">
           <div>
-            <h1>Wow</h1>
+            <div className="track-title">
+              <h1>{track.title}</h1>
+            </div>
             <TrackIndexItem track={track} />
           <img className="track-image"
                  src={track.image_url} 
