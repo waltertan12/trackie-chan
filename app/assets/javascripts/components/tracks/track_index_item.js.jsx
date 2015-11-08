@@ -1,4 +1,6 @@
 (function (root) {
+  "use strict";
+  
   if (typeof root.TrackIndexItem === "undefined") {
     root.TrackIndexItem = {};
   }

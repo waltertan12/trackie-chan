@@ -180,7 +180,6 @@
     hasPlayBeenPressed: function () {
       return _hasPlayBeenPressed;
     },
-
     getVolume: function () {
       return _currentAudio.volume;
     },
