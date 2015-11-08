@@ -28,21 +28,21 @@
     componentWillUnmount: function () {
       CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
     },
-    initWavesurfer: function (track) {
-      if (parseInt(track.id) !== -1) {
-        wavesurfer = this.wavesurfer = Object.create(WaveSurfer);
+    // initWavesurfer: function (track) {
+    //   if (parseInt(track.id) !== -1) {
+    //     wavesurfer = this.wavesurfer = Object.create(WaveSurfer);
 
-        wavesurfer.init({
-            container: document.querySelector("#track-" + track.id),
-            backend: "WebAudio",
-            waveColor: "lightgray",
-            progressColor: "orange"
-        });
+    //     wavesurfer.init({
+    //         container: document.querySelector("#track-" + track.id),
+    //         backend: "WebAudio",
+    //         waveColor: "lightgray",
+    //         progressColor: "orange"
+    //     });
 
-        wavesurfer.load(track.track_url);
-        ws = wavesurfer;
-      }
-    },
+    //     wavesurfer.load(track.track_url);
+    //     ws = wavesurfer;
+    //   }
+    // },
     setPlayState: function () {
       if (CurrentPlaylistStore.getCurrentTrackId() === this.props.track.id &&
           CurrentPlaylistStore.isATrackCurrentlyPlaying()) {
@@ -115,7 +115,6 @@
                                    trackId={this.props.track.id}/>
             </div>
             </div>
-            <div className="wave" id={"track-" + this.props.track.id} ></div>
         </div>
       );
     }

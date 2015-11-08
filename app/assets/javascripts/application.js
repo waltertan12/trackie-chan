@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require taggle
-//= require wavesurfer.min
 //= require bootstrap-sprockets
 //= require flux
 //= require eventemitter
