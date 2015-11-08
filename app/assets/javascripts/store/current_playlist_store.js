@@ -75,8 +75,14 @@
     isATrackCurrentlyPlaying: function () {
       return _currentAudio.playing;
     },
+    getCurrentAudio() {
+      return _currentAudio;
+    },
     getPlaylist: function () {
       return _currentAudio.playlist;
+    },
+    getNextPlaylist: function () {
+      return _nextPlaylist;
     },
     getCurrentTrackId: function () {
       return _currentAudio.trackId;
@@ -92,17 +98,27 @@
       CurrentPlaylistStore.pauseTrack();
       CurrentPlaylistStore.findTrackInPlaylist(track);
 
+      var tempPlaylist = _currentAudio.playlist.slice();
+      // Switching pages?
+      console.log("Current Track Number");
+      console.log(_currentTrackNumber);
+
       if (_currentTrackNumber === -1) {
-        var tempPlaylist = _currentAudio.playlist.slice();
         _currentAudio.playlist = _nextPlaylist.slice();
         CurrentPlaylistStore.findTrackInPlaylist(track);
+        console.log("Current Track Number");
+        console.log(_currentTrackNumber);
+      }
 
-        if (typeof _currentAudio[_currentTrackNumber] === "undefined" &&
-            typeof tracks !== "undefined") {
-          _nextPlaylist = tempPlaylist.slice();
-          _currentAudio.playlist = tracks;
-          CurrentPlaylistStore.findTrackInPlaylist(track);
-        }
+      console.log("_currentAudio");
+      console.log(_currentAudio);
+
+      if (_currentTrackNumber === -1 && typeof tracks !== "undefined") {
+        console.log("Tracks????")
+        console.log(tracks);
+        _nextPlaylist = tempPlaylist.slice();
+        _currentAudio.playlist = tracks;
+        CurrentPlaylistStore.findTrackInPlaylist(track);
       }
 
       var audio_url = _currentAudio.playlist[_currentTrackNumber].track_url;
@@ -164,7 +180,7 @@
     findTrackInPlaylist: function (track) {
       for (var i = 0; i < _currentAudio.playlist.length; i++) {
 
-        if (_currentAudio.playlist[i].id === track.id) {
+        if (parseInt(_currentAudio.playlist[i].id) === parseInt(track.id)) {
           _currentTrackNumber = i;
           return;
         }
