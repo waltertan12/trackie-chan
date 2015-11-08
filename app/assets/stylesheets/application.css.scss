@@ -266,9 +266,16 @@ a {
   border: 1px solid gray;
   margin: 5px 0;
   img {
+    transform: translateY(6px);
+    border-radius: 5px;
     display: inline-block;
     height: 75px;
     width: 75px;
+  }
+  span {
+    padding: 10px;
+    transform: translateY(6px);
+    font-size: 20px;
   }
 }
 
