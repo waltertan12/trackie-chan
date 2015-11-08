@@ -28,21 +28,6 @@
     componentWillUnmount: function () {
       CurrentPlaylistStore.removePlaylistListener(this.setPlayState);
     },
-    // initWavesurfer: function (track) {
-    //   if (parseInt(track.id) !== -1) {
-    //     wavesurfer = this.wavesurfer = Object.create(WaveSurfer);
-
-    //     wavesurfer.init({
-    //         container: document.querySelector("#track-" + track.id),
-    //         backend: "WebAudio",
-    //         waveColor: "lightgray",
-    //         progressColor: "orange"
-    //     });
-
-    //     wavesurfer.load(track.track_url);
-    //     ws = wavesurfer;
-    //   }
-    // },
     setPlayState: function () {
       if (CurrentPlaylistStore.getCurrentTrackId() === this.props.track.id &&
           CurrentPlaylistStore.isATrackCurrentlyPlaying()) {
@@ -52,12 +37,6 @@
       } else if (CurrentPlaylistStore.getCurrentTrackId !== this.props.track.id) {
         this.setState({playState: this.play});
       }
-    },
-    componentDidUpdate: function () {
-      // wavesurfer
-      // if (typeof this.wavesurfer === "undefined" ) {
-      //   this.initWavesurfer(this.props.track);
-      // }
     },
     playOrPause: function () {
       var playState = this.state.playState;

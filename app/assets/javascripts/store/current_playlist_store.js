@@ -100,7 +100,6 @@
 
       var tempPlaylist = _currentAudio.playlist.slice();
 
-      // Switching pages?
       if (_currentTrackNumber === -1) {
         _currentAudio.playlist = _nextPlaylist.slice();
         CurrentPlaylistStore.findTrackInPlaylist(track);
