@@ -13,10 +13,8 @@
       FeedStore.addChangeListener(this.setFeedItems);
       FeedActions.startPolling(this.props.type);
       this.setFeedItems();
-      // this.parseTracks();
     },
     componentWillReceiveProps: function (nextProps) {
-      this.parseTracks();
       FeedActions.startPolling(nextProps.type);
     },
     componentWillUnmount: function () {
@@ -48,7 +46,6 @@
         }
       }
 
-      console.log(playlist);
       setTimeout(function () {
         CurrentPlaylistActions.resetPlaylist(playlist)
       }, 0);
