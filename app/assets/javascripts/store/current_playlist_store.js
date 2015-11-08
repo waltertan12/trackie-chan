@@ -99,23 +99,14 @@
       CurrentPlaylistStore.findTrackInPlaylist(track);
 
       var tempPlaylist = _currentAudio.playlist.slice();
+      
       // Switching pages?
-      console.log("Current Track Number");
-      console.log(_currentTrackNumber);
-
       if (_currentTrackNumber === -1) {
         _currentAudio.playlist = _nextPlaylist.slice();
         CurrentPlaylistStore.findTrackInPlaylist(track);
-        console.log("Current Track Number");
-        console.log(_currentTrackNumber);
       }
 
-      console.log("_currentAudio");
-      console.log(_currentAudio);
-
       if (_currentTrackNumber === -1 && typeof tracks !== "undefined") {
-        console.log("Tracks????")
-        console.log(tracks);
         _nextPlaylist = tempPlaylist.slice();
         _currentAudio.playlist = tracks;
         CurrentPlaylistStore.findTrackInPlaylist(track);
