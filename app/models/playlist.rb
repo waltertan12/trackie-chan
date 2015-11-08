@@ -30,7 +30,7 @@ class Playlist < ActiveRecord::Base
       Feed.create(
         user_id: playlist.user_id, 
         source_id: playlist.id, 
-        source_type: "Track",
+        source_type: "Playlist",
         rank: rank
       )
     end

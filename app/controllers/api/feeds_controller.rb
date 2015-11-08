@@ -4,13 +4,7 @@ class Api::FeedsController < ApplicationController
   def dashboard_feed
     ids = current_user.following.pluck(:id)
 
-    @feed = Feed.includes(
-                  :user, 
-                  :source, 
-                  {source: :tags}, 
-                  {source: :likes},
-                  {source: :playlists}
-                )
+    @feed = Feed.includes(:user, :source, source: :user)
                 .where(user_id: ids)
                 .order(updated_at: :desc)
                 .limit(FEED_LIMIT)
@@ -18,15 +12,7 @@ class Api::FeedsController < ApplicationController
   end
 
   def explore_feed
-    @feed = Feed.includes(
-                  :user,
-                  {user: :tracks},
-                  :source, 
-                  {source: :tags},
-                  {source: :likes},
-                  {source: {likes: :user}},
-                  {source: :playlists}
-                )
+    @feed = Feed.includes(:user, :source, source: :user)
                 .where(
                   'updated_at >= :five_days_ago',
                   :five_days_ago  => Time.now - 5.days
