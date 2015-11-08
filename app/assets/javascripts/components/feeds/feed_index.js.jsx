@@ -13,8 +13,10 @@
       FeedStore.addChangeListener(this.setFeedItems);
       FeedActions.startPolling(this.props.type);
       this.setFeedItems();
+      // this.parseTracks();
     },
     componentWillReceiveProps: function (nextProps) {
+      this.parseTracks();
       FeedActions.startPolling(nextProps.type);
     },
     componentWillUnmount: function () {
@@ -30,6 +32,27 @@
           break;
       }
     },
+    parseTracks: function () {
+      var playlist = [], i, j;
+
+      for (i = 0; i < this.state.feedItems.length; i++) {
+        switch(this.state.feedItems[i].type) {
+          case "Track":
+            playlist.push(this.state.feedItems[i]);
+            break;
+          case "Playlist":
+            for (j = 0; j < this.state.feedItems[i].tracks; j++) {
+              playlist.push(this.state.feedItems[i].tracks[j]);
+            }
+            break;
+        }
+      }
+
+      console.log(playlist);
+      setTimeout(function () {
+        CurrentPlaylistActions.resetPlaylist(playlist)
+      }, 0);
+    },
     trackOrPlaylistRender: function (source, key) {
       switch(source.type) {
         case "Track":
@@ -44,6 +67,7 @@
                                playlist={source}/>
           );
       }
+
     },
     render: function () {
       var feedItems;
@@ -60,6 +84,8 @@
           return item;
         }.bind(this));
       }
+
+      this.parseTracks();
 
       return (
         <ul className="feed-list">
