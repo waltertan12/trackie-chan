@@ -88,12 +88,18 @@
     render: function () {
       var user = this.state.user;
       var tracks = this.state.tracks;
+      var spinner;
+      if (user.id === -1) {
+        spinner = <div className="loader"/>;
+      } else {
+        spinner = <div/>;
+      }
       return (
         <div className="user-show row">
           <div className="jumbotron user-header">
             <h1>{user.username}</h1>
-            <img className="profile-image"
-                 src={user.image_url}  />
+            {spinner}
+            <img className="profile-image" src={user.image_url}  />
             <br/>
             <FollowButton 
               user={user} 

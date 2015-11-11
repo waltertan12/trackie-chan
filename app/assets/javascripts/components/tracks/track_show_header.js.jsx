@@ -8,11 +8,17 @@
   root.TrackShowHeader = React.createClass({
     render: function () {
       var track = this.props.track;
+      if (track.id === -1) {
+        spinner = <div className="loader"/>;
+      } else {
+        spinner = <div/>;
+      }
       return (
         <div className="jumbotron track-show-header">
           <div>
             <div className="track-title">
               <h1>{track.title}</h1>
+              {spinner}
             </div>
             <TrackIndexItem track={track} />
           <img className="track-image"

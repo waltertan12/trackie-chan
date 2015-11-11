@@ -31,10 +31,16 @@
     },
     render: function () {
       var playlist = this.state.playlist;
+      if (playlist.id === -1) {
+        spinner = <div className="loader"/>;
+      } else {
+        spinner = <div/>;
+      }
       return (
         <div className="playlist-show row">
           <div className="jumbotron playlist-show-header">
             <h1>{playlist.title}</h1>
+            {spinner}
             <LikeButton likableType="Playlist" 
                       likableId={playlist.id} />
             <PlaylistEditButton userId={playlist.user_id} 
