@@ -6,13 +6,15 @@ class User < ActiveRecord::Base
                        confirmation: true, 
                        allow_nil: true
 
-  validates :password_digest, presence: true
+  # validates :password_digest, presence: true
 
   validates :username, presence: true,
                        length: { maximum: 255 }
 
   validates :session_token, presence: true, 
                             uniqueness: true
+
+  validate :valid_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, 
@@ -72,7 +74,12 @@ class User < ActiveRecord::Base
   end
 
   def password=(password)
-    self.password_digest = BCrypt::Password.create(password)
+    if password.length > 8
+      self.password_digest = BCrypt::Password.create(password)
+    else
+      self.errors.add(:password,
+                      "Password must be greater than 8 characters")
+    end
   end
 
   def is_password?(password)
@@ -91,4 +98,10 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end 
+
+  def valid_password
+    if @password_digest.nil?
+      self.errors.add(:password, "Password must have at least 8 characters")
+    end
+  end
 end
