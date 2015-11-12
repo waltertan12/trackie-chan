@@ -74,11 +74,8 @@ class User < ActiveRecord::Base
   end
 
   def password=(password)
-    if password.length > 8
+    if password.length > 7
       self.password_digest = BCrypt::Password.create(password)
-    else
-      self.errors.add(:password,
-                      "Password must be greater than 8 characters")
     end
   end
 
@@ -100,8 +97,8 @@ class User < ActiveRecord::Base
   end 
 
   def valid_password
-    if @password_digest.nil?
-      self.errors.add(:password, "Password must have at least 8 characters")
+    if password_digest.nil?
+      errors.add(:password, "Password must have at least 8 characters")
     end
   end
 end
