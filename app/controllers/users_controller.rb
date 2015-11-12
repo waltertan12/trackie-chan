@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = @user.errors.full_messages
-      render :new
+      render "static_pages/sign_up"
     end
   end
 

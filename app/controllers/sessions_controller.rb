@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
     else
       flash.now[:danger] = "Email / password combination is incorrect"
-      render :new
+      render "static_pages/sign_in"
     end
   end
 
