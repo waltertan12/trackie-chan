@@ -1,7 +1,10 @@
 <ul>
-  <% flash.each do |message| %>
+  <% flash.each do |messages| %>
+
     <div class="flash alert-danger" >
-      <li><%= message %></li>
+      messages.each do |message|
+        <br/><%= message %>
+      end
     </div>
   <% end %>
 </ul>

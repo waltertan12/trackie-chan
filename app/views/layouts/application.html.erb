@@ -21,7 +21,13 @@
   <div class="container flash">
     <% flash.each do |type, message|%>
       <div class="container alert-<%= type.to_s %>">
-        <%= message %>
+        <% if message.is_a? Array %>
+          <% message.each do |m| %>
+            <%= m %><br/>
+          <% end %>
+        <% else %>
+          <%= message %>
+        <% end %>
       </div>
     <% end %>
   </div>

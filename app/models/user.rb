@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
                        confirmation: true, 
                        allow_nil: true
 
-  # validates :password_digest, presence: true
+  validates :password_digest, presence: true
 
   validates :username, presence: true,
                        length: { maximum: 255 }
@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :session_token, presence: true, 
                             uniqueness: true
 
-  validate :valid_password
+  validate :valid_password, on: :create
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, 
