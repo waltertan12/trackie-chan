@@ -54,21 +54,21 @@
       return typeof _userLikes[userId] !== "undefined"
     },
     dispatcherId: AppDispatcher.register(function (payload) {
-      if (payload.actionType === LikeConstants.USER_LIKES_RECEIVED) {
-        resetUserLikes(payload.userId, payload.likes);
+      switch(payload.actionType) {
+        case LikeConstants.USER_LIKES_RECEIVED:
+          resetUserLikes(payload.userId, payload.likes);
+          root.UserLikeStore.emit(CHANGE_EVENT);
+          break;
 
-        root.UserLikeStore.emit(CHANGE_EVENT);
-        
-      } else if (payload.actionType === LikeConstants.LIKE_CREATED) {
-        addUserLike(payload.userId, payload.like);
+        case LikeConstants.LIKE_CREATED:
+          addUserLike(payload.userId, payload.like);
+          root.UserLikeStore.emit(CHANGE_EVENT);
+          break;
 
-        root.UserLikeStore.emit(CHANGE_EVENT);
-
-      } else if (payload.actionType === LikeConstants.LIKE_DESTROYED) {
-        removeUserLike(payload.userId, payload.like);
-
-        root.UserLikeStore.emit(CHANGE_EVENT);
-
+        case LikeConstants.LIKE_DESTROYED:
+          removeUserLike(payload.userId, payload.like);
+          root.UserLikeStore.emit(CHANGE_EVENT);
+          break;
       }
     })
   });
