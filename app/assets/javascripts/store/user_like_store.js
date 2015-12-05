@@ -12,23 +12,14 @@
         artist: ""
       },
       resetUserLikes = function (userId, likes) {
-        _userLikes[userId] = likes;
+        // _userLikes[userId] = likes;
+        StoreHelper.resetOuterObject(_userLikes, userId, likes);
       },
       addUserLike = function (userId, like) {
-        if (typeof _userLikes[userId] === "undefined") {
-          _userLikes[userId] = [like];
-        } else {
-          _userLikes[userId].push(like);
-        }
+        StoreHelper.adder(_userLikes, userId, like);
       },
       removeUserLike = function (userId, like) {
-        if (typeof _userLikes[userId] !== "undefined") {
-          for (var i = 0; i < _userLikes[userId].length; i++) {
-            if (_userLikes[userId][i].id === like.id) {
-              return _userLikes[userId].splice(i, 1);
-            }
-          }
-        }
+        StoreHelper.remover(_userLikes, userId, like.id)
       },
       findUserLikeIndex = function (like) {
 
