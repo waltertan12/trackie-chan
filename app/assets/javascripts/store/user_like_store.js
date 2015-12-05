@@ -12,7 +12,6 @@
         artist: ""
       },
       resetUserLikes = function (userId, likes) {
-        // _userLikes[userId] = likes;
         StoreHelper.resetOuterObject(_userLikes, userId, likes);
       },
       addUserLike = function (userId, like) {
