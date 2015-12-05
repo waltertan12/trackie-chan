@@ -82,14 +82,6 @@
           root.CommentStore.emit(CHANGE_EVENT);
           break;
       }
-      // if (payload.actionType === CommentConstants.COMMENTS_RECEIVED) {
-      //   resetComments(payload.trackId, payload.comments);
-      //   root.CommentStore.emit(CHANGE_EVENT);
-      // }
-      // if (payload.actionType === CommentConstants.COMMENT_CREATED) {
-      //   pushComment(payload.trackId, payload.comment);
-      //   root.CommentStore.emit(CHANGE_EVENT);
-      // }
     })
   });
 })(this);
