@@ -1,11 +1,11 @@
 $(function () {
   var root = document.getElementById("content");
-  var Route = ReactRouter.Route;
-  var Router = ReactRouter.Router;
-  var Link = ReactRouter.Link;
-  var IndexRoute = ReactRouter.IndexRoute;
+  const Route = ReactRouter.Route;
+  const Router = ReactRouter.Router;
+  const Link = ReactRouter.Link;
+  const IndexRoute = ReactRouter.IndexRoute;
 
-  var App = React.createClass({
+  const App = React.createClass({
     render: function () {
       return (
         <div>
@@ -19,7 +19,7 @@ $(function () {
     }
   });
 
-  var routes = (
+  const routes = (
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard} />
       <Route path="users">

@@ -1,6 +1,6 @@
 (function (root) {
   if (root.DashboardFeedIndex) {
-
+    root.DashboardFeedIndex = {};
   }
   root.DashboardFeedIndex = React.createClass({
     componentDidMount: function () {

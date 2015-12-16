@@ -25,8 +25,8 @@ class SessionsController < ApplicationController
       guest_user.email = "guest_account#{rand(999999999999999)}@sesamestreet.com"
     end
 
-    5.times do 
-      guest_user.following << User.find(rand(7..39))
+    (7..39).to_a.sample(5).each do |id| 
+      guest_user.following << User.find(id)
     end
 
     log_in_user!(guest_user)
