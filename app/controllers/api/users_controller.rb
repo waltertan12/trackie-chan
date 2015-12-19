@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = current_user
 
-    if @user.update(user_update_params)
+    if @user == current_user @user.update(user_update_params)
       render :show
     else
       render json: @user.errors.full_messages, status: 422
@@ -28,7 +28,7 @@ class Api::UsersController < ApplicationController
   def destroy
     @user = User.includes(:tracks, {tracks: :tags}, :likings)
                 .find(params[:id])
-    if @user.destroy
+    if @user == current_user && @user.destroy
       flash[:success] = "Bye forever..."
       redirect_to root_url
     else
@@ -50,7 +50,6 @@ class Api::UsersController < ApplicationController
   def user_update_params
     if params[:user][:password].length > 7
       if current_user.is_password?(params[:user][:password_confirmation])
-        puts "Is it using the correct params?"
         user_params
       else
         nil

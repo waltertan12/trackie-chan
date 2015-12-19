@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def ensure_current_user
+    
+  end
+
   def admin_user?
     unless current_user.admin?
       flash[:danger] = "You are not an admin. Don't do that."
