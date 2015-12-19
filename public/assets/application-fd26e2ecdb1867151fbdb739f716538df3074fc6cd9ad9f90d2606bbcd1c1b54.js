@@ -34527,7 +34527,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               { className: "row" },
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/35" },
@@ -34548,7 +34548,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/13" },
@@ -34566,7 +34566,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/21" },
@@ -34584,7 +34584,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/14" },
@@ -34606,7 +34606,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               { className: "row" },
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/34" },
@@ -34624,7 +34624,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/22" },
@@ -34642,7 +34642,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/38" },
@@ -34660,7 +34660,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               ),
               React.createElement(
                 "div",
-                { className: "col-md-3" },
+                { className: "col-md-3 col-sm-3 col-xs-3" },
                 React.createElement(
                   Link,
                   { to: "/users/32" },
