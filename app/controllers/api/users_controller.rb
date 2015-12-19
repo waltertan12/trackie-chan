@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = current_user
 
-    if @user == current_user @user.update(user_update_params)
+    if @user == current_user && @user.update(user_update_params)
       render :show
     else
       render json: @user.errors.full_messages, status: 422
