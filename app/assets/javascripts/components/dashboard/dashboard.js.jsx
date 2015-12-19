@@ -60,7 +60,7 @@
             <div className="feature">
               <h2>Listen now:</h2>
               <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/35">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/iuQrQb7.jpg?1">
@@ -69,7 +69,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/13">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/Muk75L3.jpg?1"/>
@@ -77,7 +77,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/21">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/A2e3a5I.jpg?1" />
@@ -85,7 +85,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/14">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/o6eIUdA.jpg?1" />
@@ -95,7 +95,7 @@
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/34">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/ySgnZX5.jpg?1" />
@@ -103,7 +103,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/22">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/ttPfUsI.jpg" />
@@ -111,7 +111,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/38">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/89qng9H.jpg?1" />
@@ -119,7 +119,7 @@
                     </div>
                   </Link>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-3 col-sm-3 col-xs-3">
                   <Link to="/users/32">
                     <div className="user-feature">
                       <img src="http://i.imgur.com/qQ88bfI.jpg" />
