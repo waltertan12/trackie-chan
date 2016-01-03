@@ -4,7 +4,7 @@
     root.SessionStore = {};
   }
 
-  var _user,
+  var _user = {},
       CHANGE_EVENT = "CHANGE_EVENT";
 
   root.SessionStore = $.extend({}, EventEmitter.prototype, {
@@ -16,37 +16,31 @@
       return (_user.username === username);
     },
 
-    getClient: function () {
-      var clientCopy = jQuery.extend({}, _user);
-     return:lientCopy;
+    getUser: function () {
+      var userCopy = jQuery.extend({}, _user);
+      return userCopy;
     },
 
     getUserId: function () {
-      return _client.id;
+      return _user.id;
     },
 
     getUserUsername: function () {
-      return (_client.username || localStorage.getItem("user"));
+      return (_user.username || localStorage.getItem("user"));
     },
 
-    setSession: function (response) {
-      var user = response.user;
-
+    setSession: function (user) {
       localStorage.setItem("user", user.username);
       _user = user;
-
-      SessionStore.emit(CHANGE_EVENT);
     },
 
     removeSession: function () {
       sessionStorage.clear();
       localStorage.removeItem("user");
       _user = {};
-
-      SessionStore.emit(CHANGE_EVENT);
     },
 
-    setClient: function (response) {
+    setUser: function (response) {
       _user = response.user;
 
       SessionStore.emit(CHANGE_EVENT);
@@ -55,10 +49,13 @@
     dispatchId: AppDispatcher.register(function (payload) {
       switch (payload.actionType) {
         case SessionConstants.LOGIN:
-
+          root.SessionStore.setSession(payload.user);
+          SessionStore.emit(CHANGE_EVENT);
           break;
-        case SessionConstants.LOGOUT:
 
+        case SessionConstants.LOGOUT:
+          root.SessionStore.removeSession();
+          SessionStore.emit(CHANGE_EVENT);
           break;
       }
     })
