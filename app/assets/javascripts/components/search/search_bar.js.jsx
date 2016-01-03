@@ -20,7 +20,6 @@
       };
 
       SearchActions.receiveQuery(query)
-      // SearchActions.receiveQuery();
       this.setState({query: ""});
 
       this.history.pushState(null, "/search", query);
