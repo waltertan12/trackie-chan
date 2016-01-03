@@ -10,11 +10,13 @@ Rails.application.routes.draw do
  resources :users, only: [:new, :create]
 
  namespace :api, defaults: {format: :json} do
+  resources :sessions, only: [:create, :destroy]
+  
   resources :users, only: [:show, :edit, :update, :destroy]
 
   resource :followings, only: [:create, :destroy]
 
-  resources :tracks, only: [:index, :show, :create, :edit, :update, :destroy]
+  resources :tracks
   get "tracks/track_url/:id" => "tracks#track_url"
 
   resources :comments, only: [:index, :create, :edit, :update, :destroy]
