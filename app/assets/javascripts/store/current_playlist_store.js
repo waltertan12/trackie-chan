@@ -1,6 +1,6 @@
 /* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher */
 (function (root) {
-  'use strict";
+  'use strict';
 
   if (root.CurrentPlaylistStore === 'undefined') {
     root.CurrentPlaylistStore = {};
