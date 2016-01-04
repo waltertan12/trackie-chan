@@ -19,18 +19,16 @@
     login: function (e) {
       e.preventDefault();
       SessionActions.login(this.state);
-      // this.cancel(e);
-      // this.setState({email: '', password: ''});
-      // hide modal
+      this.cancel(e);
     },
     cancel: function (e) {
       e.preventDefault();
       this.setState({email: '', password: ''});
-      // hide modal
+      ModalActions.hideLoginModal();
     },
     render: function () {
       return (
-        <div className='login-modal'>
+        <div id='login-modal' className='login-modal'>
           <h3>Login</h3>
           <form className='form-group'>
             <label>Email</label><br/>

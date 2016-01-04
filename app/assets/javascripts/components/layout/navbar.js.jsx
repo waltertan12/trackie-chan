@@ -25,9 +25,14 @@
     setCurrentUser: function () {
       this.setState({currentUser: UserStore.currentUser()});
     },
+    login: function (e) {
+      e.preventDefault();
+      ModalActions.showLoginModal();
+    },
     logout: function (e) {
       e.preventDefault();
-      ApiActions.deleteSession();
+      // ApiActions.deleteSession();
+      SessionActions.logout();
     },
     render: function () {
       var navbarRight;
@@ -67,7 +72,7 @@
           <ul className="nav navbar-nav navbar-right">
             <li><a href="/sign_up">Upload</a></li>
             <p className="navbar-text">
-              <a href="/sign_in">Sign In</a> 
+              <a href="#" onClick={this.login}>Sign In</a> 
               &nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;
               <a href="/sign_up">Create an Account</a>
             </p>
