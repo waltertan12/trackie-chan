@@ -72,8 +72,6 @@
       ApiActions.updateUser(this.currentUser.id, this.state, redirect);
     },
     render: function () {
-      console.log(this.currentUser);
-      console.log(this.state);
       return (
         <div className="col-md-6 col-md-offset-3">
           <div className="user-settings-header">
