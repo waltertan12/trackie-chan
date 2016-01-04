@@ -10,4 +10,10 @@ class Api::SessionsController < ApplicationController
       render json: @user.errors.full_messages
     end
   end
+
+  def destroy
+    current_user.reset_session_token!
+    session[:session_token] = nil
+    render json: {lol: "haha"}
+  end
 end

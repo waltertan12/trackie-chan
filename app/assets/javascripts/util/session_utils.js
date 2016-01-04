@@ -10,23 +10,23 @@
         method: "POST",
         data: {user: loginData},
         success: function (user) {
-
+          callback(user);
         },
         error: function (e) {
-
+          console.log(e.responseText);
         }
       })
     },
 
     logout: function (callback) {
       $.ajax({
-        url: "/api/sessions",
+        url: "/api/sessions/" + SessionStore.getUserId(),
         method: "DELETE",
         success: function (data) {
-
+          window.location.assign("/");
         },
         error: function (e) {
-
+          console.log(e.responseText);
         }
       })
     }
