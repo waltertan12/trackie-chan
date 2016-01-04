@@ -18,6 +18,9 @@
       UserStore.addChangeListener(this.setCurrentUser);
       this.getCurrentUser();
     },
+    componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setCurrentUser);
+    },
     getCurrentUser: function () {
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },

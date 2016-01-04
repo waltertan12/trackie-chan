@@ -12,7 +12,7 @@
       this.getPlaylist(this.props);
     },
     componentWillUnmount: function () {
-      PlaylistStore.addChangeListener(this.setPlaylist);
+      PlaylistStore.removeChangeListener(this.setPlaylist);
     },
     componentWillReceiveProps: function (nextProps) {
       this.getPlaylist(nextProps);

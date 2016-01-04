@@ -22,7 +22,7 @@
     },
     componentWillUnmount: function () {
       TrackStore.removeChangeListener(this.setTrack);
-      ErrorStore.addChangeListener(this.setErrors);
+      ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = parseInt(nextProps.params.userId),

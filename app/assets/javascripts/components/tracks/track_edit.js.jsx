@@ -40,6 +40,7 @@
       }
     },
     componentWillUnmount: function () {
+      TrackStore.removeChangeListener(this.setTrack);
       ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {

@@ -5,8 +5,7 @@
 
   root.ErrorDisplay = React.createClass({
     componentDidMount: function () {
-
-      asdf = this;
+      // asdf = this;
     },
     _onClick: function () {
       var mountNode = React.findDOMNode(document.getElementById("errors"));

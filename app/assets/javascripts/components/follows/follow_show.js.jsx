@@ -21,7 +21,7 @@
       }
     },
     componentWillUnmount: function () {
-      UserStore.addChangeListener(this.setUser);
+      UserStore.removeChangeListener(this.setUser);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = nextProps.params.userId,
