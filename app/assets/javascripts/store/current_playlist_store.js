@@ -75,7 +75,7 @@
     isATrackCurrentlyPlaying: function () {
       return _currentAudio.playing;
     },
-    getCurrentAudio() {
+    getCurrentAudio: function () {
       return _currentAudio;
     },
     getPlaylist: function () {
