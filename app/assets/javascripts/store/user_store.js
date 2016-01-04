@@ -105,6 +105,16 @@
 
           root.UserStore.emit(CHANGE_EVENT);
           break;
+
+        case SessionConstants.LOGIN:
+          window.CURRENT_USER_ID = payload.user.id;
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
+
+        case SessionConstants.LOGOUT:
+          window.CURRENT_USER_ID = -1;
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
       }
     })
   });
