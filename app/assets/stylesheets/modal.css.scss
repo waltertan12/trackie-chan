@@ -1,0 +1,25 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Pacifico|Lato);
+
+$content-container-min-width:  800px;
+$content-container-max-width:  1000px;
+$content-container-min-height: 600px;
+$header-height: 350px;
+$header-image-size: 150px;
+
+.login-modal {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  width: 400px;
+  z-index: 100;
+  margin-left: -200px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 20px;
+  transition-duration: 300ms;
+  margin-top: -100%;
+  box-shadow: 0 0 5px lightgray;
+}

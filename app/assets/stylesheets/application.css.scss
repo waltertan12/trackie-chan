@@ -24,6 +24,10 @@ $content-container-min-height: 600px;
 $header-height: 350px;
 $header-image-size: 150px;
 
+.transition {
+  transition-duration: 300ms;
+}
+
 hr {
   color: lightgray;
 }
