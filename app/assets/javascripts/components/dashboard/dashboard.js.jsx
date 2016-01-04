@@ -10,19 +10,24 @@
       return {currentUser: UserStore.findUser(window.CURRENT_USER_ID)};
     },
     componentDidMount: function () {
+      UserStore.addChangeListener(this.getCurrentUser);
       UserStore.addChangeListener(this.setCurrentUser);
       UserLikeStore.addChangeListener(this.setCurrentUserLikes);
-      if (typeof window.CURRENT_USER_ID !== "undefined" &&
-          window.CURRENT_USER_ID !== this.state.currentUser.id) {
-        this.getCurrentUser();
-      }
+      // if (typeof window.CURRENT_USER_ID !== "undefined" &&
+      //     window.CURRENT_USER_ID !== this.state.currentUser.id) {
+      //   this.getCurrentUser();
+      // }
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setCurrentUser);
       UserLikeStore.removeChangeListener(this.setCurrentUserLikes);
     },
     getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      if (typeof window.CURRENT_USER_ID !== "undefined" &&
+          window.CURRENT_USER_ID !== this.state.currentUser.id) {
+        // this.getCurrentUser();
+        ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      }
     },
     setCurrentUser: function () {
       this.setState({currentUser: UserStore.currentUser()});
@@ -39,7 +44,7 @@
           Find upcoming artists <br/><br/> Explore new sounds<br/><br/>
         </h3>
       );
-      
+
       if(window.CURRENT_USER_ID > 0) {
         return (
           <div className="dashboard row">
