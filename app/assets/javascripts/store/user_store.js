@@ -1,7 +1,7 @@
 /* global $, StoreHelper */
 (function (root) {
-  "use strict";
-  if (typeof root.UserStore === "undefined") {
+  'use strict';
+  if (typeof root.UserStore === 'undefined') {
     root.UserStore = {};
   }
 
@@ -29,7 +29,7 @@
       resetUser = function (user) {
         _user = user;
       },
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.UserStore = $.extend({}, EventEmitter.prototype,{
     addChangeListener: function (callback) {
@@ -67,7 +67,7 @@
       return _retrievedUsers;
     },
     findUser: function (userId) {
-      if (typeof _retrievedUsers[userId] === "undefined") {
+      if (typeof _retrievedUsers[userId] === 'undefined') {
         return _placeholderUser;
       } else {
         return _retrievedUsers[userId];

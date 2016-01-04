@@ -1,8 +1,8 @@
 /* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher */
 (function (root) {
-  "use strict";
+  'use strict";
 
-  if (root.CurrentPlaylistStore === "undefined") {
+  if (root.CurrentPlaylistStore === 'undefined') {
     root.CurrentPlaylistStore = {};
   }
 
@@ -12,11 +12,11 @@
 
       _placeholderTrack = {
         id: -1, 
-        track_url: "",
-        title: "",
-        description: "",
-        image_url: "http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg",
-        username: "",
+        track_url: '',
+        title: ',
+        description: '',
+        image_url: 'http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg',
+        username: '',
         comments: [],
         likes: [],
         tags: []
@@ -55,9 +55,9 @@
         }
       },
 
-      CURRENT_PLAYLIST_EVENT = "CURRENT_PLAYLIST_EVENT",
+      CURRENT_PLAYLIST_EVENT = 'CURRENT_PLAYLIST_EVENT',
 
-      VOLUME_EVENT = "VOLUME_EVENT";
+      VOLUME_EVENT = 'VOLUME_EVENT';
 
   root.CurrentPlaylistStore = $.extend({}, EventEmitter.prototype, {
     addPlaylistListener: function (callback) {
@@ -105,7 +105,7 @@
         CurrentPlaylistStore.findTrackInPlaylist(track);
       }
 
-      if (_currentTrackNumber === -1 && typeof tracks !== "undefined") {
+      if (_currentTrackNumber === -1 && typeof tracks !== 'undefined') {
         _nextPlaylist = tempPlaylist.slice();
         _currentAudio.playlist = tracks;
         CurrentPlaylistStore.findTrackInPlaylist(track);
@@ -118,7 +118,7 @@
       _currentAudio.track = audio;
 
       // Add listener to play next track
-      _currentAudio.track.addEventListener("ended", function (e) {
+      _currentAudio.track.addEventListener('ended', function (e) {
         if ((_currentTrackNumber + 1) < _currentAudio.playlist.length) {
           var newTrack = _currentAudio.playlist[_currentTrackNumber + 1];
           

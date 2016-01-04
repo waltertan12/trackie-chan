@@ -6,6 +6,7 @@
   }
 
   root.SessionActions = {
+
     login: function (userData) {
       var dispatchCallback = function (user) {
         root.AppDispatcher.dispatch({
@@ -13,8 +14,8 @@
           user: user
         });
       };
-    SessionUtils.login(userData, dispatchCallback);
-  },
+      SessionUtils.login(userData, dispatchCallback);
+    },
 
     logout: function () {
       var dispatchCallback = function () {
@@ -23,6 +24,12 @@
         })
       };
       SessionUtils.logout(dispatchCallback);
-    }
+    }//,
+
+    // currentUserLoggedIn: function () {
+    //   root.AppDispatcher.dispatch({
+    //     actionType: //idk
+    //   });
+    // }
   };
 })(this);

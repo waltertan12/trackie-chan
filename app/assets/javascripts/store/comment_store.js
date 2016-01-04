@@ -1,11 +1,11 @@
 (function (root) {
-  if (typeof root.CommentStore === "undefined") {
+  if (typeof root.CommentStore === 'undefined') {
     root.CommentStore = {};
   }
 
   var _comments = {},
       findCommentIndex = function (trackId, commentId) {
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           return -1;
         } else {
           for (var i = 0; i < _comments.length; i++) {
@@ -22,7 +22,7 @@
       },
       // For adding comments
       pushComment = function (trackId, comment) {
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           _comments[trackId] = [comment];
         } else {
           _comments[trackId].push(comment);
@@ -31,7 +31,7 @@
       // For editing a comment
       resetSingleComment = function (trackId, commentId, comment) {
         var oldComment; 
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           _comments[trackId] = [comment];
         } else {
           oldCommentIndex = findCommentIndex(trackId, commentId);
@@ -42,7 +42,7 @@
           }
         }
       },
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.CommentStore = $.extend({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
@@ -52,14 +52,14 @@
       this.removeListener(CHANGE_EVENT, callback);
     },
     trackCommentsAreStored: function (trackId) {
-      if (typeof trackId === "undefined") {
+      if (typeof trackId === 'undefined') {
         return false;
       } else {
-        return typeof _comments[trackId] !== "undefined";
+        return typeof _comments[trackId] !== 'undefined';
       }
     },
     hasCommentsForTrack: function (trackId) {
-      return typeof _comments[trackId] !== "undefined";
+      return typeof _comments[trackId] !== 'undefined';
     },
     getComments: function (trackId) {
       if (this.trackCommentsAreStored(trackId)) {
