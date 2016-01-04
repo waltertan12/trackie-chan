@@ -1,4 +1,4 @@
-/* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher */
+/* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher, $ */
 (function (root) {
   'use strict';
 
@@ -13,7 +13,7 @@
       _placeholderTrack = {
         id: -1, 
         track_url: '',
-        title: ',
+        title: '',
         description: '',
         image_url: 'http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg',
         username: '',
