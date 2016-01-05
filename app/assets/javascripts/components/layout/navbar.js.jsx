@@ -11,16 +11,9 @@
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
-      if (typeof window.CURRENT_USER_ID !== "undefined" &&
-          window.CURRENT_USER_ID !== this.state.currentUser.id) {
-        this.getCurrentUser();
-      }
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setCurrentUser);
-    },
-    getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     setCurrentUser: function () {
       this.setState({currentUser: UserStore.currentUser()});
@@ -31,12 +24,11 @@
     },
     logout: function (e) {
       e.preventDefault();
-      // ApiActions.deleteSession();
       SessionActions.logout();
     },
     render: function () {
       var navbarRight;
-      if (typeof window.CURRENT_USER_ID !== "undefined") {
+      if (this.state.currentUser.id > 0) {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
             <li><Link to="/tracks/upload">Upload</Link></li>

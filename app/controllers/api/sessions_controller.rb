@@ -6,7 +6,7 @@ class Api::SessionsController < ApplicationController
       log_in_user!(@user)
       render :show
     else
-      render json: @user.errors.full_messages
+      render json: ['Password and/or email is incorrect'], status: 422
     end
   end
 

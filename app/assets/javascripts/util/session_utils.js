@@ -23,12 +23,14 @@
         url: "/api/sessions/" + SessionStore.getUserId(),
         method: "DELETE",
         success: function (data) {
-          window.location.assign("/");
+          // window.location.assign("/");
+          callback();
+          console.log(data);
         },
         error: function (e) {
           console.log(e.responseText);
         }
       })
-    }
+    },
   };
 })(this);

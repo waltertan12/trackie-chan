@@ -5,15 +5,31 @@
   }
 
   var _user = {},
-      CHANGE_EVENT = "CHANGE_EVENT";
+      _placeholderUser = {
+        id: -1, 
+        tracks: [], 
+        followers: [], 
+        following: [],
+        likes: [],
+        playlists: []
+      },
+      CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.SessionStore = $.extend({}, EventEmitter.prototype, {
-    isLoggedIn: function () {
-      return !!localStorage.getItem("user");
+    addChangeListener: function (callback) {
+      root.SessionStore.on(CHANGE_EVENT, callback);
     },
 
-    isUser: function (username) {
-      return (_user.username === username);
+    removeChangeListener: function (callback){
+      root.SessionStore.removeListener(CHANGE_EVENT, callback);
+    },
+
+    isLoggedIn: function () {
+      return !!localStorage.getItem('user');
+    },
+
+    isUser: function (id) {
+      return (_user.id === id);
     },
 
     getUser: function () {
@@ -26,17 +42,17 @@
     },
 
     getUserUsername: function () {
-      return (_user.username || localStorage.getItem("user"));
+      return (_user.username || atob(localStorage.getItem('user')));
     },
 
     setSession: function (user) {
-      localStorage.setItem("user", user.username);
+      localStorage.setItem('user', root.btoa(user.username));
       _user = user;
     },
 
     removeSession: function () {
       sessionStorage.clear();
-      localStorage.removeItem("user");
+      localStorage.removeItem('user');
       _user = {};
     },
 
@@ -50,11 +66,13 @@
       switch (payload.actionType) {
         case SessionConstants.LOGIN:
           root.SessionStore.setSession(payload.user);
+          root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);
           break;
 
         case SessionConstants.LOGOUT:
           root.SessionStore.removeSession();
+          root.ApiActions.receiveCurrentUser(-1);
           SessionStore.emit(CHANGE_EVENT);
           break;
       }

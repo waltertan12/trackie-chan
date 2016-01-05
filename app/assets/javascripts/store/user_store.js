@@ -78,31 +78,26 @@
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
-
         case UserConstants.USER_RECEIVED:
           root.UserStore.storeUser(payload.user);
           resetUser(payload.user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.CURRENT_USER_RECEIVED:
           root.UserStore.storeUser(payload.current_user);
           resetCurrentUser(payload.current_user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.USER_UPDATED:
           root.UserStore.storeUser(payload.user);
           resetCurrentUser(payload.user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.SET_USER_SHOW:
           resetUser(payload.user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
@@ -112,7 +107,7 @@
           break;
 
         case SessionConstants.LOGOUT:
-          window.CURRENT_USER_ID = -1;
+          resetCurrentUser(_placeholderUser);
           root.UserStore.emit(CHANGE_EVENT);
           break;
       }

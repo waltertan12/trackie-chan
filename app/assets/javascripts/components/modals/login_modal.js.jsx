@@ -19,10 +19,10 @@
     login: function (e) {
       e.preventDefault();
       SessionActions.login(this.state);
-      this.cancel(e);
+      this.cancel();
     },
     cancel: function (e) {
-      e.preventDefault();
+      if (typeof e !== 'undefined') e.preventDefault();
       this.setState({email: '', password: ''});
       ModalActions.hideLoginModal();
     },
@@ -34,12 +34,14 @@
             <label>Email</label><br/>
             <input className='form-control'
                    type='text' 
+                   value={this.state.email}
                    onChange={this.updateEmail}/>
             <br/><br/>
 
             <label>Password</label><br/>
             <input className='form-control'
-                   type='password' 
+                   type='password'
+                   value={this.state.password}
                    onChange={this.updatePassword}/>
             <br/><br/>
 
