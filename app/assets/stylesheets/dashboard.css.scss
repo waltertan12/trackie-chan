@@ -36,7 +36,7 @@ div.landing-page {
   background: -o-linear-gradient(bottom right, lightgray, lightblue);
   background: -moz-linear-gradient(bottom right, lightgray, lightblue);
   background: linear-gradient(to bottom right, lightgray, lightblue);
-  background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");
+  /*background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");*/
   /*background: url("https://unsplash.com/photos/MRxD-J9-4ps/download");*/
   background-size: cover;
   background-position: center-bottom;
@@ -57,7 +57,7 @@ div.landing-page {
     }
   }
   h1 {
-    font-family: Pacifico;
+    font-family: Consolas, Pacifico;
   }
   h4 {
     font-style: italic;

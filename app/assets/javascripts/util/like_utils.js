@@ -33,9 +33,10 @@
           callback(like);
         },
         error: function (err) {
-          console.log(err);
+          // console.log(err);
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
+            // window.location.assign("/sign_in"); 
           }
         }
       })
@@ -58,7 +59,8 @@
         error: function (err) {
           console.log(err);
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
+            // window.location.assign("/sign_in"); 
           }
         }
       })

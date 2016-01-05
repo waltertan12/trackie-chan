@@ -66,6 +66,8 @@ class Api::PlaylistsController < ApplicationController
                     :tracks, 
                     {tracks: :tags}, 
                     {tracks: :likes},
+                    {tracks: :user},
+                    {likes: :user},
                     :user,
                     {user: :likings},
                     :tags
