@@ -84,7 +84,7 @@
                 <span className="icon-bar"></span>
               </button>
               <Link to={"/"} className="navbar-brand">
-                TrackieChan
+                <em>TrackieChan</em>
               </Link>
             </div>
 
