@@ -26,6 +26,11 @@
       e.preventDefault();
       SessionActions.logout();
     },
+    signUp: function (e) {
+      e.preventDefault();
+      console.log('wut');
+      ModalActions.showSignUpModal();
+    },
     render: function () {
       var navbarRight;
       if (this.state.currentUser.id > 0) {
@@ -62,11 +67,11 @@
       } else {
         navbarRight = (
           <ul className="nav navbar-nav navbar-right">
-            <li><a href="/sign_up">Upload</a></li>
+            <li><a href="#" onClick={this.login}>Upload</a></li>
             <p className="navbar-text">
               <a href="#" onClick={this.login}>Sign In</a> 
               &nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;
-              <a href="/sign_up">Create an Account</a>
+              <a href="#" onClick={this.signUp}>Create an Account</a>
             </p>
           </ul>
         );

@@ -4,6 +4,18 @@
     root.ModalActions = {};
   }
 
+  root.ModalActions.showSignUpModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.SHOW_SIGNUP_MODAL
+    });
+  };
+
+  root.ModalActions.hideSignUpModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.HIDE_SIGNUP_MODAL
+    });
+  };
+
   root.ModalActions.showLoginModal = function () {
     AppDispatcher.dispatch({
       actionType: ModalConstants.SHOW_LOGIN_MODAL
