@@ -5,14 +5,32 @@
     root.ModalStore = {};
   }
 
-  root.ModalStore = $.extend({}, EventEmitter, {
+  var CHANGE_EVENT = 'CHANGE_EVENT',
+      _classes = {login: '', signup: ''},
+      _setClasses = function (name) {
+        switch (name) {
+          case 'SIGNUP':
+            _classes = {login: '', signup: 'active'};
+            break;
+          case 'LOGIN':
+            _classes = {login: 'active', signup: ''};
+            break;
+        }
+      };
+
+  root.ModalStore = $.extend({}, EventEmitter.prototype, {
+    addChangeListener: function (callback) {
+      this.on(CHANGE_EVENT, callback);
+    },
+
+    removeChangeListener: function (callback) {
+      this.removeListener(CHANGE_EVENT, callback);
+    },
+
     showLoginModal: function () {
+      _setClasses('LOGIN');
       var loginModal = document.getElementById('login-modal');
-      var signup = document.getElementById('login-modal-signup');
-      var login = document.getElementById('login-modal-login');
       loginModal.style.marginTop = '0%';
-      signup.className = '';
-      login.className = 'active';
     },
 
     hideLoginModal: function () {
@@ -21,18 +39,18 @@
     },
 
     showSignUpModal: function () {
+      _setClasses('SIGNUP');
       var signUpModal = document.getElementById('login-modal');
-      var signup = document.getElementById('login-modal-signup');
-      var login = document.getElementById('login-modal-login');
-      signup.className = 'active';
-      login.className = '';
       signUpModal.style.marginTop = '0%';
-      console.log('wow');
     },
 
     hideSignUpModal: function () {
       var signUpModal = document.getElementById('login-modal');
       signUpModal.style.marginTop = '-70%';
+    },
+
+    getClasses: function () {
+      return _classes;
     },
 
     dispatchId: AppDispatcher.register(function (payload) {
