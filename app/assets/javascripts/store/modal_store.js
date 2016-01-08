@@ -35,7 +35,7 @@
 
     hideLoginModal: function () {
       var loginModal = document.getElementById('login-modal');
-      loginModal.style.marginTop = '-70%';
+      loginModal.style.marginTop = '-100%';
     },
 
     showSignUpModal: function () {
@@ -46,7 +46,7 @@
 
     hideSignUpModal: function () {
       var signUpModal = document.getElementById('login-modal');
-      signUpModal.style.marginTop = '-70%';
+      signUpModal.style.marginTop = '-100%';
     },
 
     getClasses: function () {
@@ -57,13 +57,14 @@
       switch (payload.actionType) {
         case root.ModalConstants.SHOW_LOGIN_MODAL:
           root.ModalStore.showLoginModal();
+          ModalStore.emit(CHANGE_EVENT);
           break;
         case root.ModalConstants.HIDE_LOGIN_MODAL:
           root.ModalStore.hideLoginModal();
           break;
         case root.ModalConstants.SHOW_SIGNUP_MODAL:
-          console.log('showing signup modal');
           root.ModalStore.showSignUpModal();
+          ModalStore.emit(CHANGE_EVENT);
           break;
         case root.ModalConstants.HIDE_SIGNUP_MODAL:
           root.ModalStore.hideSignUpModal();

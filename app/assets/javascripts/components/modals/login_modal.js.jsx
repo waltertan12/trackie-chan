@@ -15,9 +15,11 @@
       ModalStore.removeChangeListener(this.getClassNames);
     },
     getClassNames: function () {
-      this.setState(this.getClasses());
+      this.setState(ModalStore.getClasses());
+      console.log(this.state);
     },
     render: function () {
+      console.log(this.state);
       var login = this.state.login,
           signup = this.state.signup;
       return (
@@ -36,10 +38,12 @@
               </a></li>
           </ul>
           <div className='tab-content'>
-            <div role='tabpanel' className={'tab-pane ' + login} id='login'>
+            <div role='tabpanel' className={'tab-pane ' + login} 
+                 id='login'>
               <LoginForm />
             </div>
-            <div role='tabpanel' className={'tab-pane' + signup} id='signup'>
+            <div role='tabpanel' className={'tab-pane ' + signup} 
+                 id='signup'>
               <SignUpForm />
             </div>
           </div>

@@ -22,6 +22,10 @@
       e.preventDefault();
       ModalActions.showLoginModal();
     },
+    signup: function (e) {
+      e.preventDefault();
+      ModalActions.showSignUpModal();
+    },
     render: function () {
       var tagline = (
         <h3>
@@ -121,7 +125,8 @@
               <div className='description'>
                 <h3>Join in on the discovery</h3>
                 <p>Like songs. Share comments. Create playlists.</p>
-                <a href='/sign_up' className='btn btn-primary transition'>
+                <a href='#' onClick={this.signup} 
+                   className='btn btn-primary transition'>
                   Create an account
                 </a><br/><br/>
                 <p>

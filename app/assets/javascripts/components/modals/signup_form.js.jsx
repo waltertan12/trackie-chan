@@ -29,7 +29,6 @@
     },
     signup: function (e) {
       e.preventDefault();
-      // SessionActions.login(this.state);
       this.cancel();
     },
     cancel: function (e) {
@@ -51,7 +50,7 @@
             <input className='form-control'
                    type='text' 
                    value={this.state.username}
-                   onChange={this.username}/>
+                   onChange={this.updateUsername}/>
             <br/><br/>
 
             <label>Email</label><br/>
@@ -71,14 +70,14 @@
             <label>Password Confirmation</label><br/>
             <input className='form-control'
                    type='password'
-                   value={this.state.password}
+                   value={this.state.password_confirmation}
                    onChange={this.updatePasswordConfirmation}/>
             <br/><br/>
 
             <input className='btn btn-success transition'
                    type='submit' 
                    value='Create an Account!'
-                   onClick={this.login}/>
+                   onClick={this.signup}/>
 
             <input className='btn btn-danger transition'
                    type='submit' 
