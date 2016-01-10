@@ -57,7 +57,7 @@
             break;
         }
 
-        this.setState({likeState: this.like});
+        // this.setState({likeState: this.like});
       }
       var userId = SessionStore.getUserId();
       ApiActions.receiveCurrentUser(userId);

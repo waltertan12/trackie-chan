@@ -38,9 +38,9 @@
     },
 
     getUserId: function () {
-      if (_user.id) 
+      if (_user.id !== -1) 
         return _user.id
-      else if (localStorage.getItem('user'))
+      else if (!!localStorage.getItem('user'))
         return atob(atob(localStorage.getItem('user')))
     },
 
@@ -70,7 +70,6 @@
           break;
         case SessionConstants.LOGOUT:
           root.SessionStore.removeSession();
-          root.CURRENT_USER_ID = undefined;
           SessionStore.emit(CHANGE_EVENT);
           break;
         case SessionConstants.SESSION_USER_RECEIVED:

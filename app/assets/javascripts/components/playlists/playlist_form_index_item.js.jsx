@@ -22,7 +22,7 @@
     },
     setAddState: function (props) {
       var playlist = this.props.playlist,
-          userId = window.CURRENT_USER_ID,
+          userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.trackId),
           playlistId = parseInt(this.props.playlist.id),
           text;
@@ -35,7 +35,7 @@
     }, 
     handleClick: function (e) {
       var playlist = this.props.playlist,
-          userId = window.CURRENT_USER_ID,
+          userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.trackId),
           playlistId = parseInt(this.props.playlist.id);
 
@@ -51,9 +51,10 @@
     },
     render: function () {
       var playlist = this.props.playlist,
-          addState = this.state.addState
+          addState = this.state.addState,
+          userId = SessionStore.getUserId(),
           link = "/users/" + 
-                 window.CURRENT_USER_ID + 
+                 userId + 
                  "/playlists/" + 
                  playlist.id;
       return (

@@ -22,7 +22,8 @@
       UserStore.removeChangeListener(this.setCurrentUser);
     },
     getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      ApiActions.receiveCurrentUser(userId);
     },
     setCurrentUser: function () {
       this.currentUser = UserStore.currentUser();

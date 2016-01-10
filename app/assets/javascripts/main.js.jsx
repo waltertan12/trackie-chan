@@ -7,8 +7,9 @@ $(function () {
 
   const App = React.createClass({
     componentDidMount: function () {
-      var userId = SessionStore.getUserId();
-      if (typeof userId !== undefined) {
+      if (SessionStore.isLoggedIn()) {
+        var userId = SessionStore.getUserId();
+        console.log('componentDidMount for App: ' + userId);
         SessionActions.fetchUser(userId);
       }
     },

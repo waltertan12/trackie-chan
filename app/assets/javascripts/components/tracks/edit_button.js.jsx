@@ -12,8 +12,7 @@
           link = "/users/" + userId + "/tracks/" + trackId + "/edit",
           button;
 
-      if (window.CURRENT_USER_ID > 0 &&
-          window.CURRENT_USER_ID === userId) {
+      if (SessionStore.isLoggedIn()) {
         return <Link to={link} className="btn Like">Edit</Link>;
       } else {
         return <div></div>;

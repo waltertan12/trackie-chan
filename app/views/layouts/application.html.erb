@@ -11,8 +11,8 @@
 <body>
   <% if current_user %>
     <script type="text/javascript">
-      var user = "<%= current_user.id %>";
-      localStorage.setItem("user", user);
+      var userId = "<%= current_user.id %>";
+      localStorage.setItem("user", btoa(btoa(userId)));
       window.CLOUDINARY_NAME = "q32rnq9jfaskfaskfasf";
       window.CLOUDINARY_PRESET = "f0qeyyhf";
       window.CLOUDINARY_VERSION = "v1_1";
