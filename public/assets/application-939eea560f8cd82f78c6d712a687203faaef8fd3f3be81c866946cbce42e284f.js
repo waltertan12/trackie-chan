@@ -34445,266 +34445,267 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   });
 })(this);
 (function (root) {
-  if (typeof root.Dashboard === "undefined") {
+  if (typeof root.Dashboard === 'undefined') {
     root.Dashboard = {};
   }
 
   var Link = ReactRouter.Link;
 
   root.Dashboard = React.createClass({
-    displayName: "Dashboard",
+    displayName: 'Dashboard',
 
     getInitialState: function () {
       return { currentUser: UserStore.findUser(window.CURRENT_USER_ID) };
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
-      UserLikeStore.addChangeListener(this.setCurrentUserLikes);
-      if (typeof window.CURRENT_USER_ID !== "undefined" && window.CURRENT_USER_ID !== this.state.currentUser.id) {
-        this.getCurrentUser();
-      }
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setCurrentUser);
-      UserLikeStore.removeChangeListener(this.setCurrentUserLikes);
-    },
-    getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
     setCurrentUser: function () {
       this.setState({ currentUser: UserStore.currentUser() });
     },
-    getCurrentUserLikes: function () {},
-    setCurrentUserLikes: function () {},
+    login: function (e) {
+      e.preventDefault();
+      ModalActions.showLoginModal();
+    },
+    signup: function (e) {
+      e.preventDefault();
+      ModalActions.showSignUpModal();
+    },
     render: function () {
       var tagline = React.createElement(
-        "h3",
+        'h3',
         null,
-        "Find upcoming artists ",
-        React.createElement("br", null),
-        React.createElement("br", null),
-        " Explore new sounds",
-        React.createElement("br", null),
-        React.createElement("br", null)
+        'Find upcoming artists ',
+        React.createElement('br', null),
+        React.createElement('br', null),
+        ' Explore new sounds',
+        React.createElement('br', null),
+        React.createElement('br', null)
       );
-      if (window.CURRENT_USER_ID > 0) {
+
+      if (this.state.currentUser.id > 0) {
         return React.createElement(
-          "div",
-          { className: "dashboard row" },
+          'div',
+          { className: 'dashboard row' },
           React.createElement(
-            "div",
-            { className: "dashboard-feed-container" },
+            'div',
+            { className: 'dashboard-feed-container' },
             React.createElement(
-              "h1",
+              'h1',
               null,
-              "Feed"
+              'Feed'
             ),
-            React.createElement("hr", null),
+            React.createElement('hr', null),
             React.createElement(DashboardFeedIndex, null)
           ),
           React.createElement(CurrentUserSidebar, { currentUser: this.state.currentUser })
         );
       } else {
         return React.createElement(
-          "div",
+          'div',
           null,
           React.createElement(
-            "div",
-            { className: "jumbotron landing-page" },
+            'div',
+            { className: 'jumbotron landing-page' },
             tagline,
             React.createElement(SearchBar, { isNav: false })
           ),
           React.createElement(
-            "div",
-            { className: "feature" },
+            'div',
+            { className: 'feature' },
             React.createElement(
-              "h2",
+              'h2',
               null,
-              "Listen now:"
+              'Listen now:'
             ),
             React.createElement(
-              "div",
-              { className: "row" },
+              'div',
+              { className: 'row' },
               React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
                 React.createElement(
                   Link,
-                  { to: "/users/35" },
+                  { to: '/users/35' },
                   React.createElement(
-                    "div",
-                    { className: "user-feature" },
+                    'div',
+                    { className: 'user-feature' },
                     React.createElement(
-                      "img",
-                      { src: "http://i.imgur.com/iuQrQb7.jpg?1" },
+                      'img',
+                      { src: 'http://i.imgur.com/iuQrQb7.jpg?1' },
                       React.createElement(
-                        "h4",
+                        'h4',
                         null,
-                        "Toro Y Moi"
+                        'Toro Y Moi'
                       )
                     )
                   )
                 )
               ),
               React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
                 React.createElement(
                   Link,
-                  { to: "/users/13" },
+                  { to: '/users/13' },
                   React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/Muk75L3.jpg?1" }),
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/Muk75L3.jpg?1' }),
                     React.createElement(
-                      "h4",
+                      'h4',
                       null,
-                      "Cashmere Cat"
+                      'Cashmere Cat'
                     )
                   )
                 )
               ),
               React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
                 React.createElement(
                   Link,
-                  { to: "/users/21" },
+                  { to: '/users/21' },
                   React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/A2e3a5I.jpg?1" }),
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/A2e3a5I.jpg?1' }),
                     React.createElement(
-                      "h4",
+                      'h4',
                       null,
-                      "Future Islands"
+                      'Future Islands'
                     )
                   )
                 )
               ),
               React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
                 React.createElement(
                   Link,
-                  { to: "/users/14" },
+                  { to: '/users/14' },
                   React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/o6eIUdA.jpg?1" }),
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/o6eIUdA.jpg?1' }),
                     React.createElement(
-                      "h4",
+                      'h4',
                       null,
-                      "Chairlift"
-                    )
-                  )
-                )
-              )
-            ),
-            React.createElement(
-              "div",
-              { className: "row" },
-              React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
-                React.createElement(
-                  Link,
-                  { to: "/users/34" },
-                  React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/ySgnZX5.jpg?1" }),
-                    React.createElement(
-                      "h4",
-                      null,
-                      "TNGHT"
-                    )
-                  )
-                )
-              ),
-              React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
-                React.createElement(
-                  Link,
-                  { to: "/users/22" },
-                  React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/ttPfUsI.jpg" }),
-                    React.createElement(
-                      "h4",
-                      null,
-                      "Japandroids"
-                    )
-                  )
-                )
-              ),
-              React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
-                React.createElement(
-                  Link,
-                  { to: "/users/38" },
-                  React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/89qng9H.jpg?1" }),
-                    React.createElement(
-                      "h4",
-                      null,
-                      "Youth Lagoon"
-                    )
-                  )
-                )
-              ),
-              React.createElement(
-                "div",
-                { className: "col-md-3 col-sm-3 col-xs-3" },
-                React.createElement(
-                  Link,
-                  { to: "/users/32" },
-                  React.createElement(
-                    "div",
-                    { className: "user-feature" },
-                    React.createElement("img", { src: "http://i.imgur.com/qQ88bfI.jpg" }),
-                    React.createElement(
-                      "h4",
-                      null,
-                      "The National"
+                      'Chairlift'
                     )
                   )
                 )
               )
             ),
             React.createElement(
-              "div",
-              { className: "description" },
+              'div',
+              { className: 'row' },
               React.createElement(
-                "h3",
-                null,
-                "Join in on the discovery"
-              ),
-              React.createElement(
-                "p",
-                null,
-                "Like songs. Share comments. Create playlists."
-              ),
-              React.createElement(
-                "a",
-                { href: "/sign_up", className: "btn btn-primary" },
-                "Create an account"
-              ),
-              React.createElement("br", null),
-              React.createElement("br", null),
-              React.createElement(
-                "p",
-                null,
-                "or, if you already have an account  ",
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
                 React.createElement(
-                  "a",
-                  { href: "/sign_in", className: "btn btn-primary" },
-                  "Sign In"
+                  Link,
+                  { to: '/users/34' },
+                  React.createElement(
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/ySgnZX5.jpg?1' }),
+                    React.createElement(
+                      'h4',
+                      null,
+                      'TNGHT'
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
+                React.createElement(
+                  Link,
+                  { to: '/users/22' },
+                  React.createElement(
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/ttPfUsI.jpg' }),
+                    React.createElement(
+                      'h4',
+                      null,
+                      'Japandroids'
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
+                React.createElement(
+                  Link,
+                  { to: '/users/38' },
+                  React.createElement(
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/89qng9H.jpg?1' }),
+                    React.createElement(
+                      'h4',
+                      null,
+                      'Youth Lagoon'
+                    )
+                  )
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'col-md-3 col-sm-3 col-xs-3' },
+                React.createElement(
+                  Link,
+                  { to: '/users/32' },
+                  React.createElement(
+                    'div',
+                    { className: 'user-feature' },
+                    React.createElement('img', { src: 'http://i.imgur.com/qQ88bfI.jpg' }),
+                    React.createElement(
+                      'h4',
+                      null,
+                      'The National'
+                    )
+                  )
+                )
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'description' },
+              React.createElement(
+                'h3',
+                null,
+                'Join in on the discovery'
+              ),
+              React.createElement(
+                'p',
+                null,
+                'Like songs. Share comments. Create playlists.'
+              ),
+              React.createElement(
+                'a',
+                { href: '#', onClick: this.signup,
+                  className: 'btn btn-primary transition' },
+                'Create an account'
+              ),
+              React.createElement('br', null),
+              React.createElement('br', null),
+              React.createElement(
+                'p',
+                null,
+                'or, if you already have an account  ',
+                React.createElement(
+                  'a',
+                  { onClick: this.login,
+                    className: 'btn btn-primary transition' },
+                  'Sign In'
                 )
               )
             )
@@ -34951,7 +34952,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       }
     },
     componentWillUnmount: function () {
-      UserStore.addChangeListener(this.setUser);
+      UserStore.removeChangeListener(this.setUser);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = nextProps.params.userId,
@@ -35054,26 +35055,28 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
-      if (typeof window.CURRENT_USER_ID !== "undefined" && window.CURRENT_USER_ID !== this.state.currentUser.id) {
-        this.getCurrentUser();
-      }
     },
     componentWillUnmount: function () {
       UserStore.removeChangeListener(this.setCurrentUser);
     },
-    getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
-    },
     setCurrentUser: function () {
       this.setState({ currentUser: UserStore.currentUser() });
     },
+    login: function (e) {
+      e.preventDefault();
+      ModalActions.showLoginModal();
+    },
     logout: function (e) {
       e.preventDefault();
-      ApiActions.deleteSession();
+      SessionActions.logout();
+    },
+    signUp: function (e) {
+      e.preventDefault();
+      ModalActions.showSignUpModal();
     },
     render: function () {
       var navbarRight;
-      if (typeof window.CURRENT_USER_ID !== "undefined") {
+      if (this.state.currentUser.id > 0) {
         navbarRight = React.createElement(
           "ul",
           { className: "nav navbar-nav navbar-right" },
@@ -35143,7 +35146,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             null,
             React.createElement(
               "a",
-              { href: "/sign_up" },
+              { href: "#", onClick: this.login },
               "Upload"
             )
           ),
@@ -35152,13 +35155,13 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             { className: "navbar-text" },
             React.createElement(
               "a",
-              { href: "/sign_in" },
+              { href: "#", onClick: this.login },
               "Sign In"
             ),
             "   or   ",
             React.createElement(
               "a",
-              { href: "/sign_up" },
+              { href: "#", onClick: this.signUp },
               "Create an Account"
             )
           )
@@ -35192,7 +35195,11 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               React.createElement(
                 Link,
                 { to: "/", className: "navbar-brand" },
-                "TrackieChan"
+                React.createElement(
+                  "em",
+                  null,
+                  "TrackieChan"
+                )
               )
             ),
             React.createElement(
@@ -35588,6 +35595,277 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
           Link,
           { to: userLink },
           this.props.like.artist
+        )
+      );
+    }
+  });
+})(this);
+/* globals React, console */
+
+(function (root) {
+  'use strict';
+
+  root.LoginForm = React.createClass({
+    displayName: 'LoginForm',
+
+    getInitialState: function () {
+      return {
+        email: '',
+        password: ''
+      };
+    },
+    updateEmail: function (e) {
+      e.preventDefault();
+      this.setState({ email: e.target.value });
+    },
+    updatePassword: function (e) {
+      e.preventDefault();
+      this.setState({ password: e.target.value });
+    },
+    login: function (e) {
+      e.preventDefault();
+      SessionActions.login(this.state);
+      this.cancel();
+    },
+    cancel: function (e) {
+      if (typeof e !== 'undefined') e.preventDefault();
+      this.setState({ email: '', password: '' });
+      ModalActions.hideLoginModal();
+    },
+    render: function () {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'h3',
+          null,
+          'Sign In'
+        ),
+        React.createElement(
+          'form',
+          { className: 'form-group' },
+          React.createElement(
+            'label',
+            null,
+            'Email'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'text',
+            value: this.state.email,
+            onChange: this.updateEmail }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(
+            'label',
+            null,
+            'Password'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'password',
+            value: this.state.password,
+            onChange: this.updatePassword }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'btn btn-success transition',
+            type: 'submit',
+            value: 'Login',
+            onClick: this.login }),
+          React.createElement('input', { className: 'btn btn-danger transition',
+            type: 'submit',
+            value: 'Cancel',
+            onClick: this.cancel })
+        )
+      );
+    }
+  });
+})(this);
+(function (root) {
+  'use strict';
+
+  root.LoginModal = React.createClass({
+    displayName: 'LoginModal',
+
+    getInitialState: function () {
+      return {
+        login: '',
+        signup: ''
+      };
+    },
+    componentDidMount: function () {
+      ModalStore.addChangeListener(this.getClassNames);
+    },
+    componentWillUnmount: function () {
+      ModalStore.removeChangeListener(this.getClassNames);
+    },
+    getClassNames: function () {
+      this.setState(ModalStore.getClasses());
+    },
+    render: function () {
+      var login = this.state.login,
+          signup = this.state.signup;
+      return React.createElement(
+        'div',
+        { id: 'login-modal', className: 'login-modal' },
+        React.createElement(
+          'ul',
+          { className: 'nav nav-tabs', role: 'tablist' },
+          React.createElement(
+            'li',
+            { role: 'presentation', className: login },
+            React.createElement(
+              'a',
+              { href: '#login', 'aria-controls': 'login',
+                role: 'tab', 'data-toggle': 'tab' },
+              'Sign In'
+            )
+          ),
+          React.createElement(
+            'li',
+            { role: 'presentation', className: signup },
+            React.createElement(
+              'a',
+              { href: '#signup', 'aria-controls': 'signup',
+                role: 'tab', 'data-toggle': 'tab' },
+              'Sign Up'
+            )
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'tab-content' },
+          React.createElement(
+            'div',
+            { role: 'tabpanel', className: 'tab-pane ' + login,
+              id: 'login' },
+            React.createElement(LoginForm, null)
+          ),
+          React.createElement(
+            'div',
+            { role: 'tabpanel', className: 'tab-pane ' + signup,
+              id: 'signup' },
+            React.createElement(SignUpForm, null)
+          )
+        )
+      );
+    }
+  });
+})(this);
+/* globals React, console */
+
+(function (root) {
+  'use strict';
+
+  root.SignUpForm = React.createClass({
+    displayName: 'SignUpForm',
+
+    getInitialState: function () {
+      return {
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      };
+    },
+    updateUsername: function (e) {
+      e.preventDefault();
+      this.setState({ username: e.target.value });
+    },
+    updateEmail: function (e) {
+      e.preventDefault();
+      this.setState({ email: e.target.value });
+    },
+    updatePassword: function (e) {
+      e.preventDefault();
+      this.setState({ password: e.target.value });
+    },
+    updatePasswordConfirmation: function (e) {
+      e.preventDefault();
+      this.setState({ password_confirmation: e.target.value });
+    },
+    signup: function (e) {
+      e.preventDefault();
+      this.cancel();
+    },
+    cancel: function (e) {
+      if (typeof e !== 'undefined') e.preventDefault();
+      this.setState({
+        username: '',
+        email: '',
+        password: '',
+        password_confirmation: ''
+      });
+      ModalActions.hideLoginModal();
+    },
+    render: function () {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'h3',
+          null,
+          'Create an Account!'
+        ),
+        React.createElement(
+          'form',
+          { className: 'form-group' },
+          React.createElement(
+            'label',
+            null,
+            'Username'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'text',
+            value: this.state.username,
+            onChange: this.updateUsername }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(
+            'label',
+            null,
+            'Email'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'text',
+            value: this.state.email,
+            onChange: this.updateEmail }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(
+            'label',
+            null,
+            'Password'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'password',
+            value: this.state.password,
+            onChange: this.updatePassword }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement(
+            'label',
+            null,
+            'Password Confirmation'
+          ),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'form-control',
+            type: 'password',
+            value: this.state.password_confirmation,
+            onChange: this.updatePasswordConfirmation }),
+          React.createElement('br', null),
+          React.createElement('br', null),
+          React.createElement('input', { className: 'btn btn-success transition',
+            type: 'submit',
+            value: 'Create an Account!',
+            onClick: this.signup }),
+          React.createElement('input', { className: 'btn btn-danger transition',
+            type: 'submit',
+            value: 'Cancel :(',
+            onClick: this.cancel })
         )
       );
     }
@@ -36346,7 +36624,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       this.getPlaylist(this.props);
     },
     componentWillUnmount: function () {
-      PlaylistStore.addChangeListener(this.setPlaylist);
+      PlaylistStore.removeChangeListener(this.setPlaylist);
     },
     componentWillReceiveProps: function (nextProps) {
       this.getPlaylist(nextProps);
@@ -36523,7 +36801,6 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       };
 
       SearchActions.receiveQuery(query);
-      // SearchActions.receiveQuery();
       this.setState({ query: "" });
 
       this.history.pushState(null, "/search", query);
@@ -36733,8 +37010,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     displayName: "ErrorDisplay",
 
     componentDidMount: function () {
-
-      asdf = this;
+      // asdf = this;
     },
     _onClick: function () {
       var mountNode = React.findDOMNode(document.getElementById("errors"));
@@ -37046,6 +37322,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       }
     },
     componentWillUnmount: function () {
+      TrackStore.removeChangeListener(this.setTrack);
       ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
@@ -37391,7 +37668,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     componentWillUnmount: function () {
       TrackStore.removeChangeListener(this.setTrack);
-      ErrorStore.addChangeListener(this.setErrors);
+      ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
       var userId = parseInt(nextProps.params.userId),
@@ -37919,6 +38196,9 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       UserStore.addChangeListener(this.setCurrentUser);
       this.getCurrentUser();
     },
+    componentWillUnmount: function () {
+      UserStore.removeChangeListener(this.setCurrentUser);
+    },
     getCurrentUser: function () {
       ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
     },
@@ -37970,8 +38250,6 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       ApiActions.updateUser(this.currentUser.id, this.state, redirect);
     },
     render: function () {
-      console.log(this.currentUser);
-      console.log(this.state);
       return React.createElement(
         "div",
         { className: "col-md-6 col-md-offset-3" },
@@ -38556,6 +38834,36 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   };
 })(this);
 (function (root) {
+  'use strict';
+  if (typeof root.ModalActions === 'undefined') {
+    root.ModalActions = {};
+  }
+
+  root.ModalActions.showSignUpModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.SHOW_SIGNUP_MODAL
+    });
+  };
+
+  root.ModalActions.hideSignUpModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.HIDE_SIGNUP_MODAL
+    });
+  };
+
+  root.ModalActions.showLoginModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.SHOW_LOGIN_MODAL
+    });
+  };
+
+  root.ModalActions.hideLoginModal = function () {
+    AppDispatcher.dispatch({
+      actionType: ModalConstants.HIDE_LOGIN_MODAL
+    });
+  };
+})(this);
+(function (root) {
   if (typeof root.PlaylistActions === "undefined") {
     root.PlaylistActions = {};
   }
@@ -38687,6 +38995,54 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   }
 })(this);
 (function (root) {
+  'use strict';
+
+  if (typeof root.SessionActions === 'undefined') {
+    root.SessionActions = {};
+  }
+
+  root.SessionActions = {
+
+    login: function (userData) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGIN,
+          user: user
+        });
+      };
+      SessionUtils.login(userData, dispatchCallback);
+    },
+
+    logout: function () {
+      var dispatchCallback = function () {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGOUT
+        })
+      };
+      SessionUtils.logout(dispatchCallback);
+    },
+
+    fetchUser: function (userId) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.USER_RECEIVED,
+          user: user
+        })
+      }
+
+      ApiUtils.fetchUser(userId, dispatchCallback);
+    }
+
+    //,
+
+    // currentUserLoggedIn: function () {
+    //   root.AppDispatcher.dispatch({
+    //     actionType: //idk
+    //   });
+    // }
+  };
+})(this);
+(function (root) {
   "use strict";
 
   if (typeof root.TrackActions === "undefined") {
@@ -38778,6 +39134,10 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     }
   };
 })(this);
+(function() {
+
+
+}).call(this);
 (function (root) {
   if (typeof root.CommentConstants === "undefined") {
     root.CommentConstants = {}
@@ -38841,6 +39201,18 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
 })(this);
 (function (root) {
+  'use strict';
+  if (typeof root.ModalConstants === 'undefined') {
+    root.ModalConstants = {};
+  }
+  
+  root.ModalConstants.SHOW_LOGIN_MODAL  = 'SHOW_LOGIN_MODAL';
+  root.ModalConstants.HIDE_LOGIN_MODAL  = 'HIDE_LOGIN_MODAL';
+  root.ModalConstants.SHOW_SIGNUP_MODAL = 'SHOW_SIGNUP_MODAL';
+  root.ModalConstants.HIDE_SIGNUP_MODAL = 'HIDE_SIGNUP_MODAL';
+  
+})(this);
+(function (root) {
   if (typeof root.PlaylistConstants === "undefined") {
     root.PlaylistConstants = {}
   }
@@ -38863,6 +39235,17 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     RESULTS_RECEIVED: "RESULTS_RECEIVED",
     OPTION_RECEIVED: "OPTION_RECEIVED"
   };
+
+})(this);
+(function (root) {
+  'use strict';
+  if (typeof root.SessionConstants === 'undefined') {
+    root.SessionConstants = {};
+  }
+
+  root.SessionConstants.LOGIN  = 'LOGIN';
+  root.SessionConstants.LOGOUT = 'LOGOUT';
+  root.SessionConstants.USER_RECEIVED = 'USER_RECEIVED';
 
 })(this);
 (function (root) {
@@ -38917,6 +39300,7 @@ $(function () {
       return React.createElement(
         "div",
         null,
+        React.createElement(LoginModal, null),
         React.createElement(Navbar, null),
         React.createElement(
           "div",
@@ -38927,6 +39311,11 @@ $(function () {
       );
     }
   });
+
+  var userId = SessionStore.getUserId();
+  if (typeof userId !== undefined) {
+    SessionActions.fetchUser(userId);
+  }
 
   var routes = React.createElement(
     Route,
@@ -38965,14 +39354,18 @@ $(function () {
     routes
   ), root);
 });
+(function() {
+
+
+}).call(this);
 (function (root) {
-  if (typeof root.CommentStore === "undefined") {
+  if (typeof root.CommentStore === 'undefined') {
     root.CommentStore = {};
   }
 
   var _comments = {},
       findCommentIndex = function (trackId, commentId) {
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           return -1;
         } else {
           for (var i = 0; i < _comments.length; i++) {
@@ -38989,7 +39382,7 @@ $(function () {
       },
       // For adding comments
       pushComment = function (trackId, comment) {
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           _comments[trackId] = [comment];
         } else {
           _comments[trackId].push(comment);
@@ -38998,7 +39391,7 @@ $(function () {
       // For editing a comment
       resetSingleComment = function (trackId, commentId, comment) {
         var oldComment; 
-        if (typeof _comments[trackId] === "undefined") {
+        if (typeof _comments[trackId] === 'undefined') {
           _comments[trackId] = [comment];
         } else {
           oldCommentIndex = findCommentIndex(trackId, commentId);
@@ -39009,7 +39402,7 @@ $(function () {
           }
         }
       },
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.CommentStore = $.extend({}, EventEmitter.prototype, {
     addChangeListener: function (callback) {
@@ -39019,14 +39412,14 @@ $(function () {
       this.removeListener(CHANGE_EVENT, callback);
     },
     trackCommentsAreStored: function (trackId) {
-      if (typeof trackId === "undefined") {
+      if (typeof trackId === 'undefined') {
         return false;
       } else {
-        return typeof _comments[trackId] !== "undefined";
+        return typeof _comments[trackId] !== 'undefined';
       }
     },
     hasCommentsForTrack: function (trackId) {
-      return typeof _comments[trackId] !== "undefined";
+      return typeof _comments[trackId] !== 'undefined';
     },
     getComments: function (trackId) {
       if (this.trackCommentsAreStored(trackId)) {
@@ -39052,12 +39445,12 @@ $(function () {
     })
   });
 })(this);
-/* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher */
+/* global CurrentPlaylistStore, PlaylistConstants, CurrentPlaylistConstants, AppDispatcher, $ */
 
 (function (root) {
-  "use strict";
+  'use strict';
 
-  if (root.CurrentPlaylistStore === "undefined") {
+  if (root.CurrentPlaylistStore === 'undefined') {
     root.CurrentPlaylistStore = {};
   }
 
@@ -39067,11 +39460,11 @@ $(function () {
 
       _placeholderTrack = {
         id: -1, 
-        track_url: "",
-        title: "",
-        description: "",
-        image_url: "http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg",
-        username: "",
+        track_url: '',
+        title: '',
+        description: '',
+        image_url: 'http://ak-hdl.buzzfed.com/static/enhanced/webdr05/2013/8/1/11/enhanced-buzz-29314-1375372673-18.jpg',
+        username: '',
         comments: [],
         likes: [],
         tags: []
@@ -39110,9 +39503,9 @@ $(function () {
         }
       },
 
-      CURRENT_PLAYLIST_EVENT = "CURRENT_PLAYLIST_EVENT",
+      CURRENT_PLAYLIST_EVENT = 'CURRENT_PLAYLIST_EVENT',
 
-      VOLUME_EVENT = "VOLUME_EVENT";
+      VOLUME_EVENT = 'VOLUME_EVENT';
 
   root.CurrentPlaylistStore = $.extend({}, EventEmitter.prototype, {
     addPlaylistListener: function (callback) {
@@ -39130,7 +39523,7 @@ $(function () {
     isATrackCurrentlyPlaying: function () {
       return _currentAudio.playing;
     },
-    getCurrentAudio() {
+    getCurrentAudio: function () {
       return _currentAudio;
     },
     getPlaylist: function () {
@@ -39160,7 +39553,7 @@ $(function () {
         CurrentPlaylistStore.findTrackInPlaylist(track);
       }
 
-      if (_currentTrackNumber === -1 && typeof tracks !== "undefined") {
+      if (_currentTrackNumber === -1 && typeof tracks !== 'undefined') {
         _nextPlaylist = tempPlaylist.slice();
         _currentAudio.playlist = tracks;
         CurrentPlaylistStore.findTrackInPlaylist(track);
@@ -39173,7 +39566,7 @@ $(function () {
       _currentAudio.track = audio;
 
       // Add listener to play next track
-      _currentAudio.track.addEventListener("ended", function (e) {
+      _currentAudio.track.addEventListener('ended', function (e) {
         if ((_currentTrackNumber + 1) < _currentAudio.playlist.length) {
           var newTrack = _currentAudio.playlist[_currentTrackNumber + 1];
           
@@ -39396,6 +39789,81 @@ $(function () {
     })
   });
 })(this);
+(function (root) {
+  'use strict';
+
+  if (typeof root.ModalStore === 'undefined') {
+    root.ModalStore = {};
+  }
+
+  var CHANGE_EVENT = 'CHANGE_EVENT',
+      _classes = {login: '', signup: ''},
+      _setClasses = function (name) {
+        switch (name) {
+          case 'SIGNUP':
+            _classes = {login: '', signup: 'active'};
+            break;
+          case 'LOGIN':
+            _classes = {login: 'active', signup: ''};
+            break;
+        }
+      };
+
+  root.ModalStore = $.extend({}, EventEmitter.prototype, {
+    addChangeListener: function (callback) {
+      this.on(CHANGE_EVENT, callback);
+    },
+
+    removeChangeListener: function (callback) {
+      this.removeListener(CHANGE_EVENT, callback);
+    },
+
+    showLoginModal: function () {
+      _setClasses('LOGIN');
+      var loginModal = document.getElementById('login-modal');
+      loginModal.style.marginTop = '0%';
+    },
+
+    hideLoginModal: function () {
+      var loginModal = document.getElementById('login-modal');
+      loginModal.style.marginTop = '-100%';
+    },
+
+    showSignUpModal: function () {
+      _setClasses('SIGNUP');
+      var signUpModal = document.getElementById('login-modal');
+      signUpModal.style.marginTop = '0%';
+    },
+
+    hideSignUpModal: function () {
+      var signUpModal = document.getElementById('login-modal');
+      signUpModal.style.marginTop = '-100%';
+    },
+
+    getClasses: function () {
+      return _classes;
+    },
+
+    dispatchId: AppDispatcher.register(function (payload) {
+      switch (payload.actionType) {
+        case root.ModalConstants.SHOW_LOGIN_MODAL:
+          root.ModalStore.showLoginModal();
+          ModalStore.emit(CHANGE_EVENT);
+          break;
+        case root.ModalConstants.HIDE_LOGIN_MODAL:
+          root.ModalStore.hideLoginModal();
+          break;
+        case root.ModalConstants.SHOW_SIGNUP_MODAL:
+          root.ModalStore.showSignUpModal();
+          ModalStore.emit(CHANGE_EVENT);
+          break;
+        case root.ModalConstants.HIDE_SIGNUP_MODAL:
+          root.ModalStore.hideSignUpModal();
+          break;
+      }
+    })
+  });
+})(this);
 /* global StoreHelper, PlaylistConstants, $, EventEmitter, AppDispatcher */
 
 (function (root) {
@@ -39546,6 +40014,92 @@ $(function () {
           break;
         case SearchConstants.OPTION_RECEIVED:
           resetOption(payload.option);
+          break;
+      }
+    })
+  });
+})(this);
+(function (root) {
+  'use strict';
+  if (typeof root.SessionStore === 'undefined') {
+    root.SessionStore = {};
+  }
+
+  var _user = {},
+      _placeholderUser = {
+        id: -1, 
+        tracks: [], 
+        followers: [], 
+        following: [],
+        likes: [],
+        playlists: []
+      },
+      CHANGE_EVENT = 'CHANGE_EVENT';
+
+  root.SessionStore = $.extend({}, EventEmitter.prototype, {
+    addChangeListener: function (callback) {
+      root.SessionStore.on(CHANGE_EVENT, callback);
+    },
+
+    removeChangeListener: function (callback){
+      root.SessionStore.removeListener(CHANGE_EVENT, callback);
+    },
+
+    isLoggedIn: function () {
+      return !!localStorage.getItem('user');
+    },
+
+    isUser: function (id) {
+      return (_user.id === id);
+    },
+
+    getUser: function () {
+      var userCopy = jQuery.extend({}, _user);
+      return userCopy;
+    },
+
+    getUserId: function () {
+      return (_user.id || atob(localStorage.getItem('user')));
+    },
+
+    getUsername: function () {
+      return (_user.username || atob(localStorage.getItem('user')));
+    },
+
+    setSession: function (user) {
+      localStorage.setItem('user', root.btoa(user.id));
+      _user = user;
+    },
+
+    removeSession: function () {
+      sessionStorage.clear();
+      localStorage.removeItem('user');
+      _user = {};
+    },
+
+    setUser: function (response) {
+      _user = response.user;
+
+      SessionStore.emit(CHANGE_EVENT);
+    },
+
+    dispatchId: AppDispatcher.register(function (payload) {
+      switch (payload.actionType) {
+        case SessionConstants.LOGIN:
+          root.SessionStore.setSession(payload.user);
+          root.ApiActions.receiveCurrentUser(payload.user.id);
+          SessionStore.emit(CHANGE_EVENT);
+          break;
+
+        case SessionConstants.LOGOUT:
+          root.SessionStore.removeSession();
+          root.ApiActions.receiveCurrentUser(-1);
+          SessionStore.emit(CHANGE_EVENT);
+          break;
+        case SessionConstants.USER_RECEIVED:
+          root.SessionStore.setSession(payload.user);
+          root.ApiActions.receiveCurrentUser(payload.user.id);
+          SessionStore.emit(CHANGE_EVENT);
           break;
       }
     })
@@ -39850,8 +40404,8 @@ $(function () {
 /* global $, StoreHelper */
 
 (function (root) {
-  "use strict";
-  if (typeof root.UserStore === "undefined") {
+  'use strict';
+  if (typeof root.UserStore === 'undefined') {
     root.UserStore = {};
   }
 
@@ -39879,7 +40433,7 @@ $(function () {
       resetUser = function (user) {
         _user = user;
       },
-      CHANGE_EVENT = "CHANGE_EVENT";
+      CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.UserStore = $.extend({}, EventEmitter.prototype,{
     addChangeListener: function (callback) {
@@ -39917,7 +40471,7 @@ $(function () {
       return _retrievedUsers;
     },
     findUser: function (userId) {
-      if (typeof _retrievedUsers[userId] === "undefined") {
+      if (typeof _retrievedUsers[userId] === 'undefined') {
         return _placeholderUser;
       } else {
         return _retrievedUsers[userId];
@@ -39928,31 +40482,36 @@ $(function () {
     },
     dispatcherID: AppDispatcher.register(function (payload) {
       switch(payload.actionType) {
-
         case UserConstants.USER_RECEIVED:
           root.UserStore.storeUser(payload.user);
           resetUser(payload.user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.CURRENT_USER_RECEIVED:
           root.UserStore.storeUser(payload.current_user);
           resetCurrentUser(payload.current_user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.USER_UPDATED:
           root.UserStore.storeUser(payload.user);
           resetCurrentUser(payload.user);
-
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
         case UserConstants.SET_USER_SHOW:
           resetUser(payload.user);
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
 
+        case SessionConstants.LOGIN:
+          window.CURRENT_USER_ID = payload.user.id;
+          root.UserStore.emit(CHANGE_EVENT);
+          break;
+
+        case SessionConstants.LOGOUT:
+          resetCurrentUser(_placeholderUser);
           root.UserStore.emit(CHANGE_EVENT);
           break;
       }
@@ -39961,16 +40520,18 @@ $(function () {
 
 })(this);
 (function (root) {
-  if (typeof root.ApiUtils === "undefined") {
+  'use strict'; 
+
+  if (typeof root.ApiUtils === 'undefined') {
     root.ApiUtils = {};
   }
 
   root.ApiUtils = {
     fetchUser: function (userId, callback) {
       $.ajax({
-        url: "/api/users/" + userId,
-        type: "GET",
-        dataType: "json",
+        url: '/api/users/' + userId,
+        type: 'GET',
+        dataType: 'json',
         success: function (user) {
           callback(user);
         },
@@ -39981,17 +40542,18 @@ $(function () {
     },
     updateUser: function (userId, params, callback, redirect) {
       $.ajax({
-        url: "/api/users/" + userId,
-        type: "PUT",
-        dataType: "json",
+        url: '/api/users/' + userId,
+        type: 'PUT',
+        dataType: 'json',
         data: {user: params},
         success: function (user) {
           callback(user);
           redirect();
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            // window.location.assign('/sign_in');
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40000,15 +40562,15 @@ $(function () {
     },
     deleteUser: function (user) {
       $.ajax({
-        url: "/api/users/" + user.id,
-        type: "DELETE",
-        dataType: "json",
+        url: '/api/users/' + user.id,
+        type: 'DELETE',
+        dataType: 'json',
         success: function (user) {
 
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            window.location.assign('/sign_in'); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40017,11 +40579,11 @@ $(function () {
     },
     destroySession: function() {
       $.ajax({
-        url: "sessions",
-        dataType: "json",
-        type: "DELETE",
+        url: 'sessions',
+        dataType: 'json',
+        type: 'DELETE',
         success: function(response) {
-          window.location.assign("/");
+          window.location.assign('/');
         },
         error: function (err) {
           ErrorActions.receiveErrors(err.responseJSON);
@@ -40030,15 +40592,15 @@ $(function () {
     },
     followUser: function (user, callback) {
       $.ajax({
-        type: "POST",
-        url: "/api/followings",
+        type: 'POST',
+        url: '/api/followings',
         data: {followed_id: user.id},
         success: function (currentUser) {
           callback(currentUser);
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            window.location.assign('/sign_in'); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40047,33 +40609,35 @@ $(function () {
     },
     unfollowUser: function (user, callback) {
       $.ajax({
-        type: "DELETE",
-        url: "/api/followings",
+        type: 'DELETE',
+        url: '/api/followings',
         data: {followed_id: user.id},
         success: function (currentUser) {
           callback(currentUser);
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            window.location.assign('/sign_in'); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
         }
       })
     },
+
     createComment: function (comment, trackId, callback) {
       $.ajax({
-        url: "/api/comments",
-        type: "POST",
+        url: '/api/comments',
+        type: 'POST',
         data: {comment: comment},
-        dataType: "json",
+        dataType: 'json',
         success: function (comment) {
           callback(comment, trackId);
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            // window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40082,16 +40646,17 @@ $(function () {
     },
     fetchComments: function (trackId, callback) {
       $.ajax({
-        url: "/api/comments",
-        type: "GET",
-        dataType: "json",
+        url: '/api/comments',
+        type: 'GET',
+        dataType: 'json',
         data: {track_id: trackId},
         success: function (comments) {
           callback(comments, trackId);
         },
         error: function (err) {
-          if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+          if (err.responseText === 'Not logged in error') {
+            // window.location.assign('/sign_in');
+            ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40170,9 +40735,10 @@ $(function () {
           callback(like);
         },
         error: function (err) {
-          console.log(err);
+          // console.log(err);
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
+            // window.location.assign("/sign_in"); 
           }
         }
       })
@@ -40195,7 +40761,8 @@ $(function () {
         error: function (err) {
           console.log(err);
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
+            // window.location.assign("/sign_in"); 
           }
         }
       })
@@ -40378,6 +40945,42 @@ $(function () {
     }
   }
 })(this);
+(function (root) {
+  if (typeof root.SessionUtils === "undefined") {
+    root.SessionUtils = {};
+  }
+
+  root.SessionUtils = {
+    login: function (loginData, callback) {
+      $.ajax({
+        url: "/api/sessions",
+        method: "POST",
+        data: {user: loginData},
+        success: function (user) {
+          callback(user);
+        },
+        error: function (e) {
+          console.log(e.responseText);
+        }
+      })
+    },
+
+    logout: function (callback) {
+      $.ajax({
+        url: "/api/sessions/" + SessionStore.getUserId(),
+        method: "DELETE",
+        success: function (data) {
+          // window.location.assign("/");
+          callback();
+          console.log(data);
+        },
+        error: function (e) {
+          console.log(e.responseText);
+        }
+      })
+    }
+  };
+})(this);
 /* global $, ErrorActions, console */
 
 
@@ -40470,7 +41073,8 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            // window.location.assign("/sign_in");
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40491,7 +41095,8 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            // window.location.assign("/sign_in");
+            ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40509,7 +41114,8 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            // window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
