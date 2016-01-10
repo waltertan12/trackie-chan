@@ -28,7 +28,6 @@
     },
     signUp: function (e) {
       e.preventDefault();
-      console.log('wut');
       ModalActions.showSignUpModal();
     },
     render: function () {

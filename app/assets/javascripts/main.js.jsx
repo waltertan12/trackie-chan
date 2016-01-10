@@ -20,6 +20,11 @@ $(function () {
     }
   });
 
+  var userId = SessionStore.getUserId();
+  if (typeof userId !== undefined) {
+    SessionActions.fetchUser(userId);
+  }
+
   const routes = (
     <Route path="/" component={App}>
       <IndexRoute component={Dashboard} />

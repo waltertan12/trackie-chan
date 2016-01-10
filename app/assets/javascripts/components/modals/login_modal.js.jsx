@@ -16,10 +16,8 @@
     },
     getClassNames: function () {
       this.setState(ModalStore.getClasses());
-      console.log(this.state);
     },
     render: function () {
-      console.log(this.state);
       var login = this.state.login,
           signup = this.state.signup;
       return (

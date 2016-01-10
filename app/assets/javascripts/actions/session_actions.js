@@ -24,7 +24,20 @@
         })
       };
       SessionUtils.logout(dispatchCallback);
-    }//,
+    },
+
+    fetchUser: function (userId) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.USER_RECEIVED,
+          user: user
+        })
+      }
+
+      ApiUtils.fetchUser(userId, dispatchCallback);
+    }
+
+    //,
 
     // currentUserLoggedIn: function () {
     //   root.AppDispatcher.dispatch({

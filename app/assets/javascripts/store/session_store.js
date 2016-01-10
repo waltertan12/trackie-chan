@@ -38,15 +38,15 @@
     },
 
     getUserId: function () {
-      return _user.id;
+      return (_user.id || atob(localStorage.getItem('user')));
     },
 
-    getUserUsername: function () {
+    getUsername: function () {
       return (_user.username || atob(localStorage.getItem('user')));
     },
 
     setSession: function (user) {
-      localStorage.setItem('user', root.btoa(user.username));
+      localStorage.setItem('user', root.btoa(user.id));
       _user = user;
     },
 
@@ -73,6 +73,11 @@
         case SessionConstants.LOGOUT:
           root.SessionStore.removeSession();
           root.ApiActions.receiveCurrentUser(-1);
+          SessionStore.emit(CHANGE_EVENT);
+          break;
+        case SessionConstants.USER_RECEIVED:
+          root.SessionStore.setSession(payload.user);
+          root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);
           break;
       }
