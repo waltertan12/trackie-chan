@@ -7,18 +7,32 @@
   
   root.AddToPlaylistButton = React.createClass({
     render: function () {
-      var trackId = this.props.trackId,
-          userId = this.props.userId;
-      return (
-        <Link className="btn btn-warning btn-add-to-playlist"
-              to={"/users/" +  
-                  userId + 
-                  "/tracks/" +  
-                  trackId + 
-                  "/playlist-form"} >
-          +Playlist
-        </Link>
-      );
+      if (!SessionStore.isLoggedIn()) {
+        return (
+          <a className="btn btn-warning btn-add-to-playlist"
+             onClick={ModalActions.showLoginModal}>
+            +Playlist
+          </a>
+        );
+      } else {
+        var trackId = this.props.trackId,
+            userId = this.props.userId,
+            link = "/users/" +  
+                    userId + 
+                    "/tracks/" +  
+                    trackId + 
+                    "/playlist-form";
+        return (
+          <Link className="btn btn-warning btn-add-to-playlist"
+                to={"/users/" +  
+                    userId + 
+                    "/tracks/" +  
+                    trackId + 
+                    "/playlist-form"} >
+            +Playlist
+          </Link>
+        );
+      }
     }
   });
 })(this);
