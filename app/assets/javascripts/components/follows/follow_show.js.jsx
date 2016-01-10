@@ -52,11 +52,12 @@
       }
 
       return (
-        <div>
+        <div className='container'>
           <h1>
             {title} for&nbsp;
             <Link to={"/users/" + this.state.id}>{this.state.username}</Link>
           </h1>
+          <hr/>
           <ul className="follower-show-index">
             {
               follows.map( function (follow, index) {

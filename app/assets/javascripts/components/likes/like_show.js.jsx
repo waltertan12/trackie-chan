@@ -64,16 +64,33 @@
       var userId = parseInt(this.props.params.userId);
       this.setState({user: UserStore.findUser(userId)});
     },
+    trackOrPlaylistRender: function (source, key) {
+      switch(source.type) {
+        case "Track":
+          return (
+            <TrackIndexItem key={key} 
+                            track={source} 
+                            makeLink={true}/>
+          );
+        case "Playlist":
+          return (
+            <PlaylistIndexItem key={key} 
+                               playlist={source}/>
+          );
+      }
+
+    },
     render: function () {
       var likes = this.state.likes,
           user = this.state.user;
 
       return (
-        <div className="likes-show-index">
+        <div className="likes-show-index container">
           <h1>
             Likes for&nbsp;
             <Link to={"/users/" + user.id}>{user.username}</Link>
           </h1>
+          <hr/>
           <ul>
             {
               likes.map( function (like, index) {

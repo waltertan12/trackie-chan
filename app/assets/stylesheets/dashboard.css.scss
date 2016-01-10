@@ -16,11 +16,11 @@ $header-image-size: 150px;
   ul {
     padding: 0px;
   }
-}
-
-.dashboard-feed-index {
-  border-right: 1px solid lightgray;
-  min-height: $content-container-min-height;
+  .dashboard-feed-index {
+    border-right: 1px solid lightgray;
+    min-height: $content-container-min-height;
+    padding-left: 0;
+  }
 }
 
 /* dashboard - no current user */
@@ -32,11 +32,11 @@ div.landing-page {
   font-weight: bold;
   font-size: 5em;
   font-style: bold;
-  background: -webkit-linear-gradient(left top, lightgray, lightblue);
+/*  background: -webkit-linear-gradient(left top, lightgray, lightblue);
   background: -o-linear-gradient(bottom right, lightgray, lightblue);
   background: -moz-linear-gradient(bottom right, lightgray, lightblue);
-  background: linear-gradient(to bottom right, lightgray, lightblue);
-  /*background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");*/
+  background: linear-gradient(to bottom right, lightgray, lightblue);*/
+  background: url("https://images.unsplash.com/photo-1431069767777-c37892aa0a07?q=80&fm=jpg&s=b4bc9252163eaf5f7655c9e3c60b61e8");
   /*background: url("https://unsplash.com/photos/MRxD-J9-4ps/download");*/
   background-size: cover;
   background-position: center-bottom;
@@ -57,7 +57,7 @@ div.landing-page {
     }
   }
   h1 {
-    font-family: Consolas, Pacifico;
+    font-family: Pacifico, Consolas, Sans Serif;
   }
   h4 {
     font-style: italic;

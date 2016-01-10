@@ -16,12 +16,14 @@ $(function () {
     render: function () {
       return (
         <div>
-          <LoginModal />
           <Navbar/>
-          <div className="main container">
-            {this.props.children}
+          <div>
+            <LoginModal />
+            <div className="main container">
+              {this.props.children}
+            </div>
+            <Player />
           </div>
-          <Player />
         </div>
       );
     }

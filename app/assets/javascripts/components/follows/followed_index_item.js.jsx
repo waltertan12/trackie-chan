@@ -15,7 +15,7 @@
               <img alt={user.username} 
                    src={user.image_url} 
                    height="20" 
-                   width="20"/>
+                   width="20"/>&nbsp;
               {user.username}
             </Link>
           </li>

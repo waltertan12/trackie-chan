@@ -6,9 +6,9 @@
   root.ExploreFeed = React.createClass({
     render: function () {
       return (
-        <div>
+        <div className='container'>
           <h1>Trending tracks and playlists</h1>
-          <FeedIndex type="explore" />
+          <FeedIndex type='explore' />
         </div>
       );
     }
