@@ -34302,7 +34302,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               value: this.state.body })
           ),
           React.createElement("input", { type: "submit",
-            className: "btn btn-primary",
+            className: "btn btn-primary transition",
             value: "Submit" })
         )
       );
@@ -34455,7 +34455,9 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     displayName: 'Dashboard',
 
     getInitialState: function () {
-      return { currentUser: UserStore.findUser(window.CURRENT_USER_ID) };
+      return {
+        currentUser: UserStore.currentUser()
+      };
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
@@ -34486,7 +34488,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
         React.createElement('br', null)
       );
 
-      if (this.state.currentUser.id > 0) {
+      if (SessionStore.isLoggedIn()) {
         return React.createElement(
           'div',
           { className: 'dashboard row' },
@@ -34736,7 +34738,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     render: function () {
       return React.createElement(
         'div',
-        { className: 'col-md-8 dashboard-feed-index ' },
+        { className: 'col-md-8 dashboard-feed-index' },
         React.createElement(FeedIndex, { type: "user" })
       );
     }
@@ -34748,18 +34750,18 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   }
 
   root.ExploreFeed = React.createClass({
-    displayName: "ExploreFeed",
+    displayName: 'ExploreFeed',
 
     render: function () {
       return React.createElement(
-        "div",
-        null,
+        'div',
+        { className: 'container' },
         React.createElement(
-          "h1",
+          'h1',
           null,
-          "Trending tracks and playlists"
+          'Trending tracks and playlists'
         ),
-        React.createElement(FeedIndex, { type: "explore" })
+        React.createElement(FeedIndex, { type: 'explore' })
       );
     }
   });
@@ -34985,7 +34987,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
       return React.createElement(
         "div",
-        null,
+        { className: "container" },
         React.createElement(
           "h1",
           null,
@@ -34997,6 +34999,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             this.state.username
           )
         ),
+        React.createElement("hr", null),
         React.createElement(
           "ul",
           { className: "follower-show-index" },
@@ -35033,6 +35036,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
               src: user.image_url,
               height: "20",
               width: "20" }),
+            " ",
             user.username
           )
         )
@@ -35051,7 +35055,9 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     displayName: "Navbar",
 
     getInitialState: function () {
-      return { currentUser: UserStore.findUser(window.CURRENT_USER_ID) };
+      return {
+        currentUser: SessionStore.getUser()
+      };
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);
@@ -35280,9 +35286,10 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             break;
         }
 
-        this.setState({ likeState: this.like });
+        // this.setState({likeState: this.like});
       }
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      ApiActions.receiveCurrentUser(userId);
     },
     render: function () {
       var likeState = this.state.likeState,
@@ -35370,13 +35377,24 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       var userId = parseInt(this.props.params.userId);
       this.setState({ user: UserStore.findUser(userId) });
     },
+    trackOrPlaylistRender: function (source, key) {
+      switch (source.type) {
+        case "Track":
+          return React.createElement(TrackIndexItem, { key: key,
+            track: source,
+            makeLink: true });
+        case "Playlist":
+          return React.createElement(PlaylistIndexItem, { key: key,
+            playlist: source });
+      }
+    },
     render: function () {
       var likes = this.state.likes,
           user = this.state.user;
 
       return React.createElement(
         "div",
-        { className: "likes-show-index" },
+        { className: "likes-show-index container" },
         React.createElement(
           "h1",
           null,
@@ -35387,6 +35405,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             user.username
           )
         ),
+        React.createElement("hr", null),
         React.createElement(
           "ul",
           null,
@@ -35880,14 +35899,24 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     displayName: "AddToPlaylistButton",
 
     render: function () {
-      var trackId = this.props.trackId,
-          userId = this.props.userId;
-      return React.createElement(
-        Link,
-        { className: "btn btn-add-to-playlist btn-warning",
-          to: "/users/" + userId + "/tracks/" + trackId + "/playlist-form" },
-        "+Playlist"
-      );
+      if (!SessionStore.isLoggedIn()) {
+        return React.createElement(
+          "a",
+          { className: "btn btn-warning btn-add-to-playlist",
+            onClick: ModalActions.showLoginModal },
+          "+Playlist"
+        );
+      } else {
+        var trackId = this.props.trackId,
+            userId = this.props.userId,
+            link = "/users/" + userId + "/tracks/" + trackId + "/playlist-form";
+        return React.createElement(
+          Link,
+          { className: "btn btn-warning btn-add-to-playlist",
+            to: "/users/" + userId + "/tracks/" + trackId + "/playlist-form" },
+          "+Playlist"
+        );
+      }
     }
   });
 })(this);
@@ -35903,7 +35932,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
     render: function () {
       var link = "/users/" + this.props.userId + "/playlists/" + this.props.playlistId + "/edit";
-      if (window.CURRENT_USER_ID > -1 && parseInt(this.props.userId) === window.CURRENT_USER_ID) {
+      if (SessionStore.isLoggedIn()) {
         return React.createElement(
           Link,
           { to: link, className: "btn Like" },
@@ -36105,9 +36134,9 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   root.PlaylistForm = React.createClass({
     displayName: "PlaylistForm",
 
-    mixings: [ReactRouter.History],
+    mixins: [ReactRouter.History],
     getInitialState: function () {
-      var userId = window.CURRENT_USER_ID;
+      var userId = SessionStore.getUserId();
       return {
         playlists: PlaylistStore.findUserPlaylists(userId),
         title: "",
@@ -36129,10 +36158,11 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     componentWillReceiveProps: function (nextProps) {},
     getPlaylists: function () {
-      PlaylistActions.receivePlaylists(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      PlaylistActions.receivePlaylists(userId);
     },
     setPlaylists: function () {
-      var userId = window.CURRENT_USER_ID;
+      var userId = SessionStore.getUserId();
       this.setState({ playlists: PlaylistStore.findUserPlaylists(userId) });
     },
     setErrors: function () {
@@ -36351,7 +36381,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     setAddState: function (props) {
       var playlist = this.props.playlist,
-          userId = window.CURRENT_USER_ID,
+          userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.trackId),
           playlistId = parseInt(this.props.playlist.id),
           text;
@@ -36364,7 +36394,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     handleClick: function (e) {
       var playlist = this.props.playlist,
-          userId = window.CURRENT_USER_ID,
+          userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.trackId),
           playlistId = parseInt(this.props.playlist.id);
 
@@ -36380,8 +36410,9 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     render: function () {
       var playlist = this.props.playlist,
-          addState = this.state.addState;
-      link = "/users/" + window.CURRENT_USER_ID + "/playlists/" + playlist.id;
+          addState = this.state.addState,
+          userId = SessionStore.getUserId(),
+          link = "/users/" + userId + "/playlists/" + playlist.id;
       return React.createElement(
         "li",
         { className: "playlist-form-index-item row" },
@@ -37268,7 +37299,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
           link = "/users/" + userId + "/tracks/" + trackId + "/edit",
           button;
 
-      if (window.CURRENT_USER_ID > 0 && window.CURRENT_USER_ID === userId) {
+      if (SessionStore.getUserId === this.props.userId) {
         return React.createElement(
           Link,
           { to: link, className: "btn Like" },
@@ -37311,7 +37342,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
       this.tagInput = new Taggle("tag-field", { duplicateTagClass: 'bounce' });
 
-      var userId = window.CURRENT_USER_ID,
+      var userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
 
@@ -37326,7 +37357,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
-      var userId = window.CURRENT_USER_ID,
+      var userId = SessionStore.getUserId(),
           trackId = parseInt(nextProps.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
 
@@ -38094,6 +38125,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
   });
 })(this);
 (function (root) {
+  'use strict';
   if (typeof root.FollowButton === "undefined") {
     root.FollowButton = {};
   }
@@ -38125,23 +38157,24 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     followOrUnfollow: function () {
       if (this.state.followState === "Follow") {
         ApiActions.followUser(this.props.user);
-        // Temporary solution to update feed
-        FeedActions.receiveUserFeed();
         this.setState({ followState: "Unfollow" });
       } else {
         ApiActions.unfollowUser(this.props.user);
-        // Temporary solution to update feed
-        FeedActions.receiveUserFeed();
         this.setState({ followState: "Follow" });
       }
+      var id = SessionStore.getUserId();
+      FeedActions.receiveUserFeed();
+      ApiActions.receiveSingleUserData(id);
+      ApiActions.receiveSingleUser(this.props.user.id);
+      ApiActions.receiveCurrentUser(id);
     },
     render: function () {
-      if (window.CURRENT_USER_ID === this.props.user.id) {
+      if (SessionStore.getUserId() === this.props.user.id) {
         return React.createElement("div", null);
       } else {
         return React.createElement(
           "button",
-          { className: "btn " + this.state.followState,
+          { className: "btn " + this.state.followState + ' transition',
             onClick: this.followOrUnfollow },
           this.state.followState
         );
@@ -38200,7 +38233,8 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       UserStore.removeChangeListener(this.setCurrentUser);
     },
     getCurrentUser: function () {
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      ApiActions.receiveCurrentUser(userId);
     },
     setCurrentUser: function () {
       this.currentUser = UserStore.currentUser();
@@ -38560,6 +38594,16 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       var dispatchCallback = function (user) {
         root.AppDispatcher.dispatch({
           actionType: root.UserConstants.USER_RECEIVED,
+          user: user
+        });
+      };
+
+      ApiUtils.fetchUser(userId, dispatchCallback);
+    },
+    receiveSingleUserData: function (userId) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.USER_DATA_RECEIVED,
           user: user
         });
       };
@@ -39025,21 +39069,13 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     fetchUser: function (userId) {
       var dispatchCallback = function (user) {
         root.AppDispatcher.dispatch({
-          actionType: root.SessionConstants.USER_RECEIVED,
+          actionType: root.SessionConstants.SESSION_USER_RECEIVED,
           user: user
         })
       }
 
       ApiUtils.fetchUser(userId, dispatchCallback);
     }
-
-    //,
-
-    // currentUserLoggedIn: function () {
-    //   root.AppDispatcher.dispatch({
-    //     actionType: //idk
-    //   });
-    // }
   };
 })(this);
 (function (root) {
@@ -39245,7 +39281,7 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
   root.SessionConstants.LOGIN  = 'LOGIN';
   root.SessionConstants.LOGOUT = 'LOGOUT';
-  root.SessionConstants.USER_RECEIVED = 'USER_RECEIVED';
+  root.SessionConstants.SESSION_USER_RECEIVED = 'SESSION_USER_RECEIVED';
 
 })(this);
 (function (root) {
@@ -39272,17 +39308,17 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
 
 })(this);
 (function (root) {
-  if (typeof root.UserConstants === "undefined") {
+  'use strict';
+  if (typeof root.UserConstants === 'undefined') {
     root.UserConstants = {}
   }
 
-  root.UserConstants = {
-    CURRENT_USER_RECEIVED: "CURRENT_USER_RECEIVED",
-    SET_USER_SHOW: "SET_USER_SHOW",
-    USER_RECEIVED: "USER_RECEIVED",
-    USER_CREATED: "USER_CREATED",
-    USER_UPDATED: "USER_UPDATED"
-  };
+  root.UserConstants.CURRENT_USER_RECEIVED = 'CURRENT_USER_RECEIVED';
+  root.UserConstants.SET_USER_SHOW = 'SET_USER_SHOW';
+  root.UserConstants.USER_RECEIVED = 'USER_RECEIVED';
+  root.UserConstants.USER_CREATED = 'USER_CREATED';
+  root.UserConstants.USER_UPDATED = 'USER_UPDATED';
+  root.UserConstants.USER_DATA_RECEIVED = 'USER_DATA_RECEIVED';
 
 })(this);
 var AppDispatcher = new Flux.Dispatcher();
@@ -39296,26 +39332,32 @@ $(function () {
   var App = React.createClass({
     displayName: "App",
 
+    componentDidMount: function () {
+      if (SessionStore.isLoggedIn()) {
+        var userId = SessionStore.getUserId();
+        console.log('componentDidMount for App: ' + userId);
+        SessionActions.fetchUser(userId);
+      }
+    },
     render: function () {
       return React.createElement(
         "div",
         null,
-        React.createElement(LoginModal, null),
         React.createElement(Navbar, null),
         React.createElement(
           "div",
-          { className: "main container" },
-          this.props.children
-        ),
-        React.createElement(Player, null)
+          null,
+          React.createElement(LoginModal, null),
+          React.createElement(
+            "div",
+            { className: "main container" },
+            this.props.children
+          ),
+          React.createElement(Player, null)
+        )
       );
     }
   });
-
-  var userId = SessionStore.getUserId();
-  if (typeof userId !== undefined) {
-    SessionActions.fetchUser(userId);
-  }
 
   var routes = React.createElement(
     Route,
@@ -40025,8 +40067,7 @@ $(function () {
     root.SessionStore = {};
   }
 
-  var _user = {},
-      _placeholderUser = {
+  var _placeholderUser = {
         id: -1, 
         tracks: [], 
         followers: [], 
@@ -40034,6 +40075,7 @@ $(function () {
         likes: [],
         playlists: []
       },
+      _user = _placeholderUser,
       CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.SessionStore = $.extend({}, EventEmitter.prototype, {
@@ -40059,15 +40101,14 @@ $(function () {
     },
 
     getUserId: function () {
-      return (_user.id || atob(localStorage.getItem('user')));
-    },
-
-    getUsername: function () {
-      return (_user.username || atob(localStorage.getItem('user')));
+      if (_user.id !== -1) 
+        return _user.id
+      else if (!!localStorage.getItem('user'))
+        return atob(atob(localStorage.getItem('user')))
     },
 
     setSession: function (user) {
-      localStorage.setItem('user', root.btoa(user.id));
+      localStorage.setItem('user', root.btoa(btoa(user.id)));
       _user = user;
     },
 
@@ -40090,13 +40131,11 @@ $(function () {
           root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);
           break;
-
         case SessionConstants.LOGOUT:
           root.SessionStore.removeSession();
-          root.ApiActions.receiveCurrentUser(-1);
           SessionStore.emit(CHANGE_EVENT);
           break;
-        case SessionConstants.USER_RECEIVED:
+        case SessionConstants.SESSION_USER_RECEIVED:
           root.SessionStore.setSession(payload.user);
           root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);
@@ -40488,6 +40527,10 @@ $(function () {
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
+        case UserConstants.USER_DATA_RECEIVED:
+          root.UserStore.storeUser(payload.user);
+          break;
+
         case UserConstants.CURRENT_USER_RECEIVED:
           root.UserStore.storeUser(payload.current_user);
           resetCurrentUser(payload.current_user);
@@ -40785,7 +40828,7 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40803,7 +40846,7 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40821,10 +40864,10 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             if (err.responseText === "Not logged in error") {
-              window.location.assign("/sign_in"); 
+              ModalActions.showLoginModal();
             } else {
               ErrorActions.receiveErrors(err.responseJSON);
             }
@@ -40844,10 +40887,10 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             if (err.responseText === "Not logged in error") {
-              window.location.assign("/sign_in"); 
+              ModalActions.showLoginModal();
             } else {
               ErrorActions.receiveErrors(err.responseJSON);
             }
@@ -40875,7 +40918,7 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40896,7 +40939,7 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40914,7 +40957,7 @@ $(function () {
         },
         error: function () {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
