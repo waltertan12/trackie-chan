@@ -15,6 +15,16 @@
 
       ApiUtils.fetchUser(userId, dispatchCallback);
     },
+    receiveSingleUserData: function (userId) {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.UserConstants.USER_DATA_RECEIVED,
+          user: user
+        });
+      };
+
+      ApiUtils.fetchUser(userId, dispatchCallback);
+    },
     receiveCurrentUser: function (currentUserId) {
       var dispatchCallback = function (current_user) {
         root.AppDispatcher.dispatch({

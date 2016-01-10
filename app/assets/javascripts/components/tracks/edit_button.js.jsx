@@ -12,7 +12,7 @@
           link = "/users/" + userId + "/tracks/" + trackId + "/edit",
           button;
 
-      if (SessionStore.isLoggedIn()) {
+      if (SessionStore.getUserId === this.props.userId) {
         return <Link to={link} className="btn Like">Edit</Link>;
       } else {
         return <div></div>;

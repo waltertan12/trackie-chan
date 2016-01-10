@@ -8,7 +8,7 @@
   root.Dashboard = React.createClass({
     getInitialState: function () {
       return {
-        currentUser: SessionStore.getUser()
+        currentUser: UserStore.currentUser()
       };
     },
     componentDidMount: function () {
@@ -35,7 +35,7 @@
         </h3>
       );
 
-      if(this.state.currentUser.id > 0) {
+      if(SessionStore.isLoggedIn()) {
         return (
           <div className='dashboard row'>
             <div className='dashboard-feed-container'>

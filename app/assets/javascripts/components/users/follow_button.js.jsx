@@ -1,4 +1,5 @@
 (function (root) {
+  'use strict';
   if (typeof root.FollowButton === "undefined") {
     root.FollowButton = {};
   }
@@ -28,22 +29,23 @@
     followOrUnfollow: function () {
       if (this.state.followState === "Follow") {
         ApiActions.followUser(this.props.user);
-        // Temporary solution to update feed
-        FeedActions.receiveUserFeed();
         this.setState({followState: "Unfollow"});
       } else {
         ApiActions.unfollowUser(this.props.user);
-        // Temporary solution to update feed
-        FeedActions.receiveUserFeed();
         this.setState({followState: "Follow"});
       }
+      var id = SessionStore.getUserId();
+      FeedActions.receiveUserFeed();
+      ApiActions.receiveSingleUserData(id);
+      ApiActions.receiveSingleUser(this.props.user.id);
+      ApiActions.receiveCurrentUser(id);
     },
     render: function () {
-      if (window.CURRENT_USER_ID === this.props.user.id) {
+      if (SessionStore.getUserId() === this.props.user.id) {
         return <div></div>;
       } else {
         return (
-          <button className={"btn " + this.state.followState}
+          <button className={"btn " + this.state.followState + ' transition'}
                   onClick={this.followOrUnfollow}>
             {this.state.followState}
           </button>

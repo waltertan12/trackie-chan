@@ -84,6 +84,10 @@
           root.UserStore.emit(CHANGE_EVENT);
           break;
 
+        case UserConstants.USER_DATA_RECEIVED:
+          root.UserStore.storeUser(payload.user);
+          break;
+
         case UserConstants.CURRENT_USER_RECEIVED:
           root.UserStore.storeUser(payload.current_user);
           resetCurrentUser(payload.current_user);
