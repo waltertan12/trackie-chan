@@ -6,6 +6,12 @@ $(function () {
   const IndexRoute = ReactRouter.IndexRoute;
 
   const App = React.createClass({
+    componentDidMount: function () {
+      var userId = SessionStore.getUserId();
+      if (typeof userId !== undefined) {
+        SessionActions.fetchUser(userId);
+      }
+    },
     render: function () {
       return (
         <div>
@@ -19,11 +25,6 @@ $(function () {
       );
     }
   });
-
-  var userId = SessionStore.getUserId();
-  if (typeof userId !== undefined) {
-    SessionActions.fetchUser(userId);
-  }
 
   const routes = (
     <Route path="/" component={App}>

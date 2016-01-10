@@ -30,7 +30,7 @@
             </div>
 
             <input type="submit" 
-                   className="btn btn-primary"
+                   className="btn btn-primary transition"
                    value="Submit"/>
 
           </form>

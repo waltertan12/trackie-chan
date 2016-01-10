@@ -29,7 +29,7 @@
         {duplicateTagClass: 'bounce'}
       );
       
-      var userId = window.CURRENT_USER_ID,
+      var userId = SessionStore.getUserId(),
           trackId = parseInt(this.props.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
 
@@ -44,7 +44,7 @@
       ErrorStore.removeChangeListener(this.setErrors);
     },
     componentWillReceiveProps: function (nextProps) {
-      var userId = window.CURRENT_USER_ID,
+      var userId = SessionStore.getUserId(),
           trackId = parseInt(nextProps.params.trackId),
           newTrack = TrackStore.findTrack(userId, trackId);
       

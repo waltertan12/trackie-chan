@@ -14,7 +14,7 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -32,7 +32,7 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -50,10 +50,10 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             if (err.responseText === "Not logged in error") {
-              window.location.assign("/sign_in"); 
+              ModalActions.showLoginModal();
             } else {
               ErrorActions.receiveErrors(err.responseJSON);
             }
@@ -73,10 +73,10 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             if (err.responseText === "Not logged in error") {
-              window.location.assign("/sign_in"); 
+              ModalActions.showLoginModal();
             } else {
               ErrorActions.receiveErrors(err.responseJSON);
             }
@@ -104,7 +104,7 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -125,7 +125,7 @@
         },
         error: function (err) {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -143,7 +143,7 @@
         },
         error: function () {
           if (err.responseText === "Not logged in error") {
-            window.location.assign("/sign_in"); 
+            ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }

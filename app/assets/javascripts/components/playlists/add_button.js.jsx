@@ -10,7 +10,7 @@
       var trackId = this.props.trackId,
           userId = this.props.userId;
       return (
-        <Link className="btn btn-add-to-playlist btn-warning"
+        <Link className="btn btn-warning btn-add-to-playlist"
               to={"/users/" +  
                   userId + 
                   "/tracks/" +  

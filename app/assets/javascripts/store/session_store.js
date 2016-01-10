@@ -4,8 +4,7 @@
     root.SessionStore = {};
   }
 
-  var _user = {},
-      _placeholderUser = {
+  var _placeholderUser = {
         id: -1, 
         tracks: [], 
         followers: [], 
@@ -13,6 +12,7 @@
         likes: [],
         playlists: []
       },
+      _user = _placeholderUser,
       CHANGE_EVENT = 'CHANGE_EVENT';
 
   root.SessionStore = $.extend({}, EventEmitter.prototype, {
@@ -38,15 +38,14 @@
     },
 
     getUserId: function () {
-      return (_user.id || atob(localStorage.getItem('user')));
-    },
-
-    getUsername: function () {
-      return (_user.username || atob(localStorage.getItem('user')));
+      if (_user.id) 
+        return _user.id
+      else if (localStorage.getItem('user'))
+        return atob(atob(localStorage.getItem('user')))
     },
 
     setSession: function (user) {
-      localStorage.setItem('user', root.btoa(user.id));
+      localStorage.setItem('user', root.btoa(btoa(user.id)));
       _user = user;
     },
 
@@ -69,13 +68,12 @@
           root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);
           break;
-
         case SessionConstants.LOGOUT:
           root.SessionStore.removeSession();
-          root.ApiActions.receiveCurrentUser(-1);
+          root.CURRENT_USER_ID = undefined;
           SessionStore.emit(CHANGE_EVENT);
           break;
-        case SessionConstants.USER_RECEIVED:
+        case SessionConstants.SESSION_USER_RECEIVED:
           root.SessionStore.setSession(payload.user);
           root.ApiActions.receiveCurrentUser(payload.user.id);
           SessionStore.emit(CHANGE_EVENT);

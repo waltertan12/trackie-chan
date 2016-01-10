@@ -59,7 +59,8 @@
 
         this.setState({likeState: this.like});
       }
-      ApiActions.receiveCurrentUser(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      ApiActions.receiveCurrentUser(userId);
     },
     render: function () {
       var likeState = this.state.likeState,

@@ -4,9 +4,9 @@
   }
 
   root.PlaylistForm = React.createClass({
-    mixings: [ReactRouter.History],
+    mixins: [ReactRouter.History],
     getInitialState: function () {
-      var userId = window.CURRENT_USER_ID;
+      var userId = SessionStore.getUserId();
       return ({
         playlists: PlaylistStore.findUserPlaylists(userId),
         title: "",
@@ -30,10 +30,11 @@
 
     },
     getPlaylists: function () {
-      PlaylistActions.receivePlaylists(window.CURRENT_USER_ID);
+      var userId = SessionStore.getUserId();
+      PlaylistActions.receivePlaylists(userId);
     },
     setPlaylists: function () {
-      var userId = window.CURRENT_USER_ID;
+      var userId = SessionStore.getUserId();
       this.setState({playlists: PlaylistStore.findUserPlaylists(userId)})
     },
     setErrors: function  () {

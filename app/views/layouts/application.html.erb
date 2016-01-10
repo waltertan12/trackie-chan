@@ -11,9 +11,15 @@
 <body>
   <% if current_user %>
     <script type="text/javascript">
+      var user = "<%= current_user.id %>";
+      localStorage.setItem("user", user);
       window.CLOUDINARY_NAME = "q32rnq9jfaskfaskfasf";
       window.CLOUDINARY_PRESET = "f0qeyyhf";
       window.CLOUDINARY_VERSION = "v1_1";
+    </script>
+  <% else %>
+    <script type="text/javascript">
+      localStorage.removeItem("user");
     </script>
   <% end %>
   

@@ -12,8 +12,7 @@
                  "/playlists/" +
                  this.props.playlistId +
                  "/edit";
-      if (window.CURRENT_USER_ID > -1 &&
-          parseInt(this.props.userId) === window.CURRENT_USER_ID) {
+      if (SessionStore.isLoggedIn()) {
         return (
           <Link to={link} className="btn Like">
             Edit

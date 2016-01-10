@@ -7,7 +7,9 @@
 
   root.Dashboard = React.createClass({
     getInitialState: function () {
-      return {currentUser: UserStore.findUser(window.CURRENT_USER_ID)};
+      return {
+        currentUser: SessionStore.getUser()
+      };
     },
     componentDidMount: function () {
       UserStore.addChangeListener(this.setCurrentUser);

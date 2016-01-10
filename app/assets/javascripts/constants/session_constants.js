@@ -6,6 +6,6 @@
 
   root.SessionConstants.LOGIN  = 'LOGIN';
   root.SessionConstants.LOGOUT = 'LOGOUT';
-  root.SessionConstants.USER_RECEIVED = 'USER_RECEIVED';
+  root.SessionConstants.SESSION_USER_RECEIVED = 'SESSION_USER_RECEIVED';
 
 })(this);
