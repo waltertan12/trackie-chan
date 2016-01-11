@@ -35644,12 +35644,16 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     login: function (e) {
       e.preventDefault();
       SessionActions.login(this.state);
-      this.cancel();
     },
     cancel: function (e) {
       if (typeof e !== 'undefined') e.preventDefault();
       this.setState({ email: '', password: '' });
       ModalActions.hideLoginModal();
+    },
+    demo: function (e) {
+      e.preventDefault();
+      SessionActions.demoLogin();
+      this.cancel();
     },
     render: function () {
       return React.createElement(
@@ -35691,6 +35695,10 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
             type: 'submit',
             value: 'Login',
             onClick: this.login }),
+          React.createElement('input', { className: 'btn btn-primary transition',
+            type: 'submit',
+            value: 'Demo Account',
+            onClick: this.demo }),
           React.createElement('input', { className: 'btn btn-danger transition',
             type: 'submit',
             value: 'Cancel',
@@ -35805,7 +35813,8 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     },
     signup: function (e) {
       e.preventDefault();
-      this.cancel();
+      var user = this.state;
+      SessionActions.createUser(user);
     },
     cancel: function (e) {
       if (typeof e !== 'undefined') e.preventDefault();
@@ -35816,6 +35825,11 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
         password_confirmation: ''
       });
       ModalActions.hideLoginModal();
+    },
+    demo: function (e) {
+      e.preventDefault();
+      SessionActions.demoLogin();
+      this.cancel();
     },
     render: function () {
       return React.createElement(
@@ -35879,8 +35893,12 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
           React.createElement('br', null),
           React.createElement('input', { className: 'btn btn-success transition',
             type: 'submit',
-            value: 'Create an Account!',
+            value: 'Sign Up!',
             onClick: this.signup }),
+          React.createElement('input', { className: 'btn btn-primary transition',
+            type: 'submit',
+            value: 'Demo Account',
+            onClick: this.demo }),
           React.createElement('input', { className: 'btn btn-danger transition',
             type: 'submit',
             value: 'Cancel :(',
@@ -38071,13 +38089,14 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
     render: function () {
       var redirectButton;
       if (this.state.value === 100) {
-        setTimeout(function () {}, 500);
-        redirectButton = React.createElement(
-          Link,
-          { to: "/users/" + this.state.userId + "/tracks/" + this.state.trackId,
-            className: "btn btn-success" },
-          "Go to track"
-        );
+        setTimeout((function () {
+          redirectButton = React.createElement(
+            Link,
+            { to: "/users/" + this.state.userId + "/tracks/" + this.state.trackId,
+              className: "btn btn-success" },
+            "Go to track"
+          );
+        }).bind(this), 0);
       } else if (this.state.value <= 98) {
         redirectButton = React.createElement(
           "div",
@@ -39075,6 +39094,29 @@ Array.isArray(c)?c={entries:c}:"string"==typeof c&&(c={entries:[c]});var p=d["de
       }
 
       ApiUtils.fetchUser(userId, dispatchCallback);
+    },
+
+    createUser: function (user) {
+      console.log(user);
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGIN,
+          user: user
+        })
+      }
+
+      ApiUtils.createUser(user, dispatchCallback);
+    },
+
+    demoLogin: function () {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGIN,
+          user: user
+        })
+      }
+
+      SessionUtils.demoLogin(dispatchCallback);
     }
   };
 })(this);
@@ -39333,11 +39375,20 @@ $(function () {
     displayName: "App",
 
     componentDidMount: function () {
+      ErrorStore.addChangeListener(this.setErrors);
       if (SessionStore.isLoggedIn()) {
         var userId = SessionStore.getUserId();
         console.log('componentDidMount for App: ' + userId);
         SessionActions.fetchUser(userId);
       }
+    },
+    componentWillUnmount: function () {
+      ErrorStore.removeChangeListener(this.setErrors);
+    },
+    setErrors: function () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(React.createElement(ErrorDisplay, { errors: ErrorStore.all() }), node);
+      this.setState({ errors: ErrorStore.all() });
     },
     render: function () {
       return React.createElement(
@@ -40620,6 +40671,21 @@ $(function () {
         }
       })
     },
+    createUser: function (user, callback) {
+      $.ajax({
+        url: '/api/users',
+        method: 'POST',
+        data: {user: user},
+        success: (user) => {
+          callback(user);
+          ModalActions.hideSignUpModal();
+        },
+        error: (e) => {
+          console.log(e.responseText);
+          ErrorActions.receiveErrors(e.responseJSON);
+        }
+      })
+    },
     destroySession: function() {
       $.ajax({
         url: 'sessions',
@@ -40989,20 +41055,22 @@ $(function () {
   }
 })(this);
 (function (root) {
-  if (typeof root.SessionUtils === "undefined") {
+  if (typeof root.SessionUtils === 'undefined') {
     root.SessionUtils = {};
   }
 
   root.SessionUtils = {
     login: function (loginData, callback) {
       $.ajax({
-        url: "/api/sessions",
-        method: "POST",
+        url: '/api/sessions',
+        method: 'POST',
         data: {user: loginData},
         success: function (user) {
           callback(user);
+          ModalActions.hideLoginModal();
         },
         error: function (e) {
+          ErrorActions.receiveErrors(e.responseJSON);
           console.log(e.responseText);
         }
       })
@@ -41010,12 +41078,25 @@ $(function () {
 
     logout: function (callback) {
       $.ajax({
-        url: "/api/sessions/" + SessionStore.getUserId(),
-        method: "DELETE",
+        url: '/api/sessions/' + SessionStore.getUserId(),
+        method: 'DELETE',
         success: function (data) {
-          // window.location.assign("/");
+          // window.location.assign('/');
           callback();
           console.log(data);
+        },
+        error: function (e) {
+          console.log(e.responseText);
+        }
+      })
+    },
+
+    demoLogin: function (callback) {
+      $.ajax({
+        url: '/api/guest',
+        method: 'GET',
+        success: function (data) {;
+          callback(data);
         },
         error: function (e) {
           console.log(e.responseText);
