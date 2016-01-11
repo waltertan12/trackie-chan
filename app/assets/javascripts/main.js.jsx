@@ -7,11 +7,20 @@ $(function () {
 
   const App = React.createClass({
     componentDidMount: function () {
+      ErrorStore.addChangeListener(this.setErrors);
       if (SessionStore.isLoggedIn()) {
         var userId = SessionStore.getUserId();
         console.log('componentDidMount for App: ' + userId);
         SessionActions.fetchUser(userId);
       }
+    },
+    componentWillUnmount: function () {
+      ErrorStore.removeChangeListener(this.setErrors);
+    },
+    setErrors: function  () {
+      var node = React.findDOMNode(document.getElementById("errors"));
+      React.render(<ErrorDisplay errors={ErrorStore.all()}/>, node);
+      this.setState({errors: ErrorStore.all()});
     },
     render: function () {
       return (

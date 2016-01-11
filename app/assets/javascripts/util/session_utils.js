@@ -11,8 +11,10 @@
         data: {user: loginData},
         success: function (user) {
           callback(user);
+          ModalActions.hideLoginModal();
         },
         error: function (e) {
+          ErrorActions.receiveErrors(e.responseJSON);
           console.log(e.responseText);
         }
       })

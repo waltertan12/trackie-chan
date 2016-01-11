@@ -20,7 +20,6 @@
     login: function (e) {
       e.preventDefault();
       SessionActions.login(this.state);
-      this.cancel();
     },
     cancel: function (e) {
       if (typeof e !== 'undefined') e.preventDefault();

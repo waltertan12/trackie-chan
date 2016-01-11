@@ -31,7 +31,6 @@
       e.preventDefault();
       var user = this.state;
       SessionActions.createUser(user);
-      this.cancel();
     },
     cancel: function (e) {
       if (typeof e !== 'undefined') e.preventDefault();

@@ -63,6 +63,7 @@
         data: {user: user},
         success: (user) => {
           callback(user);
+          ModalActions.hideSignUpModal();
         },
         error: (e) => {
           console.log(e.responseText);
