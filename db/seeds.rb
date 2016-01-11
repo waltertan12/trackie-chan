@@ -228,7 +228,7 @@ wet = User.create!(
 )
 
 yelle = User.create!(
-  username: "Wet",
+  username: "Yelle",
   email: "yelle@iamfrench.aasasdfasd",
   password_digest: BCrypt::Password.create("password")
 )
