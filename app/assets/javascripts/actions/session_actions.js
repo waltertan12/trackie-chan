@@ -35,6 +35,29 @@
       }
 
       ApiUtils.fetchUser(userId, dispatchCallback);
+    },
+
+    createUser: function (user) {
+      console.log(user);
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGIN,
+          user: user
+        })
+      }
+
+      ApiUtils.createUser(user, dispatchCallback);
+    },
+
+    demoLogin: function () {
+      var dispatchCallback = function (user) {
+        root.AppDispatcher.dispatch({
+          actionType: root.SessionConstants.LOGIN,
+          user: user
+        })
+      }
+
+      SessionUtils.demoLogin(dispatchCallback);
     }
   };
 })(this);

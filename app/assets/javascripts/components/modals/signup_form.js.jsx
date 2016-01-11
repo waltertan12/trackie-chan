@@ -29,6 +29,8 @@
     },
     signup: function (e) {
       e.preventDefault();
+      var user = this.state;
+      SessionActions.createUser(user);
       this.cancel();
     },
     cancel: function (e) {
@@ -40,6 +42,11 @@
         password_confirmation: ''
       });
       ModalActions.hideLoginModal();
+    },
+    demo: function (e) {
+      e.preventDefault();
+      SessionActions.demoLogin();
+      this.cancel();
     },
     render: function () {
       return (
@@ -76,8 +83,13 @@
 
             <input className='btn btn-success transition'
                    type='submit' 
-                   value='Create an Account!'
+                   value='Sign Up!'
                    onClick={this.signup}/>
+
+            <input className='btn btn-primary transition'
+                   type='submit' 
+                   value='Demo Account'
+                   onClick={this.demo}/>
 
             <input className='btn btn-danger transition'
                    type='submit' 

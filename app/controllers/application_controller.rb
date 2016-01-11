@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def ensure_user_logged_in
     unless logged_in?
-      flash[:danger] = "Please log in or sign up"
+      # flash[:danger] = "Please log in or sign up"
       render json: "Not logged in error", status: 422
     end
   end

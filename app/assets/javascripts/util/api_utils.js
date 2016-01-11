@@ -56,6 +56,20 @@
         }
       })
     },
+    createUser: function (user, callback) {
+      $.ajax({
+        url: '/api/users',
+        method: 'POST',
+        data: {user: user},
+        success: (user) => {
+          callback(user);
+        },
+        error: (e) => {
+          console.log(e.responseText);
+          ErrorActions.receiveErrors(e.responseJSON);
+        }
+      })
+    },
     destroySession: function() {
       $.ajax({
         url: 'sessions',

@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
  namespace :api, defaults: {format: :json} do
   resources :sessions, only: [:create, :destroy]
+  get "guest" => "sessions#guest"
   
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:create, :show, :edit, :update, :destroy]
 
   resource :followings, only: [:create, :destroy]
 

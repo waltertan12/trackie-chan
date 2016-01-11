@@ -17,12 +17,13 @@ class SessionsController < ApplicationController
 
   def guest
     guest_user = User.new(
-      username: "guest_account",
-      email: "guest_account#{rand(999999999999999)}@sesamestreet.com",
+      username: "guest_account#{Time.now.to_i}",
+      email: "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com",
       password_digest: BCrypt::Password.create("password")
     )
+
     until guest_user.save
-      guest_user.email = "guest_account#{rand(999999999999999)}@sesamestreet.com"
+      guest_user.email = "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com"
     end
 
     (7..39).to_a.sample(5).each do |id| 

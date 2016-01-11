@@ -1,5 +1,16 @@
 class Api::UsersController < ApplicationController
-  before_action :ensure_user_logged_in, except: [:show]
+  before_action :ensure_user_logged_in, except: [:create, :show]
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      log_in_user!(@user)
+      render :show
+    else
+      render json: @user.errors.full_messages
+    end
+  end
 
   def show
     @user = User.includes(:tracks, 

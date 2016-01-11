@@ -27,6 +27,11 @@
       this.setState({email: '', password: ''});
       ModalActions.hideLoginModal();
     },
+    demo: function (e) {
+      e.preventDefault();
+      SessionActions.demoLogin();
+      this.cancel();
+    },
     render: function () {
       return (
         <div>
@@ -50,6 +55,11 @@
                    type='submit' 
                    value='Login'
                    onClick={this.login}/>
+
+            <input className='btn btn-primary transition'
+                   type='submit' 
+                   value='Demo Account'
+                   onClick={this.demo}/>
 
             <input className='btn btn-danger transition'
                    type='submit' 
