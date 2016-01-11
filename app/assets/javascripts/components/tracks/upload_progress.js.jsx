@@ -27,16 +27,17 @@
     render: function () {
       var redirectButton;
       if (this.state.value === 100) {
-        setTimeout(function() {}, 500);
-        redirectButton = (
-          <Link to={"/users/" + 
-                    this.state.userId +
-                    "/tracks/" + 
-                    this.state.trackId} 
-                className="btn btn-success">
-            Go to track
-          </Link>
-        );
+        setTimeout(function () {
+          redirectButton = (
+            <Link to={"/users/" + 
+                      this.state.userId +
+                      "/tracks/" + 
+                      this.state.trackId} 
+                  className="btn btn-success">
+              Go to track
+            </Link>
+          );
+        }.bind(this), 0);
       } else if (this.state.value <= 98) {
         redirectButton = <div><h3>Uploading Track</h3></div>;
       } else {
