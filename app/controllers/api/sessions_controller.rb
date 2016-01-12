@@ -11,22 +11,22 @@ class Api::SessionsController < ApplicationController
   end
 
   def guest
-    guest_user = User.new(
+    @user = User.new(
       username: "guest_account#{Time.now.to_i}",
       email: "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com",
       password_digest: BCrypt::Password.create("password")
     )
 
-    until guest_user.save
-      guest_user.email = "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com"
+    until @user.save
+      @user.email = "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com"
     end
 
     (7..39).to_a.sample(5).each do |id| 
-      guest_user.following << User.find(id)
+      @user.following << User.find(id)
     end
 
-    log_in_user!(guest_user)
-    redirect_to root_url
+    log_in_user!(@user)
+    render :show
   end
 
   def destroy
