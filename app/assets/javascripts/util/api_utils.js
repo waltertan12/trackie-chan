@@ -31,7 +31,6 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in');
             ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
@@ -49,7 +48,7 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -94,9 +93,9 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal();
           } else {
-            ErrorActions.receiveErrors(err.responseJSON);
+            console.log(err);
           }
         }
       })
@@ -111,9 +110,9 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal();
           } else {
-            ErrorActions.receiveErrors(err.responseJSON);
+            console.log(err);
           }
         }
       })
@@ -130,7 +129,6 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in'); 
             ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
@@ -149,7 +147,6 @@
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in');
             ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);

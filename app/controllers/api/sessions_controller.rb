@@ -11,14 +11,17 @@ class Api::SessionsController < ApplicationController
   end
 
   def guest
+    time = Time.now.to_i
     @user = User.new(
-      username: "guest_account#{Time.now.to_i}",
-      email: "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com",
-      password_digest: BCrypt::Password.create("password")
+      username: "guest_account#{time}",
+      email: "guest_account#{time}#{rand(100)}@sesamestreet.com",
+      password: "password"
     )
 
     until @user.save
-      @user.email = "guest_account#{Time.now.to_i}#{rand(100)}@sesamestreet.com"
+      time = Time.now.to_i
+      @user.username = "guest_account#{time}"
+      @user.email = "guest_account#{time}#{rand(100)}@sesamestreet.com"
     end
 
     (7..39).to_a.sample(5).each do |id| 
