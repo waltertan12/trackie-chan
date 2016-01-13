@@ -36,12 +36,16 @@ class User < ActiveRecord::Base
                                    foreign_key: "followed_id",
                                    dependent: :destroy
                                   
-  has_many :following, through: :active_relationships, source: :followed
-  has_many :followers, through: :passive_relationships, source: :follower
+  has_many :following,# -> { order 'followings.created_at desc' },
+           through: :active_relationships, 
+           source: :followed
+  has_many :followers,# -> { order 'followings.created_at desc' },
+           through: :passive_relationships, 
+           source: :follower
 
   has_many :tracks, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :likings, dependent: :destroy
+  has_many :likings, -> {order 'created_at desc'}, dependent: :destroy
   has_many :playlists, dependent: :destroy
 
   def ensure_image_url
@@ -58,6 +62,14 @@ class User < ActiveRecord::Base
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
     user if user && user.is_password?(password)
+  end
+
+  def following_by_date
+    self.active_relationships.includes(:followed).map { |r| r.followed }
+  end
+
+  def following_by_date
+    self.passive_relationships.includes(:follower).map { |r| r.follower }
   end
 
   def reset_session_token!

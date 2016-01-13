@@ -40642,7 +40642,6 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in');
             ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
@@ -40660,7 +40659,7 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
           }
@@ -40705,9 +40704,9 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal();
           } else {
-            ErrorActions.receiveErrors(err.responseJSON);
+            console.log(err);
           }
         }
       })
@@ -40722,9 +40721,9 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            window.location.assign('/sign_in'); 
+            ModalActions.showLoginModal();
           } else {
-            ErrorActions.receiveErrors(err.responseJSON);
+            console.log(err);
           }
         }
       })
@@ -40741,7 +40740,6 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in'); 
             ModalActions.showLoginModal();
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
@@ -40760,7 +40758,6 @@ $(function () {
         },
         error: function (err) {
           if (err.responseText === 'Not logged in error') {
-            // window.location.assign('/sign_in');
             ModalActions.showLoginModal(); 
           } else {
             ErrorActions.receiveErrors(err.responseJSON);
